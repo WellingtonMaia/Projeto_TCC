@@ -15,16 +15,15 @@ class Task extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments("id");
-            $table->char("name");
+            $table->char("name",250);
             $table->text("description");
             $table->datetime("estimated_date");
             $table->time("estimated_time");
             $table->enum("status",["A"],["I"]);
             $table->date("begin_date");
             $table->date("final_date");
-            $table->datetime("created_at");
-            $table->foreign("project_id")->references("id")->on("project")
-            $table->
+            $table->timestamps();
+            // $table->foreign("project_id")->references("id")->on("projects");            
         });
     }
 
@@ -35,6 +34,7 @@ class Task extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tasks');
+
     }
 }

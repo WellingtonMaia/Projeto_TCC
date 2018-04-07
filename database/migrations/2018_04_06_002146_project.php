@@ -15,11 +15,13 @@ class Project extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments("id");
-            $table->string("nome");
-            $table->datetime("prazo_estimado");
-            // $table->string("id");
-            $table->double("valor_projeto");
-            $table->enum("tipo_projeto");            
+            $table->string("name");
+            $table->datetime("estimade_date");
+            $table->time("estimade_time");
+            $table->enum("status",["A"],["I"]);            
+            $table->double("project_price");            
+            $table->enum("project_type",["I"],["E"]);
+            $table->timestamps();            
         });
     }
 
@@ -30,6 +32,6 @@ class Project extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('projects');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Files extends Migration
+class Times extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class Files extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('times', function (Blueprint $table) {
             $table->increments("id");
-            $table->char("name", 250);
-            $table->char("file_url",250);
+            $table->char("name",255);
+            $table->time("time_value");
+            $table->date("begin_date");
+            $table->date("final_date");
             // $table->foreign("task_id")->references("id")->on("tasks");
         });
     }
@@ -27,7 +29,7 @@ class Files extends Migration
      * @return void
      */
     public function down()
-    {        
-        Schema::dropIfExists('files');
+    {
+      Schema::dropIfExists('times');
     }
 }
