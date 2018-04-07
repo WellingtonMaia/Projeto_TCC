@@ -15,14 +15,16 @@ class Task extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments("id");
-            $table->char("nome");
-            $table->text("descricao");
-            $table->datetime("prazo_estimado");
-            $table->time("tempo_estimado");
+            $table->char("name");
+            $table->text("description");
+            $table->datetime("estimated_date");
+            $table->time("estimated_time");
             $table->enum("status",["A"],["I"]);
-            $table->date("data_inicio");
-            $table->date("data_final");
-            $table->date("data_criacao");
+            $table->date("begin_date");
+            $table->date("final_date");
+            $table->datetime("created_at");
+            $table->foreign("project_id")->references("id")->on("project")
+            $table->
         });
     }
 

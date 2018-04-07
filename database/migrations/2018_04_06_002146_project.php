@@ -14,10 +14,12 @@ class Project extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->int("id");
+            $table->increments("id");
             $table->string("nome");
             $table->datetime("prazo_estimado");
-            $table->string("id");
+            // $table->string("id");
+            $table->double("valor_projeto");
+            $table->enum("tipo_projeto");            
         });
     }
 
