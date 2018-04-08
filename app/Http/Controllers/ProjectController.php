@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -65,7 +66,7 @@ class ProjectController extends Controller
 
     	Session::flash('message', 'Cadastro registrado com sucesso!');
     	return Redirect::to('projects/');
-    	
+
     }
 
 
