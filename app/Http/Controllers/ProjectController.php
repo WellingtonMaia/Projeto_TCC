@@ -37,36 +37,25 @@ class ProjectController extends Controller
         return view('project')->with('projects', $projects);
     }
 
-    public function showRegistrationForm(){
+    public function create(){
     	return view('forms.project_create');
     }
 
-    public function create(Request $request){
 
+    public function store(){
+		$name = Input::get('name');
+    	$estimate_date = Input::get('estimate_date');
+    	$estimate_time = Input::get('estimate_time');
+    	$status = Input::get('status');
+    	$project_price = Input::get('project_price');
+    	$project_type = Input::get('project_type');
+    	$create_at = "2018-05-05 12:03:05";
+    	
 
-    	$project = new Project;
-    	$project->nome = Input::get('name');
-    	$project->estimate_date = Input::get('estimate_date');
-    	$project->estimate_time = Input::get('estimate_time');
-    	$project->status = Input::get('status');
-    	$project->project_price = Input::get('project_price');
-    	$project->project_type = Input::get('project_type');
+    	DB::insert('insert into projects values (?, ?, ?, ?, ?, ?)', 
+    	array($name, $estimate_date, $estimate_time, $status, $project_price, $project_type));
 
-    	$project->save();
-
-    	// $project = Project::create([
-    	// 	'name' => $data['name']	,
-    	// 	'estimate_date' => $data['estimate_date'],
-    	// 	'estimate_time' => $date['estimate_time'],
-    	// 	'status' => $date['status'],
-    	// 	'project_price' => $date['project_price'],
-    	// 	'project_type' => $date['project_type']
-    	// 	]);
-
-
-    	Session::flash('message', 'Cadastro registrado com sucesso!');
-    	return Redirect::to('projects/');
-
+    	return view('project')->with('name', $name);
     }
 
 

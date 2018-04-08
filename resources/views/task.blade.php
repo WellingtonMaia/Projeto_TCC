@@ -14,31 +14,35 @@
                     <table class="table">
                         <thead>
                             <tr>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th class="text-right">Actions</th>
+                              <th>Nome</th>
+                              <th>Descricao</th>
+                              <th>Data estimada</th>
+                              <th>Tempo estimado</th>
+                              <th>Status</th>
+                              <th>Data inicio</th>
+                              <th>Data final</th>
+                              <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                           @foreach ($tasks as $task)
                           <tr>
-                            <td>{{  }}</td>
-                            <td>{{  }}</td>
-                            <td>{{  }}</td>
-                            <td>{{  }}</td>
-                            <td>{{  }}</td>
-                            <td>{{  }}</td>
-                            <td><a class="btn btn-info" href="">Editar</a></td>
-                            <td><a class="btn btn-danger" href="">Excluir</a></td>
+                            <td>{{ $task->name }}</td>
+                            <td>{{ $task->description }}</td>
+                            <td>{{ $task->estimated_date }}</td>
+                            <td>{{ $task->estimated_time }}</td>
+                            <td>{{ $task->status }}</td>
+                            <td>{{ $task->begin_date }}</td>
+                            <td>{{ $task->final_date }}</td>                           
+                            <td>
+                              <a class="btn btn-info" href="">Editar</a>
+                              <a class="btn btn-danger" href="">Excluir</a>
+                            </td>
                           </tr>
                           @endforeach
                         <tbody>
                     </table>
-                    <a class="btn btn-success" href="{{ route('')}}"> Criar novo</a>
+                    <a class="btn btn-success" href="{{ route('tasks_create')}}"> Criar novo</a>
                 </div>
               </div>
           </div>

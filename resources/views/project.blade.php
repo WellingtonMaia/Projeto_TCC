@@ -3,7 +3,7 @@
 
 	<div class="project-content">
 		<div class="container-fluid">
-		
+
 			<div class="col-md-12">
                 <div class="card">
                     <div class="block-icon">
@@ -21,7 +21,7 @@
 										<th>Status</th>
 										<th>Preco do Projeto</th>
 										<th>Tipo de Projeto</th>
-										<th class="text-right">Actions</th>
+										<th>Actions</th>
                                     </tr>
                                 </thead>
                               	<tbody>
@@ -33,14 +33,14 @@
                               			<td>{{ $project->status }}</td>
                               			<td>{{ $project->project_price }}</td>
                               			<td>{{ $project->project_type }}</td>
-                              			<td><a class="btn btn-info" href="">Editar</a></td>
-                              			<td><a class="btn btn-danger" href="">Excluir</a></td>
+                              			<td><a class="btn btn-info" href="">Editar</a> <a class="btn btn-danger" href="">Excluir</a></td>
                               		</tr>
                               		@endforeach
                                 <tbody>
                             </table>
-                            <a class="btn btn-success" href="{{ route('projects_form')}}"> Criar novo</a>
+                            
                         </div>
+                        <a class="btn btn-success" href="{{ route('projects_create')}}"> Criar novo</a>
                     </div>
                 </div>
             </div>
