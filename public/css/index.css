@@ -1,0 +1,343 @@
+/*resets */
+
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+	font-size:14px;	
+    outline: 0;
+    transition: ease-out .2s;
+}
+
+
+.container{
+	max-width: 1170px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.clear,
+.container::after,
+.container::before{
+	clear: both;
+	display: block;
+	content: "";
+}
+
+body,
+input,
+select,
+button,
+textarea{
+	font-family: "Montserrat", "sans serif";
+    outline: 0;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: url(../images/arrow.svg) calc(100% - 15px) center no-repeat;
+    background-size: 8px
+}
+
+select::ms-expand {
+    display: none
+}
+
+a{
+	text-decoration: none;
+	color:#000;
+}
+
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../fonts/montserrat/Montserrat-Semibold-webfont.ttf) format('ttf'), url(../fonts/montserrat/Montserrat-Semibold-webfont.woff) format('woff');
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../fonts/montserrat/Montserrat-Regular-webfont.ttf) format('ttf'), url(../fonts/montserrat/Montserrat-Regular-webfont.woff) format('woff');
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../fonts/montserrat/Montserrat-Medium-webfont.ttf) format('ttf'), url(../fonts/montserrat/Montserrat-Medium-webfont.woff) format('woff');
+    font-weight: 500;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../fonts/montserrat/Montserrat-Light-webfont.ttf) format('ttf'), url(../fonts/montserrat/Montserrat-Light-webfont.woff) format('woff');
+    font-weight: 300;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../fonts/montserrat/Montserrat-Bold-webfont.ttf) format('ttf'), url(../fonts/montserrat/Montserrat-Bold-webfont.woff) format('woff');
+    font-weight: 700;
+    font-style: normal
+}
+
+
+.shadow{
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    content: "";
+    background: #000;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: ease-out .2s;
+}
+
+.shadow.active{
+    opacity: .4;
+    visibility: visible;
+}   
+
+
+
+/*end resets*/
+
+/*code page */
+
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    justify-content: space-around;
+}
+
+/*aside*/
+
+.aside{
+    width: 260px;
+    background: #000;
+    z-index: 5;
+    height: 100vh;
+    position: relative;    
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 
+                0 4px 25px 0px rgba(0, 0, 0, 0.12), 
+                0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.aside:before{
+    position: absolute;
+    content: "";
+    top: 0;    
+    background:url('../img/sidebar-1.jpg');
+    background-size: cover;
+    opacity: 0.4;
+    z-index: -1;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    display: block;
+}
+
+.aside .menu ul{
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
+}
+
+.aside .menu ul li{
+    display: block;
+    padding:12px 20px;
+    width: 100%;
+    position: relative;
+}
+
+.aside .menu ul li:hover::before{
+    transform: rotate(30deg);
+}
+
+.aside .menu ul li.first::before{
+    content: "";
+}
+
+.aside .menu ul li a{
+    color:#fff;
+    display: block;
+}
+
+.aside .menu ul li.has-sub{
+    position: relative;
+}
+
+.aside .menu ul li.has-sub:hover ul.list{ 
+    opacity: 1;
+    visibility: visible;        
+}
+
+.aside .menu ul li ul.list{
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    top: 100%;
+    left:20px;
+    transition:ease-out .2s;
+}
+
+.content-right{
+    width:calc(100% - 260px);
+    padding-left: 0;    
+}
+
+.content-right .dashboard {
+    margin-top: 50px;
+}
+
+.content-right .dashboard .content{
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
+    margin-left: -20px;
+}
+
+.content-right .content .block{ 
+    width: 25%;
+    border-radius: 2px;
+    margin: 20px 0;
+    position: relative;    
+}
+
+.content-right .content .block .item{
+    padding:30px 40px;
+    margin:0 10px;
+    border-radius: 6px;
+}
+
+.content-right .content .block .item .info {
+    text-align: right;
+}
+
+.content-right .content .block .item .info h3{
+    font-size: 14px;
+    margin:0;
+}
+
+.content-right .content .block .item .info span{
+    font-size: 13px;
+}
+
+.content-right .content .block .icon svg{
+    height: 40px;
+    display: block;
+    fill: #fff;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.content-right .content .block .icon{
+    position: absolute;
+    top: -20px;
+    left: 25px;
+    border-radius: 2px;
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.content-right .content .block:nth-child(1) .icon{    
+    background:#9c27b0;
+}
+
+.content-right .content .block:nth-child(2) .icon{
+    background:#ec2c1f;
+}
+
+.content-right .content .block:nth-child(3) .icon{
+    background:#00bcd4;
+}
+
+.content-right .content .block:nth-child(4) .icon{
+    background:#4caf50;
+}
+
+
+/*.content-right .content .block:nth-child(1) .icon svg{    
+    fill:#9c27b0;
+}
+
+.content-right .content .block:nth-child(2) .icon svg{
+    fill:#ec2c1f;
+}
+
+.content-right .content .block:nth-child(3) .icon svg{
+    fill:#00bcd4;
+}
+
+.content-right .content .block:nth-child(4) .icon svg{
+    fill:#4caf50;
+}*/
+
+.content-right .content .block:nth-child(1) .item{    
+    box-shadow:0 14px 26px -12px rgba(156, 39, 176, 0.42), 
+               0 4px 23px 0px rgba(0, 0, 0, 0.12),
+               0 8px 10px -5px rgba(156, 39, 176, 0.2);
+}
+
+.content-right .content .block:nth-child(2) .item{
+    box-shadow:0 14px 26px -12px rgba(244, 67, 54, 0.42), 
+               0 4px 23px 0px rgba(0, 0, 0, 0.12),
+               0 8px 10px -5px rgba(244, 67, 54, 0.2);
+}
+
+.content-right .content .block:nth-child(3) .item{
+    box-shadow: 0 14px 26px -12px rgba(0, 188, 212, 0.42), 
+                0 4px 23px 0px rgba(0, 0, 0, 0.12), 
+                0 8px 10px -5px rgba(0, 188, 212, 0.2);
+}
+
+.content-right .content .block:nth-child(4) .item{
+    box-shadow: 0 14px 26px -12px rgba(76, 175, 80, 0.42), 
+                0 4px 23px 0px rgba(0, 0, 0, 0.12), 
+                0 8px 10px -5px rgba(76, 175, 80, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

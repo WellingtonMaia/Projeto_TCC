@@ -60,6 +60,19 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        
+                        <div class="form-group{{ $errors->has('role') ? ' has-error' : ''}}">
+                            <label for="role" class="col-md-4 control-label">Role</label>
+                            <div class="col-md-6">
+                                <input type="text" name="role" class="form-control" required>
+                                @if($errors->has("role"))
+                                    <span class="help-block">
+                                        <strong>{{ $erros->first('role')}}</strong>
+                                    </span>
+                                @endif
+                            </div>                            
+                        </div>
+                        
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

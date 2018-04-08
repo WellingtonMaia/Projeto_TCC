@@ -16,8 +16,8 @@ class Project extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments("id");
             $table->string("name");
-            $table->datetime("estimade_date");
-            $table->time("estimade_time");
+            $table->datetime("estimate_date");
+            $table->time("estimate_time");
             $table->enum("status",["A"],["I"]);            
             $table->double("project_price");            
             $table->enum("project_type",["I"],["E"]);
