@@ -14,7 +14,7 @@
 									</div>									
 									<div class="info">
 										<h3>Projetos</h3>
-										<span>9</span>
+										<span>{{ $nproject }}</span>
 									</div>
 								</div>
 							</div>
@@ -35,7 +35,7 @@
 									</div>									
 									<div class="info">
 										<h3>Tarefas</h3>
-										<span>654</span>		
+										<span>{{ $ntask }}</span>		
 									</div>
 								</div>
 							</div>
@@ -51,7 +51,7 @@
 									</div>									
 									<div class="info">
 										<h3>Pessoas</h3>		
-										<span>5</span>
+										<span>{{ $nuser }}</span>
 									</div>
 								</div>
 							</div>							
@@ -65,7 +65,7 @@
 									</div>									
 									<div class="info">
 										<h3>Tempo</h3>
-										<span>800:97 min</span>
+										<span>00:00</span>
 									</div>
 								</div>
 							</div>
