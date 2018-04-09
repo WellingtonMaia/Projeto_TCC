@@ -3,11 +3,6 @@
 	<div class="task-content">
 		<div class="container-fluid">
 
-{{-- 			@if( $name )
-			<div class="alert alert-success">
-				 <strong>Sucesso!</strong> O projeto {{$name}} foi adicionado.
-			</div>
-			@endif --}}
 			<div class="col-md-12">
 				<div class="card">
 					<div class="block-icon">
@@ -46,8 +41,8 @@
 							<div class="form-group">
 								<label for="status">Status</label>		
 								<select class="form-control" name="status" id="status" required>
-									<option @if( old('status') == 'A') selected @endif value="A">Ativo</option>
-									<option @if( old('status') == 'I') selected @endif value="I">Inativo</option>
+									<option @if( old('status') == 'A') selected @endif @if(isset($task) && $task->status == 'A') selected @endif value="A">Ativo</option>
+									<option @if( old('status') == 'I') selected @endif @if(isset($task) && $task->status == 'I') selected @endif value="I">Inativo</option>
 								</select>					
 							</div>			
 

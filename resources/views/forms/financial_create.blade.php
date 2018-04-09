@@ -20,49 +20,50 @@
 						</svg>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" action="{{ route('projects_store') }}">
+						<form class="form-horizontal" method="POST" @if(isset($financial)) action="{{ url('/financial/edit/'.$financial->id) }}" @else action="{{ route('financials_store') }}" @endif>
+							@if(isset($financial))<input name="_method" type="hidden" value="PUT">@endif
 						{{ csrf_field() }}
 							<div class="form-group">
 								<label for="name">Nome</label>
-								<input type="text" name="name" class="form-control" value="{{ old('name') }}" required autofocus>						
+								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($financial) ? $financial->name : "" }}" required autofocus>						
 							</div>
 
 							<div class="form-group">
 								<label for="value">Valor da Conta</label>
-								<input type="text" name="value" class="form-control" value="{{ old('value') }}" required autofocus>						
+								<input type="text" name="value" class="form-control" value="{{ old('value')? old('value') : isset($financial) ? $financial->value : "" }}" required>						
 							</div>
 
 							<div class="form-group">
 								<label for="tags">Tags</label>
-								<input type="text" name="tags" class="form-control" value="{{ old('tags') }}" required autofocus>						
+								<input type="text" name="tags" class="form-control" value="{{ old('tags')? old('tags') : isset($financial) ? $financial->tags : "" }}" required>						
 							</div>
 
 							<div class="form-group">
-								<label for="tags">Classificacao Financeira</label>
-								<input type="text" name="tags" class="form-control" value="{{ old('tags') }}" required autofocus>						
+								<label for="financial_classification">Classificacao Financeira</label>
+								<input type="text" name="financial_classification" class="form-control" value="{{ old('financial_classification')? old('financial_classification') : isset($financial) ? $financial->financial_classification : "" }}" required>						
 							</div>
 
 							<div class="form-group">
 								<label for="description">Descricao</label>
-								<textarea name="description" class="form-control"> {{ old('description') }}</textarea>
+								<textarea name="description" class="form-control"> {{ old('description')? old('description') : isset($financial) ? $financial->description : "" }} </textarea>
 							</div>
 						
 							<div class="form-group">
 								<label for="due_date">Data de Vencimento</label>
-								<input type="text" name="due_date" class="form-control" value="{{ old('due_date') }}" required autofocus>						
+								<input type="text" name="due_date" class="form-control" value="{{ old('due_date')? old('due_date') : isset($financial) ? $financial->due_date : "" }}" required autofocus>						
 							</div>						
 						
 							<div class="form-group">
 								<label for="status">Status</label>		
 								<select class="form-control" name="status" id="status" >
-									<option @if( old('status') == 'A') selected @endif value="A">Ativo</option>
-									<option @if( old('status') == 'I') selected @endif value="I">Inativo</option>
+									<option @if( old('status') == 'A') selected @endif @if(isset($financial) && $financial->status == 'A') selected @endif  value="A">Ativo</option>
+									<option @if( old('status') == 'I') selected @endif @if(isset($financial) && $financial->status == 'I') selected @endif  value="I">Inativo</option>
 								</select>					
 							</div>			
 
 							<div class="form-group">
 								<label for="cost_center">Centro de custo</label>
-								<input type="text" name="cost_center" value="{{ old('cost_center') }}">
+								<input type="text" name="cost_center" value="{{ old('cost_center')? old('cost_center') : isset($financial) ? $financial->cost_center : "" }}">
 							</div>
 
 							<div class="form-group">

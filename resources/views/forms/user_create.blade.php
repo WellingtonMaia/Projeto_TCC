@@ -3,11 +3,6 @@
 	<div class="user-content">
 		<div class="container-fluid">
 
-{{-- 			@if( $name )
-			<div class="alert alert-success">
-				 <strong>Sucesso!</strong> O projeto {{$name}} foi adicionado.
-			</div>
-			@endif --}}
 			<div class="col-md-12">
 				<div class="card">
 					<div class="block-icon">
@@ -20,42 +15,43 @@
 						</svg>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" action="{{ route('users_store') }}">
+						<form class="form-horizontal" method="POST" @if(isset($task)) action="{{ url('/users/edit/'.$user->id) }}" @else action="{{ route('users_store') }}" @endif >
+						@if(isset($user))<input name="_method" type="hidden" value="PUT">@endif
 						{{ csrf_field() }}
 							<div class="form-group">
 								<label for="name">Nome</label>
-								<input type="text" name="name" class="form-control" value="{{ old('name') }}" required autofocus>
+								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($user) ? $user->name : "" }}" required autofocus>
 							</div>
 
 							<div class="form-group">
 								<label for="email">E-mail</label>
-								<input type="email" name="email" class="form-control" value="{{ old('email')}}" required>
+								<input type="email" name="email" class="form-control" value="{{ old('email')? old('email') : isset($user) ? $user->email : "" }}" required>
 							</div>
 
 							<div class="form-group">
 								<label for="password">Senha</label>
-								<input type="password" name="password" class="form-control" value="{{ old('password')}}" required>
+								<input type="password" name="password" class="form-control" value="{{ old('password')? old('password') : isset($user) ? $user->password : "" }}" required>
 							</div>
 
 							<div class="form-group">
 								<label for="role">Cargo</label>								
-								<input type="text" name="role" class="form-control" value="{{ old('role') }}" required>
+								<input type="text" name="role" class="form-control" value="{{ old('role')? old('role') : isset($user) ? $user->role : "" }}" required>
 							</div>
 
 							<div class="form-group">
 								<label for="status">Status</label>		
 								<select class="form-control" name="status" id="status" >
-									<option @if( old('status') == 'A') selected @endif value="A">Ativo</option>
-									<option @if( old('status') == 'I') selected @endif value="I">Inativo</option>
+									<option @if( old('status') == 'A') selected @endif  @if(isset($user) && $user->status == 'A') selected @endif value="A">Ativo</option>
+									<option @if( old('status') == 'I') selected @endif  @if(isset($user) && $user->status == 'I') selected @endif value="I">Inativo</option>
 								</select>					
 							</div>			
 
 							<div class="form-group">
 								<label for="permission">Permissao</label>		
 								<select class="form-control" name="permission" id="permission" >
-									<option @if( old('permission') == 'A') selected @endif value="A">Administrativo</option>
-									<option @if( old('permission') == 'D') selected @endif value="D">Diretor</option>
-									<option @if( old('permission') == 'P') selected @endif value="P">Colaborador</option>
+									<option @if( old('permission') == 'A') selected @endif  @if(isset($user) && $user->permission == 'A') selected @endif value="A">Administrativo</option>
+									<option @if( old('permission') == 'D') selected @endif  @if(isset($user) && $user->permission == 'D') selected @endif value="D">Diretor</option>
+									<option @if( old('permission') == 'P') selected @endif  @if(isset($user) && $user->permission == 'P') selected @endif value="P">Colaborador</option>
 								</select>					
 							</div>	
 
@@ -63,7 +59,7 @@
 		                    <div class="form-group">
 		                        <div class="">
 		                            <button type="submit" class="btn btn-success">
-		                                Adicionar
+		                                Salvar
 		                            </button>
 		                        </div>
 		                    </div>				

@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use App\User;
 
 class UserController extends Controller
 {
@@ -36,15 +42,49 @@ class UserController extends Controller
     }
 
     public function store(){
+        $user = new User();
+
+        $user->name = Input::get("name");
+        $user->email = Input::get("email");
+        $user->password = Input::get("password");
+        $user->role = Input::get("role");
+        $user->status = Input::get("status");
+        $user->permission = Input::get("permission");
+        $user->save();
+        
+
+        Session::flash('message', 'Cadastro registrado com sucesso!');
+        return Redirect::to('users');
+
 
     }
 
-    public function edit(){
+    public function show($id){
+        $user = user::find($id);
+        return view('forms.user_create')->with("user", $user);
+    }
+
+    public function edit($id){
+        $user = user::find($id);
+
+        $user->name = Input::get("name");
+        $user->email = Input::get("email");
+        $user->password = Input::get("password");
+        $user->role = Input::get("role");
+        $user->status = Input::get("status");
+        $user->permission = Input::get("permission");
+        $user->save();
+
+        Session::flash('message', 'Cadastro editado com sucesso!');
+        return Redirect::to('users');
 
     }
 
     public function delete(){
+        $user = user::find($id);
+        $user->delete();
 
-
+        Session::flash('message', 'Cadastro deletado com sucesso!');
+        return Redirect::to('users');
     }
 }
