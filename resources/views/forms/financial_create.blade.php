@@ -28,6 +28,11 @@
 							</div>
 
 							<div class="form-group">
+								<label for="value">Valor da Conta</label>
+								<input type="text" name="value" class="form-control" value="{{ old('value') }}" required autofocus>						
+							</div>
+
+							<div class="form-group">
 								<label for="tags">Tags</label>
 								<input type="text" name="tags" class="form-control" value="{{ old('tags') }}" required autofocus>						
 							</div>
@@ -39,18 +44,13 @@
 
 							<div class="form-group">
 								<label for="description">Descricao</label>
-								<textarea name="descriptioin" class="form-control"> {{ old('description') }}</textarea>
+								<textarea name="description" class="form-control"> {{ old('description') }}</textarea>
 							</div>
 						
 							<div class="form-group">
-								<label for="estimate_date">Data Estimada</label>
-								<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
-							</div>
-						
-							<div class="form-group">
-								<label for="estimate_time">Tempo Estimado</label>
-								<input type="text" name="estimate_time" class="form-control" value="{{ old('estimate_time') }}" required autofocus>						
-							</div>
+								<label for="due_date">Data de Vencimento</label>
+								<input type="text" name="due_date" class="form-control" value="{{ old('due_date') }}" required autofocus>						
+							</div>						
 						
 							<div class="form-group">
 								<label for="status">Status</label>		
@@ -61,6 +61,11 @@
 							</div>			
 
 							<div class="form-group">
+								<label for="cost_center">Centro de custo</label>
+								<input type="text" name="cost_center" value="{{ old('cost_center') }}">
+							</div>
+
+							<div class="form-group">
 								<label for="account_type">Tipo de Conta</label>		
 								<select class="form-control" name="account_type" id="account_type" >
 									<option @if( old('account_type') == 'P') selected @endif value="P">Pagar</option>
@@ -68,6 +73,10 @@
 									<option @if( old('account_type') == 'F') selected @endif value="F">Fixa</option>
 								</select>					
 							</div>		
+
+							<div class="form-group">
+								<label for=""></label>
+							</div>
 
 		                    <div class="form-group">
 		                        <div class="">
