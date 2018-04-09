@@ -1,6 +1,6 @@
 @extends('layouts.structure')
 @section('content')
-	<div class="task-content">
+	<div class="user-content">
 		<div class="container-fluid">
 
 {{-- 			@if( $name )
@@ -10,7 +10,7 @@
 			@endif --}}
 
 			<div class="panel-body">
-				<form class="form-horizontal" method="POST" action="{{ route('projects_store') }}">
+				<form class="form-horizontal" method="POST" action="{{ route('users_store') }}">
 				{{ csrf_field() }}
 					<div class="form-group">
 						<label for="name">Nome</label>
@@ -23,16 +23,6 @@
 					</div>
 				
 					<div class="form-group">
-						<label for="estimate_date">Data Estimada</label>
-						<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
-					</div>
-				
-					<div class="form-group">
-						<label for="estimate_time">Tempo Estimado</label>
-						<input type="text" name="estimate_time" class="form-control" value="{{ old('estimate_time') }}" required autofocus>						
-					</div>
-				
-					<div class="form-group">
 						<label for="status">Status</label>		
 						<select class="form-group" name="status" id="status" >
 							<option @if( old('status') == 'A') selected @endif value="A">Ativo</option>
@@ -40,15 +30,7 @@
 						</select>					
 					</div>			
 
-					<div class="form-group">
-						<label for="estimate_date">Data Inicio</label>
-						<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
-					</div>
 
-					<div class="form-group">
-						<label for="estimate_date">Data Final</label>
-						<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
-					</div>
                     <div class="form-group">
                         <div class="">
                             <button type="submit" class="btn btn-primary">

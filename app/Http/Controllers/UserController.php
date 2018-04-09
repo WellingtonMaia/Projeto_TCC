@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -24,7 +26,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        $users = DB::select('select * from users');
+        return view('user')->with('users', $users);
+
     }
 
     public function create(){

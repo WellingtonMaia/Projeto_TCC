@@ -51,11 +51,11 @@
 			</aside>	
 			<div class="content-right">	
 			 	@yield('content')
-			 </div>
-			</main>
-		<footer>
-			
-		</footer>
+
+		 	<footer>			
+			</footer>
+			</div>
+		</main>		
 	</body>
 	<script src="{{ asset('js/jquery.min.js') }}"></script>	
 	<script src="{{ asset('js/index.js') }}"></script>		

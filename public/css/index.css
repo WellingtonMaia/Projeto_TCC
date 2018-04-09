@@ -202,13 +202,15 @@ main{
 .content-right{
     width:calc(100% - 260px);
     padding-left: 0;    
-}
-
-.content-right .dashboard {
     margin-top: 50px;
 }
 
-.content-right .dashboard .content{
+/*.content-right .dashboard {
+    margin-top: 50px;
+}
+
+*/
+.content-right .dashboard .content{  
     display: flex;
     display: -webkit-flex;
     display: -moz-flex;
@@ -324,18 +326,213 @@ main{
 }
 
 
+.card .title-add{
+    padding-left: 90px;
+}
+
+.table thead th{
+    border-bottom: 1px solid #e9ecef;
+}
+
+/*projetos*/
+
+.project-content .card{
+    box-shadow:0 14px 26px -12px rgba(156, 39, 176, 0.42), 
+               0 4px 23px 0px rgba(0, 0, 0, 0.12),
+               0 8px 10px -5px rgba(156, 39, 176, 0.2);
+
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.project-content .card{
+    position: relative;
+}
+
+.project-content .card .block-icon{
+    position: absolute;    
+    top: -37px;
+    left: 10px;
+    margin: auto;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background:#9c27b0;
+    border-radius: 6px;
+    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.project-content .card .block-icon svg{
+    height: 40px;
+    display: block;
+    fill: #fff;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;   
+}
+
+.project-content .btn-success{
+    background:#9c27b0;
+    border-color: #9c27b0;
+}
+
+.project-content .btn-success:focus{
+    box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.42);
+}
 
 
+/*tarefas*/
 
 
+.task-content .card{
+    box-shadow:0 14px 26px -12px rgba(244, 67, 54, 0.42), 
+               0 4px 23px 0px rgba(0, 0, 0, 0.12),
+               0 8px 10px -5px rgba(244, 67, 54, 0.2);
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.task-content .card{
+    position: relative;
+}
+
+.task-content .card .block-icon{
+    position: absolute;    
+    top: -37px;
+    left: 10px;
+    margin: auto;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background:#ec2c1f;
+    border-radius: 6px;
+    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.task-content .card .block-icon svg{
+    height: 40px;
+    display: block;
+    fill: #fff;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;   
+}
 
 
+.task-content .btn-success{
+    background:#ec2c1f;
+    border-color: #ec2c1f;
+}
+
+.task-content .btn-success:focus{
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.42);
+}
 
 
+/*pessoas*/
 
 
+.user-content .card{
+    box-shadow: 0 14px 26px -12px rgba(0, 188, 212, 0.42), 
+                0 4px 23px 0px rgba(0, 0, 0, 0.12), 
+                0 8px 10px -5px rgba(0, 188, 212, 0.2);
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.user-content .card{
+    position: relative;
+}
+
+.user-content .card .block-icon{
+    position: absolute;    
+    top: -37px;
+    left: 10px;
+    margin: auto;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background:#00bcd4;
+    border-radius: 6px;
+    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.user-content .card .block-icon svg{
+    height: 40px;
+    display: block;
+    fill: #fff;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;   
+}
 
 
+.user-content .btn-success{
+    background:#00bcd4;
+    border-color: #00bcd4;
+}
+
+.user-content .btn-success:focus{
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.42);
+}
+
+
+/*financeiro*/
+
+.financial-content .card{
+   box-shadow: 0 14px 26px -12px rgba(76, 175, 80, 0.42), 
+                0 4px 23px 0px rgba(0, 0, 0, 0.12), 
+                0 8px 10px -5px rgba(76, 175, 80, 0.2);
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.financial-content .card{
+    position: relative;
+}
+
+.financial-content .card .block-icon{
+    position: absolute;    
+    top: -37px;
+    left: 10px;
+    margin: auto;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background:#4caf50;
+    border-radius: 6px;
+    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.financial-content .card .block-icon svg{
+    height: 40px;
+    display: block;
+    fill: #fff;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;   
+}
+
+.financial-content .btn-success{
+    background:#4caf50;
+    border-color: #4caf50;
+}
+
+.financial-content .btn-success:focus{
+   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.42);
+}
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class FinancialController extends Controller
@@ -24,7 +25,8 @@ class FinancialController extends Controller
      */
     public function index()
     {
-        return view('financial');
+        $financials = DB::select('select * from financials');
+        return view('financial')->with('financials', $financials);
     }
 
     public function create(){

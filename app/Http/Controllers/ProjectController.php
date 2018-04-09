@@ -52,7 +52,7 @@ class ProjectController extends Controller
     	$create_at = "2018-05-05 12:03:05";
     	
 
-    	DB::insert('insert into projects values (?, ?, ?, ?, ?, ?)', 
+    	DB::insert('insert into projects values (null, ?, ?, ?, ?, ?, ?)', 
     	array($name, $estimate_date, $estimate_time, $status, $project_price, $project_type));
 
     	return view('project')->with('name', $name);

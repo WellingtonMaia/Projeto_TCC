@@ -1,6 +1,6 @@
 @extends('layouts.structure')
 @section('content')
-	<div class="task-content">
+	<div class="financial-content">
 		<div class="container-fluid">
 
 {{-- 			@if( $name )
@@ -40,15 +40,7 @@
 						</select>					
 					</div>			
 
-					<div class="form-group">
-						<label for="estimate_date">Data Inicio</label>
-						<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
-					</div>
 
-					<div class="form-group">
-						<label for="estimate_date">Data Final</label>
-						<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
-					</div>
                     <div class="form-group">
                         <div class="">
                             <button type="submit" class="btn btn-primary">
