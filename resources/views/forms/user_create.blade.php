@@ -24,9 +24,24 @@
 						{{ csrf_field() }}
 							<div class="form-group">
 								<label for="name">Nome</label>
-								<input type="text" name="name" class="form-control" value="{{ old('name') }}" required autofocus>						
+								<input type="text" name="name" class="form-control" value="{{ old('name') }}" required autofocus>
 							</div>
-						
+
+							<div class="form-group">
+								<label for="email">E-mail</label>
+								<input type="email" name="email" class="form-control" value="{{ old('email')}}" required>
+							</div>
+
+							<div class="form-group">
+								<label for="password">Senha</label>
+								<input type="password" name="password" class="form-control" value="{{ old('password')}}" required>
+							</div>
+
+							<div class="form-group">
+								<label for="role">Cargo</label>								
+								<input type="text" name="role" class="form-control" value="{{ old('role') }}" required>
+							</div>
+
 							<div class="form-group">
 								<label for="status">Status</label>		
 								<select class="form-control" name="status" id="status" >
@@ -34,6 +49,15 @@
 									<option @if( old('status') == 'I') selected @endif value="I">Inativo</option>
 								</select>					
 							</div>			
+
+							<div class="form-group">
+								<label for="permission">Permissao</label>		
+								<select class="form-control" name="permission" id="permission" >
+									<option @if( old('permission') == 'A') selected @endif value="A">Administrativo</option>
+									<option @if( old('permission') == 'D') selected @endif value="D">Diretor</option>
+									<option @if( old('permission') == 'P') selected @endif value="P">Colaborador</option>
+								</select>					
+							</div>	
 
 
 		                    <div class="form-group">

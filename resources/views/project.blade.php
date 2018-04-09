@@ -17,13 +17,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-										<th>Nome</th>
-										<th>Data Estimada</th>
-										<th>Tempo Estimado</th>
-										<th>Status</th>
-										<th>Preco do Projeto</th>
-										<th>Tipo de Projeto</th>
-										<th>Actions</th>
+                  										<th>Nome</th>
+                  										<th>Data Estimada</th>
+                  										<th>Tempo Estimado</th>
+                  										<th>Status</th>
+                  										<th>Preco do Projeto</th>
+                  										<th>Tipo de Projeto</th>
+                  										<th>Actions</th>
                                     </tr>
                                 </thead>
                               	<tbody>
