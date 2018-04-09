@@ -107,6 +107,10 @@ a{
     visibility: visible;
 }   
 
+.panel-body{
+    margin-top: 35px;
+}
+
 
 
 /*end resets*/
@@ -284,23 +288,6 @@ main{
     background:#4caf50;
 }
 
-
-/*.content-right .content .block:nth-child(1) .icon svg{    
-    fill:#9c27b0;
-}
-
-.content-right .content .block:nth-child(2) .icon svg{
-    fill:#ec2c1f;
-}
-
-.content-right .content .block:nth-child(3) .icon svg{
-    fill:#00bcd4;
-}
-
-.content-right .content .block:nth-child(4) .icon svg{
-    fill:#4caf50;
-}*/
-
 .content-right .content .block:nth-child(1) .item{    
     box-shadow:0 14px 26px -12px rgba(156, 39, 176, 0.42), 
                0 4px 23px 0px rgba(0, 0, 0, 0.12),
@@ -332,6 +319,11 @@ main{
 
 .table thead th{
     border-bottom: 1px solid #e9ecef;
+}
+
+.btn{
+    cursor: pointer;
+    outline: 0;
 }
 
 /*projetos*/

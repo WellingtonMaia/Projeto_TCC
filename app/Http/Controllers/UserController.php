@@ -32,14 +32,16 @@ class UserController extends Controller
     }
 
     public function create(){
-
+        return view('forms.user_create');
     }
 
+    public function store(){
+
+    }
 
     public function edit(){
 
     }
-
 
     public function delete(){
 

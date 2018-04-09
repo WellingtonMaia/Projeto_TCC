@@ -35,8 +35,8 @@
                           <td>{{ $user->role }}</td>
                           <td>{{ $user->status }}</td>
                           <td>{{ $user->permission }}</td>
-                          <td><a class="btn btn-info" href="">Editar</a>
-                              <a class="btn btn-danger" href="">Excluir</a>
+                          <td><a class="btn btn-info" href=""><i class="fa fa-edit"></i></a>
+                              <a class="btn btn-danger" href=""><i class="fa fa-trash"></i></a>
                           </td>
                         </tr>
                         @endforeach

@@ -30,9 +30,12 @@ class TaskController extends Controller
     }
 
     public function create(){
-
+        return view('forms.task_create');
     }
 
+    public function store(){
+
+    }
 
     public function edit(){
 

@@ -46,8 +46,8 @@
                             <td>{{ $task->begin_date }}</td>
                             <td>{{ $task->final_date }}</td>                           
                             <td>
-                              <a class="btn btn-info" href="">Editar</a>
-                              <a class="btn btn-danger" href="">Excluir</a>
+                              <a class="btn btn-info" href=""><i class="fa fa-edit"></i></a>
+                              <a class="btn btn-danger" href=""><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
                           @endforeach

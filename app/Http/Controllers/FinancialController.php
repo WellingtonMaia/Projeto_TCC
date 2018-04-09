@@ -29,8 +29,14 @@ class FinancialController extends Controller
         return view('financial')->with('financials', $financials);
     }
 
-    public function create(){
 
+    public function create(){
+        return view('forms.financial_create');
+    }
+
+    
+    public function store(){
+        
     }
 
 
