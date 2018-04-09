@@ -28,6 +28,16 @@
 							</div>
 
 							<div class="form-group">
+								<label for="tags">Tags</label>
+								<input type="text" name="tags" class="form-control" value="{{ old('tags') }}" required autofocus>						
+							</div>
+
+							<div class="form-group">
+								<label for="tags">Classificacao Financeira</label>
+								<input type="text" name="tags" class="form-control" value="{{ old('tags') }}" required autofocus>						
+							</div>
+
+							<div class="form-group">
 								<label for="description">Descricao</label>
 								<textarea name="descriptioin" class="form-control"> {{ old('description') }}</textarea>
 							</div>
@@ -50,6 +60,14 @@
 								</select>					
 							</div>			
 
+							<div class="form-group">
+								<label for="account_type">Tipo de Conta</label>		
+								<select class="form-control" name="account_type" id="account_type" >
+									<option @if( old('account_type') == 'P') selected @endif value="P">Pagar</option>
+									<option @if( old('account_type') == 'R') selected @endif value="R">Receber</option>
+									<option @if( old('account_type') == 'F') selected @endif value="F">Fixa</option>
+								</select>					
+							</div>		
 
 		                    <div class="form-group">
 		                        <div class="">
