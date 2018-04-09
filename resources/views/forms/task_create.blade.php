@@ -20,49 +20,50 @@
 						</svg>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" action="{{ route('tasks_store') }}">
+						<form class="form-horizontal" method="POST" @if(isset($task)) action="{{ url('/tasks/edit/'.$task->id) }}" @else action="{{ route('tasks_store') }}" @endif ">
+							@if(isset($task))<input name="_method" type="hidden" value="PUT">@endif
 						{{ csrf_field() }}
 							<div class="form-group">
 								<label for="name">Nome</label>
-								<input type="text" name="name" class="form-control" value="{{ old('name') }}" required autofocus>						
+								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($task) ? $task->name : "" }}" required autofocus>						
 							</div>
 
 							<div class="form-group">
 								<label for="description">Descricao</label>
-								<textarea name="descriptioin" class="form-control"> {{ old('description') }}</textarea>
+								<textarea name="description" class="form-control"> {{ old('description')? old('description') : isset($task) ? $task->description : "" }}</textarea>
 							</div>
 						
 							<div class="form-group">
 								<label for="estimate_date">Data Estimada</label>
-								<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
+								<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date')? old('estimate_date') : isset($task) ? $task->estimate_date : "" }}" required>						
 							</div>
 						
 							<div class="form-group">
 								<label for="estimate_time">Tempo Estimado</label>
-								<input type="text" name="estimate_time" class="form-control" value="{{ old('estimate_time') }}" required autofocus>						
+								<input type="text" name="estimate_time" class="form-control" value="{{ old('estimate_time')? old('estimate_time') : isset($task) ? $task->estimate_time : "" }}" required>						
 							</div>
 						
 							<div class="form-group">
 								<label for="status">Status</label>		
-								<select class="form-control" name="status" id="status" >
+								<select class="form-control" name="status" id="status" required>
 									<option @if( old('status') == 'A') selected @endif value="A">Ativo</option>
 									<option @if( old('status') == 'I') selected @endif value="I">Inativo</option>
 								</select>					
 							</div>			
 
 							<div class="form-group">
-								<label for="estimate_date">Data Inicio</label>
-								<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
+								<label for="begin_date">Data Inicio</label>
+								<input type="text" name="begin_date" class="form-control" value="{{ old('begin_date')? old('begin_date') : isset($task) ? $task->begin_date : "" }}" required>						
 							</div>
 
 							<div class="form-group">
-								<label for="estimate_date">Data Final</label>
-								<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date') }}" required autofocus>						
+								<label for="final_date">Data Final</label>
+								<input type="text" name="final_date" class="form-control" value="{{ old('final_date')? old('final_date') : isset($task) ? $task->final_date : "" }}" required>						
 							</div>
 		                    <div class="form-group">
 		                        <div class="">
 		                            <button type="submit" class="btn btn-success">
-		                                Adicionar
+		                                Salvar
 		                            </button>
 		                        </div>
 		                    </div>				

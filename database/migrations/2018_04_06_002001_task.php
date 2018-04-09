@@ -17,9 +17,9 @@ class Task extends Migration
             $table->increments("id");
             $table->char("name",250);
             $table->text("description");
-            $table->datetime("estimated_date");
-            $table->time("estimated_time");
-            $table->enum("status",["A"],["I"]);
+            $table->date("estimate_date");
+            $table->time("estimate_time");
+            $table->enum("status",["A","I"]);
             $table->date("begin_date");
             $table->date("final_date");
             $table->timestamps();

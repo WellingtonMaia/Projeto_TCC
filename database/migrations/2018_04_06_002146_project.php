@@ -18,9 +18,9 @@ class Project extends Migration
             $table->string("name");
             $table->datetime("estimate_date");
             $table->time("estimate_time");
-            $table->enum("status",["A"],["I"]);            
+            $table->enum("status",["A","I"]);            
             $table->double("project_price");            
-            $table->enum("project_type",["I"],["E"]);
+            $table->enum("project_type",["I","E"]);
             $table->timestamps();            
         });
     }

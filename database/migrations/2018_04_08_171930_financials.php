@@ -16,9 +16,9 @@ class Financials extends Migration
         Schema::create('financials', function (Blueprint $table) {
             $table->increments("id");
             $table->char("name",255);
-            $table->enum("status",["A"],["I"]);
+            $table->enum("status",["A","I"]);
             $table->date("due_date");
-            $table->enum("account_type",["P"],["R"],["F"]);
+            $table->enum("account_type",["P","R","F"]);
             $table->double("value");
             $table->text("description");
             $table->char("tags",50);

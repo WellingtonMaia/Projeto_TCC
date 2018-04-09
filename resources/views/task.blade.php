@@ -40,14 +40,14 @@
                           <tr>
                             <td>{{ $task->name }}</td>
                             <td>{{ $task->description }}</td>
-                            <td>{{ $task->estimated_date }}</td>
-                            <td>{{ $task->estimated_time }}</td>
+                            <td>{{ $task->estimate_date }}</td>
+                            <td>{{ $task->estimate_time }}</td>
                             <td>{{ $task->status }}</td>
                             <td>{{ $task->begin_date }}</td>
                             <td>{{ $task->final_date }}</td>                           
                             <td>
-                              <a class="btn btn-info" href=""><i class="fa fa-edit"></i></a>
-                              <a class="btn btn-danger" href=""><i class="fa fa-trash"></i></a>
+                              <a class="btn btn-info" href="{{ url('tasks/show/'.$task->id) }}"><i class="fa fa-edit"></i></a>
+                              <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
                           @endforeach
@@ -57,6 +57,12 @@
                 <a class="btn btn-success" href="{{ route('tasks_create')}}"> Criar novo</a>                
               </div>
           </div>
+            @if( \Session::has("message") )
+              <div class="alert alert-success">
+                  <span> {{ \Session::get("message") }}</span>
+              </div>
+            @endif
+
         </div>
 		</div>
 	</div>

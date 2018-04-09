@@ -36,8 +36,8 @@
                               			<td>{{ $project->project_price }}</td>
                               			<td>{{ $project->project_type }}</td>
                               			<td>
-                              				<a class="btn btn-info" href=""><i class="fa fa-edit"></i></a> 	
-                              				<a class="btn btn-danger" href=""><i class="fa fa-trash"></i></a>
+                              				<a class="btn btn-info" href="{{ url('projects/show/'.$project->id) }}"><i class="fa fa-edit"></i></a> 	
+                              				<a class="btn btn-danger" href="{{ url('projects/delete/'.$project->id) }}"><i class="fa fa-trash"></i></a>
                               			</td>
                               		</tr>
                               		@endforeach
@@ -48,6 +48,13 @@
                         <a class="btn btn-success" href="{{ route('projects_create')}}"> Criar novo</a>
                     </div>
                 </div>
+
+                @if( \Session::has("message") )
+                  <div class="alert alert-success">
+                      <span> {{ \Session::get("message") }}</span>
+                  </div>
+                @endif
+                
             </div>
 
 		</div>
