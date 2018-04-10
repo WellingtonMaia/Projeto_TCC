@@ -33,11 +33,11 @@
 								</h1>
 							</a>
 						</li>
-						<li><a href="{{ route('home') }}">Dashboard</a></li>
-						<li><a href="{{ route('projects') }}">Projetos</a></li>
-						<li><a href="{{ route('tasks') }}">Tarefas</a></li>
-						<li><a href="{{ route('users') }}">Pessoas</a></li>
-						<li><a href="{{ route('financials') }}">Financeiro</a></li>
+						<li @if(explode('/', Request::url())[3] == '') class="active" @endif><a href="{{ route('home') }}">Dashboard</a></li>
+						<li @if(explode('/', Request::url())[3] == 'projects') class="active" @endif><a href="{{ route('projects') }}">Projetos</a></li>
+						<li @if(explode('/', Request::url())[3] == 'tasks') class="active" @endif><a href="{{ route('tasks') }}">Tarefas</a></li>
+						<li @if(explode('/', Request::url())[3] == 'users') class="active" @endif><a href="{{ route('users') }}">Pessoas</a></li>
+						<li @if(explode('/', Request::url())[3] == 'financials') class="active" @endif><a href="{{ route('financials') }}">Financeiro</a></li>
 {{-- 						<li class="has-sub">
 							<a href="#">Relatórios</a>
 							<ul class="list">
@@ -57,6 +57,11 @@
 			</div>
 		</main>		
 	</body>
+
+	@if(explode('/', Request::url())[3] == 'projects') <style type="text/css">.aside:before{background:url('../img/sidebar-1.jpg'); background-size: cover;}</style> @endif
+	@if(explode('/', Request::url())[3] == 'tasks') <style type="text/css">.aside:before{background:url('../img/sidebar-2.jpg');background-size: cover;}</style> @endif
+	@if(explode('/', Request::url())[3] == 'users') <style type="text/css">.aside:before{background:url('../img/sidebar-3.jpg');background-size: cover;}</style> @endif
+	@if(explode('/', Request::url())[3] == 'financials') <style type="text/css">.aside:before{background:url('../img/sidebar-4.jpg');background-size: cover;}</style> @endif
 	<script src="{{ asset('js/jquery.min.js') }}"></script>	
 	<script src="{{ asset('js/index.js') }}"></script>		
 	<script src="{{ asset('js/slick.min.js') }}"></script>	
