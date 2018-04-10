@@ -69,7 +69,7 @@ class UserController extends Controller
 
         $user->name = Input::get("name");
         $user->email = Input::get("email");
-        $user->password = Input::get("password");
+        // $user->password = Input::get("password");
         $user->role = Input::get("role");
         $user->status = Input::get("status");
         $user->permission = Input::get("permission");
@@ -80,7 +80,7 @@ class UserController extends Controller
 
     }
 
-    public function delete(){
+    public function delete($id){
         $user = user::find($id);
         $user->delete();
 

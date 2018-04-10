@@ -24,6 +24,7 @@ class Financials extends Migration
             $table->char("tags",50);
             $table->char("financial_classification",255);
             $table->char("cost_center",255);
+            $table->timestamps();   
         });
     }
 

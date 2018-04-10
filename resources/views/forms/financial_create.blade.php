@@ -20,7 +20,7 @@
 						</svg>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" @if(isset($financial)) action="{{ url('/financial/edit/'.$financial->id) }}" @else action="{{ route('financials_store') }}" @endif>
+						<form class="form-horizontal" method="POST" @if(isset($financial)) action="{{ url('/financials/edit/'.$financial->id) }}" @else action="{{ route('financials_store') }}" @endif>
 							@if(isset($financial))<input name="_method" type="hidden" value="PUT">@endif
 						{{ csrf_field() }}
 							<div class="form-group">
@@ -63,7 +63,7 @@
 
 							<div class="form-group">
 								<label for="cost_center">Centro de custo</label>
-								<input type="text" name="cost_center" value="{{ old('cost_center')? old('cost_center') : isset($financial) ? $financial->cost_center : "" }}">
+								<input type="text" name="cost_center" class="form-control" value="{{ old('cost_center')? old('cost_center') : isset($financial) ? $financial->cost_center : "" }}">
 							</div>
 
 							<div class="form-group">
@@ -82,7 +82,7 @@
 		                    <div class="form-group">
 		                        <div class="">
 		                            <button type="submit" class="btn btn-success">
-		                                Adicionar
+		                                Salvar
 		                            </button>
 		                        </div>
 		                    </div>				

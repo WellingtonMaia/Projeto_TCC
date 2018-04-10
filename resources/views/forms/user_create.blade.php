@@ -15,7 +15,7 @@
 						</svg>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" @if(isset($task)) action="{{ url('/users/edit/'.$user->id) }}" @else action="{{ route('users_store') }}" @endif >
+						<form class="form-horizontal" method="POST" @if(isset($user)) action="{{ url('/users/edit/'.$user->id) }}" @else action="{{ route('users_store') }}" @endif >
 						@if(isset($user))<input name="_method" type="hidden" value="PUT">@endif
 						{{ csrf_field() }}
 							<div class="form-group">
@@ -28,10 +28,13 @@
 								<input type="email" name="email" class="form-control" value="{{ old('email')? old('email') : isset($user) ? $user->email : "" }}" required>
 							</div>
 
+							@if(!isset($user))
 							<div class="form-group">
 								<label for="password">Senha</label>
 								<input type="password" name="password" class="form-control" value="{{ old('password')? old('password') : isset($user) ? $user->password : "" }}" required>
 							</div>
+							@endif
+
 
 							<div class="form-group">
 								<label for="role">Cargo</label>								

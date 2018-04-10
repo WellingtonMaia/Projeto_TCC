@@ -39,8 +39,10 @@
                             <td>{{ $financial->value }}</td>
                             <td>{{ $financial->tags }}</td>
                             <td>{{ $financial->cost_center }}</td>                            
-                            <td><a class="btn btn-info" href=""><i class="fa fa-edit"></i></a></td>
-                            <td><a class="btn btn-danger" href=""><i class="fa fa-trash"></i></a></td>
+                            <td>
+                                <a class="btn btn-info" href=" {{ url('financials/show/'.$financial->id) }}"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-danger" href=" {{ url('financials/delete/'.$financial->id) }}"><i class="fa fa-trash"></i></a>
+                            </td>
                           </tr>
                           @endforeach
                         <tbody>
