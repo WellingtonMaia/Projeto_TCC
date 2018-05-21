@@ -58,10 +58,6 @@
 		</main>		
 	</body>
 
-	@if(explode('/', Request::url())[3] == 'projects') <style type="text/css">.aside:before{background:url('../img/sidebar-1.jpg'); background-size: cover;}</style> @endif
-	@if(explode('/', Request::url())[3] == 'tasks') <style type="text/css">.aside:before{background:url('../img/sidebar-2.jpg');background-size: cover;}</style> @endif
-	@if(explode('/', Request::url())[3] == 'users') <style type="text/css">.aside:before{background:url('../img/sidebar-3.jpg');background-size: cover;}</style> @endif
-	@if(explode('/', Request::url())[3] == 'financials') <style type="text/css">.aside:before{background:url('../img/sidebar-4.jpg');background-size: cover;}</style> @endif
 	<script src="{{ asset('js/jquery.min.js') }}"></script>	
 	<script src="{{ asset('js/index.js') }}"></script>		
 	<script src="{{ asset('js/slick.min.js') }}"></script>	

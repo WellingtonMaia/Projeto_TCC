@@ -60,6 +60,12 @@ class ProjectController extends Controller
 
         $project = Project::find($id);        
         return view('forms.project_create')->with("project", $project);
+    } 
+
+    public function showInfo($id){
+
+        $project = Project::find($id);        
+        return view('info.project_info')->with("project", $project);
     }
 
 

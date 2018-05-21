@@ -29,7 +29,7 @@
                               	<tbody>
                               		@foreach ($projects as $project)
                               		<tr>
-                              			<td>{{ $project->name }}</td>
+                              			<td> <a href="{{ url('projects/show-info/'.$project->id) }}">{{ $project->name }}</a></td>
                               			<td>{{ $project->estimate_date }}</td>
                               			<td>{{ $project->estimate_time }}</td>
                               			<td>{{ $project->status }}</td>
