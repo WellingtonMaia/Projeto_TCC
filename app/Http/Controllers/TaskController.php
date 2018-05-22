@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Task;
+use App\Project;
 
 class TaskController extends Controller
 {
@@ -34,12 +35,17 @@ class TaskController extends Controller
         return view('task')->with('tasks', $tasks);
     }
 
-    public function create(){
-        return view('forms.task_create');
+    public function create($id){
+        $project = project::find($id);
+        return view('forms.task_create')->with("project",$project);
     }
 
     public function store(){
         $task = new Task();
+
+        $projectId = DB::table('users')->where('name', Input::get('project'))->first();
+
+        dd(Input::get('project'));
 
         $task->name = Input::get('name');
         $task->description = Input::get('description');
@@ -48,6 +54,7 @@ class TaskController extends Controller
         $task->estimate_time = Input::get('estimate_time');
         $task->begin_date = Input::get('begin_date');
         $task->final_date = Input::get('final_date');
+        $task->project_id = $projectId->id;
 
         $task->save();
 

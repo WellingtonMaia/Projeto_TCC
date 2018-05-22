@@ -12,4 +12,10 @@ class Task extends Model
      * @var array
      */
     protected $fillable = [];
+
+
+    public function project(){
+
+    	return $this->belongsTo('App\Project');
+    }
 }

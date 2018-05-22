@@ -22,8 +22,10 @@ class Task extends Migration
             $table->enum("status",["A","I"]);
             $table->date("begin_date");
             $table->date("final_date");
+            $table->integer("project_id");
+            $table->foreign("project_id")->references("id")->on("projects"); 
             $table->timestamps();
-            // $table->foreign("project_id")->references("id")->on("projects");            
+                  
         });
     }
 

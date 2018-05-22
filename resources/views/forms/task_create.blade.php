@@ -18,6 +18,13 @@
 						<form class="form-horizontal" method="POST" @if(isset($task)) action="{{ url('/tasks/edit/'.$task->id) }}" @else action="{{ route('tasks_store') }}" @endif ">
 							@if(isset($task))<input name="_method" type="hidden" value="PUT">@endif
 						{{ csrf_field() }}
+
+
+							<div class="form-group">
+								<label for="project_id">Projeto</label>
+								<input type="text" name="project" class="form-control" value="{{ old('project')? old('project->name') : isset($project) ? $project->name : "" }}" required autofocus>						
+							</div>
+
 							<div class="form-group">
 								<label for="name">Nome</label>
 								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($task) ? $task->name : "" }}" required autofocus>						
