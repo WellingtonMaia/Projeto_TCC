@@ -26,10 +26,9 @@
 				<nav class="menu">
 					<ul>
 						<li class="first">
-							<a href="index.html">
+							<a href="{{ route('home') }}">
 								<h1 class="logo">
-									<img src="">
-									<span class="">Easy Tools</span>
+									<img src="img/logo.png">									
 								</h1>
 							</a>
 						</li>
@@ -46,6 +45,17 @@
 								<li><a href="">Tempo por Tarefa</a></li>
 							</ul>
 						</li>	 --}}					
+						<li>
+	                        <a href="{{ route('logout') }}"
+	                            onclick="event.preventDefault();
+	                                     document.getElementById('logout-form').submit();">
+	                            Logout
+	                        </a>
+
+	                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+	                            {{ csrf_field() }}
+	                        </form>
+	                    </li>
 					</ul>
 				</nav>						
 			</aside>	
@@ -60,5 +70,5 @@
 
 	<script src="{{ asset('js/jquery.min.js') }}"></script>	
 	<script src="{{ asset('js/index.js') }}"></script>		
-	<script src="{{ asset('js/slick.min.js') }}"></script>	
+	<!-- <script src="{{ asset('js/slick.min.js') }}"></script>	 -->
 </html>

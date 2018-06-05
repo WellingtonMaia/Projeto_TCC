@@ -12,9 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slick.min.css') }}" rel="stylesheet" >
+    <link href="{{ asset('css/index.css') }}"  rel="stylesheet" >
+    <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    {{-- <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -71,10 +75,13 @@
             </div>
         </nav>
 
-        @yield('content')
-    </div>
+       
+    </div> --}}
+     @yield('content')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script> 
+    <script src="{{ asset('js/index.js') }}"></script>      
 </body>
 </html>
