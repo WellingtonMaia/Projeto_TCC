@@ -14,7 +14,7 @@
                   </svg>
               </div>
               <div class="list-content">
-                  <h4 class="title-add">Adicionar Novo</h4>
+                  <h4 class="title-add">Financeiro</h4>
                   <div class="table-responsive">
                     <table class="table">
                         <thead>

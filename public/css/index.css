@@ -209,7 +209,7 @@ main{
 
 .aside{
     width: 260px;
-    background: #000;
+    background: #0e0e0e;
     z-index: 5;
     height: 100vh;
     position: relative;    
@@ -226,7 +226,7 @@ main{
     top: 0;    
     background:url('../img/sidebar-1.jpg');
     background-size: cover;
-    opacity: 0.2;
+    opacity: 0.1;
     z-index: -1;
     bottom: 0;
     right: 0;
@@ -628,8 +628,7 @@ main{
 }
 
 .financial-content .btn-success{
-    background:#4caf50;
-    border-color: #4caf50;
+    background: linear-gradient(to bottom right, #2afeb7, #08c792);
 }
 
 .financial-content .btn-success:focus{
