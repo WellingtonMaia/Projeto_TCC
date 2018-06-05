@@ -5,7 +5,7 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form"  method="POST" action="{{ route('login') }}">
+                <form class="login100-form validate-form"  method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
                     <span class="login100-form-title p-b-48">
@@ -18,7 +18,7 @@
                                 <strong>{{ $errors->first('name') }}</strong>
                             </span>
                         @endif
-                        <input class="input100" type="text" name="email">
+                        <input class="input100" type="text" name="name" value="{{ old('name') }}">
                         <span class="focus-input100" data-placeholder="Name"></span>
                     </div>
 
@@ -29,7 +29,7 @@
                                 <strong>{{ $errors->first('email') }}</strong>
                             </span>
                         @endif
-                        <input class="input100" type="text" name="email">
+                        <input class="input100" type="text" name="email" value="{{ old('email') }}">
                         <span class="focus-input100" data-placeholder="Email"></span>
                     </div>
 
@@ -42,7 +42,7 @@
                         <span class="btn-show-pass">
                             <i class="zmdi zmdi-eye"></i>
                         </span>
-                        <input class="input100" type="password" name="password">
+                        <input class="input100" type="password" name="password" value="{{ old('password') }}">
                         <span class="focus-input100" data-placeholder="Password"></span>
                     </div>                    
 
@@ -50,7 +50,7 @@
                         <span class="btn-show-pass">
                             <i class="zmdi zmdi-eye"></i>
                         </span>
-                        <input class="input100" type="password" name="password_confirmation">
+                        <input class="input100" type="password" name="password_confirmation"  value="{{ old('password_confirmation') }}">
                         <span class="focus-input100" data-placeholder="Confirm Password"></span>
                     </div>
 
@@ -60,7 +60,7 @@
                                 <strong>{{ $errors->first('role') }}</strong>
                             </span>
                         @endif
-                        <input class="input100" type="text" name="role">
+                        <input class="input100" type="text" name="role" value="{{ old('role') }}">
                         <span class="focus-input100" data-placeholder="Role"></span>
                     </div>
 
