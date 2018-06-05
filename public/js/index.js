@@ -18,5 +18,11 @@ $( document ).ready(function() {
 
 	var n = getRandomInt(1,4);
 	$(".aside::before").css("background","url('../img/sidebar-"+n+".jpg')");
+
+
+	$(".header .left .menu").click(function (){
+		$(this).toggleClass('active');
+	});
+
 	// $(".aside").css("background","#000");
 });

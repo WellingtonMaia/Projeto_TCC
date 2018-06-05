@@ -22,6 +22,18 @@
 	</head>
 	<body>
 		<main>
+			<header class="header">
+				<div class="left">
+					<div class="menu">
+						<div class="line"></div>
+						<div class="line"></div>
+						<div class="line"></div>
+					</div>
+				</div>
+				<div class="right">
+					
+				</div>
+			</header>
 			<aside class="aside">
 				<nav class="menu">
 					<ul>
