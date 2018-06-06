@@ -190,25 +190,32 @@ main{
 
 
 .header .left .menu.active .line:nth-child(1){
-
+    /*transform: rotate(45deg);
+    width: 17px;*/
 }
 
 .header .left .menu.active .line:nth-child(2){
-
-
+    /*transform: rotate(-45deg);
+    width: 17px;*/
+    left: 0;
+	
 }
 
 .header .left .menu.active .line:nth-child(3){
-
+	/*width: 0;*/
 }
 
-
+.form-control:focus{
+	border-color: #252525 !important;
+}
 
 
 /*aside*/
 
 .aside{
     width: 260px;
+    left: 0;
+    transition: ease-out .2s;
     background: #0e0e0e;
     z-index: 5;
     height: 100vh;
@@ -218,6 +225,18 @@ main{
                 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
+.aside.active{
+	width: 130px;
+	left: -33px;
+}
+
+.aside img{
+	transition: ease-out .2s;
+}
+
+.aside.active img{
+	width: 100%;
+}
 
 
 .aside:before{

@@ -8,8 +8,8 @@
                 <form class="login100-form validate-form"  method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
 
-                    <span class="login100-form-title p-b-48">
-                        <img src="img/logo.png">
+                    <span class="login100-form-title p-b-48">                        
+                        <img src="{{ asset('img/logo.png')}}">                        
                     </span>
                     <div class="wrap-input100 validate-input {{ $errors->has('email') ? ' has-error' : '' }}" data-validate = "Valid email is: a@b.c">
                         @if ($errors->has('email'))

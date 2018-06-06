@@ -42,7 +42,7 @@
 						<li class="first">
 							<a href="{{ route('home') }}">
 								<h1 class="logo">
-									<img src="img/logo.png">									
+									<img src="{{ asset('img/logo.png') }}">									
 								</h1>
 							</a>
 						</li>

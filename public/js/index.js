@@ -22,6 +22,7 @@ $( document ).ready(function() {
 
 	$(".header .left .menu").click(function (){
 		$(this).toggleClass('active');
+		$(".aside").toggleClass('active');
 	});
 
 	// $(".aside").css("background","#000");
