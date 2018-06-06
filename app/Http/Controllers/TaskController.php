@@ -35,17 +35,23 @@ class TaskController extends Controller
         return view('task')->with('tasks', $tasks);
     }
 
-    public function create($id){
-        $project = project::find($id);
-        return view('forms.task_create')->with("project",$project);
+    // public function create($id){
+    //     $project = project::find($id);
+    //     return view('forms.task_create')->with("project",$project);
+    // }
+
+    public function create(){
+        $projects = DB::select('select * from projects');
+        return view('forms.task_create')->with('projects', $projects);
     }
 
     public function store(){
         $task = new Task();
 
-        $projectId = DB::table('users')->where('name', Input::get('project'))->first();
+        $projectId = DB::table('projects')->where('name', Input::get('project'))->first();
 
-        dd(Input::get('project'));
+        // dd(Input::get('project'));
+        // dd($projectId);
 
         $task->name = Input::get('name');
         $task->description = Input::get('description');
