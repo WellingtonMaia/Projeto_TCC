@@ -25,7 +25,7 @@
 								<select name="project" class="form-control" required>
 										<option value="">Selecione um projeto</option>
 										@foreach($projects as $project)
-											<option value="{{ $project->name }}">{{ $project->name }}</option>
+											<option value="{{ $project->id }}">{{ $project->name }}</option>
 										@endforeach	
 								</select>
 							</div>
@@ -42,12 +42,12 @@
 						
 							<div class="form-group">
 								<label for="estimate_date">Data Estimada</label>
-								<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date')? old('estimate_date') : isset($task) ? $task->estimate_date : "" }}" required>						
+								<input type="text" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($task) ? $task->estimate_date : "" }}" required>						
 							</div>
 						
 							<div class="form-group">
 								<label for="estimate_time">Tempo Estimado</label>
-								<input type="text" name="estimate_time" class="form-control" value="{{ old('estimate_time')? old('estimate_time') : isset($task) ? $task->estimate_time : "" }}" required>						
+								<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($task) ? $task->estimate_time : "" }}" required>						
 							</div>
 						
 							<div class="form-group">
@@ -60,12 +60,12 @@
 
 							<div class="form-group">
 								<label for="begin_date">Data Inicio</label>
-								<input type="text" name="begin_date" class="form-control" value="{{ old('begin_date')? old('begin_date') : isset($task) ? $task->begin_date : "" }}" required>						
+								<input type="text" name="begin_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('begin_date')? old('begin_date') : isset($task) ? $task->begin_date : "" }}" required>						
 							</div>
 
 							<div class="form-group">
 								<label for="final_date">Data Final</label>
-								<input type="text" name="final_date" class="form-control" value="{{ old('final_date')? old('final_date') : isset($task) ? $task->final_date : "" }}" required>						
+								<input type="text" name="final_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('final_date')? old('final_date') : isset($task) ? $task->final_date : "" }}" required>						
 							</div>
 		                    <div class="form-group">
 		                        <div class="">

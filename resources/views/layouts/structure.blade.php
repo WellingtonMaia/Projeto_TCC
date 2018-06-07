@@ -12,7 +12,8 @@
     	
     	<!-- Styles -->
     	{{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-    	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    	<link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">    	
     	<link href="{{ asset('css/slick.min.css') }}" rel="stylesheet" >
     	<link href="{{ asset('css/index.css') }}"  rel="stylesheet" >
 		<link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
@@ -33,7 +34,30 @@
 					</div>
 				</div>
 				<div class="right">
-					
+					<div class="box-search">
+						<form class="" method="GET" >
+							<input type="search" class="search-input" name="search">
+							<button type="submit"></button>
+						</form>
+					</div>
+					<div class="box-user">
+						<div class="user-img">
+							<img src="">
+						</div>
+						<div class="user-info"> 
+							 <ul>
+							 	<li><a href="">Minhas tarefas</a></li>
+							 	<li><a href="">Meu Perfil</a></li>
+							 	<li><a href=""></a></li>
+							 	<li><a href="{{ route('logout') }}" 
+								 		onclick="event.preventDefault();
+		                                document.getElementById('logout-form').submit();">Sair
+	                            	</a>
+		                        </li>
+							 </ul>
+						</div>	
+					</div>
+
 				</div>
 			</header>
 			<aside class="aside">
@@ -90,5 +114,7 @@
 
 	<script src="{{ asset('js/jquery.min.js') }}"></script>	
 	<script src="{{ asset('js/index.js') }}"></script>		
+	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>		
+	<script src="{{ asset('js/jquery.mask.js') }}"></script>		
 	<!-- <script src="{{ asset('js/slick.min.js') }}"></script>	 -->
 </html>

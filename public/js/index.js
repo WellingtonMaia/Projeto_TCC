@@ -25,6 +25,13 @@ $( document ).ready(function() {
 		$(".aside").toggleClass('active');
 	});
 
+
+	$('.datepicker').datepicker();
+
+ 	$('.timepicker').mask('00:00:00');
+
+ 	// $('.dateshow').mask('00/00/0000');
+
 	// addNewTask();
 
 	// function addNewTask(){
