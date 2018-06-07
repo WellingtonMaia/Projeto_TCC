@@ -266,7 +266,7 @@ main{
 
 .aside .menu ul li{
     display: block;
-    padding:8px 10px;
+    padding:0 10px;
     cursor: pointer;
     width: 100%;
     position: relative;
@@ -499,6 +499,90 @@ main{
 
 .project-content .btn-success:focus{
     box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.42);
+}
+
+
+.list-content .list-tasks .iten-task label{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	line-height:28px;
+	height:28px;
+	cursor:pointer;
+}
+
+.list-content .list-tasks .iten-task input{
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.list-content .list-tasks .iten-task .check-bottom{
+	position: relative;	
+	border-radius: 	50%;
+	background:none;
+	margin:auto 0;
+	transition: ease-out .2s;
+	width: 18px;
+	height: 18px;
+	line-height: 	26px;
+	display: block;
+	border: 1px solid #3e3e3e;			
+}
+
+.list-content .list-tasks .iten-task .check-bottom:before{
+	position: absolute;	
+	top: 0;
+	bottom: 0;
+	left:0;
+	right:0;
+	display: block;
+	font-family: "FontAwesome";
+	content: "\f00c";
+	color: 	transparent;
+	height: 12px;
+	line-height: 12px;
+	width: 	12px;
+	margin: auto;
+	transition:ease-out .4s;
+	font-size: 12px;
+}
+
+.list-content .list-tasks .iten-task input:checked+.check-bottom{
+	border-color: green;
+}
+
+.list-content .list-tasks .iten-task input:checked+.check-bottom:before{
+	color:green;
+	
+}
+
+
+.list-content .list-tasks .iten-task .hidden{
+	opacity:0;
+	visibility:hidden;
+	transition: ease-out .2s;
+}
+
+.list-content .list-tasks .iten-task h3{
+	margin:0 3px 0 10px;
+}
+
+.list-content .list-tasks .iten-task .dates{
+	margin:0 10px;
+}
+
+.list-content .list-tasks .iten-task .dates.begin{
+	color:#3e3e3e;
+}
+.list-content .list-tasks .iten-task .dates.final{
+	color: red;
+}
+
+.list-content .list-tasks .iten-task .btn{
+	line-height: 26px;
+	padding-top:0;
+	padding-bottom: 0;
 }
 
 

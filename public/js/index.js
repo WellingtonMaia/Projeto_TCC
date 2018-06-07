@@ -25,5 +25,24 @@ $( document ).ready(function() {
 		$(".aside").toggleClass('active');
 	});
 
-	// $(".aside").css("background","#000");
+	// addNewTask();
+
+	// function addNewTask(){
+ //      var data = {
+        
+ //      };
+ //      $.ajax({
+ //         url: '/tasks/create',
+ //        type: "POST",
+ //        data: data,
+ //        dataType:'JSON',
+ //        success:function(response){
+ //           $('.time-not-completed').text(response.data);           
+ //           $('.time-completed').hide();
+ //           $('.time-not-completed').fadeIn();
+ //        }
+ //      });
+ //   }
+
+	
 });
