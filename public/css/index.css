@@ -209,6 +209,15 @@ main{
 	border-color: #252525 !important;
 }
 
+.header .right .search-input{
+	height: 36px;
+	line-height: 36px;
+	width: 350px;
+	background:#cecece;
+	padding:0 20px;
+	position: relative;	
+}
+
 
 /*aside*/
 
