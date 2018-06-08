@@ -13,8 +13,23 @@ class Project extends Model
      */
     protected $fillable = [];
 
-    public function tasks(){
+    public function tasks()
+    {
     	return $this->hasMany('App\Task');
     }
     
+    public function payAccounts()
+    {
+    	return $this->hasMany('App\PayAccount');
+    }
+    
+    public function receiveAccounts()
+    {
+    	return $this->hasMany('App\ReceiveAccount');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

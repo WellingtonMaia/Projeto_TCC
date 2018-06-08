@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    //
+    public function tasks()
+    {
+    	return $this->belongsTo('App\Task');
+    }
 }
