@@ -30,11 +30,11 @@
                               		@foreach ($projects as $project)
                               		<tr>
                               			<td> <a href="{{ url('projects/show-info/'.$project->id) }}">{{ $project->name }}</a></td>
-                              			<td>{{ $project->estimate_date }}</td>
+                              			<td>{{ \Carbon\Carbon::parse($project->estimate_date)->format('d/m/Y') }}</td>
                               			<td>{{ $project->estimate_time }}</td>
-                              			<td>{{ $project->status }}</td>
+                                    <td>@if( $project->status == "A")Ativo @else Inativo @endif</td>
                               			<td>{{ $project->project_price }}</td>
-                              			<td>{{ $project->project_type }}</td>
+                                    <td>@if( $project->project_type == "I")Interno @else Externo @endif</td>
                               			<td>
                               				<a class="btn btn-info" href="{{ url('projects/show/'.$project->id) }}"><i class="fa fa-edit"></i></a> 	
                               				<a class="btn btn-danger" href="{{ url('projects/delete/'.$project->id) }}"><i class="fa fa-trash"></i></a>

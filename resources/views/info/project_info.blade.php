@@ -7,10 +7,10 @@
           <div class="card">
               <div class="list-content">
                 <h2>{{ $project->name }}</h2>
-
+{{-- 
                 <p>{{ $project->estimate_date }}</p>
                 <p>{{ $project->estimate_time }}</p>
-                <p>{{ $project->project_price }}</p>
+                <p>{{ $project->project_price }}</p> --}}
 
 
                 <div class="list-tasks">
@@ -20,6 +20,7 @@
                           <label> 
                                 <input type="checkbox" name="completed">
                                 <span class="check-bottom"></span>
+                                <span class="task-users">Matheus B.</span>
                                 <h3>{{ $task->name }}</h3>
                                 <div class="hidden">{{ $task->description }}</div>
                                 {{-- <div class="dates">{{  \Carbon\Carbon::parse($task->estimate_date)->format(' l F Y') }}</div> --}}
@@ -36,6 +37,14 @@
                 </div>
                 </div>                                    
               </div>
+              <div class="container-login100-form-btn buttonAdd">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn">
+                                + Adicionar nova tarefa
+                            </button>
+                        </div>
+                    </div>
           </div>
             @if( \Session::has("message") )
               <div class="alert alert-success">

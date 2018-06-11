@@ -42,13 +42,13 @@
 					</div>
 					<div class="box-user">
 						<div class="user-img">
-							<img src="">
+							<img src="{{ asset('img/example.jpg') }}">
 						</div>
 						<div class="user-info"> 
 							 <ul>
 							 	<li><a href="">Minhas tarefas</a></li>
 							 	<li><a href="">Meu Perfil</a></li>
-							 	<li><a href=""></a></li>
+							 	<li><a href="">Meus Projetos</a></li>
 							 	<li><a href="{{ route('logout') }}" 
 								 		onclick="event.preventDefault();
 		                                document.getElementById('logout-form').submit();">Sair

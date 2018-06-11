@@ -29,12 +29,12 @@
 							</div>
 						
 							<div class="form-group">
-								<label for="estimate_date">Data Estimada</label>
+								<label for="estimate_date datepicker">Data Estimada</label>
 								<input type="text" name="estimate_date" class="form-control" value="{{ old('estimate_date')? old('estimate_date') : isset($project) ? $project->estimate_date : "" }}" required>						
 							</div>
 						
 							<div class="form-group">
-								<label for="estimate_time">Tempo Estimado</label>
+								<label for="estimate_time timepicker">Tempo Estimado</label>
 								<input type="text" name="estimate_time" class="form-control" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>						
 							</div>
 						

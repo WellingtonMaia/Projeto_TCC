@@ -24,6 +24,10 @@
 								{{-- <input type="text" name="project" class="form-control" value="{{ old('project')? old('project->name') : isset($project) ? $project->name : "" }}" required autofocus>						 --}}
 								<select name="project" class="form-control" required>
 										<option value="">Selecione um projeto</option>
+										{{-- {{ dd($task) }}
+										{{ $projects = isset($projects)? $projects : $task->projects }} --}}
+
+
 										@foreach($projects as $project)
 											<option value="{{ $project->id }}">{{ $project->name }}</option>
 										@endforeach	
@@ -42,7 +46,7 @@
 						
 							<div class="form-group">
 								<label for="estimate_date">Data Estimada</label>
-								<input type="text" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($task) ? $task->estimate_date : "" }}" required>						
+								<input type="text" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($task) ? \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') : "" }}" required>						
 							</div>
 						
 							<div class="form-group">
@@ -60,12 +64,12 @@
 
 							<div class="form-group">
 								<label for="begin_date">Data Inicio</label>
-								<input type="text" name="begin_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('begin_date')? old('begin_date') : isset($task) ? $task->begin_date : "" }}" required>						
+								<input type="text" name="begin_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('begin_date')? old('begin_date') : isset($task) ?  \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') : "" }}" required>						
 							</div>
 
 							<div class="form-group">
 								<label for="final_date">Data Final</label>
-								<input type="text" name="final_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('final_date')? old('final_date') : isset($task) ? $task->final_date : "" }}" required>						
+								<input type="text" name="final_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('final_date')? old('final_date') : isset($task) ? \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') : "" }}" required>						
 							</div>
 		                    <div class="form-group">
 		                        <div class="">

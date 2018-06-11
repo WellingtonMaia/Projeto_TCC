@@ -48,8 +48,6 @@ class TaskController extends Controller
     public function store(){
         $task = new Task();
 
-        // $projectId = DB::table('projects')->where('name', Input::get('project'))->first();        
-
         $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
         $estimate_date = date('Y-m-d', strtotime($estimate_date));
 
@@ -58,9 +56,6 @@ class TaskController extends Controller
 
         $final_date = Input::get('final_date'); $final_date = str_replace('/', '-', $final_date);  
         $final_date = date('Y-m-d', strtotime($final_date));
-
-        // $begin_date = date_create_from_format('d/m/Y', Input::get('begin_date'));
-        // $final_date = date_create_from_format('d/m/Y', Input::get('final_date'));
 
         $task->name = Input::get('name');
         $task->description = Input::get('description');
@@ -79,7 +74,9 @@ class TaskController extends Controller
 
     public function show($id){
        $task = task::find($id);
-       return view('forms.task_create')->with("task", $task);
+       $projects = DB::select('select * from projects');
+       return view('forms.task_create')->with("task", $task)
+                                       ->with("projects", $projects);
     }
 
     public function showInfo($id){
@@ -90,13 +87,24 @@ class TaskController extends Controller
     public function edit($id){
         $task = task::find($id);
 
+
+        $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
+        $estimate_date = date('Y-m-d', strtotime($estimate_date));
+
+        $begin_date = Input::get('begin_date'); $begin_date = str_replace('/', '-', $begin_date);  
+        $begin_date = date('Y-m-d', strtotime($begin_date));
+
+        $final_date = Input::get('final_date'); $final_date = str_replace('/', '-', $final_date);  
+        $final_date = date('Y-m-d', strtotime($final_date));
+
         $task->name = Input::get('name');
         $task->description = Input::get('description');
-        $task->estimate_date = Input::get('estimate_date');
+        $task->estimate_date = $estimate_date;
         $task->status = Input::get('status');
         $task->estimate_time = Input::get('estimate_time');
-        $task->begin_date = Input::get('begin_date');
-        $task->final_date = Input::get('final_date');
+        $task->begin_date = $begin_date;
+        $task->final_date = $final_date;
+        $task->project_id = Input::get('project');
         $task->save();
 
         Session::flash('message', 'Cadastro editado com sucesso!');
