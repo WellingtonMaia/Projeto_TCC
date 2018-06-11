@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`tasks` (
   INDEX `fk_tasks_projects_idx` (`project_id` ASC),
   CONSTRAINT `fk_tasks_projects`
     FOREIGN KEY (`project_id`)
-    REFERENCES `projeto_tcc_2`.`project` (`id`)
+    REFERENCES `projeto_tcc_2`.`projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`times` (
   INDEX `fk_times_tasks1_idx` (`task_id` ASC),
   CONSTRAINT `fk_times_tasks1`
     FOREIGN KEY (`task_id`)
-    REFERENCES `projeto_tcc_2`.`task` (`id`)
+    REFERENCES `projeto_tcc_2`.`tasks` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -141,12 +141,12 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`projects_has_users` (
   INDEX `fk_projects_has_users_projects1_idx` (`project_id` ASC),
   CONSTRAINT `fk_projects_has_users_projects1`
     FOREIGN KEY (`project_id`)
-    REFERENCES `projeto_tcc_2`.`project` (`id`)
+    REFERENCES `projeto_tcc_2`.`projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_projects_has_users_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `projeto_tcc_2`.`user` (`id`)
+    REFERENCES `projeto_tcc_2`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -163,12 +163,12 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`tasks_has_users` (
   INDEX `fk_tasks_has_users_tasks1_idx` (`task_id` ASC),
   CONSTRAINT `fk_tasks_has_users_tasks1`
     FOREIGN KEY (`task_id`)
-    REFERENCES `projeto_tcc_2`.`task` (`id`)
+    REFERENCES `projeto_tcc_2`.`tasks` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tasks_has_users_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `projeto_tcc_2`.`user` (`id`)
+    REFERENCES `projeto_tcc_2`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`pay_accounts` (
   INDEX `fk_financials_projects1_idx` (`project_id` ASC),
   CONSTRAINT `fk_financials_projects1`
     FOREIGN KEY (`project_id`)
-    REFERENCES `projeto_tcc_2`.`project` (`id`)
+    REFERENCES `projeto_tcc_2`.`projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`receive_accounts` (
   INDEX `fk_financials_projects1_idx` (`project_id` ASC),
   CONSTRAINT `fk_financials_projects10`
     FOREIGN KEY (`project_id`)
-    REFERENCES `projeto_tcc_2`.`project` (`id`)
+    REFERENCES `projeto_tcc_2`.`projects` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

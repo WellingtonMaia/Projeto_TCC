@@ -594,6 +594,7 @@ main{
 	line-height: 28px;
 	height: 28px;
     display: flex;    
+    cursor: pointer;
 }
 
 .list-content .list-tasks .iten-task .item a{
