@@ -51,5 +51,88 @@ $( document ).ready(function() {
  //      });
  //   }
 
+
+    // $('#form-modelo-pre-cadastro').validator().on('submit', function (event) {
+    //     if (event.isDefaultPrevented()) {
+    //         sweetAlert("Erro", "Preencha todos os campos corretamente!", "error");
+    //     }else {
+    //         var e = false;
+    //         obj = $(this);
+
+    //         if (validateEmail($("#email").val()) == false) {
+    //             swal({
+    //                 title: "Erro",
+    //                 text: 'Insira um e-mail válido.',
+    //                 type: "error"
+    //             });
+    //             e = true;
+    //         }
+
+
+    //         var formData = new FormData(obj[0]);
+
+    //         if (e == false) {
+    //             $('#form-register').addClass('loading');
+    //             valorbt = obj.find('.button-submit').html();
+    //             obj.find('.button-submit').html('<div class="loader">Carregando...</div>');
+    //             obj.find('.button-submit').prop("disabled",true);
+
+    //             $.ajax({
+    //                 headers: {
+    //                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //                 },
+    //                 type: 'post',
+    //                 url: obj.attr( 'action' ),
+    //                 dataType: "json",
+    //                 data: formData,
+    //                 contentType: false,
+    //                 cache: false,
+    //                 processData:false,
+    //                 success: function(valor){
+
+    //                     if (valor.error == false) {
+
+    //                         swal({
+    //                             title: "Sucesso",
+    //                             html: valor.msg,
+    //                             type: "success",
+    //                             onClose: function(){
+    //                                 window.location.href = obj.attr( 'action' )
+    //                             }
+    //                         });
+    //                     }
+    //                     else {
+
+    //                         swal({
+    //                             title: "Erro",
+    //                             html: valor.msg,
+    //                             type: "error"
+    //                         });
+    //                     }
+    //                     $('#form-register').removeClass('loading');
+    //                     obj.find('.button-submit').html('');
+    //                     obj.find('.button-submit').prop("disabled", false);
+    //                     obj.find('.button-submit').html(valorbt);
+    //                 },
+    //                 error: function(XMLHttpRequest, textStatus, errorThrown){
+
+    //                     swal({
+    //                         title: textStatus,
+    //                         html: XMLHttpRequest.responseText,
+    //                         type: "error"
+    //                     });
+    //                     $('#form-register').removeClass('loading');
+    //                     obj.find('.button-submit').html('');
+    //                     obj.find('.button-submit').prop("disabled", false);
+    //                     obj.find('.button-submit').html(valorbt);
+    //                 }
+    //             });
+    //         }
+
+    //         event.preventDefault(event);
+    //         return false;
+    //     }
+    // });
+
 	
 });
