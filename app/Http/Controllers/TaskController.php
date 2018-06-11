@@ -81,7 +81,7 @@ class TaskController extends Controller
 
     public function showInfo($id){
        $task = task::find($id);
-       return view('forms.task_create')->with("task", $task);
+       return view('info.task_info')->with("task", $task);
     }
 
     public function edit($id){

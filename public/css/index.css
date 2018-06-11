@@ -579,7 +579,7 @@ main{
 	padding-bottom: 30px;
 }
 
-.list-content .list-tasks .iten-task label{
+.list-content .list-tasks .iten-task .item{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
@@ -588,6 +588,20 @@ main{
 	cursor:pointer;
 	position: relative;
 }
+
+
+.list-content .list-tasks .iten-task .item label{
+	line-height: 28px;
+	height: 28px;
+    display: flex;    
+}
+
+.list-content .list-tasks .iten-task .item a{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
 
 .list-content .list-tasks .iten-task .task-users{
 	min-width: 150px;

@@ -43,8 +43,11 @@ class ProjectController extends Controller
 
         $project = new Project();
 
+        $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
+        $estimate_date = date('Y-m-d', strtotime($estimate_date));
+
         $project->name = Input::get('name');
-        $project->estimate_date = Input::get('estimate_date');
+        $project->estimate_date = $estimate_date;
         $project->estimate_time = Input::get('estimate_time');
         $project->status = Input::get('status');
         $project->project_price = Input::get('project_price');
@@ -73,8 +76,12 @@ class ProjectController extends Controller
 
         $project = Project::find($id);
 
+
+        $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
+        $estimate_date = date('Y-m-d', strtotime($estimate_date));
+
         $project->name = Input::get('name');
-        $project->estimate_date = Input::get('estimate_date');
+        $project->estimate_date = $estimate_date;
         $project->estimate_time = Input::get('estimate_time');
         $project->status = Input::get('status');
         $project->project_price = Input::get('project_price');
