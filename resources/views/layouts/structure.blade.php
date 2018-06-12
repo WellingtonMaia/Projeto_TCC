@@ -49,7 +49,7 @@
 						<div class="user-info"> 
 							 <ul>
 							 	<li><a href="{{ route('tasks') }}">Minhas tarefas</a></li>
-							 	<li><a href="{{ url('/users/showInfo/1') }}">Meu Perfil</a></li>
+							 	<li><a href="{{ url('/users/show-info/1') }}">Meu Perfil</a></li>
 							 	<li><a href="{{ route('projects') }}">Meus Projetos</a></li>
 							 	<li><a href="{{ route('logout') }}" 
 								 		onclick="event.preventDefault();

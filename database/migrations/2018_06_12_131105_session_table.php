@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Users extends Migration
+class SessionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,7 @@ class Users extends Migration
      */
     public function up()
     {
-        // Schema::create('users', function (Blueprint $table) {
-        //     $table->increments("id");
-
-        //     $table->char("name",255);
-        //     $table->char("email",255);
-        //     $table->char("password",255);            
-        // });
-
+        //
     }
 
     /**
@@ -30,6 +23,6 @@ class Users extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('users');
+        //
     }
 }

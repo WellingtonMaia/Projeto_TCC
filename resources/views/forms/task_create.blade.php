@@ -20,14 +20,9 @@
 
 
 							<div class="form-group">
-								<label for="project_id">Projeto</label>
-								{{-- <input type="text" name="project" class="form-control" value="{{ old('project')? old('project->name') : isset($project) ? $project->name : "" }}" required autofocus>						 --}}
+								<label for="project_id">Projeto</label>								
 								<select name="project" class="form-control" required>
 										<option value="">Selecione um projeto</option>
-										{{-- {{ dd($task) }}
-										{{ $projects = isset($projects)? $projects : $task->projects }} --}}
-
-
 										@foreach($projects as $project)
 											<option value="{{ $project->id }}">{{ $project->name }}</option>
 										@endforeach	
@@ -36,7 +31,7 @@
 
 							<div class="form-group">
 								<label for="name">Nome</label>
-								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($task) ? $task->name : "" }}" required autofocus>						
+								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($task) ? $task->name : "" }}" required autofocus>
 							</div>
 
 							<div class="form-group">

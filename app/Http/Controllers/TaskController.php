@@ -44,6 +44,26 @@ class TaskController extends Controller
     public function store(){
         $task = new Task();
 
+        $users = ['1','2'];
+
+        // public function aulas(){
+        //     return $this->belongsToMany('Modules\Produto\Entities\Sgr\Aula', 'materia_aula', 'materia_id', 'aula_id');                
+        // }
+
+       // if($registro->materias()->count()){
+       //          foreach ($registro->materias as $materia){
+       //              $duplicado->materias()->attach($materia->id, ['ordem'=>$materia->pivot->ordem]);
+       //              foreach ($materia->aulas()->where('curso_id', $registro->id)->get() as $aula) {
+       //                  $materia->aulas()->attach($aula->id,
+       //                      ['nome_aula' => $aula->pivot->nome_aula,
+       //                          'gratuito' => $aula->pivot->gratuito,
+       //                          'curso_id' => $duplicado->id,
+       //                          'tempo' => $aula->pivot->tempo,
+       //                          'ordem'=>$aula->pivot->ordem]);
+       //              }
+       //          }
+       //      }
+
         $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
         $estimate_date = date('Y-m-d', strtotime($estimate_date));
 
@@ -63,6 +83,10 @@ class TaskController extends Controller
         $task->project_id = Input::get('project');
 
         $task->save();
+
+        foreach ($users as $user) {
+            $task->users()->attach($user);
+        }
 
         Session::flash('message', 'Cadastro registrado com sucesso!');
         return Redirect::to('tasks');

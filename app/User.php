@@ -29,12 +29,12 @@ class User extends Authenticatable
 
     public function tasks()
     {
-        return $this->belongsToMany('App\Task');
+        return $this->belongsToMany('App\Task', 'tasks_has_users');
     }
 
     public function projects()
     {
-        return $this->belongsToMany('App\Project');
+        return $this->belongsToMany('App\Project', 'projects_has_users');
     }
 
 }
