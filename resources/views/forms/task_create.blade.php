@@ -30,6 +30,15 @@
 							</div>
 
 							<div class="form-group">
+								<label for="name">Usuarios</label>
+								<select multiple name="users[]" class="form-control">
+									@foreach($users as $user)
+								      <option value="{{ $user->id }}">{{ $user->name }}</option>
+									@endforeach
+							    </select>
+							</div>
+
+							<div class="form-group">
 								<label for="name">Nome</label>
 								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($task) ? $task->name : "" }}" required autofocus>
 							</div>

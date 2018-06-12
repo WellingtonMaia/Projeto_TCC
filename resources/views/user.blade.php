@@ -33,8 +33,8 @@
                           <td> <a href="{{ url('users/show-info/'.$user->id) }}">{{ $user->name }}</a></td>
                           <td>{{ $user->email }}</td>
                           <td>{{ $user->role }}</td>
-                          <td>{{ $user->status }}</td>
-                          <td>{{ $user->permission }}</td>
+                          <td>@if( $user->status == "A")Ativo @else Inativo @endif</td>
+                          <td>@if( $user->permission == "A")Administrador @else Colaborador @endif</td>                          
                           <td><a class="btn btn-info" href=" {{ url('users/show/'.$user->id) }}"><i class="fa fa-edit"></i></a>
                               <a class="btn btn-danger" href="{{ url('users/delete/'.$user->id) }}"><i class="fa fa-trash"></i></a>
                           </td>

@@ -52,9 +52,8 @@
 							<div class="form-group">
 								<label for="permission">Permissao</label>		
 								<select class="form-control" name="permission" id="permission" >
-									<option @if( old('permission') == 'A') selected @endif  @if(isset($user) && $user->permission == 'A') selected @endif value="A">Administrativo</option>
-									<option @if( old('permission') == 'D') selected @endif  @if(isset($user) && $user->permission == 'D') selected @endif value="D">Diretor</option>
-									<option @if( old('permission') == 'P') selected @endif  @if(isset($user) && $user->permission == 'P') selected @endif value="P">Colaborador</option>
+									<option @if( old('permission') == 'A') selected @endif  @if(isset($user) && $user->permission == 'A') selected @endif value="A">Administrativo</option>									
+									<option @if( old('permission') == 'C') selected @endif  @if(isset($user) && $user->permission == 'C') selected @endif value="C">Colaborador</option>
 								</select>					
 							</div>	
 

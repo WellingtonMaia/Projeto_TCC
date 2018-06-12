@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Project;
+use App\User;
 
 class ProjectController extends Controller
 {
@@ -36,11 +37,14 @@ class ProjectController extends Controller
     }
 
     public function create(){
-    	return view('forms.project_create');
+        $users = DB::select('select * from users');
+    	return view('forms.project_create')->with('users', $users);
     }
 
     public function store(){
 
+        $users = Input::get('users');       
+        
         $project = new Project();
 
         $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
@@ -54,6 +58,10 @@ class ProjectController extends Controller
         $project->project_type = Input::get('project_type');
 
         $project->save();
+
+        foreach ($users as $user) {
+            $project->users()->attach($user);
+        }
 
         Session::flash('message', 'Cadastro registrado com sucesso!');
         return Redirect::to('projects');

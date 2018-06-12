@@ -23,7 +23,13 @@
                                   <span class="check-bottom"></span>
                                 </label>
                                 <a href="{{ url('projects/tasks/show-info/'.$task->id) }}">
-                                  <span class="task-users">Matheus B.</span>
+                                  
+                                    <span class="task-users">
+                                      @foreach($task->users as $user)
+                                        {{ $user->name }}
+                                      @endforeach
+                                    </span>
+                                  
                                   <h3>{{ $task->name }}</h3>
                                   <div class="hidden">{{ $task->description }}</div>
                                   {{-- <div class="dates">{{  \Carbon\Carbon::parse($task->estimate_date)->format(' l F Y') }}</div> --}}

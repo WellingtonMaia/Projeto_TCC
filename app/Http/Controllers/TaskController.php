@@ -38,13 +38,15 @@ class TaskController extends Controller
 
     public function create(){
         $projects = DB::select('select * from projects');
-        return view('forms.task_create')->with('projects', $projects);
+        $users = DB::select('select * from users');
+        return view('forms.task_create')->with('projects', $projects)
+                                        ->with('users', $users);
     }
 
     public function store(){
         $task = new Task();
 
-        $users = ['1','2'];
+        $users = Input::get('users');
 
         // public function aulas(){
         //     return $this->belongsToMany('Modules\Produto\Entities\Sgr\Aula', 'materia_aula', 'materia_id', 'aula_id');                

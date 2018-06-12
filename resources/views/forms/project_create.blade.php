@@ -61,6 +61,14 @@
 								</select>					
 							</div>
 
+							<div class="form-group">
+								<label for="name">Usuarios no Projeto</label>
+								<select multiple class="form-control">
+									@foreach($users as $user)
+								      <option value="{{ $user->id }}">{{ $user->name }}</option>
+									@endforeach
+							    </select>
+							</div>
 
 		                    <div class="form-group">
 		                        <div class="">
