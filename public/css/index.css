@@ -213,7 +213,7 @@ main{
 	display:flex;
 	justify-content: space-around;
 	position: 	relative;	
-	right: 	160px;
+	right: 35px;
 
 }
 
@@ -233,25 +233,25 @@ main{
 .header .right  .box-user .user-img img{
 	max-width: 35px;
 	border-radius: 	50%;
-	border:1px solid #cecece;
+	/*border:1px solid #cecece;*/
 	display: block;
 	margin: auto;
-
+    box-shadow:0px 1px 38px rgba(0,0,0,0.1);
 }
 
 .header .right .box-user{
 	position: relative;	
 	width: 	100%;
-	margin: auto;
+	margin: auto 0 auto 30px;
 }
 
 .header .right .box-user .user-info{
 	position: absolute;
-	top: 38px;
+	top: 44px;
 	opacity: 0;
 	transition: ease-out .2s;
-	right:-105px;
-	visibility: 	hidden;
+	right:0;
+	visibility: hidden;
 	display: block;
 	margin:auto;
 	z-index: 50;
@@ -260,10 +260,27 @@ main{
 .header .right .box-user .user-info ul{
 	width: 200px;
 	border-radius: 4px;
-	background: #fff;
+	background: #161618;
  	box-shadow:0px 1px 38px rgba(0,0,0,0.1);
  	padding: 10px 15px;
+ 	position: relative;
 }
+
+.header .right .box-user .user-info:before{
+	content: "";
+    z-index: 3;
+    position: absolute;
+    top: -8px;   
+    right:12px;
+    width: 0;
+    margin: auto;
+    border-bottom: 8px solid #161618;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+
+
+
 
 .header .right .box-user .user-info ul li{ 
 	line-height: 25px;	
@@ -272,7 +289,16 @@ main{
 
 .header .right .box-user .user-info ul li a{ 
 	font-size: 12px;
+	display: block;
+	width: 100%;
+	color:#fff;
+	transition:ease-out .2s;
 }
+
+.header .right .box-user .user-info ul li:hover a{ 
+	color:#0de0f9;
+
+}	
 
 .header .right .box-user:hover .user-info{
 	opacity:1;
@@ -713,6 +739,7 @@ main{
 .list-content .list-tasks .iten-task .btn{
 	line-height: 26px;
 	padding-top:0;
+	display: block !important;
 	padding-bottom: 0;
 }
 

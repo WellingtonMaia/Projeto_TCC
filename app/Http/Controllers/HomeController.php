@@ -25,13 +25,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $project = Project::count();
         $task = Task::count();
         $task = Task::count();
         $user = User::count();
-        // $financial = Financial::count();
+
+        // $data = $request->session()->all();               
 
         return view('index')
                ->with("nproject", $project)

@@ -32,7 +32,7 @@ Route::get('/tasks', 'TaskController@index')->name('tasks');
 Route::get('/tasks/create', 'TaskController@create')->name('tasks_create');
 Route::post('/tasks/store', 'TaskController@store')->name('tasks_store');
 Route::get('/tasks/show/{id}', 'TaskController@show');
-Route::get('/tasks/show-info/{id}', 'TaskController@showInfo');
+Route::get('/projects/tasks/show-info/{id}', 'TaskController@showInfo');
 Route::put('/tasks/edit/{id}', 'TaskController@edit');
 Route::get('/tasks/delete/{id}', 'TaskController@delete');
 

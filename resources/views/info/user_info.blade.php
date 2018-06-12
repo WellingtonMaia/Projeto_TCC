@@ -6,15 +6,25 @@
 		  <div class="col-md-12">
           <div class="card">
               <div class="list-content">
-                <h2>{{ $project->name }}</h2>
+                <h2>Meu Perfil</h2>
+                
+                
+
+                <div class="my-profile">
+                	<p>{{ $user->name }}</p>
+                	<p>{{ $user->email }}</p>
+	                <p>{{ $user->role }}</p>
+	                <p>{{ $user->status }}</p>
+	                <p>{{ $user->permission }}</p>	
+                </div>
 {{-- 
                 <p>{{ $project->estimate_date }}</p>
                 <p>{{ $project->estimate_time }}</p>
                 <p>{{ $project->project_price }}</p> --}}
 
 
-                <div class="list-tasks">
-                    @foreach ($project->tasks as $task)
+{{--                 <div class="list-tasks">
+                    @foreach ($user->tasks as $task)
 
                         <div class="iten-task">
                           <div class="item"> 
@@ -26,30 +36,17 @@
                                   <span class="task-users">Matheus B.</span>
                                   <h3>{{ $task->name }}</h3>
                                   <div class="hidden">{{ $task->description }}</div>
-                                  {{-- <div class="dates">{{  \Carbon\Carbon::parse($task->estimate_date)->format(' l F Y') }}</div> --}}
                                   <div class="dates begin">(Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' l F Y') }}</div>
                                   <div class="dates final">Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' l F Y') }})</div>
-                                  {{-- {{ $task->begin_date }}
-                                  {{ $task->final_date }} --}}
-                                  {{-- {{ $task->status }} --}}
-                                  {{-- <a class="btn btn-info" href="{{ url('tasks/show/'.$task->id) }}"><i class="fa fa-edit"></i></a> --}}
                                 </a>
                                 <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a> 
 
                           </div>                        
                         </div>
                     @endforeach
-                </div>
+                </div> --}}
                 </div>                                    
               </div>
-              <div class="container-login100-form-btn buttonAdd">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
-                                + Adicionar nova tarefa
-                            </button>
-                        </div>
-                    </div>
           </div>
             @if( \Session::has("message") )
               <div class="alert alert-success">

@@ -36,19 +36,21 @@
 				<div class="right">
 					<div class="box-search">
 						<form class="" method="GET" >
-							<input type="search" class="search-input" name="search">
+							<input type="search" class="search-input" name="search" placeholder="buscar...">
 							<button type="submit"></button>
 						</form>
 					</div>
 					<div class="box-user">
 						<div class="user-img">
-							<img src="{{ asset('img/example.jpg') }}">
+							<a href="{{ url('/users/show-info/1') }}">
+								<img src="{{ asset('img/example.jpg') }}">
+							</a>
 						</div>
 						<div class="user-info"> 
 							 <ul>
-							 	<li><a href="">Minhas tarefas</a></li>
-							 	<li><a href="">Meu Perfil</a></li>
-							 	<li><a href="">Meus Projetos</a></li>
+							 	<li><a href="{{ route('tasks') }}">Minhas tarefas</a></li>
+							 	<li><a href="{{ url('/users/showInfo/1') }}">Meu Perfil</a></li>
+							 	<li><a href="{{ route('projects') }}">Meus Projetos</a></li>
 							 	<li><a href="{{ route('logout') }}" 
 								 		onclick="event.preventDefault();
 		                                document.getElementById('logout-form').submit();">Sair

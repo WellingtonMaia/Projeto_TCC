@@ -38,7 +38,7 @@
                         <tbody>
                           @foreach ($tasks as $task)
                           <tr>
-                            <td>{{ $task->name }}</td>
+                            <td> <a href="{{ url('projects/tasks/show-info/'.$task->id) }}">{{ $task->name }}</a></td>
                             <td>{{ $task->description }}</td>
                             <td>{{ \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') }}</td>
                             <td>{{ $task->estimate_time }}</td>

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Task;
 use App\Project;
+use App\User;
 
 class TaskController extends Controller
 {
@@ -34,11 +35,6 @@ class TaskController extends Controller
         $tasks = DB::select('select * from tasks');
         return view('task')->with('tasks', $tasks);
     }
-
-    // public function create($id){
-    //     $project = project::find($id);
-    //     return view('forms.task_create')->with("project",$project);
-    // }
 
     public function create(){
         $projects = DB::select('select * from projects');
