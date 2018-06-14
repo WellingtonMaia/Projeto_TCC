@@ -63,7 +63,7 @@
 
 							<div class="form-group">
 								<label for="name">Usuarios no Projeto</label>
-								<select multiple class="form-control">
+								<select multiple name="users[]" class="form-control">
 									@foreach($users as $user)
 								      <option value="{{ $user->id }}">{{ $user->name }}</option>
 									@endforeach

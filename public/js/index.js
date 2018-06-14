@@ -30,6 +30,27 @@ $( document ).ready(function() {
 
  	$('.timepicker').mask('00:00:00');
 
+    $("#project").change(function (){
+
+        var data = $(this).val();
+
+        $.ajax({
+        url: '/tasks/getUsers',
+        type: "GET",
+        data: {id : data},
+        dataType:'JSON',
+        success:function(response){
+            console.log("function")
+            if(response.error == false){
+                $("#usersProject").html(response.html);
+            }else{
+                console.log("erro");
+            }
+           
+        }
+      });
+    });
+
  	// $('.dateshow').mask('00/00/0000');
 
 	// addNewTask();

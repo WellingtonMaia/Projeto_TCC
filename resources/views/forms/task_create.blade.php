@@ -21,7 +21,7 @@
 
 							<div class="form-group">
 								<label for="project_id">Projeto</label>								
-								<select name="project" class="form-control" required>
+								<select name="project" id="project" class="form-control" required>
 										<option value="">Selecione um projeto</option>
 										@foreach($projects as $project)
 											<option value="{{ $project->id }}">{{ $project->name }}</option>
@@ -31,7 +31,7 @@
 
 							<div class="form-group">
 								<label for="name">Usuarios</label>
-								<select multiple name="users[]" class="form-control">
+								<select multiple name="users[]" id="usersProject" class="form-control">
 									@foreach($users as $user)
 								      <option value="{{ $user->id }}">{{ $user->name }}</option>
 									@endforeach

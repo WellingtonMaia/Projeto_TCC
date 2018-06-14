@@ -43,6 +43,28 @@ class TaskController extends Controller
                                         ->with('users', $users);
     }
 
+    public function getUsers(Request $request){
+
+
+        $project = Project::find($request->get('id'));
+
+        if ($project) {
+            $users = '';
+
+            foreach ($project->users as $p) {
+                $users .= '<option value="'.$p->id.'">'.$p->name.'</option>';
+            }      
+
+            if($users){
+                return response()->json(['error'=>false,'html'=>$users], 200);
+            }
+        }
+
+        return response()->json(['error'=>true,'html'=>'null'], 200);
+        
+        
+    }
+
     public function store(){
         $task = new Task();
 

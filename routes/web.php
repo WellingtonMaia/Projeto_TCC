@@ -36,6 +36,8 @@ Route::get('/projects/tasks/show-info/{id}', 'TaskController@showInfo');
 Route::put('/tasks/edit/{id}', 'TaskController@edit');
 Route::get('/tasks/delete/{id}', 'TaskController@delete');
 
+Route::get('/tasks/getUsers/', 'TaskController@getUsers');
+
 // <-- users -->
 Route::get('/users', 'UserController@index')->name('users');
 Route::get('/users/create', 'UserController@create')->name('users_create');
