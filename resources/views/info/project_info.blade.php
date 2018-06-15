@@ -44,18 +44,18 @@
                             <div class="iten-task">
                               <div class="item"> 
                                     <label>
-                                      <input type="checkbox" name="completed">
-                                      <span class="check-bottom"></span>
+                                      <input type="checkbox" name="completed" data-id="{{ $task->id }}" data-status="{{ $task->status }}" class="task-completed" @if($task->status == "A") checked="checked" @endif>
+                                      <span class="check-bottom"></span> 
                                     </label>
                                     <a href="{{ url('projects/tasks/show-info/'.$task->id) }}">
                                       
                                         <span class="task-users">
                                           @foreach($task->users as $user)
-                                            {{ $user->name }}
+                                           <span title="{{ $user->name }}">{{ $user->name }}</span> 
                                           @endforeach
                                         </span>
                                       
-                                      <h3>{{ $task->name }}</h3>
+                                      <h3 title="{{ $task->name }}">{{ $task->name }}</h3>
                                       <div class="hidden">{{ $task->description }}</div>
                                       {{-- <div class="dates">{{  \Carbon\Carbon::parse($task->estimate_date)->format(' l F Y') }}</div> --}}
                                       <div class="dates begin">(Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' l F Y') }}</div>
@@ -109,9 +109,9 @@
               <div class="container-login100-form-btn buttonAdd">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
+                            <a href="{{ url('tasks/createFromProject/'.$project->id) }}" class="login100-form-btn">
                                 + Adicionar nova tarefa
-                            </button>
+                            </a>
                         </div>
                     </div>
           </div>

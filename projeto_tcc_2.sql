@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`tasks` (
   `description` TEXT NULL,
   `estimate_date` DATE NULL,
   `estimate_time` TIME NULL,
-  `status` ENUM('A', 'I') NULL,
+  `status` ENUM('C', 'I') NULL,
   `begin_date` DATE NULL,
   `final_date` DATE NULL,
   `project_id` INT NOT NULL,

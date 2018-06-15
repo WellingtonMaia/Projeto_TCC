@@ -686,6 +686,7 @@ main{
 .list-content .list-tasks .iten-task .task-users{
 	min-width: 150px;
 	font-size:14px;
+	max-width: 150px;
 	line-height: 29px;
 	margin:0;
 	position: absolute;
@@ -701,6 +702,20 @@ main{
 
 }
 
+.list-content .list-tasks .iten-task .item.completed{
+	text-decoration: line-through;
+}
+
+
+.list-content .list-tasks .iten-task .task-users{
+	text-transform: capitalize;
+}
+
+.list-content .list-tasks .iten-task .item.completed .task-users{
+    background: linear-gradient(to right , #0ad90a, #ffffff);    
+	text-decoration: line-through;
+    opacity: 0.5;
+}
 
 
 .list-content .list-tasks .iten-task input{
@@ -744,12 +759,11 @@ main{
 }
 
 .list-content .list-tasks .iten-task input:checked+.check-bottom{
-	border-color: green;
+	background:#0ad90a;
 }
 
 .list-content .list-tasks .iten-task input:checked+.check-bottom:before{
-	color:green;
-	
+	color:#fff;	
 }
 
 
@@ -763,7 +777,8 @@ main{
 .list-content .list-tasks .iten-task h3{
 	margin:0 3px 0 10px;
 	line-height: 29px;
-	min-width: 220px;
+	min-width: 260px;
+	max-width: 260px;
 	white-space: nowrap;
 	overflow: hidden;
     text-overflow: ellipsis;
@@ -775,8 +790,13 @@ main{
 	max-width: 244px;	
 }
 
-.buttonAdd button{
+.buttonAdd button,
+.buttonAdd a{
 	text-transform: none !important;
+}
+
+.buttonAdd a:hover{
+	color:#fff;
 }
 
 .list-content .list-tasks .iten-task .dates{

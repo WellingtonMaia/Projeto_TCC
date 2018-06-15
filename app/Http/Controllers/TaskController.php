@@ -43,6 +43,37 @@ class TaskController extends Controller
                                         ->with('users', $users);
     }
 
+
+    public function createFromProject($id){
+
+        $projects = Project::find($id);
+        $users = User::all();
+
+        return view('forms.task_create_from_project')->with('projects', $projects)
+                                        ->with('users', $users);
+    }
+
+    public function updateStatus(Request $request){
+
+        $task = Task::find($request->get('id'));
+
+
+
+        if($request->get('status') == "I"){
+            $task->status = 'A';    
+        }
+
+        if($request->get('status') == "A"){
+            $task->status = 'I';    
+        }
+
+        $task->save();
+
+        return response()->json(['error'=>false,'status'=>$task->status], 200);
+        
+
+    }
+
     public function getUsers(Request $request){
 
         $project = Project::find($request->get('id'));

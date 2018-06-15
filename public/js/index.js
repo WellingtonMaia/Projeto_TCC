@@ -25,6 +25,45 @@ $( document ).ready(function() {
 		$(".aside").toggleClass('active');
 	});
 
+    if($(".task-completed:checked")){
+        $(".task-completed").parent().parent().addClass("completed");
+        console.log('jasusehas');
+    } 
+
+
+    $(".task-completed").on("change", function (){
+
+        // if($('.task-completed:checked')){
+        $(this).parent().parent().toggleClass("completed");
+
+        var status = $(this).attr("data-status");
+        var id = $(this).attr("data-id");
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/tasks/updateStatus',
+            type: "POST",
+            data: {id: id, status: status},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){
+                    console.log(response.status);
+                    $(".task-completed").attr("data-status",response.status);
+                }else{
+                    console.log("erro");
+                }
+            }
+
+        });
+            
+        // }else{
+        //     $(this).parent().parent().removeClass("completed");
+        //     console.log("volta");
+        // }
+    });
+
 
     $('.datepicker').datepicker();
 
@@ -40,7 +79,6 @@ $( document ).ready(function() {
         data: {id : data},
         dataType:'JSON',
         success:function(response){
-            console.log("function")
             if(response.error == false){
                 $("#usersProject").html(response.html);
             }else{
