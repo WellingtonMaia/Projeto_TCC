@@ -44,7 +44,7 @@
                             <div class="iten-task">
                               <div class="item"> 
                                     <label>
-                                      <input type="checkbox" name="completed" data-id="{{ $task->id }}" data-status="{{ $task->status }}" class="task-completed" @if($task->status == "A") checked="checked" @endif>
+                                      <input type="checkbox" name="completed" data-id="{{ $task->id }}" data-status="{{ $task->status }}" class="task-completed" @if($task->status == "C") checked="checked" @endif>
                                       <span class="check-bottom"></span> 
                                     </label>
                                     <a href="{{ url('projects/tasks/show-info/'.$task->id) }}">

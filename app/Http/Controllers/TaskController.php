@@ -60,10 +60,10 @@ class TaskController extends Controller
 
 
         if($request->get('status') == "I"){
-            $task->status = 'A';    
+            $task->status = 'C';    
         }
 
-        if($request->get('status') == "A"){
+        if($request->get('status') == "C"){
             $task->status = 'I';    
         }
 
