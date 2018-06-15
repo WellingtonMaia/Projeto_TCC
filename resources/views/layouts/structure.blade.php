@@ -118,5 +118,6 @@
 	<script src="{{ asset('js/index.js') }}"></script>		
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>		
 	<script src="{{ asset('js/jquery.mask.js') }}"></script>		
-	<!-- <script src="{{ asset('js/slick.min.js') }}"></script>	 -->
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>		
+	<!-- <script src=" asset('js/slick.min.js') }}"></script>	 -->
 </html>

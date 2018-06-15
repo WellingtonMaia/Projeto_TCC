@@ -32,12 +32,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-    	$projects = DB::select('select * from projects');
+    	$projects = Project::all();
         return view('project')->with('projects', $projects);
     }
 
     public function create(){
-        $users = DB::select('select * from users');
+        $users = User::all();
     	return view('forms.project_create')->with('users', $users);
     }
 
@@ -56,6 +56,7 @@ class ProjectController extends Controller
         $project->status = Input::get('status');
         $project->project_price = Input::get('project_price');
         $project->project_type = Input::get('project_type');
+        $project->client_name = Input::get('client_name');
 
         $project->save();
 

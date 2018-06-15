@@ -26,7 +26,7 @@ $( document ).ready(function() {
 	});
 
 
-	$('.datepicker').datepicker();
+    $('.datepicker').datepicker();
 
  	$('.timepicker').mask('00:00:00');
 
@@ -45,8 +45,7 @@ $( document ).ready(function() {
                 $("#usersProject").html(response.html);
             }else{
                 console.log("erro");
-            }
-           
+            }           
         }
       });
     });

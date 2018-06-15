@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::select('select * from users');
+        $users = user::all();
         return view('user')->with('users', $users);
 
     }
@@ -55,7 +55,6 @@ class UserController extends Controller
 
         Session::flash('message', 'Cadastro registrado com sucesso!');
         return Redirect::to('users');
-
 
     }
 

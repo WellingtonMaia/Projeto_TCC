@@ -32,19 +32,18 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = DB::select('select * from tasks');
+        $tasks = Task::all();
         return view('task')->with('tasks', $tasks);
     }
 
     public function create(){
-        $projects = DB::select('select * from projects');
-        $users = DB::select('select * from users');
+        $projects = Project::all();
+        $users = User::all();
         return view('forms.task_create')->with('projects', $projects)
                                         ->with('users', $users);
     }
 
     public function getUsers(Request $request){
-
 
         $project = Project::find($request->get('id'));
 
@@ -118,7 +117,7 @@ class TaskController extends Controller
 
     public function show($id){
        $task = task::find($id);
-       $projects = DB::select('select * from projects');
+       $projects = project::all();
        return view('forms.task_create')->with("task", $task)
                                        ->with("projects", $projects);
     }
@@ -130,7 +129,6 @@ class TaskController extends Controller
 
     public function edit($id){
         $task = task::find($id);
-
 
         $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
         $estimate_date = date('Y-m-d', strtotime($estimate_date));
@@ -157,7 +155,7 @@ class TaskController extends Controller
 
 
     public function delete($id){
-        $task = task::find($id);
+        $task = Task::find($id);
         $task->delete();
 
         Session::flash('message', 'Cadastro deletado com sucesso!');

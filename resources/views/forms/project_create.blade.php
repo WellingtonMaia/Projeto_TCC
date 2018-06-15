@@ -2,12 +2,6 @@
 @section('content')
 	<div class="project-content">
 		<div class="container-fluid">
-
-{{-- 			@if( $name )
-			<div class="alert alert-success">
-				 <strong>Sucesso!</strong> O projeto {{$name}} foi adicionado.
-			</div>
-			@endif --}}
 			<div class="col-md-12">
 				<div class="card">
 					<div class="block-icon">
@@ -26,16 +20,24 @@
 							<div class="form-group">
 								<label for="name">Nome</label>
 								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($project) ? $project->name : "" }}" required autofocus>						
-							</div>
-						
+							</div>							
+
+
 							<div class="form-group">
-								<label for="estimate_date ">Data Estimada</label>
-								<input type="text" name="estimate_date" class="form-control datepicker" value="{{ old('estimate_date')? old('estimate_date') : isset($project) ? $project->estimate_date : "" }}" required>						
-							</div>
-						
-							<div class="form-group">
-								<label for="estimate_time ">Tempo Estimado</label>
-								<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>						
+								<label for="client_name">Nome do Cliente</label>
+								<input type="text" name="client_name" class="form-control" value="{{ old('client_name')? old('client_name') : isset($project) ? $project->client_name : "" }}" required autofocus>						
+							</div>							
+
+							<div class="form-content-50">
+								<div class="form-group">
+									<label for="estimate_date ">Data Estimada</label>
+									<input type="text" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($project) ? $project->estimate_date : "" }}" required>						
+								</div>
+							
+								<div class="form-group">
+									<label for="estimate_time ">Tempo Estimado</label>
+									<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>						
+								</div>
 							</div>
 						
 							<div class="form-group">
@@ -62,10 +64,12 @@
 							</div>
 
 							<div class="form-group">
-								<label for="name">Usuarios no Projeto</label>
+								<label for="name">Adicionar usuarios no Projeto</label>
 								<select multiple name="users[]" class="form-control">
 									@foreach($users as $user)
-								      <option value="{{ $user->id }}">{{ $user->name }}</option>
+										@if($user->status == 'A'):
+								      		<option value="{{ $user->id }}">{{ $user->name }}</option>
+								      	@endif
 									@endforeach
 							    </select>
 							</div>

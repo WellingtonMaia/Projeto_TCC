@@ -306,7 +306,15 @@ main{
 
 }
 
+.form-content-50{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
 
+.form-content-50 .form-group{
+	width: 49%;
+}
 
 
 /*aside*/
@@ -603,7 +611,51 @@ main{
 
 .list-content h2{
 	padding-bottom: 30px;
+	line-height: 20px;
 }
+
+
+.list-content .block-title{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.list-content .tab-pane{
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	padding: 5px 10px;
+}
+
+
+.list-content .tab-pane .date-created{
+	display: block;
+}	
+
+.list-content .tab-pane .date-estimated{
+	display: block;
+}	
+
+.list-content .tab-pane .time{
+	display: block;
+}	
+
+.list-content .tab-pane .price{
+	display: block;
+}	
+
+.list-content .tab-pane .addto{
+	display: block;
+	cursor: pointer;
+	transition: ease-out .2s;
+}	
+
+
+.list-content .block-title span{
+	margin:0 20px;
+	line-height: 20px;
+}
+
 
 .list-content .list-tasks .iten-task .item{
 	display: flex;
@@ -642,6 +694,9 @@ main{
     color: #000000;
     top:0;
    	padding-left: 32px;
+	white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis;
 	border-radius:15px;
 
 }
