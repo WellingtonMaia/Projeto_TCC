@@ -64,39 +64,39 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        $user = new User();
+        // $user = new User();
 
-        $user->name = $data['name'];
-        $user->email = $data['email']
-        $user->password = bcrypt($data['password']),
-        $user->role = $data['role'];
-        $user->status =  $data['status'];
-        $user->permission = $data['permission'];
+        // $user->name = $data['name'];
+        // $user->email = $data['email']
+        // $user->password = ,
+        // $user->role = ;
+        // $user->status =  ;
+        // $user->permission = ;
 
-        $user->save();
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => 
-        //     'role' => ,
-        //     'status' =>,
-        //     'permission' => 
-        // ]);
+        // $user->save();
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'role' => , $data['role'],
+            'status' =>, $data['status'],
+            'permission' => $data['permission'],
+        ]);
 
 
-        self::gerarSession();
+        // self::gerarSession();
     }
 
-    public function gerarSession(Modelo $registro){
+    // public function gerarSession(Modelo $registro){
 
-        \Session::forget('modelo');
+    //     \Session::forget('modelo');
 
-        \Session::put('usuarioLogado', true);
-        \Session::put('modelo.id', $user->id);
-        \Session::put('modelo.nome', $user->nome);
-        \Session::put('modelo.email', $user->email);
-        \Session::save();
+    //     \Session::put('usuarioLogado', true);
+    //     \Session::put('modelo.id', $user->id);
+    //     \Session::put('modelo.nome', $user->nome);
+    //     \Session::put('modelo.email', $user->email);
+    //     \Session::save();
 
-        $user->save();
-    }
+    //     $user->save();
+    // }
 }
