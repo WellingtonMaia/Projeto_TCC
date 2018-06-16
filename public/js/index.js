@@ -27,13 +27,17 @@ $( document ).ready(function() {
 
     if($(".task-completed:checked")){
         $(".task-completed").parent().parent().addClass("completed");
-        console.log('jasusehas');
+    } 
+
+
+    if(!$(".task-completed:checked")){
+        $(".task-completed").parent().parent().removeClass("completed");
+        console.log("6484646");
     } 
 
 
     $(".task-completed").on("change", function (){
-
-        // if($('.task-completed:checked')){
+        
         $(this).parent().parent().toggleClass("completed");
 
         var status = $(this).attr("data-status");

@@ -18,14 +18,12 @@
 							@if(isset($task))<input name="_method" type="hidden" value="PUT">@endif
 								{{ csrf_field() }}
 
+							<input type="hidden" name="status" value="I">
 
 							<div class="form-group">
 								<label for="project_id">Projeto</label>								
-								<select name="project" id="project" class="form-control" required>
-										<option value="">Selecione um projeto</option>
-										@foreach($projects as $project)
-											<option value="{{ $project->id }}">{{ $project->name }}</option>
-										@endforeach	
+								<select name="project" id="project" class="form-control" required>										
+										<option value="{{ $project->id }}">{{ $project->name }}</option>										
 								</select>
 							</div>
 
@@ -40,41 +38,38 @@
 
 							<div class="form-group">
 								<label for="name">Nome</label>
-								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($task) ? $task->name : "" }}" required autofocus>
+								<input type="text" name="name" class="form-control" placeholder="Digite aqui o nome da sua tarefa" value="{{ old('name')? old('name') : isset($task) ? $task->name : "" }}" required autofocus>
 							</div>
 
 							<div class="form-group">
 								<label for="description">Descricao</label>
-								<textarea name="description" class="form-control"> {{ old('description')? old('description') : isset($task) ? $task->description : "" }}</textarea>
+								<textarea  placeholder="Descreva o que precisa ser feito" cols="10" rows="5" name="description" class="form-control"> {{ old('description')? old('description') : isset($task) ? $task->description : "" }}</textarea>
 							</div>
-						
-							<div class="form-group">
-								<label for="estimate_date">Data Estimada</label>
-								<input type="text" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($task) ? \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') : "" }}" required>						
-							</div>
-						
-							<div class="form-group">
-								<label for="estimate_time">Tempo Estimado</label>
-								<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($task) ? $task->estimate_time : "" }}" required>						
-							</div>
-						
-							<div class="form-group">
-								<label for="status">Status</label>		
-								<select class="form-control" name="status" id="status" required>
-									<option @if( old('status') == 'A') selected @endif @if(isset($task) && $task->status == 'A') selected @endif value="A">Ativo</option>
-									<option @if( old('status') == 'I') selected @endif @if(isset($task) && $task->status == 'I') selected @endif value="I">Inativo</option>
-								</select>					
-							</div>			
+							
+							<div class="form-content-50">
+								<div class="form-group">
+									<label for="estimate_date">Data Estimada</label>
+									<input type="text" name="estimate_date" class="form-control datepicker" placeholder="Selecione a data estimada para finalização da tarefa" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($task) ? \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') : "" }}" required>						
+								</div>
+							
+								<div class="form-group">
+									<label for="estimate_time">Tempo Estimado</label>
+									<input type="text" name="estimate_time" class="form-control timepicker" placeholder="Digite o tempo estimado que será necessário para finalização da tarefa" value="{{ old('estimate_time')? old('estimate_time') : isset($task) ? $task->estimate_time : "" }}" required>						
+								</div>
+							</div>	
 
-							<div class="form-group">
-								<label for="begin_date">Data Inicio</label>
-								<input type="text" name="begin_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('begin_date')? old('begin_date') : isset($task) ?  \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') : "" }}" required>						
-							</div>
+							<div class="form-content-50">
+								<div class="form-group">
+									<label for="begin_date">Data Inicio</label>
+									<input type="text" name="begin_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" placeholder="Digite a data de Inicio da tarefa" value="{{ old('begin_date')? old('begin_date') : isset($task) ?  \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') : "" }}" required>						
+								</div>
 
-							<div class="form-group">
-								<label for="final_date">Data Final</label>
-								<input type="text" name="final_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('final_date')? old('final_date') : isset($task) ? \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') : "" }}" required>						
+								<div class="form-group">
+									<label for="final_date">Data Final</label>
+									<input type="text" name="final_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" placeholder="Digite a data Final de entrega da tarefa" value="{{ old('final_date')? old('final_date') : isset($task) ? \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') : "" }}" required>						
+								</div>	
 							</div>
+							
 		                    <div class="form-group">
 		                        <div class="">
 		                            <button type="submit" class="btn btn-success">

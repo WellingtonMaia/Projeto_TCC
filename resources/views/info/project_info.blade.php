@@ -58,8 +58,8 @@
                                       <h3 title="{{ $task->name }}">{{ $task->name }}</h3>
                                       <div class="hidden">{{ $task->description }}</div>
                                       {{-- <div class="dates">{{  \Carbon\Carbon::parse($task->estimate_date)->format(' l F Y') }}</div> --}}
-                                      <div class="dates begin">(Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' l F Y') }}</div>
-                                      <div class="dates final">Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' l F Y') }})</div>
+                                      <div class="dates begin">(Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' d - m - Y ') }}</div>
+                                      <div class="dates final">Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' d - m - Y') }})</div>
                                       {{-- {{ $task->begin_date }}
                                       {{ $task->final_date }} --}}
                                       {{-- {{ $task->status }} --}}
@@ -74,27 +74,29 @@
                   </div>
                   <div class="tab-pane fade  active show" id="info">
                     <div class="info-project">
-                       <span class="date-created"><i class="fa fa-calendar"></i> Data de Criação : {{  \Carbon\Carbon::parse($project->created_at)->format(' l F Y') }}</span>
-
-
-                       <span class="date-estimated"><i class="fa fa-calendar"></i> Data Estimada para entrega do Projeto : {{ $project->estimate_date }}</span>
-                       <span class="time"><i class="fa fa-o-clock"></i> Tempo Estimado de Conclusão do Projeto : {{ $project->estimate_time }}</span>
-                       <span class="price"><i class="fa fa-dollar-sign"></i> Preço do Projeto : {{ $project->project_price }}</span>
-
-                       <span class="addto"> <a href="">Adicionar Projeto no Financeiro</a></span>
-
+                       <h3 class="block-title">Datas</h3>
+                       <span class="date-created"><i class="fa fa-calendar"></i> Data de Criação : {{  \Carbon\Carbon::parse($project->created_at)->format(' d - m - Y') }}</span>
+                       <span class="date-estimated"><i class="fa fa-calendar"></i> Data Estimada para entrega do Projeto : {{  \Carbon\Carbon::parse($project->estimate_date)->format(' d - m - Y') }}</span>
+                       <span class="time"><i class="fa fa-clock-o"></i> Tempo Estimado de Conclusão do Projeto : {{ $project->estimate_time }}</span>
+                       <span class="price"><i class="fa fa-money"></i> Preço do Projeto : R$ {{ $project->project_price }}.00</span>
+                       {{-- <span class="addto"> <a href="">Adicionar Projeto no Financeiro</a></span> --}}
+                   </div>                      
                        <div class="project-users">
+                        <h3 class="block-title">Usuários nesse Projeto</h3>
                           @foreach($project->users as $user)
                             <div class="item">
+                                @if( $user->image )
+                                  <img src="{{ asset('img'.$user->image)  }}">
+                                @endif                                
                                 <span class="name">Nome: {{ $user->name }}</span>
                                 <span class="status">Status : @if($user->status == "A") Ativo @else Inativo @endif</span>
                                 <span class="role">Cargo : {{ $user->role }}</span>
+                                <span class="edit"> Editar meus dados: </span><a class="btn btn-info" href=" {{ url('users/show/'.$user->id) }}"><i class="fa fa-edit"></i></a>
+                                <br/>
                             </div>
-                          @endforeach
-
-                       </div>
-
-                    </div>
+                          @endforeach                     
+                      </div>
+                   
                   </div>  
                 </div>
 {{-- 

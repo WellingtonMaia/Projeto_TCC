@@ -15,7 +15,7 @@
 						</svg>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" @if(isset($user)) action="{{ url('/users/edit/'.$user->id) }}" @else action="{{ route('users_store') }}" @endif >
+						<form class="form-horizontal" method="POST" @if(isset($user)) action="{{ url('/users/edit/'.$user->id) }}" @else action="{{ route('users_store') }}" @endif enctype="multipart/form-data">
 						@if(isset($user))<input name="_method" type="hidden" value="PUT">@endif
 						{{ csrf_field() }}
 							<div class="form-group">
@@ -35,27 +35,35 @@
 							</div>
 							@endif
 
-
 							<div class="form-group">
 								<label for="role">Cargo</label>								
-								<input type="text" name="role" class="form-control" value="{{ old('role')? old('role') : isset($user) ? $user->role : "" }}" required>
+								<input type="text" placeholder="Digite o nome da sua profissão" name="role" class="form-control" value="{{ old('role')? old('role') : isset($user) ? $user->role : "" }}" required>
 							</div>
 
 							<div class="form-group">
-								<label for="status">Status</label>		
-								<select class="form-control" name="status" id="status" >
-									<option @if( old('status') == 'A') selected @endif  @if(isset($user) && $user->status == 'A') selected @endif value="A">Ativo</option>
-									<option @if( old('status') == 'I') selected @endif  @if(isset($user) && $user->status == 'I') selected @endif value="I">Inativo</option>
-								</select>					
-							</div>			
+								<label for="role">Imagem de Perfil</label>								
+								<input type="file" name="image" class="form-control" value="" required>
+							</div>
 
-							<div class="form-group">
-								<label for="permission">Permissao</label>		
-								<select class="form-control" name="permission" id="permission" >
-									<option @if( old('permission') == 'A') selected @endif  @if(isset($user) && $user->permission == 'A') selected @endif value="A">Administrativo</option>									
-									<option @if( old('permission') == 'C') selected @endif  @if(isset($user) && $user->permission == 'C') selected @endif value="C">Colaborador</option>
-								</select>					
-							</div>	
+							<div class="form-content-50">
+								<div class="form-group">
+									<label for="status">Status</label>		
+									<select class="form-control" name="status" id="status" >
+										<option value="">Selecione um status</option>
+										<option @if( old('status') == 'A') selected @endif  @if(isset($user) && $user->status == 'A') selected @endif value="A">Ativo</option>
+										<option @if( old('status') == 'I') selected @endif  @if(isset($user) && $user->status == 'I') selected @endif value="I">Inativo</option>
+									</select>					
+								</div>			
+
+								<div class="form-group">
+									<label for="permission">Permissao</label>		
+									<select class="form-control" name="permission" id="permission" >
+										<option value="">Selecione uma opção</option>
+										<option @if( old('permission') == 'A') selected @endif  @if(isset($user) && $user->permission == 'A') selected @endif value="A">Administrativo</option>									
+										<option @if( old('permission') == 'C') selected @endif  @if(isset($user) && $user->permission == 'C') selected @endif value="C">Colaborador</option>
+									</select>					
+								</div>	
+							</div>
 
 
 		                    <div class="form-group">

@@ -5,8 +5,11 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form"  method="POST" action="{{ route('register') }}">
+                <form class="login100-form validate-form"  method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
+
+                    <input type="hidden" name="status" value="A">
+                    <input type="hidden" name="permission" value="A">
 
                     <span class="login100-form-title p-b-48">
                         <img src="img/logo.png">

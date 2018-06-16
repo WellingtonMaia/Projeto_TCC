@@ -209,6 +209,10 @@ main{
 	border-color: #252525 !important;
 }
 
+.form-control::placeholder{
+	color:#cecece;
+}
+
 .header .right{
 	display:flex;
 	justify-content: space-around;
@@ -600,8 +604,8 @@ main{
 }
 
 .project-content .btn-success{
-    background:#9c27b0;
-    border-color: #9c27b0;
+    background: linear-gradient(to bottom right, #c165dd, #5c27fe);
+    /*border-color: #9c27b0;*/
 }
 
 .project-content .btn-success:focus{
@@ -614,39 +618,99 @@ main{
 	line-height: 20px;
 }
 
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+	color:#47a6f4;
+}
+
+#info{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.list-content .info-project .block-title,
+.list-content .project-users .block-title{
+	font-size:22px;
+	margin: 15px 0;
+	width: 100%;
+	display: block;
+
+}
+
+
+.list-content .project-users .item .name,
+.list-content .project-users .item .status,
+.list-content .project-users .item .role{
+	width: 100%;
+	font-size:15px;
+	display: block;
+	margin:6px 0;	
+}
+
+.list-content .project-users .item .role{
+	display: inline-block;
+	margin-right: 10px;
+}
+
+
+
+
+.list-content .info-project{
+	display: flex;
+	flex-wrap: wrap;
+	width: 50%;
+}
+
+.list-content .info-project .project-users{
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	width: 50%;
+	align-items: center;
+}
+
 
 .list-content .block-title{
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: left;
 }
 
 .list-content .tab-pane{
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
-	padding: 5px 10px;
+	padding: 10px 20px;
 }
 
 
-.list-content .tab-pane .date-created{
-	display: block;
-}	
-
+.list-content .tab-pane .date-created,
 .list-content .tab-pane .date-estimated{
 	display: block;
+	font-size: 16px;
+	padding: 10px 0;
+	width: 100%;
 }	
+
 
 .list-content .tab-pane .time{
 	display: block;
+	font-size: 16px;
+	padding: 10px 0;
+	width: 100%;
 }	
 
 .list-content .tab-pane .price{
 	display: block;
+	padding: 10px 0;
+	font-size: 16px;
+	width: 100%;
 }	
 
 .list-content .tab-pane .addto{
 	display: block;
+	font-size: 16px;
 	cursor: pointer;
+	width: 100%;
 	transition: ease-out .2s;
 }	
 
@@ -805,11 +869,13 @@ main{
 
 .list-content .list-tasks .iten-task .dates.begin{
 	color:#3e3e3e;
-	min-width: 190px;
+	min-width: 160px;
+	line-height: 28px;
 }
 .list-content .list-tasks .iten-task .dates.final{
 	color: red;
-	min-width: 190px;
+	min-width: 160px;
+	line-height: 28px;
 }
 
 .list-content .list-tasks .iten-task .btn{
@@ -915,7 +981,7 @@ main{
 
 
 .user-content .btn-success{
-    background:#00bcd4;
+    background: linear-gradient(to bottom right, #05e7f9, #49a5f5);    
     border-color: #00bcd4;
 }
 

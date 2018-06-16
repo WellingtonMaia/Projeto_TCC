@@ -16,7 +16,7 @@
 					<div class="panel-body">
 						<form class="form-horizontal"  method="POST" @if(isset($project)) action="{{ url('/projects/edit/'.$project->id) }}" @else action="{{ route('projects_store') }}" @endif >
 							@if(isset($project))<input name="_method" type="hidden" value="PUT">@endif
-						{{ csrf_field() }}
+							{{ csrf_field() }}
 							<div class="form-group">
 								<label for="name">Nome</label>
 								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($project) ? $project->name : "" }}" required autofocus>						
@@ -36,7 +36,7 @@
 							
 								<div class="form-group">
 									<label for="estimate_time ">Tempo Estimado</label>
-									<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>						
+									<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>		
 								</div>
 							</div>
 						
@@ -45,13 +45,13 @@
 								<select class="form-control" name="status" id="status" required>
 									<option value="">Selecione um Status</option>
 									<option @if( old('status') == 'A') selected @endif  value="A">Ativo</option>
-									<option @if( old('status') == 'I') selected @endif  value="I">Inativo</option>
+									<option @if( old('status') == 'C') selected @endif  value="C">Inativo</option>
 								</select>					
 							</div>
 						
 							<div class="form-group">
 								<label for="project_price">Preco do Projeto</label>
-								<input type="text" name="project_price" class="form-control" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>						
+								<input type="text" name="project_price" class="form-control" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>					
 							</div>
 						
 							<div class="form-group">

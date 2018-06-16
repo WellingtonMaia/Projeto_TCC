@@ -69,14 +69,15 @@ class ProjectController extends Controller
     }
 
     public function show($id){
-
+        $users = User::all();
         $project = Project::find($id);        
-        return view('forms.project_create')->with("project", $project);
+        return view('forms.project_create')->with("project", $project)
+                                           ->with("users", $users);
     } 
 
     public function showInfo($id){
 
-        $project = Project::find($id);        
+        $project = Project::find($id);                
         return view('info.project_info')->with("project", $project);
     }
 

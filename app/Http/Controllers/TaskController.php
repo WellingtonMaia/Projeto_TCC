@@ -46,11 +46,11 @@ class TaskController extends Controller
 
     public function createFromProject($id){
 
-        $projects = Project::find($id);
+        $project = Project::find($id);
         $users = User::all();
 
-        return view('forms.task_create_from_project')->with('projects', $projects)
-                                        ->with('users', $users);
+        return view('forms.task_create_from_project')->with('project', $project)
+                                                     ->with('users', $users);
     }
 
     public function updateStatus(Request $request){

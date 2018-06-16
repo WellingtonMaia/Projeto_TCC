@@ -17,7 +17,7 @@ USE `projeto_tcc_2` ;
 -- -----------------------------------------------------
 -- Table `projeto_tcc_2`.`projects`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`projects` (
+CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`projects` ( 
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,  
   `client_name` VARCHAR(255) NULL,

@@ -10,8 +10,12 @@
                 
                 
 
-                <div class="my-profile">
-                	<p>{{ $user->name }}</p>
+                <div class="my-profile">                    
+                  <div class="box-img">
+                     <img src="{{ $user->image }}">
+                  </div>
+                	<span>Nome: {{ $user->name }}</span>
+                  {{-- {{ dd($user->image) }} --}}
                 	<p>{{ $user->email }}</p>
 	                <p>{{ $user->role }}</p>
 	                <p>{{ $user->status }}</p>
