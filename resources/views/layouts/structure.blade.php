@@ -87,7 +87,7 @@
 						<li><a href="{{ route('projects') }}">Projetos</a></li>
 						<li><a href="{{ route('tasks') }}">Tarefas</a></li>
 						<li><a href="{{ route('users') }}">Pessoas</a></li>
-						{{-- <li><a href="{{ route('financials') }}">Financeiro</a></li> --}}
+						<li><a href="{{ route('financials') }}">Financeiro</a></li>
 {{-- 						<li class="has-sub">
 							<a href="#">Relatórios</a>
 							<ul class="list">

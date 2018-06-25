@@ -20,18 +20,18 @@
 						{{ csrf_field() }}
 							<div class="form-group">
 								<label for="name">Nome</label>
-								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($user) ? $user->name : "" }}" required autofocus>
+								<input type="text" name="name" class="form-control"  placeholder="Digite seu nome" value="{{ old('name')? old('name') : isset($user) ? $user->name : "" }}" required autofocus>
 							</div>
 
 							<div class="form-group">
 								<label for="email">E-mail</label>
-								<input type="email" name="email" class="form-control" value="{{ old('email')? old('email') : isset($user) ? $user->email : "" }}" required>
+								<input type="email" name="email" class="form-control" placeholder="Digite seu email" value="{{ old('email')? old('email') : isset($user) ? $user->email : "" }}" required>
 							</div>
 
 							@if(!isset($user))
 							<div class="form-group">
 								<label for="password">Senha</label>
-								<input type="password" name="password" class="form-control" value="{{ old('password')? old('password') : isset($user) ? $user->password : "" }}" required>
+								<input type="password" name="password" class="form-control" placeholder="Digite uma senha de no mínimo 6 caracteres" value="{{ old('password')? old('password') : isset($user) ? $user->password : "" }}" required>
 							</div>
 							@endif
 
