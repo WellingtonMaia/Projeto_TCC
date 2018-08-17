@@ -3,11 +3,17 @@
 	<div class="financial-content">
 		<div class="container-fluid">
 
-{{-- 			@if( $name )
-			<div class="alert alert-success">
-				 <strong>Sucesso!</strong> O projeto {{$name}} foi adicionado.
-			</div>
-			@endif --}}
+
+			@if ($errors->any())
+				<div class="alert alert-danger">
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
+			@endif
+
 			<div class="col-md-12">
 				<div class="card">
 					<div class="block-icon">
@@ -25,7 +31,7 @@
 						{{ csrf_field() }}
 							<div class="form-group">
 								<label for="name">Nome</label>
-								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($financial) ? $financial->name : "" }}" required autofocus>						
+								<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($financial) ? $financial->name : "" }}" required autofocus>
 							</div>
 
 							<div class="form-group">
@@ -50,7 +56,7 @@
 						
 							<div class="form-group">
 								<label for="due_date">Data de Vencimento</label>
-								<input type="text" name="due_date" class="form-control" value="{{ old('due_date')? old('due_date') : isset($financial) ? $financial->due_date : "" }}" required autofocus>						
+								<input type="date" name="due_date" class="form-control" value="{{ old('due_date')? old('due_date') : isset($financial) ? $financial->due_date : "" }}" required autofocus>
 							</div>						
 						
 							<div class="form-group">

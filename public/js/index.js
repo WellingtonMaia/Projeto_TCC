@@ -25,9 +25,9 @@ $( document ).ready(function() {
 		$(".aside").toggleClass('active');
 	});
 
-    if($(".task-completed:checked")){
-        $(".task-completed").parent().parent().addClass("completed");
-    } 
+    // if($(".task-completed:checked")){
+    //     $(".task-completed").parent().parent().addClass("completed");
+    // } 
 
 
     if(!$(".task-completed:checked")){

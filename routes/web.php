@@ -55,5 +55,5 @@ Route::get('/financials', 'FinancialController@index')->name('financials');
 Route::get('/financials/create', 'FinancialController@create')->name('financials_create');
 Route::post('/financials/store', 'FinancialController@store')->name('financials_store');
 Route::get('/financials/show/{id}', 'FinancialController@show');
-Route::put('/financials/edit/{id}', 'FinancialController@edit');
+Route::put('/financials/edit/{id}', 'FinancialController@edit')->name('financial_edit');
 Route::get('/financials/delete/{id}', 'FinancialController@delete');
