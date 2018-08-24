@@ -51,7 +51,7 @@ class UserController extends Controller
         $user->name = Input::get("name");
         $user->email = Input::get("email");
         $user->password = bcrypt(Input::get("password"));
-        $user->role = Input::get("role");
+        $user->role = 'Administrador';
         $user->status = Input::get("status");
         $user->permission = Input::get("permission");
         $user->image = "";

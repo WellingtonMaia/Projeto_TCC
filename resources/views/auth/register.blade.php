@@ -57,16 +57,6 @@
                         <span class="focus-input100" data-placeholder="Confirm Password"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input {{ $errors->has('role') ? ' has-error' : '' }}" data-validate = "Role is required">
-                        @if ($errors->has('role'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('role') }}</strong>
-                            </span>
-                        @endif
-                        <input class="input100" type="text" name="role" value="{{ old('role') }}">
-                        <span class="focus-input100" data-placeholder="Role"></span>
-                    </div>
-
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
