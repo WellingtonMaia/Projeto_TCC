@@ -41,6 +41,11 @@ class ProjectController extends Controller
     	return view('forms.project_create')->with('users', $users);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function store(){
 
         $users = Input::get('users');       
@@ -68,6 +73,12 @@ class ProjectController extends Controller
         return Redirect::to('projects');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id){
         $users = User::all();
         $project = Project::find($id);        
@@ -81,7 +92,13 @@ class ProjectController extends Controller
         return view('info.project_info')->with("project", $project);
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id){
 
         $project = Project::find($id);
