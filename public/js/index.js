@@ -31,11 +31,9 @@ $( document ).ready(function() {
         $(".task-completed").parent().parent().removeClass("completed");
     }
 
-    // if(!$(".task-completed:checked")){
-    //     $(".task-completed").parent().parent().removeClass("completed");
-    //     console.log("6484646");
-    // } 
-
+    if(!$(".task-completed:checked")){
+        $(".task-completed").parent().parent().removeClass("completed");        console.log("6484646");
+    } 
 
     $(".task-completed").on("change", function (){
         

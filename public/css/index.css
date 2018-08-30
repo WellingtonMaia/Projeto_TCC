@@ -329,7 +329,8 @@ main{
     transition: ease-out .2s;
     background: #0e0e0e;
     z-index: 5;
-    height: 100vh;
+    height: auto;
+    min-height:800px;
     position: relative;    
     box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 
                 0 4px 25px 0px rgba(0, 0, 0, 0.12), 
@@ -418,7 +419,8 @@ main{
 .aside .menu ul li.active a{
     background:#525456;
     text-decoration: none;
-    /*box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);*/
+    /*box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.42), 
+    0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);*/
 }
 
 
