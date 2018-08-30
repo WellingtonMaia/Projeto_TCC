@@ -1,0 +1,38 @@
+
+
+
+checklist
+
+Criar seeders para usuarios
+
+Criar seeders para projetos com o foreign key dos usuarios
+
+Criar seeders para tarefas com o foreign key do projeto e dos usuarios
+
+Procurar layout para finalizar frontend
+
+Trocar layout para o novo
+
+Desenhar todas as telas do tcc no caderno mesmo,
+
+Alterar a forma que faz as 'roles'
+
+Arrumar edicao e dados do usuario
+
+Verificar processo de cadastro de projeto -> financeiro -> tarefa
+
+Criar processo de cadastro de tempo no js
+
+Pensar nas informacoes que serao mostradas no dashboard
+
+Verificar a possibilidade de utilizar o vue
+
+Criar funcionalidade de busca e tela de resultados
+
+Criar pagina 404 bem feita
+
+
+
+
+
+
