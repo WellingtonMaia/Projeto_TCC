@@ -3,13 +3,13 @@
 
 checklist
 
-Criar seeders para usuarios
+Criar seeders para usuarios --- feito
 
 Criar seeders para projetos com o foreign key dos usuarios
 
 Criar seeders para tarefas com o foreign key do projeto e dos usuarios
 
-Procurar layout para finalizar frontend
+Procurar layout para finalizar frontend === Qual dos 3....
 
 Trocar layout para o novo
 
