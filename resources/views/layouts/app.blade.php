@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Easy Tools') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style-login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/slick.min.css') }}" rel="stylesheet" >
     <link href="{{ asset('css/index.css') }}"  rel="stylesheet" >
