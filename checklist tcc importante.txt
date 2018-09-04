@@ -3,7 +3,7 @@
 
 checklist
 
-Criar seeders para usuarios --- feito
+feito --- Criar seeders para usuarios
 
 Criar seeders para projetos com o foreign key dos usuarios
 

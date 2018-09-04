@@ -14,7 +14,6 @@
     	{{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     	<link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
     	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">    	
-    	<link href="{{ asset('css/slick.min.css') }}" rel="stylesheet" >
     	<link href="{{ asset('css/index.css') }}"  rel="stylesheet" >
 		<link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
 		<link rel="icon shortcut" type="image/gif" href="{{ asset('img/favicon.svg') }}">
@@ -77,11 +76,7 @@
 								</h1>
 							</a>
 						</li>
-						{{-- <li @if(explode('/', Request::url())[3] == '') class="active" @endif><a href="{{ route('home') }}">Dashboard</a></li>
-						<li @if(explode('/', Request::url())[3] == 'projects') class="active" @endif><a href="{{ route('projects') }}">Projetos</a></li>
-						<li @if(explode('/', Request::url())[3] == 'tasks') class="active" @endif><a href="{{ route('tasks') }}">Tarefas</a></li>
-						<li @if(explode('/', Request::url())[3] == 'users') class="active" @endif><a href="{{ route('users') }}">Pessoas</a></li>
-						<li @if(explode('/', Request::url())[3] == 'financials') class="active" @endif><a href="{{ route('financials') }}">Financeiro</a></li>						 --}}
+			
 
 						<li><a href="{{ route('home') }}">Dashboard</a></li>
 						<li><a href="{{ route('projects') }}">Projetos</a></li>
