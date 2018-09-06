@@ -166,3 +166,31 @@ body {
 .panel-theme a:hover {
   color: #0791e6;
 }
+
+.error-box{
+	position: initial;
+	margin-left: 241px;
+	text-align: center;
+	width: auto;
+}
+
+.error-body{
+	padding-top: 15%;
+}
+
+.top-left-part a{
+	height: 60px;
+	display: block;
+	padding-left: 37px;
+}
+
+.top-left-part a svg{
+	max-width: 150px;
+	margin:2px auto;
+}
+
+
+
+
+
+
