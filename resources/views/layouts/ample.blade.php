@@ -38,7 +38,7 @@
             <div class="navbar-header">
                 <div class="top-left-part">
 
-                    <a class="logo" href="index.html">
+                    <a class="logo" href="{{route('home')}}">
                         <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 427 157.5" style="enable-background:new 0 0 427 157.5;" xml:space="preserve">
                         <style type="text/css">
@@ -109,19 +109,19 @@
                 </div>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="index.html" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+                        <a href="{{route('home')}}" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="profile.html" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
+                        <a href="{{route('projects')}}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Projetos</a>
                     </li>
                     <li>
-                        <a href="basic-table.html" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Basic Table</a>
+                        <a href="{{route('users')}}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Usuários</a>
                     </li>
                     <li>
-                        <a href="fontawesome.html" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Icons</a>
+                        <a href="{{route('tasks')}}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Tarefas</a>
                     </li>
                     <li>
-                        <a href="map-google.html" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Google Map</a>
+                        <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Financeiro</a>
                     </li>
                     <li>
                         <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>Blank Page</a>

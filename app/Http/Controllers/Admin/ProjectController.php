@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use App\Project;
+use App\Models\Project;
 use App\User;
 
 class ProjectController extends Controller
@@ -33,7 +34,7 @@ class ProjectController extends Controller
     public function index()
     {
     	$projects = Project::all();
-        return view('project')->with('projects', $projects);
+        return view('pages.project')->with('projects', $projects);
     }
 
     public function create(){

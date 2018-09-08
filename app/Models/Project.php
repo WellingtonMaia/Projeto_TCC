@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,17 +15,17 @@ class Project extends Model
 
     public function tasks()
     {
-    	return $this->hasMany('App\Task');
+    	return $this->hasMany('App\Models\Task');
     }
     
     public function payAccounts()
     {
-    	return $this->hasMany('App\PayAccount');
+    	return $this->hasMany('App\Models\PayAccount');
     }
     
     public function receiveAccounts()
     {
-    	return $this->hasMany('App\ReceiveAccount');
+    	return $this->hasMany('App\Models\ReceiveAccount');
     }
 
     public function users()

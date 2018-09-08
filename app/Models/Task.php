@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,7 @@ class Task extends Model
 
     public function project()
     {
-    	return $this->belongsTo('App\Project');
+    	return $this->belongsTo('App\Models\Project');
     }
 
     public function users()
@@ -26,16 +26,16 @@ class Task extends Model
 
     public function notes()
     {
-        return $this->hasMany('App\Note');
+        return $this->hasMany('App\Models\Note');
     }   
 
     public function times()
     {
-        return $this->hasMany('App\Time');
+        return $this->hasMany('App\Models\Time');
     }
 
     public function files()
     {
-        return $this->hasMany('App\File');
+        return $this->hasMany('App\Models\File');
     }
 }

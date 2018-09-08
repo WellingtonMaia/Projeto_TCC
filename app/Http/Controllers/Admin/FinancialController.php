@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Financial;
+use App\Models\Financial;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FinancialController extends Controller
 {
@@ -22,7 +23,7 @@ class FinancialController extends Controller
     {
         //
         $financials = Financial::all();
-        return view('financial')->with('financials', $financials);
+        return view('pages.financial')->with('financials', $financials);
     }
 
     /**

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -34,7 +35,7 @@ class UserController extends Controller
     public function index()
     {
         $users = user::all();
-        return view('user')->with('users', $users);
+        return view('pages.user')->with('users', $users);
 
     }
 

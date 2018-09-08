@@ -1,6 +1,5 @@
 <?php
-
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +7,6 @@ class File extends Model
 {
     public function tasks()
     {
-    	return $this->belongsTo('App\Task');
+    	return $this->belongsTo('App\Models\Task');
     }
 }

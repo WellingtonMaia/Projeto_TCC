@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Project;
-use App\Task;
+use App\Http\Controllers\Controller;
+use App\Models\Project;
+use App\Models\Task;
 use App\User;
-// use App\Financial;
+// use App\Models\Financial;
 
 class HomeController extends Controller
 {

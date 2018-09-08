@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -10,8 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use App\Task;
-use App\Project;
+use App\Models\Task;
+use App\Models\Project;
 use App\User;
 
 class TaskController extends Controller
@@ -33,7 +34,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('task')->with('tasks', $tasks);
+        return view('pages.task')->with('tasks', $tasks);
     }
 
     public function create(){
