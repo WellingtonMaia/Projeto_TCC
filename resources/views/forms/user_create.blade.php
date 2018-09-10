@@ -1,4 +1,4 @@
-@extends('layouts.structure')
+@extends('layouts.ample')
 @section('content')
 	<div class="user-content">
 		<div class="container-fluid">

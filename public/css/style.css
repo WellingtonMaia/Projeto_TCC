@@ -189,8 +189,14 @@ body {
 	margin:2px auto;
 }
 
-
-
+/*.user-content,
+.project-content{
+    width: calc(100% - 240px);
+    position: fixed;
+    left: 250px;
+    top: 70px;
+}
+*/
 
 
 
