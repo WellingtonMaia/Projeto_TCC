@@ -123,16 +123,9 @@
                     <li>
                         <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Financeiro</a>
                     </li>
-                    <li>
-                        <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="404.html" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>Error 404</a>
-                    </li>
-
                 </ul>
                 <div class="center p-20">
-                     <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger btn-block waves-effect waves-light">Upgrade to Pro</a>
+                     {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger btn-block waves-effect waves-light">Upgrade to Pro</a> --}}
                  </div>
             </div>
         </div>
