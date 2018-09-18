@@ -117,11 +117,14 @@
                     <li>
                         <a href="{{route('users')}}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Usuários</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{route('tasks')}}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Tarefas</a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Financeiro</a>
+                    </li>
+                    <li>
+                        <a href="" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Relatórios</a>
                     </li>
                 </ul>
                 <div class="center p-20">
