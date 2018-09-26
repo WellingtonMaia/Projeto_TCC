@@ -1,26 +1,32 @@
-@extends('layouts.structure')
+@extends('layouts.ample')
 @section('content')
-	<div class="financial-content">
-		<div class="container-fluid">
-
-
-			@if ($errors->any())
-				<div class="alert alert-danger">
-					<ul>
-						@foreach ($errors->all() as $error)
-							<li>{{ $error }}</li>
-						@endforeach
-					</ul>
-				</div>
-			@endif
-
-			<div class="col-md-12">
-				<div class="card">
-					<div class="block-icon">
-						<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('img/sprite.svg#financeiro') }}"></use></svg>
-							
-					</div>
+<div id="page-wrapper">
+  <div class="container-fluid">
+      <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+              <h4 class="page-title">Profile page</h4> </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+              {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
+              <ol class="breadcrumb">
+                  <li><a href="{{ route('home') }}">Dashboard</a></li>
+                  <li class="active"> Criar Usuario</li>
+              </ol>
+          </div>
+      </div>
+    <div class="col-md-12">
+        <div class="white-box">
+            <div class="list-content">                        
+            	<div class="table-responsive">
 					<div class="panel-body">
+						@if ($errors->any())
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
 						<form class="form-horizontal" method="POST" @if(isset($financial)) action="{{ url('/financials/edit/'.$financial->id) }}" @else action="{{ route('financials_store') }}" @endif>
 							@if(isset($financial))<input name="_method" type="hidden" value="PUT">@endif
 						{{ csrf_field() }}

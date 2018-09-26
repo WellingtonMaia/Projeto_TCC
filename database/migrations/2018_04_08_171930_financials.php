@@ -20,6 +20,7 @@ class Financials extends Migration
             $table->date("due_date");
             $table->double("value");
             $table->text("description")->nullable();
+            $table->
             // $table->char("financial_classification",255);
             // $table->char("cost_center",255);
             $table->timestamps();   
