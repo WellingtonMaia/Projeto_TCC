@@ -1,11 +1,23 @@
-@extends('layouts.structure')
+@extends('layouts.ample')
 @section('content')
-
-<div class="list-content">
-	<div class="table-responsive task-content">		
-		  <div class="col-md-12">
-          <div class="card">
-              <div class="list-content">
+<div id="page-wrapper">
+  <div class="container-fluid">   
+    <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+              <h4 class="page-title">Profile page</h4> </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+              {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
+              <ol class="breadcrumb">
+                  <li><a href="{{ route('home') }}">Dashboard</a></li>
+                  <li><a href="">Projeto</a></li>
+                  <li class="active"> {{ $task->name }}</li>
+              </ol>
+          </div>
+      </div>
+      <div class="col-md-12">
+          <div class="card content-task">
+              <div class="white-box">
+                <div class="block-title">
                 <h2>{{ $task->name }}</h2>
 {{-- 
                 <p>{{ $tasks->estimate_date }}</p>
@@ -13,7 +25,7 @@
                 <p>{{ $tasks->tasks_price }}</p> --}}
 
 
-                <div class="list-tasks">
+                <div class="box-content">
                   <h2>Tempo</h2>
                     <a href="">adicionar novo tempo</a>
                     @foreach ($task->times as $time)

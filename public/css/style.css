@@ -199,4 +199,212 @@ body {
 */
 
 
+/*my css*/
+
+.block-title h2{
+	display: inline-block;
+	/*margin-bottom: 30px;*/
+}
+
+
+.info-project .block-title{
+	display: block;
+	width: 100%;
+}
+
+.info-project{
+	display: flex;
+	flex-wrap: wrap;
+	/*margin-bottom: 40px;*/
+	/*padding-bottom:20px;*/
+	/*border-bottom:1px solid #e5e5e5;*/
+}
+
+.info-project span{
+	font-size:16px;
+	width:50%;
+	margin:5px 0;
+}
+
+
+.info-project .project-users{
+	margin-top: 30px;
+}
+
+
+h3.block-title{
+	font-size:26px;
+	font-weight: bold;
+	display: block;
+}
+/*
+.list-tasks {
+
+}
+
+.list-tasks .iten-task .item .link{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;	
+	cursor: pointer;
+	width:100%	;
+}
+
+
+*/
+.list-tasks .iten-task .item{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	line-height:28px;
+	height:28px;
+	margin:15px 0;
+	cursor:pointer;
+	position: relative;
+}
+
+
+.list-tasks .iten-task .item label{
+	line-height: 28px;
+	height: 28px;
+    display: flex;    
+    cursor: pointer;
+}
+
+.list-tasks .iten-task .item a{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+.list-tasks .iten-task .item a.btn-danger{
+	margin: 0 10px;
+	padding: 0;
+	width: 27px;
+	height: 27px;
+}
+
+.list-tasks .iten-task .item a.btn-danger i{
+	width: 27px;
+	line-height: 24px;
+}
+
+
+.list-tasks .iten-task .task-users{
+	min-width: 150px;
+	font-size:14px;
+	max-width: 150px;
+	line-height: 29px;
+	margin:0;
+	position: absolute;
+    background:linear-gradient(to right , #c9e7fd, #e2f2fe);
+    left: -2px;
+    color: #000000;
+    top:0;
+   	padding-left: 32px;
+	white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	border-radius:15px;
+
+}
+
+.list-tasks .iten-task .item.completed{
+	text-decoration: line-through;
+}
+
+
+.list-tasks .iten-task .task-users{
+	text-transform: capitalize;
+}
+
+.list-tasks .iten-task .item.completed .task-users{
+    background: linear-gradient(to right , #0ad90a, #ffffff);    
+	text-decoration: line-through;
+    opacity: 0.5;
+}
+
+
+.list-tasks .iten-task input{
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.list-tasks .iten-task .check-bottom{
+	position: relative;	
+	border-radius: 	50%;
+	background:none;
+	margin:auto 0;
+	transition: ease-out .2s;
+	width: 23px;
+	height: 23px;
+	line-height: 	26px;
+	z-index: 20;
+	display: block;
+	background:#fff;
+	/*border: 1px solid #3e3e3e;	:;		*/
+	border:none;
+}
+
+.list-tasks .iten-task .check-bottom:before{
+	position: absolute;	
+	top: 0;
+	bottom: 0;
+	left:0;
+	right:0;
+	display: block;
+	font-family: "FontAwesome";
+	content: "\f00c";
+	color: 	transparent;
+	height: 12px;
+	line-height: 12px;
+	width: 	12px;
+	margin: auto;
+	transition:ease-out .4s;
+	font-size: 12px;
+}
+
+.list-tasks .iten-task input:checked+.check-bottom{
+	background:#0ad90a;
+}
+
+.list-tasks .iten-task input:checked+.check-bottom:before{
+	color:#fff;	
+}
+
+
+.list-tasks .iten-task .hidden{
+	opacity:0;
+	visibility:hidden;
+	position: absolute;
+	transition: ease-out .2s;
+}
+
+.list-tasks .iten-task h3{
+	margin:0 3px 0 10px;
+	line-height: 29px;
+	min-width: 260px;
+	max-width: 260px;
+	white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	padding-left: 130px;
+	font-size: 14px;
+}
+
+
+.button-add{
+	transition:ease-out .2s;
+
+}
+
+
+.content-task .box-content{
+	margin: 30px 0;
+}
+
+
+
+
 
