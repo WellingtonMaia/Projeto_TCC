@@ -61,5 +61,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/financials/show/{id}', 'FinancialController@show');
         Route::put('/financials/edit/{id}', 'FinancialController@edit')->name('financial_edit');
         Route::get('/financials/delete/{id}', 'FinancialController@delete');
+
+// <-- Relatórios -->
+
+        Route::get('/report','ReportController@index')->name('report');
+
+
+
+
+
     });
+
+
+
 });

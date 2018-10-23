@@ -9,6 +9,8 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <script src="{{ asset('css/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
+
     <link rel="icon shortcut" type="image/gif" href="{{ asset('img/favicon.svg') }}">
     <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> 
@@ -19,10 +21,12 @@
     <link href="{{ asset('css/plugins/bower_components/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
     <link href="{{ asset('css/plugins/bower_components/morrisjs/morris.css')}}" rel="stylesheet">
     <link href="{{ asset('css/plugins/bower_components/chartist-js/dist/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }} " rel="stylesheet">
+    <link href="{{ asset('css/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css')
+     }} " rel="stylesheet">
+     <script src="{{ asset('css/plugins/bower_components/chartist-js/dist/chartist.min.js') }}"></script>
 
     <title>Easy Tools</title>
-    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    {{-- <link href="css/colors/blue.css" id="theme" rel="stylesheet"> --}}
     
 </head>
 
@@ -124,7 +128,7 @@
                         <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Financeiro</a>
                     </li>
                     <li>
-                        <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Relatórios</a>
+                        <a href="{{route('report')}}" class="waves-effect"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Relatórios</a>
                     </li>
                 </ul>
                 <div class="center p-20">
@@ -139,7 +143,7 @@
         </div>
     </div>
    
-    <script src="{{ asset('css/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- Menu Plugin JavaScript -->
@@ -152,7 +156,7 @@
     <script src="{{ asset('css/plugins/bower_components/waypoints/lib/jquery.waypoints.js') }}"></script>
     <script src="{{ asset('css/plugins/bower_components/counterup/jquery.counterup.min.js') }}"></script>
     <!-- chartist chart -->
-    <script src="{{ asset('css/plugins/bower_components/chartist-js/dist/chartist.min.js') }}"></script>
+    
     <script src="{{ asset('css/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
     <!-- Sparkline chart JavaScript -->
     <script src="{{ asset('css/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
@@ -160,6 +164,11 @@
     <script src="{{ asset('js/custom.min.js') }}"></script>
     <script src="{{ asset('js/dashboard1.js') }}"></script>
     <script src="{{ asset('css/plugins/bower_components/toast-master/js/jquery.toast.js') }}"></script>
+    
+    {{-- <script src="{{ asset('js/jquery.min.js') }}"></script>  --}}
+    <script src="{{ asset('js/index.js') }}"></script>      
+    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>       
+    <script src="{{ asset('js/jquery.mask.js') }}"></script>        
 </body>
 
 </html>
