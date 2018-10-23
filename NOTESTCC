@@ -42,3 +42,54 @@ conta pra descobrir o preco da hora
 
 
 
+
+/// fazerrrrrrrrrr 
+
+
+
+Matheus Fazer:
+
+- adicionar fancibox no adicionar tarefa dentro do projeto
+
+- criar metodos para cadastro de notes / arquivos / tempo
+	tempo vai ser cadastrado ainda sem interacao 100% do js
+
+
+- melhorar formatacao do layout
+
+- criar view dos relatorios
+
+- validar quais graficos utilizar nos resultados dos relatorios
+
+
+
+
+
+
+
+
+Welligton fazer:
+
+Fazer o controller dos relatorios e criar os filtros listados abaixo :
+		-projetos realizados durante um periodo
+
+		-tempo gasto em cada projeto por pessoa
+
+		-tempo gasto total de projetos por tempo
+
+		-conclusao de tarefas por pessoa em um projeto
+
+		-resultado final do projeto entregue lucro/despesa
+
+
+- mudar o jeito do cadastro de projeto, cadastrando internamente o financeiro tambem, 
+- mudar a forma do financeiro
+- validar os campos do financeiro e refazer as migrations / modelagem do banco
+
+
+
+
+
+
+
+

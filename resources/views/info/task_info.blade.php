@@ -17,14 +17,22 @@
       <div class="col-md-12">
           <div class="card content-task">
               <div class="white-box">
-                <div class="block-title">
-                <h2>{{ $task->name }}</h2>
-{{-- 
-                <p>{{ $tasks->estimate_date }}</p>
-                <p>{{ $tasks->estimate_time }}</p>
-                <p>{{ $tasks->tasks_price }}</p> --}}
+                <div class="block-title"><h2>{{ $task->name }}</h2></div>
+                <div class="info-task">    
+                    <span>Data estimada:{{  \Carbon\Carbon::parse($task->estimate_date)->format(' d - m - Y ') }}</span>
+                    
+                    <span>Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' d - m - Y ') }}</span>
 
+                    <span>Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' d - m - Y') }})</span>
 
+                    <span>Tempo Estimado: {{ $task->estimate_time }}</span>
+
+                    <span>Valor Referente ao tempo gasto na tarefa: {{ $task->tasks_price }}</span>
+                </div>
+              </div>
+          </div>
+
+              <div class="white-box">
                 <div class="box-content">
                   <h2>Tempo</h2>
                     <a href="">adicionar novo tempo</a>
@@ -38,7 +46,9 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="list-tasks">
+              </div>
+              <div class="white-box">
+                <div class="box-content">
                     <h2>Arquivos</h2>
                     <a href="">adicionar novo arquivo</a>
                     @foreach ($task->files as $file)
@@ -51,23 +61,26 @@
                         </div>
                     @endforeach
                 </div>
-
-                <div class="list-tasks">
-                    <h2>Notes</h2>
-                    <a href="">adicionar nova notação</a>
-
-                    @foreach ($task->notes as $note)
-                        <div class="iten-task">
-                          <label>            
-                                {{-- <h3>{{ $file->time_value }}</h3> --}}
-                                <div>{{ $task->description }}</div>           
-                                <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a> 
-                          </label>                        
-                        </div>
-                    @endforeach
                 </div>
 
-                </div>                                    
+                <div class="white-box">
+                    <div class="box-content">
+                        <h2>Notes</h2>
+                        <a href="">adicionar nova notação</a>
+
+                        @foreach ($task->notes as $note)
+                            <div class="iten-task">
+                              <label>            
+                                    {{-- <h3>{{ $file->time_value }}</h3> --}}
+                                    <div>{{ $task->description }}</div>           
+                                    <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a> 
+                              </label>                        
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                {{-- </div>                                     --}}
             </div>
             {{-- <div class="container-login100-form-btn buttonAdd">
                       <div class="wrap-login100-form-btn">
