@@ -15,6 +15,7 @@
     <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> 
     <link href="{{ asset('css/style.css') }}"  rel="stylesheet" >   
+    <link href="{{ asset('css/jquery.fancybox.min.css') }}"  rel="stylesheet" >   
     <link href="{{ asset('css/animate.css') }}"  rel="stylesheet" >   
     <link href="{{ asset('css/spinners.css') }}"  rel="stylesheet" >
     <link href="{{ asset('css/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
@@ -169,6 +170,7 @@
     <script src="{{ asset('js/index.js') }}"></script>      
     <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>       
     <script src="{{ asset('js/jquery.mask.js') }}"></script>        
+    <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>        
 </body>
 
 </html>

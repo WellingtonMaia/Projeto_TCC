@@ -91,9 +91,11 @@ $( document ).ready(function() {
       });
     });
 
+    const id = $('#id').val();
+
      // Initialize a Line chart in the container with the ID chart1
       new Chartist.Line('#chart1', {
-        labels: [1, 2, 3, 4],
+        labels: [id, 2, 3, 4],
         series: [[100, 120, 180, 200]]
       });
 
