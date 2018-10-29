@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="white-box">
                     <div class="block-title">
-                      <h2>{{ $project->name }}</h2><span> - Nome do Cliente : {{ $project->client_name }}</span>
+                      <h2>Projeto - {{ $project->name }}</h2><span> - Nome do Cliente : {{ $project->client_name }}</span>
                     </div>
                 </div>
 

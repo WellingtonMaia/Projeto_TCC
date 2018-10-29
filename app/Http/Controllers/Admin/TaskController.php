@@ -144,7 +144,9 @@ class TaskController extends Controller
         }
 
         Session::flash('message', 'Cadastro registrado com sucesso!');
-        return Redirect::to('tasks');
+        return Redirect::to('projects');
+        // return view('info.project_info')->with("project", Input::get('project'));
+
     }
 
     public function show($id){

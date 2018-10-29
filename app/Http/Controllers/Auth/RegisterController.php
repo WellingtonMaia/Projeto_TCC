@@ -62,27 +62,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-        // $user = new User();
-
-        // $user->name = $data['name'];
-        // $user->email = $data['email']
-        // $user->password = ,
-        // $user->role = ;
-        // $user->status =  ;
-        // $user->permission = ;
-
-        // $user->save();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'status' => $data['status'],
-            'permission' => $data['permission']
+            'status' => 'A',
+            'permission' => 'A'
         ]);
 
-
-        // self::gerarSession();
     }
 
     // public function gerarSession(Modelo $registro){

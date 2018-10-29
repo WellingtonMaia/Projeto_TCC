@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`tasks` (
   CONSTRAINT `fk_tasks_projects`
     FOREIGN KEY (`project_id`)
     REFERENCES `projeto_tcc_2`.`projects` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`times` (
   CONSTRAINT `fk_times_tasks1`
     FOREIGN KEY (`task_id`)
     REFERENCES `projeto_tcc_2`.`tasks` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -89,8 +89,8 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`files` (
   CONSTRAINT `fk_files_tasks1`
     FOREIGN KEY (`task_id`)
     REFERENCES `projeto_tcc_2`.`tasks` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -107,8 +107,8 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`notes` (
   CONSTRAINT `fk_notes_tasks1`
     FOREIGN KEY (`task_id`)
     REFERENCES `projeto_tcc_2`.`tasks` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -143,13 +143,13 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`projects_has_users` (
   CONSTRAINT `fk_projects_has_users_projects1`
     FOREIGN KEY (`project_id`)
     REFERENCES `projeto_tcc_2`.`projects` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_projects_has_users_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `projeto_tcc_2`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -165,13 +165,13 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`tasks_has_users` (
   CONSTRAINT `fk_tasks_has_users_tasks1`
     FOREIGN KEY (`task_id`)
     REFERENCES `projeto_tcc_2`.`tasks` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_tasks_has_users_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `projeto_tcc_2`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -191,8 +191,8 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`pay_accounts` (
   CONSTRAINT `fk_financials_projects1`
     FOREIGN KEY (`project_id`)
     REFERENCES `projeto_tcc_2`.`projects` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -213,8 +213,8 @@ CREATE TABLE IF NOT EXISTS `projeto_tcc_2`.`receive_accounts` (
   CONSTRAINT `fk_financials_projects10`
     FOREIGN KEY (`project_id`)
     REFERENCES `projeto_tcc_2`.`projects` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

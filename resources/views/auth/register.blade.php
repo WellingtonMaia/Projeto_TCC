@@ -4,7 +4,7 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="POST" action="{{ route('login')}}">
+                <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="POST" action="{{ route('register')}}">
                     {{ csrf_field() }}
         <span class="login100-form-title">
             <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -54,10 +54,10 @@
                     <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
                         @if ($errors->has('name'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong>{{ $errors->first('name') }}</strong>
                             </span>
                         @endif
-                        <input class="input100" type="text" name="email" placeholder="Name" value="{{ old('name') }}">
+                        <input class="input100" type="text" name="name" placeholder="Name" value="{{ old('name') }}">
                         <span class="focus-input100"></span>
                     </div>                    
 
