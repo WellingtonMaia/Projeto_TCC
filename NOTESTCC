@@ -86,6 +86,43 @@ Fazer o controller dos relatorios e criar os filtros listados abaixo :
 - mudar a forma do financeiro
 - validar os campos do financeiro e refazer as migrations / modelagem do banco
 
+// copiando notacoes zoadas
+
+
+
+Login -> projeto(financeiro) -> tarefa -> arquivo
+									   -> tempo
+									   -> note
+
+
+financeiro -> projeto (
+						valor
+						data inicial
+						data de vencimento
+					)
+
+
+Relatorio 
+		
+		-> projetos realizados durante um periodo
+		->tempo gasto em cada projeto por pessoa
+		->tempo gasto total de projetos por tempo
+		->conclusao de tarefa por pessoa em um projeto
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
