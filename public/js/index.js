@@ -68,6 +68,17 @@ $( document ).ready(function() {
     });
 
 
+    $(".btn-info.time").click(function (e){
+        e.preventDefault(); 
+        $(this).next().addClass("active");
+    });
+    $(".btn-info.file").click(function (){
+        $(this).next().addClass("active");
+    });
+    $(".btn-info.note").click(function (){
+        $(this).next().addClass("active");
+    });
+
     $('.datepicker').datepicker();
 
  	$('.timepicker').mask('00:00:00');
