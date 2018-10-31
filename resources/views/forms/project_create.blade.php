@@ -39,8 +39,8 @@
 								</div>
 							
 								<div class="form-group">
-									<label for="estimate_time ">Tempo Estimado</label>
-									<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>		
+									<label for="estimate_time ">Tempo Estimada Entrega</label>
+									<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>
 								</div>
 							</div>
 						

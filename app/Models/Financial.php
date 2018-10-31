@@ -21,9 +21,7 @@ class Financial extends Model
      * */
     //
     protected $table = 'financials';
-    public $fillable = ['name', 'status', 'due_date', 'account_type',
-                        'value', 'description', 'tags', 'financial_classification',
-                        'cost_center'];
+    public $fillable = ['due_date', 'value', 'description', 'date_ini', 'project_id'];
 
 
     public function rules(){
@@ -56,4 +54,7 @@ class Financial extends Model
         ];
     }
 
+    public function project(){
+        return $this->belongsTo(Project::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Financial;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,8 +23,12 @@ class FinancialController extends Controller
     public function index()
     {
         //
+
         $financials = Financial::all();
-        return view('pages.financial')->with('financials', $financials);
+        //$projects = Project::all();
+
+        return view('pages.financial')
+            ->with('financials', $financials);
     }
 
     /**
@@ -34,7 +39,6 @@ class FinancialController extends Controller
     public function create()
     {
         //
-
         return view('forms.financial_create');
     }
 
@@ -49,7 +53,7 @@ class FinancialController extends Controller
         //
 
         //var_dump($request->all());
-        $financial = new Financial();
+       /* $financial = new Financial();
         $financial->fill($request->all());
         $validate = validator($request->all(),$financial->rules(), $financial->messages());
 
@@ -67,7 +71,7 @@ class FinancialController extends Controller
                 return redirect('/financials')->with('status','Conta Cadastrada com Sucesso!');
             }
         }
-
+        */
     }
 
     /**

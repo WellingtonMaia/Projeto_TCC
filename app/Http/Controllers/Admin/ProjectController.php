@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Project;
+use App\Models\Financial;
 use App\User;
 
 class ProjectController extends Controller
@@ -66,12 +67,30 @@ class ProjectController extends Controller
 
         $project->save();
 
-        foreach ($users as $user) {
-            $project->users()->attach($user);
+        $project_id = $project->id;
+
+        if(!empty($project_id)){
+            $financials = new Financial();
+           $save = DB::table('financials')->insert([
+                'project_id' => $project_id,
+                'value' => $project->project_price,
+                'date_ini' => $project->created_at,
+                'due_date' => $estimate_date,
+            ]);
+
+           if($save){
+               foreach ($users as $user) {
+                   $project->users()->attach($user);
+               }
+               Session::flash('message', 'Cadastro registrado com sucesso!');
+               return Redirect::to('projects');
+           }else{
+               Session::flash('message', 'Erro ao cadastrar Projeto!');
+               return Redirect::to('projects');
+           }
         }
 
-        Session::flash('message', 'Cadastro registrado com sucesso!');
-        return Redirect::to('projects');
+
     }
 
     /**
@@ -116,8 +135,33 @@ class ProjectController extends Controller
         $project->project_type = Input::get('project_type');
         $project->save();
 
-        Session::flash('message', 'Cadastro editado com sucesso!');
-        return Redirect::to('projects');
+        $project_id = $project->id;
+        if(!empty($project_id)){
+
+            $financial = Financials::where('project_id', '=', $project_id )->get()->first();
+            $id = $financial->id;
+            $save = DB::table('financials')
+                ->where('project_id', '=', $project_id)
+                ->where('id', '=', $id)
+                ->update([
+                'project_id' => project_id,
+                'value' => $project->project_price,
+                'date_ini' => $project->created_at,
+                'due_date' => $estimate_date,
+            ]);
+
+            if($save){
+                foreach ($users as $user) {
+                    $project->users()->attach($user);
+                }
+                Session::flash('message', 'Cadastro editado com sucesso!');
+                return Redirect::to('projects');
+            }else{
+                Session::flash('message', 'Erro ao editar Projeto!');
+                return Redirect::to('projects');
+            }
+        }
+
     }
 
 

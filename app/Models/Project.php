@@ -32,4 +32,8 @@ class Project extends Model
     {
         return $this->belongsToMany('App\User', 'projects_has_users');
     }
+
+    public function financial(){
+        return $this->hasOne(Financial::class, 'foreign_key');
+    }
 }
