@@ -68,6 +68,17 @@ $( document ).ready(function() {
     });
 
 
+    $(".btn-info.time").click(function (e){
+        e.preventDefault(); 
+        $(this).next().addClass("active");
+    });
+    $(".btn-info.file").click(function (){
+        $(this).next().addClass("active");
+    });
+    $(".btn-info.note").click(function (){
+        $(this).next().addClass("active");
+    });
+
     $('.datepicker').datepicker();
 
  	$('.timepicker').mask('00:00:00');
@@ -104,6 +115,20 @@ $( document ).ready(function() {
         labels: [1, 2, 3, 4],
         series: [[5, 2, 8, 3]]
       });
+
+
+      // var pagina = $('#open-fancy').attr("href");
+      // console.log(pagina);
+
+      //  $('#open-fancy').click(function (){
+      //       $.fancybox.open({
+      //           src  : pagina,
+      //           type : 'iframe',
+      //       });
+      //  });
+
+
+
 
  	// $('.dateshow').mask('00/00/0000');
 
