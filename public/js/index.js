@@ -105,6 +105,20 @@ $( document ).ready(function() {
         series: [[5, 2, 8, 3]]
       });
 
+
+      // var pagina = $('#open-fancy').attr("href");
+      // console.log(pagina);
+
+      //  $('#open-fancy').click(function (){
+      //       $.fancybox.open({
+      //           src  : pagina,
+      //           type : 'iframe',
+      //       });
+      //  });
+
+
+
+
  	// $('.dateshow').mask('00/00/0000');
 
 	// addNewTask();
