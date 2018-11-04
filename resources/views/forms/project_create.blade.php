@@ -51,13 +51,12 @@
 								</div>
 								
 								<div class="form-group">
-<<<<<<< HEAD
-									<label for="estimate_time ">Tempo Estimada Entrega</label>
+									<label for="estimate_time ">Tempo Estimado de Entrega</label>
 									<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>
-=======
+
 									<label for="project_price">Preco do Projeto</label>
 									<input type="text" name="project_price" class="form-control" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>
->>>>>>> 080643dcad35475d58312b9f74f750b0c9d4decd
+
 								</div>
 								
 								<div class="form-group">
