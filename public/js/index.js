@@ -68,16 +68,30 @@ $( document ).ready(function() {
     });
 
 
-    $(".btn-info.time").click(function (e){
+    $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 
         $(this).next().addClass("active");
     });
-    $(".btn-info.file").click(function (){
-        $(this).next().addClass("active");
-    });
-    $(".btn-info.note").click(function (){
-        $(this).next().addClass("active");
-    });
+
+
+    // $(".task .popup:before").click(function (){
+    //     $(this).parent().parent().find("popup").removeClass("active");
+    // });
+    // $(".btn-info.file").click(function (){
+    //     $(this).next().addClass("active");
+    // });
+    // $(".btn-info.note").click(function (){
+    //     $(this).next().addClass("active");
+    // });
+
+
+    $("#open-fancy").click(function (e){
+        e.preventDefault(); 
+        $(".task-box").addClass("active");
+    }); 
+
+
+
 
     $('.datepicker').datepicker();
 

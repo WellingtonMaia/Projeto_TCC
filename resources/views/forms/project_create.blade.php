@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<div class="row bg-title">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h4 class="page-title">Profile page</h4> </div>
+			<h4 class="page-title">Página de Projetos</h4></div>
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 				{{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
 				<ol class="breadcrumb">
@@ -36,7 +36,7 @@
 									</div>
 									
 									<div class="form-group">
-										<label for="estimate_time ">Tempo Estimado</label>
+										<label for="estimate_time ">Tempo Estimado de entrega</label>
 										<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>
 									</div>
 								</div>
@@ -51,8 +51,6 @@
 								</div>
 								
 								<div class="form-group">
-									<label for="estimate_time ">Tempo Estimado de Entrega</label>
-									<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>
 
 									<label for="project_price">Preco do Projeto</label>
 									<input type="text" name="project_price" class="form-control" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>
