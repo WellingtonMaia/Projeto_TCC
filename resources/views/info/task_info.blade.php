@@ -33,19 +33,21 @@
                <a href="" class="btn btn-info time" >adicionar novo tempo</a>
                <div class="popup time">
                   <div class="conteudo">
-                     <form action="" method="POST">
+                     <form action="{{ url('task/addTime/'.$task->id) }}" method="POST">
+                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                         <label>
                            Tempo 
-                           <input type="text" name="time" class="timepicker form-control" placeholder="tempo">  
+                           <input type="text" name="time" class="timepicker form-control" placeholder="00:25:20">  
                         </label>
                         <label>
                            Data inicial
-                        <input type="text" name="begin_date" class="datepicker form-control" placeholder="data inicial">
+                        <input type="text" name="begin_date" class="datepicker form-control" placeholder="10/15/2018">
                         </label>
                         <label>
                            Data Final
-                           <input type="text" name="final_date" class="datepicker form-control" placeholder="data final">
+                           <input type="text" name="final_date" class="datepicker form-control" placeholder="10/15/2018">
                         </label>
+                        <button type="submit">Salvar</button>
                      </form>
                   </div>
                </div>

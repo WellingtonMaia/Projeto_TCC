@@ -29,21 +29,17 @@
                             </tr>
                         </thead>
                         <tbody>
-
-
-
-                              @foreach($financials as $financial)
-                                 <tr>
-                                    <td>{{ $financial->id }}</td>
-                                    <td>{{ $financial->project->name }}</td>
-                                    <td>{{ $financial->date_ini }}</td>
-                                    <td>{{ $financial->due_date }}</td>
-                                    <td>{{ $financial->value }}</td>
-                                    <td>
-                                        <a class="btn btn-info" href=" {{ url('financials/show/'.$financial->id) }}"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                  </tr>
-
+                            @foreach($financials as $financial)
+                               <tr>
+                                  <td>{{ $financial->id }}</td>
+                                  <td>{{ $financial->project->name }}</td>
+                                  <td>{{ $financial->date_ini }}</td>
+                                  <td>{{ $financial->due_date }}</td>
+                                  <td>{{ $financial->value }}</td>
+                                  <td>
+                                      <a class="btn btn-info" href=" {{ url('financials/show/'.$financial->id) }}"><i class="fa fa-edit"></i></a>
+                                  </td>
+                                </tr>
                           @endforeach
                         <tbody>
                     </table>

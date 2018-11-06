@@ -108,16 +108,16 @@
                                                                         <a href="{{route('home')}}" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{route('projects')}}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Projetos</a>
+                                                                        <a href="{{route('projects')}}" class="waves-effect"><i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Projetos</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{route('users')}}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Usuários</a>
+                                                                        <a href="{{route('users')}}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Usuários</a>
                                                                     </li>
                                                                     {{-- <li>
                                                                         <a href="{{route('tasks')}}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Tarefas</a>
                                                                     </li> --}}
                                                                     <li>
-                                                                        <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Financeiro</a>
+                                                                        <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-money fa-fw" aria-hidden="true"></i>Financeiro</a>
                                                                     </li>
                                                                     <li>
                                                                         <a href="{{route('report')}}" class="waves-effect"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Relatórios</a>

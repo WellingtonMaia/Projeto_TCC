@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/tasks/edit/{id}', 'TaskController@edit');
         Route::get('/tasks/delete/{id}', 'TaskController@delete');
 
+        Route::get('/tasks/addTime/{id}', 'TimeController@store');
+
 // <-- ajax -->
         Route::post('/tasks/updateStatus/', 'TaskController@updateStatus');
         Route::get('/tasks/getUsers/', 'TaskController@getUsers');

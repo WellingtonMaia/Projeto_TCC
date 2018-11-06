@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Task;
 use App\Models\Project;
+use App\Models\Note;
+use App\Models\Time;
 use App\User;
 
 class TaskController extends Controller
