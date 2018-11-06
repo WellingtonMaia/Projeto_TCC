@@ -18,8 +18,14 @@
 				<div class="list-content">
 					<div class="table-responsive">
 						<div class="panel-body">
-							<form class="form-horizontal" method="POST" @if(isset($user)) action="{{ url('/users/edit/'.$user->id) }}" @else action="{{ route('users_store') }}" @endif enctype="multipart/form-data">
-								@if(isset($user))<input name="_method" type="hidden" value="PUT">@endif
+							@if(isset($user))
+								<form class="form-horizontal" method="POST"  action="{{ route('users_edit') }}" enctype="multipart/form-data">
+									<input name="id_user" type="hidden" value="{{$user->id}}">
+							@else
+								<form class="form-horizontal" method="POST" action="{{ route('users_store') }}" enctype="multipart/form-data">
+									<input name="id_user" type="hidden" value="">
+							@endif
+								{{-- @if(isset($user))<input name="_method" type="hidden" value="PUT">@endif --}}
 								{{ csrf_field() }}
 								<div class="form-group">
 									<label for="name">Nome</label>
@@ -41,7 +47,7 @@
 								</div>
 								<div class="form-group">
 									<label for="role">Imagem de Perfil</label>
-									<input type="file" name="image" class="form-control" value="" required>
+									<input type="file" name="image" class="form-control" value="" >
 								</div>
 								<div class="form-content-50">
 									<div class="form-group">

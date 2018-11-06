@@ -79,11 +79,12 @@ class UserController extends Controller
         return view('info.user_info')->with("user", $user);   
     }
 
-    public function edit($id){
+    public function edit(Request $request){
+
+        $id = $request->input('id_user');
         $user = user::find($id);
 
-
-        if(Input::file("image") == ''){
+        /*if(Input::file("image") == ''){
             $user->image = "";    
         }else{
             $image = Input::file("image");
@@ -91,21 +92,59 @@ class UserController extends Controller
 
             Input::file('image')->move('/imagens-post/','user_'.$user->id.'.'.$extensao);            
             $user->image = '/imagens-post/user_'.$user->id.'.'.$extensao;
+        }*/
+
+        if($request->image != null){
+            $nameFile = null;
+        }else{
+            $nameFile = $user->image;
         }
-        
+
+        // Verifica se informou o arquivo e se é válido
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            // Define um aleatório para o arquivo baseado no timestamps atual
+            $name = uniqid(date('HisYmd'));
+
+            // Recupera a extensão do arquivo
+            $extension = $request->image->extension();
+
+            // Define finalmente o nome
+            $nameFile = "{$name}.{$extension}";
+
+            // Faz o upload:
+            $upload = $request->image->storeAs('users', $nameFile);
+            // Se tiver funcionado o arquivo foi armazenado em storage/app/public/categories/nomedinamicoarquivo.extensao
+
+            // Verifica se NÃO deu certo o upload (Redireciona de volta)
+            if ( !$upload )
+                return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao fazer upload')
+                    ->withInput();
+        }
+
+
+        try{
+
         $user->name = Input::get("name");
         $user->email = Input::get("email");
         // $user->password = Input::get("password");
+        $user->image = $nameFile;
         $user->role = Input::get("role");
         $user->status = Input::get("status");
         $user->permission = Input::get("permission");
-        
+
         $user->save();
 
         Session::flash('message', 'Cadastro editado com sucesso!');
         return Redirect::to('users');
 
-    }
+        }catch (\Exception $exception){
+            return $exception;
+        }
+
+}
 
     public function delete($id){
         $user = user::find($id);

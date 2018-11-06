@@ -8,7 +8,7 @@
 		<title>Easy Tools</title>
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		
+
 		<!-- Styles -->
 		{{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 		<link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
@@ -40,7 +40,7 @@
 					<div class="box-user">
 						<div class="user-img">
 							<a href="{{ url('/users/show-info/1') }}">
-								<img src="{{ asset('img/man.png') }}">
+								<img src=" {{ url('storage/users/'.auth()->$user->image) }}">
 								{{-- @if( $user->image == '')
 								<img src="{{ asset('img/man.png') }}">
 								@else
@@ -73,7 +73,7 @@
 							</h1>
 						</a>
 					</li>
-					
+
 					<li><a href="{{ route('home') }}">Dashboard</a></li>
 					<li><a href="{{ route('projects') }}">Projetos</a></li>
 					<li><a href="{{ route('tasks') }}">Tarefas</a></li>

@@ -94,7 +94,7 @@
                                                                         <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
                                                                     </li>
                                                                     <li>
-                                                                        <a class="profile-pic" href="{{ url('/users/show-info/'.Auth::user()->id) }}"> <img src="{{ asset("img/example.jpg")}}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{ Auth::user()->name }}</b></a>
+                                                                        <a class="profile-pic" href="{{ url('/users/show-info/'.Auth::user()->id) }}"> <img src="{{ url('storage/users/'.Auth::user()->image) }}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{ Auth::user()->name }}</b></a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
