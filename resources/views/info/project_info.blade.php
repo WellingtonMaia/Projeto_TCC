@@ -101,9 +101,12 @@
          <div class="container-login100-form-btn buttonAdd">
             <div class="wrap-login100-form-btn">
                <div class="login100-form-bgbtn"></div>
-               <a id="open-fancy" href="javascript: void(0);" onclick="window.open('{{ url('tasks/createFromProject/'.$project->id) }}' ,'Compartilhar',' toolbar=0, status=0, width=800, height=600 ,left=' + (document.documentElement.clientWidth - 800) / 2 + ',top=' + (document.documentElement.clientHeight - 600) / 2);" class="button-add btn btn-success">
-                  + Adicionar nova tarefa
+               <a id="open-fancy" class="button-add btn btn-success" href="">
+                   + Adicionar nova tarefa
                </a>
+               {{-- <a id="open-fancy" href="javascript: void(0);" onclick="window.open('{{ url('tasks/createFromProject/'.$project->id) }}' ,'Compartilhar',' toolbar=0, status=0, width=800, height=600 ,left=' + (document.documentElement.clientWidth - 800) / 2 + ',top=' + (document.documentElement.clientHeight - 600) / 2);" class="button-add btn btn-success">
+                  + Adicionar nova tarefa
+               </a> --}}
             </div>
          </div>
       </div>
@@ -112,6 +115,11 @@
          <span> {{ \Session::get("message") }}</span>
       </div>
       @endif
+   </div>
+   <div class="task-box">
+      <div class="task-content">
+            @include("forms.task_create_from_project")
+      </div>
    </div>
 </div>
 @endsection

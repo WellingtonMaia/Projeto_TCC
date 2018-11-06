@@ -16,14 +16,13 @@
         <link href="{{ asset('css/animate.css') }}"  rel="stylesheet" >
         <link href="{{ asset('css/spinners.css') }}"  rel="stylesheet" >
         <link href="{{ asset('css/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/plugins/bower_components/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
         <link href="{{ asset('css/plugins/bower_components/morrisjs/morris.css')}}" rel="stylesheet">
         <link href="{{ asset('css/plugins/bower_components/chartist-js/dist/chartist.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css')
             }} " rel="stylesheet">
             <script src="{{ asset('css/plugins/bower_components/chartist-js/dist/chartist.min.js') }}"></script>
             <title>Easy Tools</title>
-            {{-- <link href="css/colors/blue.css" id="theme" rel="stylesheet"> --}}
+
             
         </head>
         <body class="fix-header">
@@ -156,8 +155,6 @@
                                                 <!-- Custom Theme JavaScript -->
                                                 <script src="{{ asset('js/custom.min.js') }}"></script>
                                                 <script src="{{ asset('js/dashboard1.js') }}"></script>
-                                                <script src="{{ asset('css/plugins/bower_components/toast-master/js/jquery.toast.js') }}"></script>
-                                                
                                                 {{-- <script src="{{ asset('js/jquery.min.js') }}"></script>  --}}
                                                 <script src="{{ asset('js/index.js') }}"></script>
                                                 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
