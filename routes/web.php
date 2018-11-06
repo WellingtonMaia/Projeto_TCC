@@ -53,7 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/users/store', 'UserController@store')->name('users_store');
         Route::get('/users/show/{id}', 'UserController@show');
         Route::get('/users/show-info/{id}', 'UserController@showInfo');
-        Route::put('/users/edit/{id}', 'UserController@edit');
+//        Route::put('/users/edit/{id}', 'UserController@edit');
+        Route::post('/users/edit', 'UserController@edit')->name('users_edit');
         Route::get('/users/delete/{id}', 'UserController@delete');
 
 // <-- financials -->

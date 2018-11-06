@@ -50,8 +50,8 @@
               <div class="alert alert-success">
                   <span> {{ \Session::get("message") }}</span>
                </div>
-               @endif
+           @endif
             </div>
          </div>
       </div>
-      @endsection
+@endsection

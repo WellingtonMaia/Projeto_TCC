@@ -19,7 +19,7 @@
                     <div class="user-bg"> <img width="100%" alt="user" src="{{ asset("img/example.jpg")}}">
                         <div class="overlay-box">
                             <div class="user-content">
-                                <a href="javascript:void(0)"><img src="{{ asset("img/example.jpg")}}" class="thumb-lg img-circle" alt="img"></a>
+                                <a href="javascript:void(0)"><img src="{{ url("storage/users/{$user->image}") }}" class="thumb-lg img-circle" alt="img"></a>
                                 <h4 class="text-white">{{ $user->name }}</h4>
                             <h5 class="text-white">{{ $user->email }}</h5> </div>
                         </div>
