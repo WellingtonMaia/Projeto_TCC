@@ -71,6 +71,7 @@ $( document ).ready(function() {
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 
         $(this).next().addClass("active");
+        $(".shadow").addClass("active");
     });
 
 
@@ -88,7 +89,17 @@ $( document ).ready(function() {
     $("#open-fancy").click(function (e){
         e.preventDefault(); 
         $(".task-box").addClass("active");
+        $(".shadow").addClass("active");
     }); 
+
+
+    $(".shadow").click(function (){
+        $(this).removeClass("active");
+        $(".task-box").removeClass("active");
+        $(".btn-info.time").next().removeClass("active");
+        $(".btn-info.file").next().removeClass("active");
+        $(".btn-info.note").next().removeClass("active");
+    });
 
 
 
@@ -96,6 +107,8 @@ $( document ).ready(function() {
     $('.datepicker').datepicker();
 
  	$('.timepicker').mask('00:00:00');
+
+    $()
 
     $("#project").change(function (){
 
