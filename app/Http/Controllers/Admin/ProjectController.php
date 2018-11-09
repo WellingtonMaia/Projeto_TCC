@@ -140,13 +140,13 @@ class ProjectController extends Controller
         $project_id = $project->id;
         if(!empty($project_id)){
 
-            $financial = Financials::where('project_id', '=', $project_id )->get()->first();
+            $financial = Financial::where('project_id', '=', $project_id )->get()->first();
             $id = $financial->id;
             $save = DB::table('financials')
                 ->where('project_id', '=', $project_id)
                 ->where('id', '=', $id)
                 ->update([
-                'project_id' => project_id,
+                'project_id' => $project_id,
                 'value' => $project->project_price,
                 'date_ini' => $project->created_at,
                 'due_date' => $estimate_date,
