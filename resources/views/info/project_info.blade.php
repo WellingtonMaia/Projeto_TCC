@@ -70,14 +70,14 @@
                               <a class="link" href="{{ url('projects/tasks/show-info/'.$task->id) }}">
                                  <span class="task-users">
                                     @foreach($task->users as $user)
-                                    <span title="{{ $user->name }}">{{ $user->name }}</span>
+                                    <span class="user" title="{{ $user->name }}">{{ $user->name }}</span>
                                     @endforeach
                                  </span>
                                  <h3 title="{{ $task->name }}">{{ $task->name }}</h3>
                                  <div class="hidden">{{ $task->description }}</div>
                                  {{-- <div class="dates">{{  \Carbon\Carbon::parse($task->estimate_date)->format(' l F Y') }}</div> --}}
-                                 <div class="dates begin">(Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' d - m - Y ') }}</div>
-                                 <div class="dates final">Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' d - m - Y') }})</div>
+                                 <div class="dates begin">(Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' d - m - Y ') }} </div>
+                                 <div class="dates final"> Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' d - m - Y') }})</div>
                                  {{-- {{ $task->begin_date }}
                                  {{ $task->final_date }} --}}
                                  {{-- {{ $task->status }} --}}

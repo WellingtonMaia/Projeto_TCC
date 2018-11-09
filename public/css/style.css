@@ -183,7 +183,7 @@ body {
 }
 
 .top-left-part a{
-	height: 60px;
+	height: 61px;
 	display: block;
 	padding-left: 37px;
 }
@@ -285,19 +285,28 @@ h3.block-title{
 	margin: 0 10px;
 	padding: 0;
 	width: 27px;
+	border: none;
 	height: 27px;
+	background: transparent;
+	transition: ease-out .2s;
 }
 
 .list-tasks .iten-task .item a.btn-danger i{
 	width: 27px;
+	color: #f33155;
 	line-height: 24px;
+	font-size:27px;
+}
+
+.list-tasks .iten-task .item a.btn-danger:hover i{
+	color:#980924;
 }
 
 
 .list-tasks .iten-task .task-users{
-	min-width: 150px;
+	min-width: 200px;
 	font-size:14px;
-	max-width: 150px;
+	max-width: 200px;
 	line-height: 29px;
 	margin:0;
 	position: absolute;
@@ -313,13 +322,32 @@ h3.block-title{
 
 }
 
+.list-tasks .iten-task .task-users .user{
+	white-space: nowrap;
+	overflow: hidden;
+    /*text-overflow: ellipsis;*/
+    max-width: 80px;
+    margin-right: 5px;
+}
+
+
+
+
+
+
+
 .list-tasks .iten-task .item.completed{
 	text-decoration: line-through;
+}
+
+.list-tasks .iten-task .dates{
+	margin-right: 20px;
 }
 
 
 .list-tasks .iten-task .task-users{
 	text-transform: capitalize;
+	display: flex;
 }
 
 .list-tasks .iten-task .item.completed .task-users{
@@ -393,7 +421,7 @@ h3.block-title{
 	white-space: nowrap;
 	overflow: hidden;
     text-overflow: ellipsis;
-	padding-left: 130px;
+	padding-left: 174px;
 	font-size: 14px;
 }
 

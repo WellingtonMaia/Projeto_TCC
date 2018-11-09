@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Task;
-use App\Models\Time;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -12,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Task;
+use App\Models\Time;
 use App\User;
 
 class TimeController extends Controller
@@ -50,6 +50,16 @@ class TimeController extends Controller
 
     	Session::flash('message', 'Cadastro registrado com sucesso!');
     	return Redirect::to('info.task_info'.$task_id);
+
+    }
+
+
+
+    public function list($task_id){
+
+        $time = Time::find($task_id);
+
+
 
     }
 }
