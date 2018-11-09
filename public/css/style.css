@@ -241,6 +241,13 @@ h3.block-title{
 	font-weight: bold;
 	display: block;
 }
+
+.white-box{
+	box-shadow: 0px 1px 25px rgba(0,0,0,0.05);
+	border-radius: 6px;
+}
+
+
 /*
 .list-tasks {
 
@@ -329,12 +336,6 @@ h3.block-title{
     max-width: 80px;
     margin-right: 5px;
 }
-
-
-
-
-
-
 
 .list-tasks .iten-task .item.completed{
 	text-decoration: line-through;
@@ -439,6 +440,21 @@ h3.block-title{
 
 .content-task .box-content{
 	margin: 30px 0;
+}
+
+.content-task .box-content .topo-box{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+
+.content-task .box-content .topo-box h2{
+	width: 300px;
+}
+
+.content-task .box-content .topo-box a{
+	margin: 0 5px;
 }
 
 .content-task .info-task{
@@ -560,7 +576,50 @@ h3.block-title{
 }
 
 
+.white-box h2 i{
+	margin-right: 8px;
+}
 
+
+.main-timer{
+	opacity: 0;
+	visibility: hidden;
+	position: fixed;
+	padding: 30px 20px;
+	bottom: 0;
+	right: 0;
+	width: 300px;
+	height: 90px;
+	transition: ease-out .2s;
+	z-index: 10;
+	background: #fff;
+	border-radius: 6px;
+	box-shadow: 0px 1px 25px rgba(0,0,0,0.09);
+}
+
+.main-timer.active{
+	opacity: 1;
+	visibility: visible;
+}
+
+.main-timer .timer-content{
+	line-height: 34px;
+	height: 34px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.main-timer .timer-content span{
+	font-size: 18px;
+	color: #2e2e2e;
+}
+
+.btn-secondary{
+	color: #fff;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
 
 
 

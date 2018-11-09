@@ -145,6 +145,10 @@
                                                 <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
                                                 <!--Wave Effects -->
                                                 <script src="{{ asset('js/waves.js') }}"></script>
+
+                                                <script src="{{ asset('js/easytimer.min.js') }}"></script>
+                                                {{-- <script src="{{ asset('js/waves.js') }}"></script> --}}
+                                                {{-- <script src="{{ asset('js/waves.js') }}"></script> --}}
                                                 <!--Counter js -->
                                                 <script src="{{ asset('css/plugins/bower_components/waypoints/lib/jquery.waypoints.js') }}"></script>
                                                 <script src="{{ asset('css/plugins/bower_components/counterup/jquery.counterup.min.js') }}"></script>

@@ -101,15 +101,8 @@ $( document ).ready(function() {
         $(".btn-info.note").next().removeClass("active");
     });
 
-
-
-
     $('.datepicker').datepicker();
-
  	$('.timepicker').mask('00:00:00');
-
-    $()
-
     $("#project").change(function (){
 
         var data = $(this).val();
