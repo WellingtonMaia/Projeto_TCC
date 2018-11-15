@@ -310,6 +310,10 @@ li{
 	font-size: 16px;
 }
 
+.form-group .users-box{
+	max-height: 100px;
+	overflow:auto;
+}
 
 
 .user-project-edit{
@@ -322,6 +326,7 @@ li{
 .user-project-edit input{
 	width: 20px;
 	height: 20px;
+	margin-right: 20px;
 }
 
 h3.block-title{
