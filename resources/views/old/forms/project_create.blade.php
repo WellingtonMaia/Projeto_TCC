@@ -45,7 +45,7 @@
 								<select class="form-control" name="status" id="status" required>
 									<option value="">Selecione um Status</option>
 									<option @if( old('status') == 'A') selected @endif  value="A">Ativo</option>
-									<option @if( old('status') == 'C') selected @endif  value="C">Inativo</option>
+									<option @if( old('status') == 'I') selected @endif  value="I">Inativo</option>
 								</select>					
 							</div>
 						

@@ -32,6 +32,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Task', 'tasks_has_users');
     }
 
+    /*public function tasks_test(){
+        return $this->hasMany();
+    }*/
+
     public function projects()
     {
         return $this->belongsToMany('App\Models\Project', 'projects_has_users');

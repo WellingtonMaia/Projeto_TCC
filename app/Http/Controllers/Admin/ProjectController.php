@@ -50,8 +50,8 @@ class ProjectController extends Controller
      */
     public function store(){
 
-        $users = Input::get('users');       
-        
+        $users = Input::get('users');
+
         $project = new Project();
 
         $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
@@ -124,7 +124,12 @@ class ProjectController extends Controller
     public function edit($id){
 
         $project = Project::find($id);
+        $users = Input::get('users');
 
+        if(empty($users)){
+            Session::flash('message', 'Selecionar usuários!');
+            return Redirect::to('projects');
+        }
 
         $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
         $estimate_date = date('Y-m-d', strtotime($estimate_date));
@@ -135,28 +140,35 @@ class ProjectController extends Controller
         $project->status = Input::get('status');
         $project->project_price = Input::get('project_price');
         $project->project_type = Input::get('project_type');
-        $project->save();
+        $save = $project->save();
 
         $project_id = $project->id;
         if(!empty($project_id)){
 
             $financial = Financial::where('project_id', '=', $project_id )->get()->first();
             $id = $financial->id;
-            $save = DB::table('financials')
-                ->where('project_id', '=', $project_id)
-                ->where('id', '=', $id)
-                ->update([
-                'project_id' => $project_id,
-                'value' => $project->project_price,
-                'date_ini' => $project->created_at,
-                'due_date' => $estimate_date,
-            ]);
+
+            //dd([$project_id,$project->project_price, $id,$project->created_at, $estimate_date]);
+
+                $financial->project_id = $project_id;
+                $financial->value = $project->project_price;
+                $financial->date_ini = $project->created_at;
+                $financial->due_date = $estimate_date;
+                $save = $financial->save();
 
             if($save){
+
                 foreach ($users as $user) {
-                    $project->users()->attach($user);
+
+                      DB::table('projects_has_users')
+                            ->where('project_id',$project_id)
+                            ->update(
+                          ['user_id' => $user]
+                      );
+                    //$project->users()->attach($user);
                 }
-                Session::flash('message', 'Cadastro editado com sucesso!');
+
+                Session::flash('message', 'Projeto editado com sucesso!');
                 return Redirect::to('projects');
             }else{
                 Session::flash('message', 'Erro ao editar Projeto!');

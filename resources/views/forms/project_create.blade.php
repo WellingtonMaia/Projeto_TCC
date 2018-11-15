@@ -40,15 +40,17 @@
 										<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>
 									</div>
 								</div>
-								
-								<div class="form-group">
-									<label for="status">Status</label>
-									<select class="form-control" name="status" id="status" required>
-										<option value="">Selecione um Status</option>
-										<option selected @if( old('status') == 'A') selected @endif  value="A">Ativo</option>
-										<option @if( old('status') == 'C') selected @endif  value="C">Inativo</option>
-									</select>
-								</div>
+
+								@if(isset($project))
+									<div class="form-group">
+										<label for="status">Status</label>
+										<select class="form-control" name="status" id="status" required>
+											<option value="">Selecione um Status</option>
+											<option {{ ($project->status == 'A')?'selected':''   }}  value="A">Ativo</option>
+											<option {{ ($project->status == 'I')?'selected':''   }}  value="I">Inativo</option>
+										</select>
+									</div>
+								@endif
 								
 								<div class="form-group">
 
@@ -61,17 +63,17 @@
 									<label for="project_type">Tipo de Projeto</label>
 									<select class="form-control" name="project_type" id="project_type" required>
 										<option value="">Selecione um Tipo</option>
-										<option @if( old('project_type') == 'I') selected @endif  value="I">Interno</option>
-										<option @if( old('project_type') == 'E') selected @endif  value="E">Externo</option>
+										<option  {{ ($project->project_type == 'I')?'selected':''   }}  value="I">Interno</option>
+										<option  {{ ($project->project_type == 'E')?'selected':''   }}   value="E">Externo</option>
 									</select>
 								</div>
 								<div class="form-group">
 									<label for="name">Adicionar usuarios no Projeto</label>
 									<select multiple name="users[]" class="form-control">
 										@foreach($users as $user)
-										@if($user->status == 'A'):
-										<option value="{{ $user->id }}">{{ $user->name }}</option>
-										@endif
+											@if($user->status == 'A'):
+												<option value="{{ $user->id }}">{{ $user->name }}</option>
+											@endif
 										@endforeach
 									</select>
 								</div>

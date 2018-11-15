@@ -102,7 +102,12 @@ class TaskController extends Controller
         $task = new Task();
 
         $users = Input::get('users');
+        if(empty($users)){
+            Session::flash('message', 'Selecionar usuários!');
+            return Redirect::to('projects');
+            //
 
+        }
         // public function aulas(){
         //     return $this->belongsToMany('Modules\Produto\Entities\Sgr\Aula', 'materia_aula', 'materia_id', 'aula_id');                
         // }
@@ -140,6 +145,7 @@ class TaskController extends Controller
         $task->project_id = Input::get('project');
 
         $task->save();
+
 
         foreach ($users as $user) {
             $task->users()->attach($user);
