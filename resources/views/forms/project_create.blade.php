@@ -68,7 +68,7 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="name">Adicionar usuarios no Projeto</label>
+									<label for="name">Adicionar usuários no Projeto</label>
 									{{-- <select multiple name="users[]" class="form-control">
 										@foreach($users as $user)
 											@if($user->status == 'A'):
@@ -80,12 +80,12 @@
 
 									@foreach($users as $key => $user)
 										@if($user->status == 'A')
-										<div class="">
-											<label class="user-project-edit">
-												<input type="checkbox" name="users[]" value="{{ $user->id }}" @if(isset($project)) {{ ($project->users[$key]->name == $user->name)?"checked":"" }}@endif class="form-control">
-												{{ $user->name }}
-											</label>
-										</div>
+											<div class="">
+												<label class="user-project-edit">
+													<input type="checkbox" name="users[]" value="{{ $user->id }}" @if(isset($project)) {{ ($project->users[$key]->name == $user->name)?"checked":"" }}@endif class="form-control">
+													{{ $user->name }}
+												</label>
+											</div>
 										@endif
 									@endforeach
 

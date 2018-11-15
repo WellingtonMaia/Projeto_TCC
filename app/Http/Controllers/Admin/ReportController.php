@@ -79,8 +79,7 @@ class ReportController extends Controller
         $project_id = 5;
         $tasks = Task::where('project_id', 5)->where('status','C')->get();
         //$financial->project->name
-
-        dd($tasks->users);
+        dd($tasks);
     }
 
 
