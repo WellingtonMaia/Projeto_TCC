@@ -4,12 +4,13 @@
    <div class="container-fluid">
       <div class="row bg-title">
          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-         <h4 class="page-title">Profile page</h4> </div>
+         <h4 class="page-title">{{ $project->name }}</h4> </div>
          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
             <ol class="breadcrumb">
                <li><a href="{{ route('home') }}">Dashboard</a></li>
-               <li class="active"> Projetos</li>
+               <li><a href="{{ route('projects')}}">Projetos </a></li>
+               <li class="active"><a class="active" href="{{ url('projects/show-info/'.$project->id) }}">{{ $project->name}}</a></li>
             </ol>
          </div>
       </div>
@@ -42,7 +43,7 @@
                      @foreach($project->users as $user)
                      <div class="item">
                         @if( $user->image )
-                        <img src="{{ asset('img'.$user->image)  }}">
+                           <img src="{{ url("storage/users/{$user->image}") }}">
                         @endif
                         <span class="name">Nome: {{ $user->name }}</span>
                         <span class="status">Status : @if($user->status == "A") Ativo @else Inativo @endif</span>

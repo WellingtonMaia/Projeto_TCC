@@ -61,19 +61,32 @@
 									<label for="project_type">Tipo de Projeto</label>
 									<select class="form-control" name="project_type" id="project_type" required>
 										<option value="">Selecione um Tipo</option>
-										<option @if( old('project_type') == 'I') selected @endif  value="I">Interno</option>
-										<option @if( old('project_type') == 'E') selected @endif  value="E">Externo</option>
+										<option @if( old('project_type') == 'I') selected @endif @if($project->type == 'I') selected="selected" @endif value="I">Interno</option>
+										<option @if( old('project_type') == 'E') selected @endif @if($project->type == 'E') selected="selected" @endif value="E">Externo</option>
 									</select>
 								</div>
 								<div class="form-group">
 									<label for="name">Adicionar usuarios no Projeto</label>
-									<select multiple name="users[]" class="form-control">
+									{{-- <select multiple name="users[]" class="form-control">
 										@foreach($users as $user)
 										@if($user->status == 'A'):
 										<option value="{{ $user->id }}">{{ $user->name }}</option>
 										@endif
 										@endforeach
-									</select>
+									</select> --}}
+									{{-- {{ dd($project->users[1]->name) }} --}}
+
+									@foreach($users as $key => $user)
+										@if($user->status == 'A')
+										<div class="">
+											<label class="user-project-edit">
+												<input type="checkbox" name="users[]" value="{{ $user->id }}" @if($project->users[$key]->name == "$user->name")checked="checked" @endif class="form-control">
+												{{ $user->name }}
+											</label>
+										</div>
+										@endif
+									@endforeach
+
 								</div>
 								<div class="form-group">
 									<div class="">

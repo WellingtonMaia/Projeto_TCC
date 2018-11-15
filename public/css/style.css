@@ -299,6 +299,30 @@ li{
 	margin-top: 30px;
 }
 
+.tab-content .project-users .item img{
+	border-radius: 50%;
+	width: 50px;
+	height: auto;
+}
+
+.tab-content .project-users .item span{
+	margin:0 10px;
+	font-size: 16px;
+}
+
+
+
+.user-project-edit{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	line-height: 31px;
+}
+
+.user-project-edit input{
+	width: 20px;
+	height: 20px;
+}
 
 h3.block-title{
 	font-size:26px;

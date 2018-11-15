@@ -71,7 +71,10 @@
                <h2><i class="fa fa-file-o fa-fw" aria-hidden="true"></i> Arquivos</h2>
                <a href="" class="btn btn-info file"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Novo arquivo</a>
                <div class="popup file">
-                   
+                   <form action="" method="post">
+                       <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                       <input type="file" name="file">
+                   </form>
                </div>
                @foreach ($task->files as $file)
                <div class="iten-task">
@@ -89,7 +92,18 @@
                <h2><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Notes</h2>
                <a href="" class="btn btn-info note"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Nova notação</a>
                <div class="popup note">
-                   
+                   <form action="" method="post">
+                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                        <div class="box-note">
+                           <div class="img">
+                               <img src="{{ url("storage/users/{$user->image}") }}">
+                           </div>
+                           <div>
+                              <textarea name="descricao"></textarea>
+                           </div>
+
+                        </div>
+                   </form>
                </div>
                @foreach ($task->notes as $note)
                <div class="iten-task">
