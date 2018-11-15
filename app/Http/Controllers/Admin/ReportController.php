@@ -77,7 +77,7 @@ class ReportController extends Controller
     public function finish_task_user_project(/*Request $request*/){
         //$project_id = $request->project_id;
         $project_id = 5;
-        $tasks = Task::where('project_id', 5)->where('status','C')->get();
+        $tasks = Task::where('project_id', 5)->where('status','I')->get();
         //$financial->project->name
 
         dd($tasks->users);

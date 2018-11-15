@@ -63,7 +63,7 @@
                         @endif
                         @foreach ($project->tasks as $task)
                         <div class="iten-task">
-                           <div class="item">
+                           <div class="item" data-status="{{ $task->status }}">
                               <label>
                                  <input type="checkbox" name="completed" data-id="{{ $task->id }}" data-status="{{ $task->status }}" class="task-completed" @if($task->status == "C") checked="checked" @endif>
                                  <span class="check-bottom"></span>
@@ -71,7 +71,17 @@
                               <a class="link" href="{{ url('projects/tasks/show-info/'.$task->id) }}">
                                  <span class="task-users">
                                     @foreach($task->users as $user)
-                                    <span class="user" title="{{ $user->name }}">{{ $user->name }}</span>
+                                    <span class="user" title="{{ $user->name }}">
+                                       {{-- {{ dd(explode(' ', $user->name)) }} --}}
+                                       @php
+                                          $name = explode( ' ', $user->name);
+                                       @endphp
+                                       {{-- @foreach( explode( ' ', $user->name) as $name )  --}}
+                                       {{-- {{ dd($name[0]) }} --}}
+                                       {{-- { explode( ' ', $user->name) } --}}
+                                       {{ $name[0] }}
+                                       {{-- @endforeach --}}
+                                    </span>
                                     @endforeach
                                  </span>
                                  <h3 title="{{ $task->name }}">{{ $task->name }}</h3>

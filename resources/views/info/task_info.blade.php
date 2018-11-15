@@ -96,7 +96,7 @@
                         <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                         <div class="box-note">
                            <div class="img">
-                               <img src="{{ url("storage/users/{$user->image}") }}">
+                               <img src="{{ url("storage/users/".Auth::user()->image) }}">
                            </div>
                            <div>
                               <textarea name="descricao"></textarea>

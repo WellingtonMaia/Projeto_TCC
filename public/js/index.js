@@ -25,19 +25,23 @@ $( document ).ready(function() {
 		$(".aside").toggleClass('active');
 	});
 
-    if($(".task-completed").is(':checked')){
-        $(".task-completed").parent().parent().addClass("completed");
-    } else{
-        $(".task-completed").parent().parent().removeClass("completed");
-    }
+    // if($(".task-completed").is(':checked')){
+    //     $(".task-completed").parent().parent().addClass("completed");
+    // } else{
+    //     $(".task-completed").parent().parent().removeClass("completed");
+    // }
 
-    if(!$(".task-completed:checked")){
-        $(".task-completed").parent().parent().removeClass("completed");        console.log("6484646");
-    } 
+    // if($(".task-completed").not(':checked')){
+    //     $(this).parent().parent().removeClass("completed");        
+    //     console.log($(this).parent().parent().removeClass("completed") );
+    //     console.log($(".task-completed"));
+    // } 
 
     $(".task-completed").on("change", function (){
         
-        $(this).parent().parent().toggleClass("completed");
+        currentTask = $(this).parent().parent();
+
+        currentTask.toggleClass("completed");
 
         var status = $(this).attr("data-status");
         var id = $(this).attr("data-id");
@@ -54,6 +58,7 @@ $( document ).ready(function() {
                 if(response.error == false){
                     console.log(response.status);
                     $(".task-completed").attr("data-status",response.status);
+                    currentTask.attr("data-status",response.status);
                 }else{
                     console.log("erro");
                 }

@@ -310,6 +310,20 @@ li{
 	font-size: 16px;
 }
 
+.tab-content .project-users .item {
+	margin: 20px 0;
+	padding:5px; 
+	border:1px solid #2e2e2e;
+	border-radius: 4px;
+	/*display: flex;*/
+	/*flex-wrap: wrap;*/
+}
+
+.tab-content .project-users .item .name{
+	min-width: 160px;
+	display: inline-block;
+}
+
 .form-group .users-box{
 	max-height: 100px;
 	overflow:auto;
@@ -360,17 +374,22 @@ h3.block-title{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
-	line-height:28px;
-	height:28px;
+	line-height:50px;
+	height:50px;
 	margin:15px 0;
 	cursor:pointer;
+	border-radius: 4px;
+	padding: 5px;
+	border:1px solid #2e2e2e;
+	border-bottom-left-radius: 15px;
+	border-top-left-radius: 15px;
 	position: relative;
 }
 
 
 .list-tasks .iten-task .item label{
-	line-height: 28px;
-	height: 28px;
+	line-height: 40px;
+	height: 35px;
     display: flex;    
     cursor: pointer;
 }
@@ -379,6 +398,7 @@ h3.block-title{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
+	align-items: center;
 }
 
 .list-tasks .iten-task .item a.btn-danger{
@@ -386,7 +406,7 @@ h3.block-title{
 	padding: 0;
 	width: 27px;
 	border: none;
-	height: 27px;
+	height: 35px;
 	background: transparent;
 	transition: ease-out .2s;
 }
@@ -405,13 +425,13 @@ h3.block-title{
 
 .list-tasks .iten-task .task-users{
 	min-width: 200px;
-	font-size:14px;
+	font-size:15px;
 	max-width: 200px;
-	line-height: 29px;
+	line-height: 49px;
 	margin:0;
 	position: absolute;
     background:linear-gradient(to right , #c9e7fd, #e2f2fe);
-    left: -2px;
+    left: 0px;
     color: #000000;
     top:0;
    	padding-left: 32px;
@@ -430,7 +450,8 @@ h3.block-title{
     margin-right: 5px;
 }
 
-.list-tasks .iten-task .item.completed{
+.list-tasks .iten-task .item.completed,
+.list-tasks .iten-task .item[data-status="C"]{
 	text-decoration: line-through;
 }
 
@@ -444,7 +465,8 @@ h3.block-title{
 	display: flex;
 }
 
-.list-tasks .iten-task .item.completed .task-users{
+.list-tasks .iten-task .item.completed .task-users,
+.list-tasks .iten-task .item[data-status="C"] .task-users{
     background: linear-gradient(to right , #0ad90a, #ffffff);    
 	text-decoration: line-through;
     opacity: 0.5;
@@ -510,13 +532,13 @@ h3.block-title{
 .list-tasks .iten-task h3{
 	margin:0 3px 0 10px;
 	line-height: 29px;
-	min-width: 260px;
-	max-width: 260px;
+	min-width: 400px;
+	max-width: 400px;
 	white-space: nowrap;
 	overflow: hidden;
     text-overflow: ellipsis;
-	padding-left: 174px;
-	font-size: 14px;
+	padding-left: 180px;
+	font-size: 16px;
 }
 
 
