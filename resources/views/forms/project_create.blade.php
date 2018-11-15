@@ -76,13 +76,14 @@
 											@endif
 										@endforeach
 									</select> --}}
-									{{-- {{ dd($project->users[1]->name) }} --}}
+									{{-- {{ dd($project->users) }} --}}
 
 									@foreach($users as $key => $user)
+										{{-- {{ dd($project->users) }} --}}
 										@if($user->status == 'A')
-										<div class="">
+										<div class="users-box">
 											<label class="user-project-edit">
-												<input type="checkbox" name="users[]" value="{{ $user->id }}" @if(isset($project)) {{ ($project->users[$key]->name == $user->name)?"checked":"" }}@endif class="form-control">
+												<input type="checkbox" name="users[]" value="{{ $user->id }}" @if(isset($project) && $project->users) {{ ($project->users[$key]->id == $user->id)?"checked":"" }}@endif class="form-control">
 												{{ $user->name }}
 											</label>
 										</div>
