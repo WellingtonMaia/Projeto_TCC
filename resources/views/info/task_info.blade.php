@@ -31,7 +31,7 @@
             <div class="box-content">
                <div class="topo-box">
                   <h2><i class="fa fa-dashboard fa-fw" aria-hidden="true"></i> Tempo</h2>
-                  <a href="" class="start-time btn btn-success"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Iniciar tempo</a>
+                  <a href="" class="start-time btn btn-success"><i class="fa fa-play fa-fw" aria-hidden="true"></i>Iniciar tempo</a>
                   <a href="" class="btn btn-info time" ><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Adicionar Tempo</a>
                   <div class="popup time">
                      <div class="conteudo">
@@ -71,7 +71,10 @@
                <h2><i class="fa fa-file-o fa-fw" aria-hidden="true"></i> Arquivos</h2>
                <a href="" class="btn btn-info file"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Novo arquivo</a>
                <div class="popup file">
-                   
+                   <form action="" method="post">
+                       <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                       <input type="file" name="file">
+                   </form>
                </div>
                @foreach ($task->files as $file)
                <div class="iten-task">
@@ -89,7 +92,18 @@
                <h2><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Notes</h2>
                <a href="" class="btn btn-info note"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Nova notação</a>
                <div class="popup note">
-                   
+                   <form action="" method="post">
+                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                        <div class="box-note">
+                           <div class="img">
+                               <img src="{{ url("storage/users/{$user->image}") }}">
+                           </div>
+                           <div>
+                              <textarea name="descricao"></textarea>
+                           </div>
+
+                        </div>
+                   </form>
                </div>
                @foreach ($task->notes as $note)
                <div class="iten-task">
@@ -102,14 +116,7 @@
                @endforeach
             </div>
          </div>
-
-         <div class="main-timer">
-            <div class="timer-content">
-                <span id="tempoRegistrado">00:00:00</span>
-               {{-- <input type="text" name="tempoRegistrado" id="tempoRegistrado" value="00:00:00"> --}}
-                <a href="" class="stop-timer btn btn-secondary">Parar tempo</a>
-             </div>
-         </div>
+         
       {{-- </div>                                     --}}
    </div>
    {{-- <div class="container-login100-form-btn buttonAdd">
@@ -121,27 +128,6 @@
       </div>
    </div> --}}
 </div>
-<script type="text/javascript">
-$( document ).ready(function() {   
-    var timer = new Timer();
-
-    $(".start-time").click(function (e){
-      $(".main-timer").addClass("active");
-        e.preventDefault();
-        timer.start();
-        timer.addEventListener('secondsUpdated', function (e) {
-            $('#tempoRegistrado').html(timer.getTimeValues().toString());
-        });
-         
-    });
-
-    $(".stop-timer").click(function(e){
-        e.preventDefault();
-        timer.stop();
-    }); 
-}); 
-</script>
-
 
 @if( \Session::has("message") )
 <div class="alert alert-success">

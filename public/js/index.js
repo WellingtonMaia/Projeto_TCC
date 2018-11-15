@@ -101,6 +101,50 @@ $( document ).ready(function() {
         $(".btn-info.note").next().removeClass("active");
     });
 
+
+    var timer = new Timer();
+
+     if(timer.isRunning() == true){
+        console.log(timer.isRunning());
+        console.log("ausehsaehugr");
+        $(".main-timer").addClass("active");
+    }
+
+    $(".start-time").click(function (e){
+      $(".main-timer").addClass("active");
+        e.preventDefault();
+        timer.start();
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#tempoRegistrado').html(timer.getTimeValues().toString());
+        });
+         
+    });
+
+    $(".stop-timer").click(function(e){
+        e.preventDefault();
+        timer.stop();
+    }); 
+
+    timer.addEventListener('started', function (e) {
+        $('#tempoRegistrado').html(timer.getTimeValues().toString());
+    });
+
+    $(".pause-timer").click(function (e){
+      e.preventDefault();
+      timer.pause();
+
+   
+
+      if($(this).hasClass("paused")){
+         timer.start();
+      }
+
+      $(this).toggleClass("paused");
+
+    });  
+
+
+    $(".celular").mask('(00) 00000-0000');
     $('.datepicker').datepicker();
  	$('.timepicker').mask('00:00:00');
     $("#project").change(function (){

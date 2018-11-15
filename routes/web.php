@@ -13,6 +13,8 @@
 
 Auth::routes();
 
+Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notfound']);
+Route::get('500', ['as' => '500', 'uses' => 'ErrorController@fatal']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Admin'], function () {
@@ -69,12 +71,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/report','ReportController@finish_task_user_project')->name('report');
 
-
-
-
-
     });
-
-
 
 });

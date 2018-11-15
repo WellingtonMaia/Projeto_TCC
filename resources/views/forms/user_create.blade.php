@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<div class="row bg-title">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h4 class="page-title">Novo usuário</h4> </div>
+			<h4 class="page-title">@if($user)Editar usuário @else Novo usuário @endif</h4></div>
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 				{{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
 				<ol class="breadcrumb">
@@ -66,6 +66,18 @@
 											<option @if( old('permission') == 'C') selected @endif  @if(isset($user) && $user->permission == 'C') selected @endif value="C">Colaborador</option>
 										</select>
 									</div>
+								</div>
+								<div class="form-group">
+									<label for="payment_by_hours">Valor Recebido por Hora</label>
+									<input type="text" name="payment_by_hours" id="payment_by_hours" class="form-control" value="{{ old('payment_by_hours')? old('payment_by_hours') : isset($user) ? $user->payment_by_hours : "" }}" placeholder="30.00">
+								</div>
+								<div class="form-group">
+									<label for="celular">Numero de Celular</label>
+									<input type="text" name="celular" class="form-control celular" id="celular" value="{{ old('celular')? old('celular') : isset($user) ? $user->celular : "" }}" placeholder="(18) 99656-5566">
+								</div>
+								<div class="form-group">
+									<label for="info">Formação Academica</label>
+									<textarea id="info" name="info" rows="5" class="form-control">{{ old('info')? old('info') : isset($user) ? $user->info : "" }}</textarea>
 								</div>
 								<div class="form-group">
 									<div class="">
