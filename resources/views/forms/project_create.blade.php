@@ -68,7 +68,7 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="name">Adicionar usuarios no Projeto</label>
+									<label for="name">Adicionar usuários no Projeto</label>
 									{{-- <select multiple name="users[]" class="form-control">
 										@foreach($users as $user)
 											@if($user->status == 'A'):
