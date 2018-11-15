@@ -63,13 +63,8 @@
 									<label for="project_type">Tipo de Projeto</label>
 									<select class="form-control" name="project_type" id="project_type" required>
 										<option value="">Selecione um Tipo</option>
-<<<<<<< HEAD
-										<option  {{ ($project->project_type == 'I')?'selected':''   }}  value="I">Interno</option>
-										<option  {{ ($project->project_type == 'E')?'selected':''   }}   value="E">Externo</option>
-=======
-										<option @if( old('project_type') == 'I') selected @endif @if($project->type == 'I') selected="selected" @endif value="I">Interno</option>
-										<option @if( old('project_type') == 'E') selected @endif @if($project->type == 'E') selected="selected" @endif value="E">Externo</option>
->>>>>>> 3cfaccc4de109926c2be361428f38a77171d4624
+										<option  @if(isset($project->project_type)) {{ $project->project_type == 'I'?'selected':''}} @endif  value="I">Interno</option>
+										<option  @if(isset($project->project_type)) {{ $project->project_type == 'E'?'selected':''}} @endif  value="E">Externo</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -87,7 +82,7 @@
 										@if($user->status == 'A')
 										<div class="">
 											<label class="user-project-edit">
-												<input type="checkbox" name="users[]" value="{{ $user->id }}" @if($project->users[$key]->name == "$user->name")checked="checked" @endif class="form-control">
+												<input type="checkbox" name="users[]" value="{{ $user->id }}" @if(isset($project)) {{ ($project->users[$key]->name == $user->name)?"checked":"" }}@endif class="form-control">
 												{{ $user->name }}
 											</label>
 										</div>
