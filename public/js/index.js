@@ -144,7 +144,7 @@ $( document ).ready(function() {
     });  
 
 
-
+    $(".celular").mask('(00) 00000-0000');
     $('.datepicker').datepicker();
  	$('.timepicker').mask('00:00:00');
     $("#project").change(function (){

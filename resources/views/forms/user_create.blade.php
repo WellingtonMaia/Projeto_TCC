@@ -68,6 +68,18 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label for="payment_by_hours">Valor Recebido por Hora</label>
+									<input type="text" name="payment_by_hours" id="payment_by_hours" class="form-control" value="{{ old('payment_by_hours')? old('payment_by_hours') : isset($user) ? $user->payment_by_hours : "" }}" placeholder="30.00">
+								</div>
+								<div class="form-group">
+									<label for="celular">Numero de Celular</label>
+									<input type="text" name="celular" class="form-control celular" id="celular" value="{{ old('celular')? old('celular') : isset($user) ? $user->celular : "" }}" placeholder="(18) 99656-5566">
+								</div>
+								<div class="form-group">
+									<label for="info">Formação Academica</label>
+									<textarea id="info" name="info" rows="5" class="form-control">{{ old('info')? old('info') : isset($user) ? $user->info : "" }}</textarea>
+								</div>
+								<div class="form-group">
 									<div class="">
 										<button type="submit" class="btn btn-success">
 										Salvar
