@@ -21,6 +21,7 @@ class Financial extends Model
      * */
     //
     protected $table = 'financials';
+
     public $fillable = ['due_date', 'value', 'description', 'date_ini', 'project_id'];
 
 

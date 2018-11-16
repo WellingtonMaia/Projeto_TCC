@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Task;
+use App\Models\Time;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Project;
@@ -29,7 +30,7 @@ class ReportController extends Controller
 
 
     //-> projetos realizados durante um periodo
-    public function date_for_project(/*Request $request*/){
+    public function date_for_project(/*Request $request ou $id */){
 
         //$date_ini = $request->date_ini;
         //$date_final = $request->date_final;
@@ -44,7 +45,7 @@ class ReportController extends Controller
 
     //->tempo gasto em cada projeto por pessoa
     //selecionar projeto ou pessoa;
-    public function time_users_for_project(/*Request $request*/){
+    public function time_users_for_project(/*Request $request ou $id */){
 
         //$user_id = $request->user_id;
         $user_id = 1;
@@ -69,12 +70,22 @@ class ReportController extends Controller
     //->tempo gasto total de projetos por tempo
     //selecionar um projeto e listar todos os colaboradores relacionado
     //a ele e visualizar as horas trabalhadas
-    public function project_for_users_times(/*Request $request*/){
-        $project_id = $request->project_id;
+    public function project_for_users_times(/*Request $request ou $id */){
+
+        //$project_id = $request->project_id;
+
+        $project_id = 7;
+        $task_id = Task::where('project_id', $project_id)->get();
+
+        foreach($task_id as $t){
+            $times[] = Time::where('task_id',$t->id)->get();
+        }
+        dd($times);
+
     }
 
     //->conclusao de tarefa por pessoa em um projeto
-    public function finish_task_user_project(/*Request $request*/){
+    public function finish_task_user_project(/*Request $request ou $id */){
         //$project_id = $request->project_id;
         $project_id = 5;
         $tasks = Task::where('project_id', 5)->where('status','I')->get();
