@@ -269,6 +269,17 @@ li{
 	border-right: 8px solid transparent;
 }
 
+
+#side-menu .has-sub .sub li{
+	margin:7px 0;
+}
+
+#side-menu .has-sub .sub li a{
+	font-size: 13px;
+}
+
+
+
 .block-title h2{
 	display: inline-block;
 	/*margin-bottom: 30px;*/
@@ -584,6 +595,13 @@ h3.block-title{
 	font-size: 16px;
 }
 
+.task .box-content .topo-box{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+}
+
 .task .popup {
 	opacity: 0;
 	visibility: hidden;
@@ -603,13 +621,83 @@ h3.block-title{
 	margin: auto;
 	border-radius: 4px;
 	z-index: 300;
+	padding-top: 0;
 }
+
+.task .popup .conteudo .header-conteudo{ 
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	padding-left: 20px;
+	color: #fff;
+	background: #2f323e;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	margin: 0 -20px;
+}
+
+.task .popup.time .conteudo .header-conteudo{ 	
+	width: 665px;
+}
+
+.task .popup.file .conteudo .header-conteudo{ 
+
+}
+
+.task .popup.note .conteudo .header-conteudo{ 
+	width: 680px;
+}
+
+
+
+.task .popup .conteudo form{
+	margin-top: 20px;
+
+}
+
+/*box file*/
+
+.task .popup.file .conteudo .form-group{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.task .popup.file .conteudo .img{
+	width: 50px;
+	margin-right: 10px;
+	display: block;
+}
+
+.task .popup.file .conteudo span{
+	width: 100%;
+	margin-top: -9px;
+	padding-left: 65px;
+}
+
+.task .popup.file .conteudo input{ 
+	width: calc(100% - 60px);
+}
+
+.task .popup.file .conteudo .img img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.task .popup.file .conteudo{
+	width: 600px;
+	height: 220px;
+}
+
+
+
+
 
 /*box tempo*/
 
 .task .popup.time .conteudo{
 	width: 665px;
-	height: 150px;
+	height: 200px;
 }
 
  .task .popup .conteudo .box-tempo{
@@ -654,13 +742,12 @@ h3.block-title{
 }
 
 
-
 /*box note*/
 
 
 .task .popup.note .conteudo{
 	width: 680px;
-	height: 270px;
+	height: 320px;
 }
 
 .task .popup .conteudo .box-note{
@@ -722,7 +809,7 @@ h3.block-title{
 	padding: 0;
 	text-align: center;
 	margin-left: auto;
-	margin-top: 1px;
+	margin-top: 12px;
 	height: 40px;
 	line-height: 40px;
 	font-size: 16px;

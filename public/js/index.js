@@ -75,7 +75,7 @@ $( document ).ready(function() {
 
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 
-        $(this).next().addClass("active");
+        $(this).parent().parent().next().addClass("active");
         $(".shadow").addClass("active");
     });
 
@@ -101,9 +101,9 @@ $( document ).ready(function() {
     $(".shadow").click(function (){
         $(this).removeClass("active");
         $(".task-box").removeClass("active");
-        $(".btn-info.time").next().removeClass("active");
-        $(".btn-info.file").next().removeClass("active");
-        $(".btn-info.note").next().removeClass("active");
+        $(".btn-info.time").parent().parent().next().removeClass("active");
+        $(".btn-info.file").parent().parent().next().removeClass("active");
+        $(".btn-info.note").parent().parent().next().removeClass("active");
     });
 
 
@@ -116,7 +116,13 @@ $( document ).ready(function() {
     }
 
     $(".start-time").click(function (e){
+
+        // localStorage('time','isrunning');
+
+        var date = new Date();
+        date.getTime();
       $(".main-timer").addClass("active");
+
         e.preventDefault();
         timer.start();
         timer.addEventListener('secondsUpdated', function (e) {

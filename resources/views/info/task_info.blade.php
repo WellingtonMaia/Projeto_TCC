@@ -31,18 +31,20 @@
             <div class="box-content">
                <div class="topo-box">
                   <h2><i class="fa fa-dashboard fa-fw" aria-hidden="true"></i> Tempo</h2>
-                  <a href="" class="start-time btn btn-success"><i class="fa fa-play fa-fw" aria-hidden="true"></i>Iniciar tempo</a>
-                  <a href="" class="btn btn-info time" ><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Adicionar Tempo</a>
+                  <div class="buttons">
+                     <a href="" class="start-time btn btn-success"><i class="fa fa-play fa-fw" aria-hidden="true"></i>Iniciar tempo</a>
+                     <a href="" class="btn btn-info time" ><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Adicionar Tempo</a>
+                  </div>
+               </div>
                   <div class="popup time">
                      <div class="conteudo">
+                        <div class="header-conteudo">Adicionando Tempo</div>
                         <form action="{{ url('task/addTime/'.$task->id) }}" method="POST">
                            <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                            <div class="box-tempo">
                               <label>
                                  Quem
-                                 <input type="text" name="author" class="form-control" value="{{ Auth::user()->name}}" 
-
-               style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
+                                 <input type="text" name="author" class="form-control" value="{{ Auth::user()->name}}"                                  style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
                               </label>
                               <label>
                                  Data
@@ -66,7 +68,7 @@
                         </form>
                      </div>
                   </div>
-               </div>
+               
                @if(count($task->times) < 1)
                   <div class="iten-task">
                      <label>
@@ -88,16 +90,26 @@
          </div>   
          <div class="white-box">
             <div class="box-content">
-               <h2><i class="fa fa-file-o fa-fw" aria-hidden="true"></i> Arquivos</h2>
-               <a href="" class="btn btn-info file"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Novo arquivo</a>
+               <div class="topo-box">
+                  <h2><i class="fa fa-file-o fa-fw" aria-hidden="true"></i> Arquivos</h2>
+                  <div class="buttons">
+                     <a href="" class="btn btn-info file"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Novo arquivo</a>   
+                  </div>
+                  
+               </div>
                <div class="popup file">
                   <div class="conteudo">
+                     <div class="header-conteudo">Adicionando arquivos</div>
                      <form action="" method="post">
                         <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                         <div class="form-group">
+                           <div class="img">
+                              <img src="{{ url("storage/users/".Auth::user()->image) }}">
+                           </div>
                            <input type="file" class="form-control" name="file">   
+                           <span>Arquivos com tamanho máximo de 2mb</span>
                         </div>
-                        <span>Arquivos com tamanho máximo de 2mb</span>
+                        <button type="submit" class="btn btn-success">Enviar</button>
                      </form>
                   </div>
                </div>
@@ -121,10 +133,15 @@
          </div>
          <div class="white-box">
             <div class="box-content">
-               <h2><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Notes</h2>
-               <a href="" class="btn btn-info note"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Nova notação</a>
+               <div class="topo-box">
+                  <h2><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Notes</h2>
+                  <div class="buttons">
+                     <a href="" class="btn btn-info note"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Nova notação</a>
+                  </div>
+               </div>
                <div class="popup note">
                   <div class="conteudo">
+                     <div class="header-conteudo">Adicionando anotação</div>
                       <form action="" method="post">
                            <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                            <div class="box-note">
@@ -140,6 +157,11 @@
                       </form>
                    </div>
                </div>
+               @if(count($task->notes) < 1)
+                  <label>
+                     <span>Não exitem anotações registradas</span>
+                  </label>
+               @endif 
                @foreach ($task->notes as $note)
                <div class="iten-task">
                   <label>

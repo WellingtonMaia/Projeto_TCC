@@ -69,7 +69,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 // <-- Relatórios -->
 
-        Route::get('/report','ReportController@project_for_users_times')->name('report');
+
+        Route::get('/report','ReportController@index')->name('report');
+        
+        Route::get('/report/date-for-project','ReportController@date_for_project')->name('report_date_for_project');
+        Route::get('/report/time-users-for-project','ReportController@time_users_for_project')->name('report_time_users_for_project');
+
+        Route::get('/report/project-for-users-times','ReportController@project_for_users_times')->name('report_project_for_users_times');
+        Route::get('/report/finish-task-user-project','ReportController@finish_task_user_project')->name('report_finish_task_user_project');
 
     });
 
