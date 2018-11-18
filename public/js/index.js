@@ -1,12 +1,67 @@
-(function($){"use strict";$('.input100').each(function(){$(this).on('blur',function(){if($(this).val().trim()!=""){$(this).addClass('has-val')}
-else{$(this).removeClass('has-val')}})})
-var input=$('.validate-input .input100');$('.validate-form').on('submit',function(){var check=!0;for(var i=0;i<input.length;i++){if(validate(input[i])==!1){showValidate(input[i]);check=!1}}
-return check});$('.validate-form .input100').each(function(){$(this).focus(function(){hideValidate(this)})});function validate(input){if($(input).attr('type')=='email'||$(input).attr('name')=='email'){if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/)==null){return!1}}
-else{if($(input).val().trim()==''){return!1}}}
-function showValidate(input){var thisAlert=$(input).parent();$(thisAlert).addClass('alert-validate')}
-function hideValidate(input){var thisAlert=$(input).parent();$(thisAlert).removeClass('alert-validate')}
-var showPass=0;$('.btn-show-pass').on('click',function(){if(showPass==0){$(this).next('input').attr('type','text');$(this).find('i').removeClass('zmdi-eye');$(this).find('i').addClass('zmdi-eye-off');showPass=1}
-else{$(this).next('input').attr('type','password');$(this).find('i').addClass('zmdi-eye');$(this).find('i').removeClass('zmdi-eye-off');showPass=0}})})(jQuery)
+(function($) {
+    "use strict";
+    $('.input100').each(function() {
+        $(this).on('blur', function() {
+            if ($(this).val().trim() != "") {
+                $(this).addClass('has-val')
+            } else {
+                $(this).removeClass('has-val')
+            }
+        })
+    })
+    var input = $('.validate-input .input100');
+    $('.validate-form').on('submit', function() {
+        var check = !0;
+        for (var i = 0; i < input.length; i++) {
+            if (validate(input[i]) == !1) {
+                showValidate(input[i]);
+                check = !1
+            }
+        }
+        return check
+    });
+    $('.validate-form .input100').each(function() {
+        $(this).focus(function() {
+            hideValidate(this)
+        })
+    });
+
+    function validate(input) {
+        if ($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+            if ($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+                return !1
+            }
+        } else {
+            if ($(input).val().trim() == '') {
+                return !1
+            }
+        }
+    }
+
+    function showValidate(input) {
+        var thisAlert = $(input).parent();
+        $(thisAlert).addClass('alert-validate')
+    }
+
+    function hideValidate(input) {
+        var thisAlert = $(input).parent();
+        $(thisAlert).removeClass('alert-validate')
+    }
+    var showPass = 0;
+    $('.btn-show-pass').on('click', function() {
+        if (showPass == 0) {
+            $(this).next('input').attr('type', 'text');
+            $(this).find('i').removeClass('zmdi-eye');
+            $(this).find('i').addClass('zmdi-eye-off');
+            showPass = 1
+        } else {
+            $(this).next('input').attr('type', 'password');
+            $(this).find('i').addClass('zmdi-eye');
+            $(this).find('i').removeClass('zmdi-eye-off');
+            showPass = 0
+        }
+    })
+})(jQuery)
 
 $( document ).ready(function() {    	
 
@@ -109,18 +164,29 @@ $( document ).ready(function() {
 
     var timer = new Timer();
 
-     if(timer.isRunning() == true){
-        console.log(timer.isRunning());
-        console.log("ausehsaehugr");
-        $(".main-timer").addClass("active");
-    }
+    //  if(timer.isRunning() == true){
+    //     console.log(timer.isRunning());
+    //     console.log("ausehsaehugr");
+    //     $(".main-timer").addClass("active");
+    // }
 
     $(".start-time").click(function (e){
 
-        // localStorage('time','isrunning');
+        localStorage.setItem('isrunning','true');
 
         var date = new Date();
-        date.getTime();
+        var minutes = date.getMinutes();
+        var hours = date.getHours();
+        var currentTime = hours+":"+minutes;
+
+        localStorage.setItem('started-time',currentTime);
+
+        console.log(localStorage.getItem('started-time'));
+
+        console.log(timer.getTimeValues(10,20,8));
+        console.log(timer.getTimeValues(10,20,8));
+
+
       $(".main-timer").addClass("active");
 
         e.preventDefault();
@@ -134,6 +200,16 @@ $( document ).ready(function() {
     $(".stop-timer").click(function(e){
         e.preventDefault();
         timer.stop();
+
+
+        var date = new Date();
+        var minutes = date.getMinutes();
+        var hours = date.getHours();
+        var currentTime = hours+":"+minutes;
+
+        localStorage.setItem('stop-time',currentTime);
+        localStorage.setItem('time',timer.getTimeValues().toString());
+        console.log(timer.getTimeValues());
     }); 
 
     timer.addEventListener('started', function (e) {
@@ -144,13 +220,25 @@ $( document ).ready(function() {
       e.preventDefault();
       timer.pause();
 
-   
 
-      if($(this).hasClass("paused")){
-         timer.start();
-      }
+        var date = new Date();
+        var minutes = date.getMinutes();
+        var hours = date.getHours();
+        var currentTime = hours+":"+minutes;
 
-      $(this).toggleClass("paused");
+        localStorage.setItem('stop-time',currentTime);
+
+        localStorage.setItem('time',timer.getTimeValues().toString());
+
+        console.log(timer.getTimeValues());
+        console.log(timer.getTimeValues().toString());
+
+        timer.addEventListener('started', function (e) {
+            $('#tempoRegistrado').html(timer.getTimeValues().toString());
+        });
+       
+
+        console.log(timer.getTimeValues());
 
     });  
 
@@ -192,6 +280,32 @@ $( document ).ready(function() {
         labels: [1, 2, 3, 4],
         series: [[5, 2, 8, 3]]
       });
+});
+
+
+$(document).ready(function (){
+
+
+    // if(localStorage.getItem('isrunning') == 'true' ){
+    //     $(".main-timer").addClass("active");
+
+    //     var oldtimer = new Timer();
+
+    //     oldtimer.start();
+
+
+    //     oldtimer.addEventListener('secondsUpdated', function (e) {
+    //         $('#tempoRegistrado').html(oldtimer.getTimeValues().toString());
+    //     });
+
+    //     oldtimer.addEventListener('started', function (e) {
+    //         $('#tempoRegistrado').html(localStorage.getItem('time'));
+    //     });
+    // }
+
+
+});
+
 
 
       // var pagina = $('#open-fancy').attr("href");
@@ -310,6 +424,4 @@ $( document ).ready(function() {
     //         return false;
     //     }
     // });
-
 	
-});

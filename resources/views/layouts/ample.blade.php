@@ -147,7 +147,7 @@
                     <div class="timer-content">
                         <span id="tempoRegistrado">00:00:00</span>
                        {{-- <input type="text" name="tempoRegistrado" id="tempoRegistrado" value="00:00:00"> --}}
-                        <a href="" class="stop-timer btn btn-secondary"><i class="fa fa-pause fa-fw" aria-hidden="true"></i>Pausar</a>
+                        <a href="" class="pause-timer btn btn-secondary"><i class="fa fa-stop fa-fw" aria-hidden="true"></i>Parar</a>
                         <a href="" class="stop-timer btn btn-success"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Registrar tempo</a>
                      </div>
                  </div>

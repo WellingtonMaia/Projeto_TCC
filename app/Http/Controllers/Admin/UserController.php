@@ -137,6 +137,9 @@ class UserController extends Controller
         $user->role = Input::get("role");
         $user->status = Input::get("status");
         $user->permission = Input::get("permission");
+        $user->celular = Input::get("celular");
+        $user->payment_by_hours = Input::get("payment_by_hours");
+        $user->info = Input::get("info");
 
         $user->save();
 

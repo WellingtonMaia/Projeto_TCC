@@ -24,6 +24,11 @@
                   <span>Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' d - m - Y') }})</span>
                   <span>Tempo Estimado: {{ $task->estimate_time }}</span>
                   <span>Valor Referente ao tempo gasto na tarefa: {{ $task->tasks_price }}</span>
+
+
+                  <div class="">
+                     {{ $task->descricao }}
+                  </div>
                </div>
             </div>
          </div>
@@ -80,8 +85,10 @@
                @foreach ($task->times as $time)
                <div class="iten-task">
                   <label>
+                     {{-- <span>{{ dd($task->users) }}</span> --}}
                      <h3>{{ $time->time_value }}</h3>
-                     <div>{{ $task->description }}</div>
+                     <div></div>
+                     
                      <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
                   </label>
                </div>
@@ -124,6 +131,7 @@
                <div class="iten-task">
                   <label>
                      {{-- <h3>{{ $file->time_value }}</h3> --}}
+
                      <div>{{ $task->description }}</div>
                      <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
                   </label>
