@@ -37,23 +37,43 @@
                      <div class="conteudo">
                         <form action="{{ url('task/addTime/'.$task->id) }}" method="POST">
                            <input type="hidden" name="user" value="{{ Auth::user()->id }}">
-                           <label>
-                              Tempo 
-                              <input type="text" name="time" class="timepicker form-control" placeholder="00:25:20">  
-                           </label>
-                           <label>
-                              Data inicial
-                           <input type="text" name="begin_date" class="datepicker form-control" placeholder="10/15/2018">
-                           </label>
-                           <label>
-                              Data Final
-                              <input type="text" name="final_date" class="datepicker form-control" placeholder="10/15/2018">
-                           </label>
-                           <button type="submit">Salvar</button>
+                           <div class="box-tempo">
+                              <label>
+                                 Quem
+                                 <input type="text" name="author" class="form-control" value="{{ Auth::user()->name}}" 
+
+               style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
+                              </label>
+                              <label>
+                                 Data
+                                 <input type="text" name="begin_date" class="datepicker form-control" placeholder="10/15/2018">
+                              </label>
+                              <label>
+                                 Hora início 
+                                 <input type="text" name="" class="timepicker form-control" placeholder="25:20">  
+                              </label>
+                              <label>
+                                 Hora final
+                                 <input type="text" class="timepicker form-control" name="26:10">
+                              </label>
+                              <label>
+                                 Tempo Registrado
+                                 <input type="text" class="timepicker form-control" name="time" placeholder="01:30">
+                              </label>
+                              
+                           </div>
+                           <button type="submit" class="btn btn-success">Salvar</button>
                         </form>
                      </div>
                   </div>
                </div>
+               @if(count($task->times) < 1)
+                  <div class="iten-task">
+                     <label>
+                        <span>Não existem tempos registrados nessa tarefa</span>
+                     </label>
+                  </div> 
+               @endif
 
                @foreach ($task->times as $time)
                <div class="iten-task">
@@ -71,11 +91,23 @@
                <h2><i class="fa fa-file-o fa-fw" aria-hidden="true"></i> Arquivos</h2>
                <a href="" class="btn btn-info file"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Novo arquivo</a>
                <div class="popup file">
-                   <form action="" method="post">
-                       <input type="hidden" name="user" value="{{ Auth::user()->id }}">
-                       <input type="file" name="file">
-                   </form>
+                  <div class="conteudo">
+                     <form action="" method="post">
+                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                        <div class="form-group">
+                           <input type="file" class="form-control" name="file">   
+                        </div>
+                        <span>Arquivos com tamanho máximo de 2mb</span>
+                     </form>
+                  </div>
                </div>
+
+               @if(count($task->files) < 1)
+                  <label>
+                     <span>Não existem arquivos anexados</span>
+                  </label>
+               @endif
+
                @foreach ($task->files as $file)
                <div class="iten-task">
                   <label>
@@ -92,18 +124,21 @@
                <h2><i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Notes</h2>
                <a href="" class="btn btn-info note"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>Adicionar Nova notação</a>
                <div class="popup note">
-                   <form action="" method="post">
-                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
-                        <div class="box-note">
-                           <div class="img">
-                               <img src="{{ url("storage/users/".Auth::user()->image) }}">
-                           </div>
-                           <div>
-                              <textarea name="descricao"></textarea>
-                           </div>
+                  <div class="conteudo">
+                      <form action="" method="post">
+                           <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                           <div class="box-note">
+                              <div class="img">
+                                  <img src="{{ url("storage/users/".Auth::user()->image) }}">
+                              </div>
+                              <div class="box-textarea">
+                                 <textarea name="descricao" id="descricao" placeholder="Digite sua anotação aqui"></textarea>
+                              </div>
 
-                        </div>
-                   </form>
+                           </div>
+                           <button type="submit" class="btn btn-success">Enviar</button>
+                      </form>
+                   </div>
                </div>
                @foreach ($task->notes as $note)
                <div class="iten-task">

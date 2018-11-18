@@ -151,12 +151,14 @@ $( document ).ready(function() {
 
     $(".celular").mask('(00) 00000-0000');
     $('.datepicker').datepicker();
- 	$('.timepicker').mask('00:00:00');
+ 	$('.timepicker').mask('00:00');
+
+
     $("#project").change(function (){
 
-        var data = $(this).val();
+    var data = $(this).val();
 
-        $.ajax({
+    $.ajax({
         url: '/tasks/getUsers',
         type: "GET",
         data: {id : data},
