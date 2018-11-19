@@ -93,7 +93,7 @@
                   <div class="iten-task">
                      <label>
                         <div class="img">
-                           <img src="{{ url("storage/users/".Auth::user()->image) }}">
+                           <img src="{{ Helper::getImageUser($time->users_id) }}">
                         </div>
                         <span>{{  \Carbon\Carbon::parse($time->begin_date)->format(' d - m - Y ') }}</span>
                         <span>{{ $time->time_start }}</span>                        
@@ -149,7 +149,7 @@
                   @foreach ($task->files as $file)
                   <div class="iten-task">                     
                      <div class="img">
-                        <img src="{{ url("storage/users/".Auth::user()->image) }}">
+                        <img src="{{ Helper::getImageUser($file->users_id) }}">
                      </div>
                      <div>{{ $file->file_url }}</div>
                      <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>                  
@@ -201,7 +201,7 @@
                   @foreach ($task->notes as $note)
                   <div class="iten-task">
                      <div class="img">
-                        <img src="{{ url("storage/users/".Auth::user()->image) }}">
+                        <img src="{{ Helper::getImageUser($note->users_id) }}">
                      </div>
                      <div class="note-desc">{{ $note->description }}</div>
                      <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
