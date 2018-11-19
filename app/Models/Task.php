@@ -24,7 +24,6 @@ class Task extends Model
         return $this->belongsToMany('App\User', 'tasks_has_users');
     }
 
-
     public function notes()
     {
         return $this->hasMany('App\Models\Note');

@@ -160,4 +160,10 @@ class UserController extends Controller
         return Redirect::to('users');
     }
 
+    public function getImage($id){
+
+        $user = user::find($id);
+        return $user->image;
+    }
+
 }

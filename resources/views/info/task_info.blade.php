@@ -4,7 +4,7 @@
    <div class="container-fluid">
       <div class="row bg-title">
          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-         <h4 class="page-title">Profile page</h4> </div>
+         <h4 class="page-title">Tarefa - {{ $task->name }}</h4> </div>
          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
             <ol class="breadcrumb">
@@ -24,10 +24,8 @@
                   <span>Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' d - m - Y') }})</span>
                   <span>Tempo Estimado: {{ $task->estimate_time }}</span>
                   <span>Valor Referente ao tempo gasto na tarefa: {{ $task->tasks_price }}</span>
-
-
-                  <div class="">
-                     {{ $task->descricao }}
+                  <div class="descricao-tarefa">
+                     {{ $task->description }}
                   </div>
                </div>
             </div>
@@ -150,14 +148,15 @@
                <div class="popup note">
                   <div class="conteudo">
                      <div class="header-conteudo">Adicionando anotação</div>
-                      <form action="" method="post">
-                           <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                      <form action="{{ url('task/addNote') }}" id="addNote" method="post">
+                           <input type="hidden" name="users_id" id="note_users_id" value="{{ Auth::user()->id }}">
+                           <input type="hidden" name="task_id" id="note_task_id" value="{{ $task->id }}">
                            <div class="box-note">
                               <div class="img">
                                   <img src="{{ url("storage/users/".Auth::user()->image) }}">
                               </div>
                               <div class="box-textarea">
-                                 <textarea name="descricao" id="descricao" placeholder="Digite sua anotação aqui"></textarea>
+                                 <textarea name="description" id="note_description" placeholder="Digite sua anotação aqui"></textarea>
                               </div>
 
                            </div>
@@ -169,16 +168,24 @@
                   <label>
                      <span>Não exitem anotações registradas</span>
                   </label>
-               @endif 
-               @foreach ($task->notes as $note)
-               <div class="iten-task">
-                  <label>
-                     {{-- <h3>{{ $file->time_value }}</h3> --}}
-                     <div>{{ $task->description }}</div>
+               @else
+                  <div class="iten-task header-task">  
+                     <label>
+                        <span>Usuario</span>
+                        <span>Descrição</span>
+                     </label>
+                  </div>
+                  @foreach ($task->notes as $note)
+                  <div class="iten-task">
+                     <div class="img">
+                        <img src="{{ url("storage/users/".Auth::user()->image) }}">
+                     </div>
+                     <div class="note-desc">{{ $note->description }}</div>
                      <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
-                  </label>
-               </div>
-               @endforeach
+                  </div>
+                  @endforeach
+               @endif 
+               
             </div>
          </div>
          

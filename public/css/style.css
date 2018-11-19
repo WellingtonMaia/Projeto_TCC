@@ -918,5 +918,65 @@ h3.block-title{
 	border-color: #6c757d;
 }
 
+.alert-hidden{
+	position: fixed;
+	padding: 23px 20px;
+	bottom: -300px;
+	opacity: 0;
+	visibility: hidden;
+	right: 0;
+	box-shadow: 0px 1px 25px rgba(0,0,0,0.09);
+	transition: ease-out .2s;
+	width: 384px;
+	height: 80px;
+}
+
+.alert-hidden.active{
+	opacity: 1;
+	bottom:0;
+	visibility: visible;
+}
+
+.white-box .iten-task.header-task{
+	background: #2f323e;
+	padding: 10px 10px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	color: #fff;
+	margin: 30px 0 20px;
+}
+
+.white-box .iten-task{
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 10px;
+}
+
+
+.white-box .iten-task .img{
+	width: 40px;
+	margin-right: 10px;
+	display: block;
+}
+
+.white-box .iten-task .img img{
+	width: 100%;
+	height: auto;
+}
+
+
+.white-box .iten-task .note-desc{
+	height: 80px;
+	width:calc(100% - 120px);
+	padding: 10px;
+	overflow:auto;
+	border-radius: 4px;
+	border:1px solid #e5e5e5;
+}
+
+.white-box .iten-task a{
+	height: 35px;
+	margin-left: 10px;
+}
 
 

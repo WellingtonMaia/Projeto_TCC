@@ -42,12 +42,21 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/projects/tasks/show-info/{id}', 'TaskController@showInfo');
         Route::put('/tasks/edit/{id}', 'TaskController@edit');
         Route::get('/tasks/delete/{id}', 'TaskController@delete');
-
         Route::get('/tasks/addTime/{id}', 'TimeController@store');
+
+        
+
+
+
+
+
 
 // <-- ajax -->
         Route::post('/tasks/updateStatus/', 'TaskController@updateStatus');
         Route::get('/tasks/getUsers/', 'TaskController@getUsers');
+        Route::post('/tasks/addNote/', 'NoteController@store');
+
+
 
 // <-- users -->
         Route::get('/users', 'UserController@index')->name('users');
@@ -58,6 +67,10 @@ Route::group(['middleware' => 'auth'], function () {
 //        Route::put('/users/edit/{id}', 'UserController@edit');
         Route::post('/users/edit', 'UserController@edit')->name('users_edit');
         Route::get('/users/delete/{id}', 'UserController@delete');
+
+        Route::get('/user/image/{id}', 'UserController@getImage');
+
+
 
 // <-- financials -->
         Route::get('/financials', 'FinancialController@index')->name('financials');

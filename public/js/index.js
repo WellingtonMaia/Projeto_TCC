@@ -128,6 +128,38 @@ $( document ).ready(function() {
     });
 
 
+    $("#addNote").submit(function(){
+        // event.preventDefault();
+
+        var task_id = $("#note_task_id").val();
+        var users_id = $("#note_users_id").val();
+        var description = $("#note_description").val();
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+            },
+            url:'/tasks/addNote/',
+            type:"POST",
+            data:{description: description, task_id:task_id, users_id:users_id},
+            dataType:"JSON",
+            success:function(response){
+                if(response.error == false){
+                        setTimeout(function(){
+                            $('.alert-hidden').addClass('active');
+                        },2000);
+                    location.reload();
+                }else{
+                    console.log("errou");
+                }
+            }
+
+
+        });
+        return false;
+    });
+
+
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 
         $(this).parent().parent().next().addClass("active");

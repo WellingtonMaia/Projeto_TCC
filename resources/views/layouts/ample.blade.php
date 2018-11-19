@@ -151,6 +151,10 @@
                         <a href="" class="stop-timer btn btn-success"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Registrar tempo</a>
                      </div>
                  </div>
+                 <div class="alert-hidden alert alert-success">
+                     <div class="alert-success">Cadastro criado com sucesso</div>
+                 </div>
+
                 <footer class="footer text-center">
                     © 2018 EasyTools
                 </footer>

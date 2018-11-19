@@ -9,4 +9,9 @@ class File extends Model
     {
     	return $this->belongsTo('App\Models\Task');
     }
+
+    public function users()
+    {
+    	return $this->belongsTo('App\User');
+    }
 }

@@ -41,10 +41,10 @@ class TimeController extends Controller
     	$time = new Time();
 
     	$time->time = Input::('time');
-    	$time->begin_date = Input::('begin_date');
-    	$time->final_date = Input::('final_date');
+    	$time->time_start = Input::('begin_date');
+    	$time->time_stop = Input::('final_date');
     	$time->task_id = $task_id;
-    	$time->user_id = Input::('user');
+    	$time->users_id = Input::('user');
 
     	$time->save();
 
