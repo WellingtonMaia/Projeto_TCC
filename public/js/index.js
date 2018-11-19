@@ -191,6 +191,40 @@ $( document ).ready(function() {
         return false;
     });
 
+    $("#addTime").submit(function(){
+        // event.preventDefault();
+
+        var task_id = $("#time_task_id").val();
+        var users_id = $("#time_users_id").val();
+        var date = $("#time_begin_date").val();
+        var time_start = $("#time_start").val();
+        var time_end = $("#time_end").val();        
+        var time_value = $("#time_value").val();
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+            },
+            url:'/tasks/addTime/',
+            type:"POST",
+            data:{date: date, task_id:task_id, users_id:users_id,time_start:time_start,time_end:time_end,time_value:time_value},
+            dataType:"JSON",
+            success:function(response){
+                if(response.error == false){
+                        setTimeout(function(){
+                            $('.alert-hidden').addClass('active');
+                        },2000);
+                    // location.reload();
+                }else{
+                    console.log("errou");
+                }
+            }
+
+
+        });
+        return false;
+    });
+
 
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 

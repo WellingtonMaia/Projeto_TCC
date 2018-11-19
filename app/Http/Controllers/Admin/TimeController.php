@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -34,32 +35,67 @@ class TimeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($task_id, Request $request){
-
-    	$task = Task::find($task_id);
+    public function store(Request $request){
 
     	$time = new Time();
 
-    	$time->time = Input::('time');
-    	$time->time_start = Input::('begin_date');
-    	$time->time_stop = Input::('final_date');
-    	$time->task_id = $task_id;
-    	$time->users_id = Input::('user');
+        $time->time_value = $request->get('time_value');
+    	$time->date       = $request->get('date');
+    	$time->time_start = $request->get('time_start');
+    	$time->time_stop  = $request->get('time_stop');
+    	$time->task_id    = $request->get('task_id');
+    	$time->users_id   = $request->get('users_id');
 
     	$time->save();
-
-    	Session::flash('message', 'Cadastro registrado com sucesso!');
-    	return Redirect::to('info.task_info'.$task_id);
-
-    }
-
-
-
-    public function list($task_id){
-
-        $time = Time::find($task_id);
-
-
+        
+        return response()->json(['error'=>false,'status'=>true], 200);
 
     }
+
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
 }
