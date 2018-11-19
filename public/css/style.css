@@ -920,15 +920,15 @@ h3.block-title{
 
 .alert-hidden{
 	position: fixed;
-	padding: 23px 20px;
+	padding: 17px 20px;
 	bottom: -300px;
 	opacity: 0;
 	visibility: hidden;
-	right: 0;
+	right: 16px;
 	box-shadow: 0px 1px 25px rgba(0,0,0,0.09);
-	transition: ease-out .2s;
-	width: 384px;
-	height: 80px;
+	transition: ease-out .4s;
+	width: 318px;
+	height: 56px;
 }
 
 .alert-hidden.active{
@@ -950,6 +950,27 @@ h3.block-title{
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 10px;
+}
+
+.white-box .iten-task.time{
+	justify-content: space-between;
+	align-items: center;
+}
+
+.white-box .iten-task.time .usr{
+	display: flex;
+	align-items: center;
+	margin-right: -66px;
+	width: 105px;
+}
+
+.white-box .iten-task.time .usr label{
+	text-transform: capitalize;
+}
+
+.white-box .iten-task.time span{
+	font-weight: 500;
+	margin-right:10px;
 }
 
 
@@ -979,4 +1000,44 @@ h3.block-title{
 	margin-left: 10px;
 }
 
+.white-box .iten-task.header-task .task-time {
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: flex-start;*/
+	width: 100%;
+	justify-content: space-between;
+}
+
+.white-box .iten-task.header-task .task-time span{
+	/*margin-right: 160px;*/
+	width: 190px;
+	margin-right: 20px;
+}
+
+.white-box .iten-task.header-task .task-time span:last-child{
+	width: 41px;
+	margin: 0;
+}
+/*
+.white-box .iten-task.header-task .task-time span:nth-child(1),
+.white-box .iten-task.time span:nth-child(1){
+{
+	width: 70px;
+}
+
+.white-box .iten-task.header-task .task-time span:nth-child(2),
+.white-box .iten-task.time span:nth-child(2){
+	width: 110px;
+}
+
+.white-box .iten-task.header-task .task-time span:nth-child(3),
+.white-box .iten-task.time span:nth-child(3){
+	width: 110px;
+}
+
+.white-box .iten-task.header-task .task-time span:nth-child(4),
+.white-box .iten-task.time span:nth-child(4){
+	width: 90px;
+}
+*/
 

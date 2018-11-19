@@ -39,8 +39,18 @@ class TimeController extends Controller
 
     	$time = new Time();
 
+        // $estimate_date = Input::get('estimate_date'); 
+        // $estimate_date = str_replace('/', '-', $estimate_date);  
+        // $estimate_date = date('Y-m-d', strtotime($estimate_date));
+
+
+        $date = $request->get('date'); 
+        $date = str_replace('/', '-', $date);  
+        $date = date('Y-m-d', strtotime($date));
+ 
+
         $time->time_value = $request->get('time_value');
-    	$time->date       = $request->get('date');
+    	$time->date       = $date;
     	$time->time_start = $request->get('time_start');
     	$time->time_stop  = $request->get('time_stop');
     	$time->task_id    = $request->get('task_id');

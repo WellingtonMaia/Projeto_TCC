@@ -42,13 +42,13 @@
                   <div class="popup time">
                      <div class="conteudo">
                         <div class="header-conteudo">Adicionando Tempo</div>
-                        <form action="{{ url('task/addTime/'.$task->id) }}" method="POST">                           
+                        <form action="{{ url('task/addTime/') }}" id="addTime" method="POST">                           
                            <input type="hidden" name="users_id" id="time_users_id" value="{{ Auth::user()->id }}">
                            <input type="hidden" name="task_id" id="time_task_id" value="{{ $task->id }}">
                            <div class="box-tempo">
                               <label>
                                  Quem
-                                 <input type="text" name="author" class="form-control" value="{{ Auth::user()->name}}"                                  style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
+                                 <input type="text" name="author" disabled class="form-control" value="{{ Auth::user()->name}}"                                  style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
                               </label>
                               <label>
                                  Data
@@ -60,7 +60,7 @@
                               </label>
                               <label>
                                  Hora final
-                                 <input type="text" name="time_end" id="time_end" class="timepicker form-control" name="26:10">
+                                 <input type="text" name="time_stop" id="time_stop" class="timepicker form-control" placeholder="26:10">
                               </label>
                               <label>
                                  Tempo Registrado
@@ -81,26 +81,29 @@
                   </div> 
                @else               
                   <div class="iten-task header-task">  
-                     <label>
+                     <label class="task-time">
                         <span>Quem</span>
                         <span>Data</span>
                         <span>Hora inicio</span>
                         <span>Hora final</span>
                         <span>Tempo</span>
+                        <span>Ações</span>
                      </label>
                   </div>
                   @foreach ($task->times as $time)
-                  <div class="iten-task">
-                     <label>
-                        <div class="img">
-                           <img src="{{ Helper::getImageUser($time->users_id) }}">
+                  <div class="iten-task time">
+                        <div class="usr">
+                           <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
+                              <img src="{{ Helper::getImageUser($time->users_id) }}">
+                           </div>
+                           <label>{{ Helper::getObjectUser($time->users_id)->name }}</label>
                         </div>
+                        
                         <span>{{  \Carbon\Carbon::parse($time->begin_date)->format(' d - m - Y ') }}</span>
-                        <span>{{ $time->time_start }}</span>                        
-                        <span>{{ $time->time_final }}</span>                        
-                        <span>{{ $time->time_value }}</span>
+                        <span class="timepicker">{{ $time->time_start }}</span>                        
+                        <span class="timepicker">{{ $time->time_stop }}</span>                        
+                        <span class="timepicker">{{ $time->time_value }}</span>
                         <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
-                     </label>
                   </div>
                   @endforeach
                @endif
@@ -120,7 +123,7 @@
                <div class="popup file">
                   <div class="conteudo">
                      <div class="header-conteudo">Adicionando arquivos</div>
-                     <form action="" method="post">
+                     <form action="{{ url('task/addFile') }}" id="addFile" method="post">
                         <input type="hidden" name="users_id" id="file_users_id" value="{{ Auth::user()->id }}">
                         <input type="hidden" name="task_id" id="file_task_id" value="{{ $task->id }}">
                         <div class="form-group">
@@ -148,7 +151,7 @@
                   </div>
                   @foreach ($task->files as $file)
                   <div class="iten-task">                     
-                     <div class="img">
+                     <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
                         <img src="{{ Helper::getImageUser($file->users_id) }}">
                      </div>
                      <div>{{ $file->file_url }}</div>
@@ -200,7 +203,7 @@
                   </div>
                   @foreach ($task->notes as $note)
                   <div class="iten-task">
-                     <div class="img">
+                     <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
                         <img src="{{ Helper::getImageUser($note->users_id) }}">
                      </div>
                      <div class="note-desc">{{ $note->description }}</div>

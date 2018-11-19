@@ -146,6 +146,9 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
+                        $(".btn-info.note").parent().parent().next().removeClass("active");
+                        $(".shadow").removeClass("active");
+                        $('.alert-hidden').addClass('active');
                         setTimeout(function(){
                             $('.alert-hidden').addClass('active');
                         },2000);
@@ -177,6 +180,9 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
+                        $(".btn-info.file").parent().parent().next().removeClass("active");
+                        $(".shadow").removeClass("active");
+                        $('.alert-hidden').addClass('active');
                         setTimeout(function(){
                             $('.alert-hidden').addClass('active');
                         },2000);
@@ -198,7 +204,7 @@ $( document ).ready(function() {
         var users_id = $("#time_users_id").val();
         var date = $("#time_begin_date").val();
         var time_start = $("#time_start").val();
-        var time_end = $("#time_end").val();        
+        var time_stop = $("#time_stop").val();        
         var time_value = $("#time_value").val();
 
         $.ajax({
@@ -207,12 +213,15 @@ $( document ).ready(function() {
             },
             url:'/tasks/addTime/',
             type:"POST",
-            data:{date: date, task_id:task_id, users_id:users_id,time_start:time_start,time_end:time_end,time_value:time_value},
+            data:{date: date, task_id:task_id, users_id:users_id,time_start:time_start,time_stop:time_stop,time_value:time_value},
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
+                        $(".btn-info.time").parent().parent().next().removeClass("active");
+                        $(".shadow").removeClass("active");
+                        $('.alert-hidden').addClass('active');
                         setTimeout(function(){
-                            $('.alert-hidden').addClass('active');
+                            $('.alert-hidden').removeClass('active');
                         },2000);
                     // location.reload();
                 }else{
