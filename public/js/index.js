@@ -166,9 +166,12 @@ $( document ).ready(function() {
     $("#addFile").submit(function(){
         // event.preventDefault();
 
-        var task_id = $("#file_task_id").val();
-        var users_id = $("#file_users_id").val();
+        var task_id = $("#task_id").val();
+        var users_id = $("#users_id").val();
         var file_url = $("#file_url").val();
+
+        var form = document.getElementById("addFile");
+        var formData = new FormData(form);   
 
         $.ajax({
             headers:{
@@ -176,7 +179,10 @@ $( document ).ready(function() {
             },
             url:'/tasks/addFile/',
             type:"POST",
-            data:{file_url: file_url, task_id:task_id, users_id:users_id},
+            processData:false,
+            contentType: false,
+            data:formData,
+            // data:{file_url: file_url, task_id:task_id, users_id:users_id},
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){

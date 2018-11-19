@@ -38,9 +38,42 @@ class FileController extends Controller
     public function store(Request $request)
     {
 
-        $file = new File();
 
-        $file->file_url	   = $request->get('file_url');
+        // dd($request);
+
+        $file = new File();
+        // $file->create($request->all());
+        $nameFile = null;
+
+        $nameF = null;
+        
+        // Verifica se informou o arquivo e se é válido
+        if ($request->hasFile('file_url') && $request->file('file_url')->isValid()) {
+
+            // Define um aleatório para o arquivo baseado no timestamps atual
+            $name = uniqid(date('HisYmd'));
+            // Recupera a extensão do arquivo
+            $extension = $request->file_url->extension();
+
+            // Define finalmente o nome
+            $nameFile = "{$name}.{$extension}";
+
+            $namef = "{$request->get('name')}.{$extension}";
+
+            // Faz o upload:
+            $upload = $request->file_url->storeAs('files', $nameFile);
+            // Se tiver funcionado o arquivo foi armazenado em storage/app/public/categories/nomedinamicoarquivo.extensao
+
+            // Verifica se NÃO deu certo o upload (Redireciona de volta)
+            if ( !$upload )
+                return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao fazer upload')
+                    ->withInput();
+        }
+
+        $file->file_url	   = $nameFile;
+        $file->name        = $namef;
         $file->task_id     = $request->get('task_id');
         $file->users_id    = $request->get('users_id');
 

@@ -124,14 +124,17 @@
                   <div class="conteudo">
                      <div class="header-conteudo">Adicionando arquivos</div>
                      <form action="{{ url('task/addFile') }}" id="addFile" method="post">
-                        <input type="hidden" name="users_id" id="file_users_id" value="{{ Auth::user()->id }}">
-                        <input type="hidden" name="task_id" id="file_task_id" value="{{ $task->id }}">
+                        <input type="hidden" name="users_id" id="users_id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="task_id" id="task_id" value="{{ $task->id }}">
                         <div class="form-group">
                            <div class="img">
                               <img src="{{ url("storage/users/".Auth::user()->image) }}">
                            </div>
-                           <input type="file" id="#file_url" class="form-control" name="file">   
-                           <span>Arquivos com tamanho máximo de 2mb</span>
+                           <div class="file-box">
+                              <input type="text" name="name" class="form-control" placeholder="Nome do arquivo">
+                              <input type="file" id="#file_url" class="form-control" name="file_url">   
+                              <span>Arquivos com tamanho máximo de 2mb</span>
+                           </div>
                         </div>
                         <button type="submit" class="btn btn-success">Enviar</button>
                      </form>
@@ -150,11 +153,11 @@
                      </label>
                   </div>
                   @foreach ($task->files as $file)
-                  <div class="iten-task">                     
+                  <div class="iten-task file">                     
                      <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
                         <img src="{{ Helper::getImageUser($file->users_id) }}">
                      </div>
-                     <div>{{ $file->file_url }}</div>
+                     <div><a href="{{ url('storage/files/'.$file->file_url) }}" target="_blank">{{ $file->name }}</a></div>
                      <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>                  
                   </div>
                   @endforeach
