@@ -127,6 +127,7 @@ $( document ).ready(function() {
         // }
     });
 
+    // ajax
 
     $("#addNote").submit(function(){
         // event.preventDefault();
@@ -149,6 +150,37 @@ $( document ).ready(function() {
                             $('.alert-hidden').addClass('active');
                         },2000);
                     location.reload();
+                }else{
+                    console.log("errou");
+                }
+            }
+
+
+        });
+        return false;
+    });
+
+    $("#addFile").submit(function(){
+        // event.preventDefault();
+
+        var task_id = $("#file_task_id").val();
+        var users_id = $("#file_users_id").val();
+        var file_url = $("#file_url").val();
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+            },
+            url:'/tasks/addFile/',
+            type:"POST",
+            data:{file_url: file_url, task_id:task_id, users_id:users_id},
+            dataType:"JSON",
+            success:function(response){
+                if(response.error == false){
+                        setTimeout(function(){
+                            $('.alert-hidden').addClass('active');
+                        },2000);
+                    // location.reload();
                 }else{
                     console.log("errou");
                 }

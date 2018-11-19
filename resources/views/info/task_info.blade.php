@@ -42,8 +42,9 @@
                   <div class="popup time">
                      <div class="conteudo">
                         <div class="header-conteudo">Adicionando Tempo</div>
-                        <form action="{{ url('task/addTime/'.$task->id) }}" method="POST">
-                           <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                        <form action="{{ url('task/addTime/'.$task->id) }}" method="POST">                           
+                           <input type="hidden" name="users_id" id="time_users_id" value="{{ Auth::user()->id }}">
+                           <input type="hidden" name="task_id" id="time_task_id" value="{{ $task->id }}">
                            <div class="box-tempo">
                               <label>
                                  Quem
@@ -51,19 +52,19 @@
                               </label>
                               <label>
                                  Data
-                                 <input type="text" name="begin_date" class="datepicker form-control" placeholder="10/15/2018">
+                                 <input type="text" name="begin_date" id="time_begin_date" class="datepicker form-control" placeholder="10/15/2018">
                               </label>
                               <label>
                                  Hora início 
-                                 <input type="text" name="" class="timepicker form-control" placeholder="25:20">  
+                                 <input type="text" name="time_start" id="time_start" class="timepicker form-control" placeholder="25:20">  
                               </label>
                               <label>
                                  Hora final
-                                 <input type="text" class="timepicker form-control" name="26:10">
+                                 <input type="text" name="time_end" id="time_end" class="timepicker form-control" name="26:10">
                               </label>
                               <label>
                                  Tempo Registrado
-                                 <input type="text" class="timepicker form-control" name="time" placeholder="01:30">
+                                 <input type="text" class="timepicker form-control" name="time" id="time_value" placeholder="01:30">
                               </label>
                               
                            </div>
@@ -78,19 +79,33 @@
                         <span>Não existem tempos registrados nessa tarefa</span>
                      </label>
                   </div> 
+               @else               
+                  <div class="iten-task header-task">  
+                     <label>
+                        <span>Quem</span>
+                        <span>Data</span>
+                        <span>Hora inicio</span>
+                        <span>Hora final</span>
+                        <span>Tempo</span>
+                     </label>
+                  </div>
+                  @foreach ($task->times as $time)
+                  <div class="iten-task">
+                     <label>
+                        <div class="img">
+                           <img src="{{ url("storage/users/".Auth::user()->image) }}">
+                        </div>
+                        <span>{{  \Carbon\Carbon::parse($time->begin_date)->format(' d - m - Y ') }}</span>
+                        <span>{{ $time->time_start }}</span>                        
+                        <span>{{ $time->time_final }}</span>                        
+                        <span>{{ $time->time_value }}</span>
+                        <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
+                     </label>
+                  </div>
+                  @endforeach
                @endif
 
-               @foreach ($task->times as $time)
-               <div class="iten-task">
-                  <label>
-                     {{-- <span>{{ dd($task->users) }}</span> --}}
-                     <h3>{{ $time->time_value }}</h3>
-                     <div></div>
-                     
-                     <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
-                  </label>
-               </div>
-               @endforeach
+               
             </div>
          </div>   
          <div class="white-box">
@@ -106,12 +121,13 @@
                   <div class="conteudo">
                      <div class="header-conteudo">Adicionando arquivos</div>
                      <form action="" method="post">
-                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="users_id" id="file_users_id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="task_id" id="file_task_id" value="{{ $task->id }}">
                         <div class="form-group">
                            <div class="img">
                               <img src="{{ url("storage/users/".Auth::user()->image) }}">
                            </div>
-                           <input type="file" class="form-control" name="file">   
+                           <input type="file" id="#file_url" class="form-control" name="file">   
                            <span>Arquivos com tamanho máximo de 2mb</span>
                         </div>
                         <button type="submit" class="btn btn-success">Enviar</button>
@@ -123,18 +139,25 @@
                   <label>
                      <span>Não existem arquivos anexados</span>
                   </label>
+               @else
+                  <div class="iten-task header-task">  
+                     <label>
+                        <span>Usuario</span>
+                        <span>Arquivo</span>
+                     </label>
+                  </div>
+                  @foreach ($task->files as $file)
+                  <div class="iten-task">                     
+                     <div class="img">
+                        <img src="{{ url("storage/users/".Auth::user()->image) }}">
+                     </div>
+                     <div>{{ $file->file_url }}</div>
+                     <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>                  
+                  </div>
+                  @endforeach
                @endif
 
-               @foreach ($task->files as $file)
-               <div class="iten-task">
-                  <label>
-                     {{-- <h3>{{ $file->time_value }}</h3> --}}
-
-                     <div>{{ $task->description }}</div>
-                     <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
-                  </label>
-               </div>
-               @endforeach
+               
             </div>
          </div>
          <div class="white-box">
