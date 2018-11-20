@@ -483,7 +483,7 @@ $( document ).ready(function() {
 
 
     $(".celular").mask('(00) 00000-0000');
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
  	$('.timepicker').mask('00:00');
 
 
