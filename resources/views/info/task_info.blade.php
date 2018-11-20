@@ -52,19 +52,19 @@
                               </label>
                               <label>
                                  Data
-                                 <input type="text" name="begin_date" id="time_begin_date" class="datepicker form-control" placeholder="10/15/2018">
+                                 <input type="text" autocomplete="off" name="begin_date" id="time_begin_date" class="datepicker form-control" placeholder="10/15/2018">
                               </label>
                               <label>
                                  Hora início 
-                                 <input type="text" name="time_start" id="time_start" class="timepicker form-control" placeholder="25:20">  
+                                 <input type="text" autocomplete="off" name="time_start" id="time_start" class="timepicker form-control" placeholder="15:20">  
                               </label>
                               <label>
                                  Hora final
-                                 <input type="text" name="time_stop" id="time_stop" class="timepicker form-control" placeholder="26:10">
+                                 <input type="text" autocomplete="off" name="time_stop" id="time_stop" class="timepicker form-control" placeholder="15:30">
                               </label>
                               <label>
                                  Tempo Registrado
-                                 <input type="text" class="timepicker form-control" name="time" id="time_value" placeholder="01:30">
+                                 <input type="text" autocomplete="off" class="timepicker form-control" name="time" id="time_value" placeholder="01:30">
                               </label>
                               
                            </div>
@@ -148,7 +148,7 @@
                   </label>
                @else
                   <div class="iten-task header-task">  
-                     <label>
+                     <label class="task-file">
                         <span>Usuario</span>
                         <span>Arquivo</span>
                      </label>
@@ -159,8 +159,15 @@
                         <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
                            <img src="{{ Helper::getImageUser($file->users_id) }}">
                         </div>
-                        <div><a href="{{ url('storage/files/'.$file->file_url) }}" target="_blank">{{ $file->name }}</a></div>
-                        <a class="btn btn-danger" href="" data-id="{{ $file->id }}"><i class="fa fa-trash"></i></a>                  
+                        <div class="content-file">
+                           <a class="link" title="Clique aqui para baixar o arquivo" href="{{ url('storage/files/'.$file->file_url) }}" download="{{ $file->name }}" target="_blank">
+                              <div class="block-image-file">
+                                 <img src="{{ url('storage/icons/'.$file->icon) }}">
+                                 <span>{{ $file->name }}</span>
+                              </div>
+                           </a>
+                        </div>
+                        <a class="btn btn-danger removeFile" href="" data-id="{{ $file->id }}"><i class="fa fa-trash"></i></a>                  
                      </div>
                      @endforeach
                   </div>
@@ -207,14 +214,14 @@
                         <span>Descrição</span>
                      </label>
                   </div>
-                  <div class="notes-registers">
+                  <div class="note-registers">
                      @foreach ($task->notes as $note)                  
                      <div class="iten-task">
                         <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
                            <img src="{{ Helper::getImageUser($note->users_id) }}">
                         </div>
                         <div class="note-desc">{{ $note->description }}</div>
-                        <a class="btn btn-danger" class="removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-danger removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
                      </div>
                      @endforeach
                   </div>

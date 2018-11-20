@@ -12,6 +12,7 @@
         
         <link href="{{ asset('css/all.min.css') }}"  rel="stylesheet" >
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('js/sweetalert.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}"  rel="stylesheet" >
 
         {{-- <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet"> --}}
@@ -147,8 +148,13 @@
                     <div class="timer-content">
                         <span id="tempoRegistrado">00:00:00</span>
                        {{-- <input type="text" name="tempoRegistrado" id="tempoRegistrado" value="00:00:00"> --}}
-                        <a href="" class="pause-timer btn btn-secondary"><i class="fa fa-stop fa-fw" aria-hidden="true"></i>Parar</a>
-                        <a href="" class="stop-timer btn btn-success"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Registrar tempo</a>
+                        <span class="links-times">
+                            <a href="" class="pause-timer btn btn-danger"><i class="fa fa-pause fa-fw" aria-hidden="true"></i>Pausar</a>
+
+                            <a href="" class="start-time resume btn btn-danger "><i class="fa fa-play fa-fw" aria-hidden="true"></i>Continuar</a>
+                        </span>                       
+
+                        <a href="" class="register-timer btn btn-success"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Registrar tempo</a>
                      </div>
                  </div>
                  <div class="alert-hidden alert alert-success">

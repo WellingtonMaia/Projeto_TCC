@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\File;
@@ -41,6 +42,7 @@ class FileController extends Controller
         $file = new File();
         $nameFile = null;
         $nameF = null;
+        $icon = null;
         
         // Verifica se informou o arquivo e se é válido
         if ($request->hasFile('file_url') && $request->file('file_url')->isValid()) {
@@ -48,8 +50,11 @@ class FileController extends Controller
             $name = uniqid(date('HisYmd'));
             // Recupera a extensão do arquivo
             $extension = $request->file_url->extension();
+            // dd($extension);
             // Define finalmente o nome
             $nameFile = "{$name}.{$extension}";
+
+            $icon = "{$extension}.png";
             // Adicionando o a extensao do arquivo no nome 
             $namef = "{$request->get('name')}.{$extension}";
             // Faz o upload:
@@ -65,6 +70,7 @@ class FileController extends Controller
 
         $file->file_url	   = $nameFile;
         $file->name        = $namef;
+        $file->icon        = $icon;
         $file->task_id     = $request->get('task_id');
         $file->users_id    = $request->get('users_id');
 
@@ -74,9 +80,16 @@ class FileController extends Controller
                         <div class="img" title="'.Helper::getObjectUser($file->users_id)->name.'">
                            <img src="'.Helper::getImageUser($file->users_id).'">
                         </div>
-                        <div><a href="'.url('storage/files/'.$file->file_url) .'" target="_blank">'.$file->name.'</a></div>
-                        <a class="btn btn-danger" class="removeFile" href="" data-id="'.$file-id.'"><i class="fa fa-trash"></i></a>                  
-                     </div>'
+                        <div class="content-file">
+                            <a class="link" title="Clique aqui para baixar o arquivo" href="'.url('storage/files/'.$file->file_url) .'" download="'.$file->name.'" target="_blank">
+                                <div class="block-image-file">
+                                    <img src="'.url('storage/icons/'.$file->icon).'" >
+                                    <span>'.$file->name.'</span>
+                                </div>
+                            </a>
+                        </div>
+                        <a class="btn btn-danger removeFile " href="" data-id="'.$file->id.'"><i class="fa fa-trash"></i></a>                  
+                     </div>';
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Note;
@@ -51,7 +52,7 @@ class NoteController extends Controller
                            <img src="'.Helper::getImageUser($note->users_id).'">
                         </div>
                         <div class="note-desc">'.$note->description.'</div>
-                       <a class="btn btn-danger" class="removeNote" href="" data-id="'.$note->id.'" ><i class="fa fa-trash"></i></a>
+                       <a class="btn btn-danger removeNote" href="" data-id="'.$note->id.'" ><i class="fa fa-trash"></i></a>
                      </div>';
 
         return response()->json(['error'=>false,'html'=>$notes], 200);

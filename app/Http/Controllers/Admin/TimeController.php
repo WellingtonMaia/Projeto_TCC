@@ -42,7 +42,7 @@ class TimeController extends Controller
     	$time = new Time();
 
         $time->time_value = $request->get('time_value');
-    	$time->date       = Carbon::parse($request->get('date'))->format('Y-m-d');
+    	$time->date       = Carbon::parse(str_replace('/', '-',$request->get('date')))->format('Y-m-d');
     	$time->time_start = $request->get('time_start');
     	$time->time_stop  = $request->get('time_stop');
     	$time->task_id    = $request->get('task_id');

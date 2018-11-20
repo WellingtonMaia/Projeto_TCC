@@ -618,7 +618,7 @@ h3.block-title{
 }
 .task .popup .conteudo{
 	position: fixed;
-	top:0;
+	top:-200px;
 	bottom: 0;
 	padding: 20px;
 	width: 600px;
@@ -714,8 +714,33 @@ h3.block-title{
 	height: 250px;
 }
 
+.white-box .iten-task.file .content-file img{
+	width: 60px;
+	height: auto;
+	margin: auto;
+}
+
+.white-box .iten-task.file .content-file .link{
+	width: 150px;
+	height: 100px;
+	display: block;
+}
 
 
+.white-box .iten-task.file .content-file .block-image-file{
+	position: relative;
+	text-align: center;
+}
+.white-box .iten-task.file .content-file .block-image-file span{
+	position: absolute;
+	bottom: -25px;
+	white-space: nowrap;
+	left: 0;
+	right: 0;
+	text-align: center;
+	display: block;
+	margin: auto;
+}
 
 
 /*box tempo*/
@@ -904,11 +929,11 @@ h3.block-title{
 	opacity: 0;
 	visibility: hidden;
 	position: fixed;
-	padding: 23px 20px;
-	bottom: 0;
-	right: 0;
-	width: 384px;
-	height: 80px;
+	padding: 16px 20px;
+	bottom: 3px;
+	right: 3px;
+	width: 420px;
+	height: 70px;
 	transition: ease-out .2s;
 	z-index: 10;
 	background: #fff;
@@ -933,8 +958,40 @@ h3.block-title{
 .main-timer .timer-content span{
 	font-size: 18px;
 	color: #2e2e2e;
-	max-width: 80px;
-	width: 80px;
+	max-width:100%;
+	width: auto;
+	display: block;
+}
+
+.main-timer .timer-content #tempoRegistrado{
+	width: 76px;
+}
+
+
+.main-timer .links-times{
+	width: 120px;
+	margin-right: 0;
+}
+
+.main-timer .links-times a{
+	width: 120px;
+	border:none;
+	display: block;
+	line-height: 34px;
+	height: 34px;
+	padding: 0;
+}
+
+.main-timer .links-times .pause-timer.active{
+	display: none;
+}
+
+.main-timer .links-times .start-time{
+	display: none;
+}
+
+.main-timer .links-times .start-time.active{
+	display: block;
 }
 
 .btn-secondary{
@@ -954,6 +1011,7 @@ h3.block-title{
 	transition: ease-out .4s;
 	width: 318px;
 	height: 56px;
+	z-index: 40;
 }
 
 .alert-hidden.active{
@@ -1016,7 +1074,7 @@ h3.block-title{
 
 
 .white-box .iten-task .note-desc{
-	height: 80px;
+	height: 130px;
 	width:calc(100% - 120px);
 	padding: 10px;
 	overflow:auto;
@@ -1028,6 +1086,11 @@ h3.block-title{
 	height: 35px;
 	margin-left: 10px;
 }
+
+.white-box .iten-task.header-task .task-file span{
+	margin-right: 40px;
+}
+
 
 .white-box .iten-task.header-task .task-time {
 	display: flex;

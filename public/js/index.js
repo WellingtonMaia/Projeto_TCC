@@ -152,7 +152,7 @@ $( document ).ready(function() {
                         $('.alert-hidden').addClass('active');
                         $(".note-registers").append(response.html);
                         setTimeout(function(){
-                            $('.alert-hidden').addClass('active');
+                            $('.alert-hidden').removeClass('active');
                         },2000);
                 }else{
                     console.log("errou");
@@ -207,7 +207,6 @@ $( document ).ready(function() {
 
     $("#addTime").submit(function(){
         // event.preventDefault();
-
         var task_id = $("#time_task_id").val();
         var users_id = $("#time_users_id").val();
         var date = $("#time_begin_date").val();
@@ -255,32 +254,34 @@ $( document ).ready(function() {
             showConfirmButton: true,
             showCancelButton: true,
             confirmButtonText: 'Sim',
-            confirmButtonColor: '#0b5196',
+            // confirmButtonColor: '#0b5196',
             cancelButtonText: 'Não',
             cancelButtonColor: '#d33',
 
-        }).then(function (){            
-            $.ajax({
-                headers:{
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
-                },
-                url:'/tasks/removeTime',
-                dataType:'JSON',
-                data:{id:id},
-                type:"POST",
-                success:function(response){
-                    if(response.error == false){
-                        item.remove();
-                        $('.alert-hidden').addClass('active');
-                        $('.alert-hidden div').text('Tempo removido com sucesso');
-                        setTimeout(function(){
-                                $('.alert-hidden').removeClass('active');
-                            },2000);
-                    }else{
-                        console.log("erro");
+        }).then(function (e){            
+            if(e.value == true){
+                $.ajax({
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                    },
+                    url:'/tasks/removeTime',
+                    dataType:'JSON',
+                    data:{id:id},
+                    type:"POST",
+                    success:function(response){
+                        if(response.error == false){
+                            item.remove();
+                            $('.alert-hidden').addClass('active');
+                            $('.alert-hidden div').text('Tempo removido com sucesso');
+                            setTimeout(function(){
+                                    $('.alert-hidden').removeClass('active');
+                                },2000);
+                        }else{
+                            console.log("erro");
+                        }
                     }
-                }
-            });
+                });
+            }
         });
     });
 
@@ -296,31 +297,34 @@ $( document ).ready(function() {
             showConfirmButton: true,
             showCancelButton: true,
             confirmButtonText: 'Sim',
-            confirmButtonColor: '#0b5196',
+            // confirmButtonColor: '#0b5196',
             cancelButtonText: 'Não',
             cancelButtonColor: '#d33',
-        }).then(function (){
-            $.ajax({
-                headers:{
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
-                },
-                url:'/tasks/removeNote',
-                dataType:'JSON',
-                data:{id:id},
-                type:"POST",
-                success:function(response){
-                    if(response.error == false){
-                        item.remove();
-                        $('.alert-hidden').addClass('active');
-                        $('.alert-hidden div').text('Anotação removida com sucesso');
-                        setTimeout(function(){
-                                $('.alert-hidden').removeClass('active');
-                            },2000);
-                    }else{
-                        console.log("erro");
+        }).then(function (e){
+            if(e.value == true){        
+                $.ajax({
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                    },
+                    url:'/tasks/removeNote',
+                    dataType:'JSON',
+                    data:{id:id},
+                    type:"POST",
+                    success:function(response){
+                        if(response.error == false){
+                            item.remove();
+                            $('.alert-hidden').addClass('active');
+                            $('.alert-hidden div').text('Anotação removida com sucesso');
+                            setTimeout(function(){
+                                    $('.alert-hidden').removeClass('active');
+                                },2000);
+                        }else{
+                            console.log("erro");
+                        }
                     }
-                }
-            });
+                });
+
+            }
         });
     });
 
@@ -335,32 +339,34 @@ $( document ).ready(function() {
             showConfirmButton: true,
             showCancelButton: true,
             confirmButtonText: 'Sim',
-            confirmButtonColor: '#0b5196',
+            // confirmButtonColor: '#0b5196',
             cancelButtonText: 'Não',
             cancelButtonColor: '#d33',
 
-        }).then(function(){
-            $.ajax({
-                headers:{
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
-                },
-                url:'/tasks/removeFile',
-                dataType:'JSON',
-                data:{id:id},
-                type:"POST",
-                success:function(response){
-                    if(response.error == false){
-                        item.remove();
-                        $('.alert-hidden').addClass('active');
-                        $('.alert-hidden div').text('Anotação removida com sucesso');
-                        setTimeout(function(){
-                                $('.alert-hidden').removeClass('active');
-                            },2000);
-                    }else{
-                        console.log("erro");
+        }).then(function(e){
+            if(e.value == true){        
+                $.ajax({
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                    },
+                    url:'/tasks/removeFile',
+                    dataType:'JSON',
+                    data:{id:id},
+                    type:"POST",
+                    success:function(response){
+                        if(response.error == false){
+                            item.remove();
+                            $('.alert-hidden').addClass('active');
+                            $('.alert-hidden div').text('Arquivo removido com sucesso');
+                            setTimeout(function(){
+                                    $('.alert-hidden').removeClass('active');
+                                },2000);
+                        }else{
+                            console.log("erro");
+                        }
                     }
-                }
-            });
+                });
+            }
         });
 
 
@@ -373,23 +379,6 @@ $( document ).ready(function() {
         $(".shadow").addClass("active");
     });
 
-
-    // $(".task .popup:before").click(function (){
-    //     $(this).parent().parent().find("popup").removeClass("active");
-    // });
-    // $(".btn-info.file").click(function (){
-    //     $(this).next().addClass("active");
-    // });
-    // $(".btn-info.note").click(function (){
-    //     $(this).next().addClass("active");
-    // });
-
-
-    $("#open-fancy").click(function (e){
-        e.preventDefault(); 
-        $(".task-box").addClass("active");
-        $(".shadow").addClass("active");
-    }); 
 
 
     $(".shadow").click(function (){
@@ -408,6 +397,12 @@ $( document ).ready(function() {
     //     console.log("ausehsaehugr");
     //     $(".main-timer").addClass("active");
     // }
+
+    $(".resume").click(function (e){
+        e.preventDefault();
+        $(this).removeClass("active");
+        $(this).siblings().removeClass("active");
+    });
 
     $(".start-time").click(function (e){
 
@@ -436,19 +431,32 @@ $( document ).ready(function() {
          
     });
 
-    $(".stop-timer").click(function(e){
+    $(".register-timer").click(function(e){
         e.preventDefault();
         timer.stop();
 
-
         var date = new Date();
-        var minutes = date.getMinutes();
-        var hours = date.getHours();
-        var currentTime = hours+":"+minutes;
+        var currentTime = date.getHours()+":"+date.getMinutes();
+        var currentDate = date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear();
 
-        localStorage.setItem('stop-time',currentTime);
+        localStorage.setItem('stoped-time',currentTime);
         localStorage.setItem('time',timer.getTimeValues().toString());
-        console.log(timer.getTimeValues());
+
+        var time_start = localStorage.getItem('started-time');
+        var time_stop  = localStorage.getItem('stoped-time');
+        var time_value = localStorage.getItem('time');
+        
+        $(".main-timer").removeClass("active");
+
+        $("#time_begin_date").val(currentDate);
+        $("#time_start").val(time_start);
+        $("#time_stop").val(time_stop);        
+        $("#time_value").val(time_value);
+
+        $(".btn-info.time").click();
+
+        $("#tempoRegistrado").text("00:00:00");
+
     }); 
 
     timer.addEventListener('started', function (e) {
@@ -459,6 +467,8 @@ $( document ).ready(function() {
       e.preventDefault();
       timer.pause();
 
+        $(this).addClass("active");
+        $(this).siblings().addClass("active");
 
         var date = new Date();
         var minutes = date.getMinutes();
@@ -469,15 +479,14 @@ $( document ).ready(function() {
 
         localStorage.setItem('time',timer.getTimeValues().toString());
 
-        console.log(timer.getTimeValues());
-        console.log(timer.getTimeValues().toString());
+        // console.log(timer.getTimeValues());
+        // console.log(timer.getTimeValues().toString());
 
         timer.addEventListener('started', function (e) {
             $('#tempoRegistrado').html(timer.getTimeValues().toString());
         });
        
-
-        console.log(timer.getTimeValues());
+        // console.log(timer.getTimeValues());
 
     });  
 
@@ -485,7 +494,6 @@ $( document ).ready(function() {
     $(".celular").mask('(00) 00000-0000');
     $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
  	$('.timepicker').mask('00:00');
-
 
     $("#project").change(function (){
 
@@ -525,12 +533,27 @@ $( document ).ready(function() {
 $(document).ready(function (){
 
 
+    //  if(timer.isRunning() == true){
+    //     console.log(timer.isRunning());
+    //     console.log("ausehsaehugr");
+    //     $(".main-timer").addClass("active");
+    // }
+
     // if(localStorage.getItem('isrunning') == 'true' ){
+
+
     //     $(".main-timer").addClass("active");
 
     //     var oldtimer = new Timer();
 
     //     oldtimer.start();
+
+    //     var time_value = localStorage.getItem('time');
+
+    //     $("#tempoRegistrado").text(time_value);
+
+    //     console.log($("#tempoRegistrado").text(time_value));
+
 
 
     //     oldtimer.addEventListener('secondsUpdated', function (e) {
@@ -538,7 +561,7 @@ $(document).ready(function (){
     //     });
 
     //     oldtimer.addEventListener('started', function (e) {
-    //         $('#tempoRegistrado').html(localStorage.getItem('time'));
+    //         $('#tempoRegistrado').html(oldtimer.getTimeValues().toString());
     //     });
     // }
 
