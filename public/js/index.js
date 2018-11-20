@@ -148,11 +148,12 @@ $( document ).ready(function() {
                 if(response.error == false){
                         $(".btn-info.note").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
+                        $('.alert-hidden div').text('Anotação cadastrada com sucesso');
                         $('.alert-hidden').addClass('active');
                         setTimeout(function(){
                             $('.alert-hidden').addClass('active');
                         },2000);
-                    location.reload();
+                    // location.reload();
                 }else{
                     console.log("errou");
                 }
@@ -188,6 +189,7 @@ $( document ).ready(function() {
                 if(response.error == false){
                         $(".btn-info.file").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
+                        $('.alert-hidden div').text('Arquivo cadastrado com sucesso');
                         $('.alert-hidden').addClass('active');
                         setTimeout(function(){
                             $('.alert-hidden').addClass('active');
@@ -225,7 +227,9 @@ $( document ).ready(function() {
                 if(response.error == false){
                         $(".btn-info.time").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
+                        $('.alert-hidden div').text('Tempo cadastrado com sucesso');
                         $('.alert-hidden').addClass('active');
+                        $(".time-registers").append(response.html);
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
                         },2000);
@@ -238,6 +242,36 @@ $( document ).ready(function() {
 
         });
         return false;
+    });
+
+    $(".removeTime").click(function (e){
+        e.preventDefault();
+
+        var item = $(this).parent();
+        var id = $(this).attr("data-id");
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+            },
+            url:'/tasks/removeTime',
+            dataType:'JSON',
+            data:{id:id},
+            type:"POST",
+            success:function(response){
+                if(response.error == false){
+                    item.remove();
+                    $('.alert-hidden').addClass('active');
+                    $('.alert-hidden div').text('Tempo removido com sucesso');
+                    setTimeout(function(){
+                            $('.alert-hidden').removeClass('active');
+                        },2000);
+                }else{
+                    console.log("erro");
+                }
+            }
+        });
+
     });
 
 

@@ -38,32 +38,23 @@ class FileController extends Controller
     public function store(Request $request)
     {
 
-
-        // dd($request);
-
         $file = new File();
-        // $file->create($request->all());
         $nameFile = null;
-
         $nameF = null;
         
         // Verifica se informou o arquivo e se é válido
         if ($request->hasFile('file_url') && $request->file('file_url')->isValid()) {
-
             // Define um aleatório para o arquivo baseado no timestamps atual
             $name = uniqid(date('HisYmd'));
             // Recupera a extensão do arquivo
             $extension = $request->file_url->extension();
-
             // Define finalmente o nome
             $nameFile = "{$name}.{$extension}";
-
+            // Adicionando o a extensao do arquivo no nome 
             $namef = "{$request->get('name')}.{$extension}";
-
             // Faz o upload:
             $upload = $request->file_url->storeAs('files', $nameFile);
             // Se tiver funcionado o arquivo foi armazenado em storage/app/public/categories/nomedinamicoarquivo.extensao
-
             // Verifica se NÃO deu certo o upload (Redireciona de volta)
             if ( !$upload )
                 return redirect()
@@ -76,8 +67,6 @@ class FileController extends Controller
         $file->name        = $namef;
         $file->task_id     = $request->get('task_id');
         $file->users_id    = $request->get('users_id');
-
-        // dd($file);
 
         $file->save();
 
@@ -127,6 +116,10 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = File::find($id);
+        $file->delete();
+
+        return response()->json(['error'=>false,'status'=>true], 200);
+
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Helpers\Helper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -39,26 +41,33 @@ class TimeController extends Controller
 
     	$time = new Time();
 
-        // $estimate_date = Input::get('estimate_date'); 
-        // $estimate_date = str_replace('/', '-', $estimate_date);  
-        // $estimate_date = date('Y-m-d', strtotime($estimate_date));
-
-
-        $date = $request->get('date'); 
-        $date = str_replace('/', '-', $date);  
-        $date = date('Y-m-d', strtotime($date));
- 
-
         $time->time_value = $request->get('time_value');
-    	$time->date       = $date;
+    	$time->date       = Carbon::parse($request->get('date'))->format('Y-m-d');
     	$time->time_start = $request->get('time_start');
     	$time->time_stop  = $request->get('time_stop');
     	$time->task_id    = $request->get('task_id');
     	$time->users_id   = $request->get('users_id');
 
     	$time->save();
-        
-        return response()->json(['error'=>false,'status'=>true], 200);
+
+        // foreach ($newTimer as $time) {
+         $times =  '<div class="iten-task time">
+               <div class="usr">
+                  <div class="img" title="'.Helper::getObjectUser($time->users_id)->name.'">
+                     <img src="'.Helper::getImageUser($time->users_id).'">
+                  </div>
+                  <label>'.Helper::getObjectUser($time->users_id)->name.'</label>
+               </div>
+               <span>'.Carbon::parse($time->date)->format(' d - m - Y ').'</span>
+               <span class="timepicker">'.$time->time_start.'</span>                        
+               <span class="timepicker">'.$time->time_stop.'</span>                        
+               <span class="timepicker">'.$time->time_value.'</span>
+               <a class="btn btn-danger removeTime" href="" data-id="'.$time->id.'" ><i class="fa fa-trash"></i></a>
+         </div>';
+        // }
+
+        return response()->json(['error'=>false,'html'=>$times], 200);
+        // return response()->json(['error'=>false,'status'=>true], 200);
 
     }
 
@@ -103,9 +112,12 @@ class TimeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $time = Time::find($request->get('id'));
+        $time->delete();
+
+        return response()->json(['error'=>false,'status'=>true], 200);
     }
 
 }

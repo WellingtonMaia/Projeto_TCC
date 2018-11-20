@@ -90,22 +90,23 @@
                         <span>Ações</span>
                      </label>
                   </div>
-                  @foreach ($task->times as $time)
-                  <div class="iten-task time">
-                        <div class="usr">
-                           <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
-                              <img src="{{ Helper::getImageUser($time->users_id) }}">
+                  <div class="time-registers">
+                     @foreach ($task->times as $time)
+                     <div class="iten-task time">
+                           <div class="usr">
+                              <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
+                                 <img src="{{ Helper::getImageUser($time->users_id) }}">
+                              </div>
+                              <label>{{ Helper::getObjectUser($time->users_id)->name }}</label>
                            </div>
-                           <label>{{ Helper::getObjectUser($time->users_id)->name }}</label>
-                        </div>
-                        
-                        <span>{{  \Carbon\Carbon::parse($time->begin_date)->format(' d - m - Y ') }}</span>
-                        <span class="timepicker">{{ $time->time_start }}</span>                        
-                        <span class="timepicker">{{ $time->time_stop }}</span>                        
-                        <span class="timepicker">{{ $time->time_value }}</span>
-                        <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
+                           <span>{{ \Carbon\Carbon::parse($time->date)->format(' d - m - Y ') }}</span>
+                           <span class="timepicker">{{ $time->time_start }}</span>                        
+                           <span class="timepicker">{{ $time->time_stop }}</span>                        
+                           <span class="timepicker">{{ $time->time_value }}</span>
+                           <a class="btn btn-danger removeTime" href="" data-id="{{ $time->id }}" ><i class="fa fa-trash"></i></a>
+                     </div>
+                     @endforeach
                   </div>
-                  @endforeach
                @endif
 
                
