@@ -153,15 +153,17 @@
                         <span>Arquivo</span>
                      </label>
                   </div>
-                  @foreach ($task->files as $file)
-                  <div class="iten-task file">                     
-                     <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
-                        <img src="{{ Helper::getImageUser($file->users_id) }}">
+                  <div class="file-registers">
+                     @foreach ($task->files as $file)                  
+                     <div class="iten-task file">                     
+                        <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
+                           <img src="{{ Helper::getImageUser($file->users_id) }}">
+                        </div>
+                        <div><a href="{{ url('storage/files/'.$file->file_url) }}" target="_blank">{{ $file->name }}</a></div>
+                        <a class="btn btn-danger" href="" data-id="{{ $file->id }}"><i class="fa fa-trash"></i></a>                  
                      </div>
-                     <div><a href="{{ url('storage/files/'.$file->file_url) }}" target="_blank">{{ $file->name }}</a></div>
-                     <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>                  
+                     @endforeach
                   </div>
-                  @endforeach
                @endif
 
                
@@ -205,15 +207,17 @@
                         <span>Descrição</span>
                      </label>
                   </div>
-                  @foreach ($task->notes as $note)
-                  <div class="iten-task">
-                     <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
-                        <img src="{{ Helper::getImageUser($note->users_id) }}">
+                  <div class="notes-registers">
+                     @foreach ($task->notes as $note)                  
+                     <div class="iten-task">
+                        <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
+                           <img src="{{ Helper::getImageUser($note->users_id) }}">
+                        </div>
+                        <div class="note-desc">{{ $note->description }}</div>
+                        <a class="btn btn-danger" class="removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
                      </div>
-                     <div class="note-desc">{{ $note->description }}</div>
-                     <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
+                     @endforeach
                   </div>
-                  @endforeach
                @endif 
                
             </div>

@@ -150,10 +150,10 @@ $( document ).ready(function() {
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Anotação cadastrada com sucesso');
                         $('.alert-hidden').addClass('active');
+                        $(".note-registers").append(response.html);
                         setTimeout(function(){
                             $('.alert-hidden').addClass('active');
                         },2000);
-                    // location.reload();
                 }else{
                     console.log("errou");
                 }
@@ -191,10 +191,10 @@ $( document ).ready(function() {
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Arquivo cadastrado com sucesso');
                         $('.alert-hidden').addClass('active');
+                        $(".file-registers").append(response.html);
                         setTimeout(function(){
                             $('.alert-hidden').addClass('active');
                         },2000);
-                    // location.reload();
                 }else{
                     console.log("errou");
                 }
@@ -250,27 +250,119 @@ $( document ).ready(function() {
         var item = $(this).parent();
         var id = $(this).attr("data-id");
 
-        $.ajax({
-            headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
-            },
-            url:'/tasks/removeTime',
-            dataType:'JSON',
-            data:{id:id},
-            type:"POST",
-            success:function(response){
-                if(response.error == false){
-                    item.remove();
-                    $('.alert-hidden').addClass('active');
-                    $('.alert-hidden div').text('Tempo removido com sucesso');
-                    setTimeout(function(){
-                            $('.alert-hidden').removeClass('active');
-                        },2000);
-                }else{
-                    console.log("erro");
+        swal({
+            title:"Tem certeza que deseja remover essa anotação ?",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            confirmButtonColor: '#0b5196',
+            cancelButtonText: 'Não',
+            cancelButtonColor: '#d33',
+
+        }).then(function (){            
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                },
+                url:'/tasks/removeTime',
+                dataType:'JSON',
+                data:{id:id},
+                type:"POST",
+                success:function(response){
+                    if(response.error == false){
+                        item.remove();
+                        $('.alert-hidden').addClass('active');
+                        $('.alert-hidden div').text('Tempo removido com sucesso');
+                        setTimeout(function(){
+                                $('.alert-hidden').removeClass('active');
+                            },2000);
+                    }else{
+                        console.log("erro");
+                    }
                 }
-            }
+            });
         });
+    });
+
+    $(".removeNote").click(function (e){
+        e.preventDefault();
+
+        var item = $(this).parent();
+        var id = $(this).attr("data-id");
+
+
+        swal({
+            title:"Tem certeza que deseja remover essa anotação ?",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            confirmButtonColor: '#0b5196',
+            cancelButtonText: 'Não',
+            cancelButtonColor: '#d33',
+        }).then(function (){
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                },
+                url:'/tasks/removeNote',
+                dataType:'JSON',
+                data:{id:id},
+                type:"POST",
+                success:function(response){
+                    if(response.error == false){
+                        item.remove();
+                        $('.alert-hidden').addClass('active');
+                        $('.alert-hidden div').text('Anotação removida com sucesso');
+                        setTimeout(function(){
+                                $('.alert-hidden').removeClass('active');
+                            },2000);
+                    }else{
+                        console.log("erro");
+                    }
+                }
+            });
+        });
+    });
+
+    $(".removeFile").click(function (e){
+        e.preventDefault();
+
+        var item = $(this).parent();
+        var id = $(this).attr("data-id");
+
+        swal({
+            title:"Tem certeza que deseja remover esse arquivo ?",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            confirmButtonColor: '#0b5196',
+            cancelButtonText: 'Não',
+            cancelButtonColor: '#d33',
+
+        }).then(function(){
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                },
+                url:'/tasks/removeFile',
+                dataType:'JSON',
+                data:{id:id},
+                type:"POST",
+                success:function(response){
+                    if(response.error == false){
+                        item.remove();
+                        $('.alert-hidden').addClass('active');
+                        $('.alert-hidden div').text('Anotação removida com sucesso');
+                        setTimeout(function(){
+                                $('.alert-hidden').removeClass('active');
+                            },2000);
+                    }else{
+                        console.log("erro");
+                    }
+                }
+            });
+        });
+
 
     });
 

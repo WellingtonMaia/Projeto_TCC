@@ -164,6 +164,8 @@
         
         <!-- Bootstrap Core JavaScript -->
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <!-- SwwetAlert All JavaScript -->
+        <script src="{{ asset('js/sweetalert.all.min.js') }}"></script>
         <!-- Menu Plugin JavaScript -->
         <script src="{{ asset('css/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
         <!--slimscroll JavaScript -->

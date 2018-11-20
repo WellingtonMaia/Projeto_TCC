@@ -70,7 +70,17 @@ class FileController extends Controller
 
         $file->save();
 
-        return response()->json(['error'=>false,'status'=>true], 200);
+        $files = '<div class="iten-task file">                     
+                        <div class="img" title="'.Helper::getObjectUser($file->users_id)->name.'">
+                           <img src="'.Helper::getImageUser($file->users_id).'">
+                        </div>
+                        <div><a href="'.url('storage/files/'.$file->file_url) .'" target="_blank">'.$file->name.'</a></div>
+                        <a class="btn btn-danger" class="removeFile" href="" data-id="'.$file-id.'"><i class="fa fa-trash"></i></a>                  
+                     </div>'
+
+
+
+        return response()->json(['error'=>false,'html'=>$files], 200);
 
     }
 
@@ -114,9 +124,9 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $file = File::find($id);
+        $file = File::find($request->get('id'));
         $file->delete();
 
         return response()->json(['error'=>false,'status'=>true], 200);

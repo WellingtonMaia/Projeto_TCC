@@ -54,7 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/tasks/addNote/', 'NoteController@store');
         Route::post('/tasks/addFile/', 'FileController@store');
         Route::post('/tasks/addTime/', 'TimeController@store');
+
         Route::post('/tasks/removeTime/', 'TimeController@destroy');
+        Route::post('/tasks/removeNote/', 'NoteController@destroy');
+        Route::post('/tasks/removeFile/', 'FileController@destroy');
 
 
 

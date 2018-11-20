@@ -44,11 +44,17 @@ class NoteController extends Controller
         $note->task_id     = $request->get('task_id');
         $note->users_id    = $request->get('users_id');
 
-        // dd($note);
-
         $note->save();
 
-        return response()->json(['error'=>false,'status'=>true], 200);
+        $notes = '<div class="iten-task">
+                        <div class="img" title="'.Helper::getObjectUser($note->users_id)->name.'">
+                           <img src="'.Helper::getImageUser($note->users_id).'">
+                        </div>
+                        <div class="note-desc">'.$note->description.'</div>
+                       <a class="btn btn-danger" class="removeNote" href="" data-id="'.$note->id.'" ><i class="fa fa-trash"></i></a>
+                     </div>';
+
+        return response()->json(['error'=>false,'html'=>$notes], 200);
 
     }
 
@@ -92,9 +98,9 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $note = Note::find($id);
+        $note = Note::find($request->get('id'));
         $note->delete();
         
         return response()->json(['error'=>false,'status'=>true], 200);
