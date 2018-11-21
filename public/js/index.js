@@ -229,6 +229,8 @@ $( document ).ready(function() {
                         $('.alert-hidden div').text('Tempo cadastrado com sucesso');
                         $('.alert-hidden').addClass('active');
                         $(".time-registers").append(response.html);
+                        $("#tempoRegistrado").text("00:00:00");
+                        localStorage.clear();
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
                         },2000);
@@ -405,25 +407,16 @@ $( document ).ready(function() {
     });
 
     $(".start-time").click(function (e){
-
+        e.preventDefault();
         localStorage.setItem('isrunning','true');
 
         var date = new Date();
-        var minutes = date.getMinutes();
-        var hours = date.getHours();
-        var currentTime = hours+":"+minutes;
+        var currentTime = date.getHours()+":"+date.getMinutes();
 
         localStorage.setItem('started-time',currentTime);
 
-        console.log(localStorage.getItem('started-time'));
+        $(".main-timer").addClass("active");
 
-        console.log(timer.getTimeValues(10,20,8));
-        console.log(timer.getTimeValues(10,20,8));
-
-
-      $(".main-timer").addClass("active");
-
-        e.preventDefault();
         timer.start();
         timer.addEventListener('secondsUpdated', function (e) {
             $('#tempoRegistrado').html(timer.getTimeValues().toString());
@@ -444,7 +437,8 @@ $( document ).ready(function() {
 
         var time_start = localStorage.getItem('started-time');
         var time_stop  = localStorage.getItem('stoped-time');
-        var time_value = localStorage.getItem('time');
+        // var time_value = localStorage.getItem('time');
+        var time_value = $("#tempoRegistrado").text();
         
         $(".main-timer").removeClass("active");
 
@@ -454,8 +448,6 @@ $( document ).ready(function() {
         $("#time_value").val(time_value);
 
         $(".btn-info.time").click();
-
-        $("#tempoRegistrado").text("00:00:00");
 
     }); 
 

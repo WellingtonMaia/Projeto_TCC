@@ -113,7 +113,7 @@
                         </div>
                         <ul class="nav" id="side-menu">
                             <li style="padding: 70px 0 0;">
-                                <a href="{{route('home')}}" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+                                <a href="{{route('home')}}" class="waves-effect"><i class="fa fa-dashboard fa-fw" aria-hidden="true"></i>Dashboard</a>
                             </li>
                             <li>
                                 <a href="{{route('projects')}}" class="waves-effect"><i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Projetos</a>

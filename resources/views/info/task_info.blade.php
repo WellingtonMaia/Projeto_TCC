@@ -33,7 +33,7 @@
          <div class="white-box">
             <div class="box-content">
                <div class="topo-box">
-                  <h2><i class="fa fa-dashboard fa-fw" aria-hidden="true"></i> Tempo</h2>
+                  <h2><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i> Tempo</h2>
                   <div class="buttons">
                      <a href="" class="start-time btn btn-success"><i class="fa fa-play fa-fw" aria-hidden="true"></i>Iniciar tempo</a>
                      <a href="" class="btn btn-info time" ><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Adicionar Tempo</a>
