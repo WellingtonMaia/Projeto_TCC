@@ -50,25 +50,21 @@ class TimeController extends Controller
 
     	$time->save();
 
-        // foreach ($newTimer as $time) {
-         $times =  '<div class="iten-task time">
+        $times =  '<div class="iten-task time">
                <div class="usr">
                   <div class="img" title="'.Helper::getObjectUser($time->users_id)->name.'">
                      <img src="'.Helper::getImageUser($time->users_id).'">
                   </div>
                   <label>'.Helper::getObjectUser($time->users_id)->name.'</label>
                </div>
-               <span>'.Carbon::parse($time->date)->format(' d - m - Y ').'</span>
+               <span>'.Carbon::parse($time->date)->format('d/m/Y').'</span>
                <span class="timepicker">'.$time->time_start.'</span>                        
                <span class="timepicker">'.$time->time_stop.'</span>                        
                <span class="timepicker">'.$time->time_value.'</span>
                <a class="btn btn-danger removeTime" href="" data-id="'.$time->id.'" ><i class="fa fa-trash"></i></a>
          </div>';
-        // }
 
         return response()->json(['error'=>false,'html'=>$times], 200);
-        // return response()->json(['error'=>false,'status'=>true], 200);
-
     }
 
     

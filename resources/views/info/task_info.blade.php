@@ -19,9 +19,9 @@
             <div class="white-box">
                <div class="block-title"><h2>{{ $task->name }}</h2></div>
                <div class="info-task">
-                  <span>Data estimada:{{  \Carbon\Carbon::parse($task->estimate_date)->format(' d - m - Y ') }}</span>
-                  <span>Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' d - m - Y ') }}</span>
-                  <span>Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' d - m - Y') }})</span>
+                  <span>Data estimada:{{ \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') }}</span>
+                  <span>Inicio: {{ \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') }}</span>
+                  <span>Vence: {{ \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }}</span>
                   <span>Tempo Estimado: {{ $task->estimate_time }}</span>
                   <span>Valor Referente ao tempo gasto na tarefa: {{ $task->tasks_price }}</span>
                   <div class="descricao-tarefa">
@@ -99,7 +99,7 @@
                               </div>
                               <label>{{ Helper::getObjectUser($time->users_id)->name }}</label>
                            </div>
-                           <span>{{ \Carbon\Carbon::parse($time->date)->format(' d - m - Y ') }}</span>
+                           <span>{{ \Carbon\Carbon::parse($time->date)->format('d/m/Y') }}</span>
                            <span class="timepicker">{{ $time->time_start }}</span>                        
                            <span class="timepicker">{{ $time->time_stop }}</span>                        
                            <span class="timepicker">{{ $time->time_value }}</span>

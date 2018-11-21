@@ -245,14 +245,15 @@ $( document ).ready(function() {
         return false;
     });
 
-    $(".removeTime").click(function (e){
+
+    $(".time-registers").on('click','.removeTime', function(e){
         e.preventDefault();
 
         var item = $(this).parent();
         var id = $(this).attr("data-id");
 
         swal({
-            title:"Tem certeza que deseja remover essa anotação ?",
+            title:"Tem certeza que deseja remover esse tempo ?",
             showConfirmButton: true,
             showCancelButton: true,
             confirmButtonText: 'Sim',
@@ -287,7 +288,7 @@ $( document ).ready(function() {
         });
     });
 
-    $(".removeNote").click(function (e){
+    $(".note-registers").on('click','.removeNote', function(e){
         e.preventDefault();
 
         var item = $(this).parent();
@@ -330,9 +331,8 @@ $( document ).ready(function() {
         });
     });
 
-    $(".removeFile").click(function (e){
+    $(".file-registers").on('click', '.removeFile', function (e){
         e.preventDefault();
-
         var item = $(this).parent();
         var id = $(this).attr("data-id");
 
@@ -370,8 +370,6 @@ $( document ).ready(function() {
                 });
             }
         });
-
-
     });
 
 
@@ -380,8 +378,6 @@ $( document ).ready(function() {
         $(this).parent().parent().next().addClass("active");
         $(".shadow").addClass("active");
     });
-
-
 
     $(".shadow").click(function (){
         $(this).removeClass("active");
@@ -393,12 +389,6 @@ $( document ).ready(function() {
 
 
     var timer = new Timer();
-
-    //  if(timer.isRunning() == true){
-    //     console.log(timer.isRunning());
-    //     console.log("ausehsaehugr");
-    //     $(".main-timer").addClass("active");
-    // }
 
     $(".resume").click(function (e){
         e.preventDefault();
@@ -431,6 +421,7 @@ $( document ).ready(function() {
         var date = new Date();
         var currentTime = date.getHours()+":"+date.getMinutes();
         var currentDate = date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear();
+        var dateUTC     = date.getUTCFullYear()+'-'+date.getUTCMonth()+'-'+date.getUTCDate();
 
         localStorage.setItem('stoped-time',currentTime);
         localStorage.setItem('time',timer.getTimeValues().toString());
@@ -439,7 +430,18 @@ $( document ).ready(function() {
         var time_stop  = localStorage.getItem('stoped-time');
         // var time_value = localStorage.getItem('time');
         var time_value = $("#tempoRegistrado").text();
-        
+
+        var time = new Date(dateUTC+"T"+time_value);
+
+        if (time.getMinutes() == 0) {
+            time_value = '00:01';
+            // time_value.text("00:01");    
+        }
+
+        console.log(dateUTC+"T"+time_value);
+        console.log(time);
+        console.log(time.getMinutes());
+
         $(".main-timer").removeClass("active");
 
         $("#time_begin_date").val(currentDate);
@@ -471,15 +473,9 @@ $( document ).ready(function() {
 
         localStorage.setItem('time',timer.getTimeValues().toString());
 
-        // console.log(timer.getTimeValues());
-        // console.log(timer.getTimeValues().toString());
-
         timer.addEventListener('started', function (e) {
             $('#tempoRegistrado').html(timer.getTimeValues().toString());
-        });
-       
-        // console.log(timer.getTimeValues());
-
+        });       
     });  
 
 
