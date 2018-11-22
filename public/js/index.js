@@ -92,8 +92,11 @@ $( document ).ready(function() {
     //     console.log($(".task-completed"));
     // } 
 
-    $(".task-completed").on("change", function (){
-        
+
+
+    // ajax
+    $(".list-tasks").on('change','.task-completed', function (){
+
         currentTask = $(this).parent().parent();
 
         currentTask.toggleClass("completed");
@@ -120,19 +123,11 @@ $( document ).ready(function() {
             }
 
         });
-            
-        // }else{
-        //     $(this).parent().parent().removeClass("completed");
-        //     console.log("volta");
-        // }
     });
 
-    // ajax
-
     $("#addTask").submit(function (){
-
-
-            var data = $(this).serialize();
+            var scope = $(this)
+            var data = scope.serialize();
 
             $.ajax({
                 headers:{
@@ -143,33 +138,24 @@ $( document ).ready(function() {
                 data:{data},
                 dataType:"JSON",
                 success:function(response){
-                    if(response.error == false){
-                            $(".btn-info.time").parent().parent().next().removeClass("active");
-                            $(".shadow").removeClass("active");
-                            $('.alert-hidden div').text('Tempo cadastrado com sucesso');
+                    if(response.error == false){                            
+                            $(".task-box , .shadow").removeClass("active");
+                            $('.alert-hidden div').text('Tarefa cadastrada com sucesso');
                             $('.alert-hidden').addClass('active');
-                            $(".time-registers").append(response.html);
-                            $("#tempoRegistrado").text("00:00:00");
-                            $("#addTime input").val("");
-                            localStorage.clear();
+                            $(".list-tasks").append(response.html);                            
+                            scope.find('input').val("");
+                            scope.find('textarea').val("");                           
                             setTimeout(function(){
                                 $('.alert-hidden').removeClass('active');
-                            },2000);
-                        // location.reload();
+                            },2000);                        
                     }else{
                         console.log("errou");
                     }
                 }
-
-
             });
             return false;
         }); 
     });
-
-
-
-
 
     $("#addTime").submit(function(){
         var task_id = $("#time_task_id").val();
@@ -255,8 +241,7 @@ $( document ).ready(function() {
 
 
 
-    $("#addNote").submit(function(){
-        // event.preventDefault();
+    $("#addNote").submit(function(){       
 
         var task_id = $("#note_task_id").val();
         var users_id = $("#note_users_id").val();
@@ -292,6 +277,48 @@ $( document ).ready(function() {
     });
 
 
+    // delete ajax
+    $(".list-tasks").on('click', '.removeTask', function (e){
+        e.preventDefault();
+
+        var item = $(this).parent().parent();
+        var id = $(this).attr("data-id");
+        
+        swal({
+            title:"Tem certeza que deseja remover essa tarefa ?",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Sim',
+            // confirmButtonColor: '#0b5196',
+            cancelButtonText: 'Não',
+            cancelButtonColor: '#d33',
+
+        }).then(function (e){            
+            if(e.value == true){
+                $.ajax({
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                    },
+                    url:'/tasks/removeTask',
+                    dataType:'JSON',
+                    data:{id:id},
+                    type:"POST",
+                    success:function(response){
+                        if(response.error == false){
+                            item.remove();
+                            $('.alert-hidden').addClass('active');
+                            $('.alert-hidden div').text('Tarefa removido com sucesso');
+                            setTimeout(function(){
+                                    $('.alert-hidden').removeClass('active');
+                                },2000);
+                        }else{
+                            console.log("erro");
+                        }
+                    }
+                });
+            }
+        });
+    });
 
     $(".time-registers").on('click','.removeTime', function(e){
         e.preventDefault();
@@ -420,11 +447,9 @@ $( document ).ready(function() {
     });
 
     $("#open-fancy").click(function (e){
-        e.preventDefault();
-        console.log("aaaa");
+        e.preventDefault();        
         $(".task-box").addClass("active");
-         $(".shadow").addClass("active");
-
+        $(".shadow").addClass("active");
     });
 
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){

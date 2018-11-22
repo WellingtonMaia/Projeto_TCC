@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Helpers\Helper;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\Helper;
+use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Note;
@@ -108,23 +110,14 @@ class TaskController extends Controller
             return Redirect::to('projects');
         }
 
-        $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
-        $estimate_date = date('Y-m-d', strtotime($estimate_date));
-
-        $begin_date = Input::get('begin_date'); $begin_date = str_replace('/', '-', $begin_date);  
-        $begin_date = date('Y-m-d', strtotime($begin_date));
-
-        $final_date = Input::get('final_date'); $final_date = str_replace('/', '-', $final_date);  
-        $final_date = date('Y-m-d', strtotime($final_date));
-
-        $task->name = Input::get('name');
-        $task->description = Input::get('description');
-        $task->estimate_date = $estimate_date;
-        $task->status = Input::get('status');
-        $task->estimate_time = Input::get('estimate_time');
-        $task->begin_date = $begin_date;
-        $task->final_date = $final_date;
-        $task->project_id = Input::get('project');
+        $task->name           = Input::get('name');
+        $task->description    = Input::get('description');
+        $task->estimate_date  = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');     
+        $task->status         = Input::get('status');
+        $task->estimate_time  = Input::get('estimate_time');
+        $task->begin_date     = Carbon::parse(str_replace('/', '-',Input::get('begin_date')))->format('Y-m-d');     
+        $task->final_date     = Carbon::parse(str_replace('/', '-',Input::get('final_date')))->format('Y-m-d');     
+        $task->project_id     = Input::get('project');
 
         $task->save();
 
@@ -149,6 +142,38 @@ class TaskController extends Controller
        $task = task::find($id);
        return view('info.task_info')->with("task", $task);
     }
+
+    public function edit($id){
+        $task = task::find($id);
+
+        $task->name           = Input::get('name');
+        $task->description    = Input::get('description');
+        $task->estimate_date  = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');     
+        $task->status         = Input::get('status');
+        $task->estimate_time  = Input::get('estimate_time');
+        $task->begin_date     = Carbon::parse(str_replace('/', '-',Input::get('begin_date')))->format('Y-m-d');     
+        $task->final_date     = Carbon::parse(str_replace('/', '-',Input::get('final_date')))->format('Y-m-d');     
+        $task->project_id     = Input::get('project');
+
+        $task->save();
+
+        foreach ($request->get('users') as $user) {
+            $task->users()->attach($user);
+        }    
+
+        Session::flash('message', 'Cadastro editado com sucesso!');
+        return Redirect::to('tasks');
+    }
+
+
+    public function delete($id){
+        $task = Task::find($id);
+        $task->delete();
+
+        Session::flash('message', 'Cadastro deletado com sucesso!');
+        return Redirect::to('tasks');
+    }
+
 
     public function addTask(Request $request){
 
@@ -189,53 +214,69 @@ class TaskController extends Controller
                          <div class="dates begin">( Inicio: '.Carbon\Carbon::parse($task->begin_date)->format('d/m/Y ') .'</div>
                          <div class="dates final"> Vence: '.Carbon\Carbon::parse($task->final_date)->format('d/m/Y') .' )</div>                               
                       </a>
-                      <a class="btn btn-danger" href="'.url('tasks/delete/'.$task->id) .'"><i class="fa fa-trash"></i></a>
+                      <a class="btn btn-danger removeTask" data-id="'.$task->id.'" href="'. url('tasks/delete/'.$task->id).'"><i class="fa fa-trash"></i></a>
                    </div>
                 </div>
         ';
 
-
         return response()->json(['error'=>false,'html'=>$html], 200);
 
-
-
     }
 
-    public function edit($id){
-        $task = task::find($id);
 
-        $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
-        $estimate_date = date('Y-m-d', strtotime($estimate_date));
+    public function editTask(Request $request){
 
-        $begin_date = Input::get('begin_date'); $begin_date = str_replace('/', '-', $begin_date);  
-        $begin_date = date('Y-m-d', strtotime($begin_date));
+        $task = Task::find($request->get('task_id'));
 
-        $final_date = Input::get('final_date'); $final_date = str_replace('/', '-', $final_date);  
-        $final_date = date('Y-m-d', strtotime($final_date));
+        $task->name             = $request->get('name');
+        $task->description      = $request->get('description');       
+        $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');     
+        $task->status           = $request->get('status');         
+        $task->estimate_time    = $request->get('estimate_time');    
+        $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
+        $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');      
+        $task->project_id       = $request->get('project_id');    
 
-        $task->name = Input::get('name');
-        $task->description = Input::get('description');
-        $task->estimate_date = $estimate_date;
-        $task->status = Input::get('status');
-        $task->estimate_time = Input::get('estimate_time');
-        $task->begin_date = $begin_date;
-        $task->final_date = $final_date;
-        $task->project_id = Input::get('project');
         $task->save();
 
-        Session::flash('message', 'Cadastro editado com sucesso!');
-        return Redirect::to('tasks');
+        foreach ($request->get('users') as $user) {
+            $task->users()->attach($user);
+        }    
+
+        $html = '
+            <div class="iten-task">
+               <div class="item" data-status="'.$task->status'.">
+                  <label>
+                     <input type="checkbox" name="completed" data-id=".'$task->id'." data-status="'.$task->status.'" class="task-completed" '.isset($task->status == "C") ? checked="checked" : " ".'>
+                     <span class="check-bottom"></span>
+                  </label>
+                  <a class="link" href="'. url('projects/tasks/show-info/'.$task->id) .'">
+                     <span class="task-users">
+                        '.foreach($task->users as $user): .'
+                        <span class="user" title="'.$user->name .'">    
+                           '. Helper::getFirstName($user) .'                             
+                        </span>
+                        '.endforeach;.'
+                     </span>
+                     <h3 title="'. $task->name .'">'.$task->name .'</h3>
+                     <div class="hidden">'.$task->description .'</div>                                 
+                     <div class="dates begin">( Inicio: '.Carbon\Carbon::parse($task->begin_date)->format('d/m/Y ') .'</div>
+                     <div class="dates final"> Vence: '.Carbon\Carbon::parse($task->final_date)->format('d/m/Y') .' )</div>                               
+                  </a>
+                  <a class="btn btn-danger removeTask" data-id="'.$task->id.'" href="'. url('tasks/delete/'.$task->id).'"><i class="fa fa-trash"></i></a>
+               </div>
+            </div>
+        ';
+
+        return response()->json(['error'=>false,'html'=>$html], 200);
     }
 
-
-    public function delete($id){
-        $task = Task::find($id);
+    public function deleteTask(Request $request){
+        $task = Task::find($request->get('id'));
         $task->delete();
 
-        Session::flash('message', 'Cadastro deletado com sucesso!');
-        return Redirect::to('tasks');
+        return response()->json(['error'=>false,'status'=>true], 200);
     }
-
 
 }
         // exemplo relacionamento
