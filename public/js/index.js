@@ -128,8 +128,14 @@ $( document ).ready(function() {
     $("#addTask").submit(function (){
             var scope = $(this);
             var data = scope.serialize();
+            // var project_id = $("#project_id").val();
 
+            // console.log(project_id);
+            console.log(data);
+            // console.log(data.users);
+            // console.log(unserialize( $data));
             $.ajax({
+
                 headers:{
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
                 },
@@ -561,7 +567,18 @@ $( document ).ready(function() {
 
 
     $(".celular").mask('(00) 00000-0000');
-    $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
+
+    $(".money").mask('000.000.000.000.000,00', {reverse: true});
+
+
+    jQuery('.datepicker').datepicker({ 
+        format: 'dd/mm/yyyy',
+        language:'pt-Br',
+        autoclose:true,
+        todayBtn:'linked',
+        todayHighlight:true
+    });
+
  	$('.timepicker').mask('00:00');
 
     $("#project").change(function (){

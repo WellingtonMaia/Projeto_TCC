@@ -53,11 +53,11 @@ class ReportController extends Controller
         // $date_ini = '2018-11-14';
         // $date_final = '2018-11-16';
         $projects = Project::whereBetween('created_at', [$date_ini, $date_final])
-        ->where('status','I')
-        ->get();
+                            ->where('status','I')
+                            ->get();
         // dd($projects);
 
-        return view('info.report',compact('project'));
+        // return view('info.report',compact('project'));
     }
 
     //->tempo gasto em cada projeto por pessoa

@@ -34,9 +34,9 @@
                         <tr>
                            <td> <a href="{{ url('projects/show-info/'.$project->id) }}">{{ $project->name }}</a></td>
                            <td>{{ \Carbon\Carbon::parse($project->estimate_date)->format('d/m/Y') }}</td>
-                           <td>{{ $project->estimate_time }}</td>
+                           <td class="timepicker">{{ $project->estimate_time }}</td>
                            <td>@if( $project->status == "A")Ativo @else Inativo @endif</td>
-                           <td>{{ $project->project_price }}</td>
+                           <td class="money">{{ $project->project_price }}</td>
                            <td>@if( $project->project_type == "I")Interno @else Externo @endif</td>
                            <td>
                               <a class="btn btn-info" href="{{ url('projects/show/'.$project->id) }}"><i class="fa fa-edit"></i></a>

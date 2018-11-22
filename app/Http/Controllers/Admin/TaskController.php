@@ -179,6 +179,7 @@ class TaskController extends Controller
 
         $task = new Task();
 
+        $task->project_id       = $request->get('project');   
         $task->name             = $request->get('name');
         $task->description      = $request->get('description');       
         $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');     
@@ -186,7 +187,9 @@ class TaskController extends Controller
         $task->estimate_time    = $request->get('estimate_time');    
         $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
         $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');      
-        $task->project_id       = $request->get('project_id');    
+        
+
+        // dd($request);
 
         $task->save();
 
@@ -213,8 +216,6 @@ class TaskController extends Controller
         $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
         $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');      
         $task->project_id       = $request->get('project_id');    
-
-        $veryGood = 'Veri Naice';
 
         $task->save();
 

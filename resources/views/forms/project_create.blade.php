@@ -32,7 +32,7 @@
 								<div class="form-content-50">
 									<div class="form-group">
 										<label for="estimate_date ">Data Estimada de Entrega</label>
-										<input type="text" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($project) ? $project->estimate_date : "" }}" required>
+										<input type="text" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($project) ? Carbon\Carbon::parse($project->estimate_date)->format('d/m/Y') : "" }}" required>
 									</div>
 									
 									<div class="form-group">
@@ -55,7 +55,7 @@
 								<div class="form-group">
 
 									<label for="project_price">Preco do Projeto</label>
-									<input type="text" name="project_price" class="form-control" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>
+									<input type="text" name="project_price" class="form-control money" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>
 
 								</div>
 								

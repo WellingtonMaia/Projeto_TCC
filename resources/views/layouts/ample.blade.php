@@ -8,10 +8,10 @@
         <meta name="author" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
-        <link rel="icon shortcut" type="image/gif" href="{{ asset('img/favicon.svg') }}">
+        <link rel="icon shortcut" type="image/gif" href="{{ asset('img/favicon.png') }}">
         
         <link href="{{ asset('css/all.min.css') }}"  rel="stylesheet" >
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> --}}
         <link href="{{ asset('js/sweetalert.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}"  rel="stylesheet" >
 
