@@ -57,6 +57,14 @@
                <div class="white-box">
                   <div class="" id="tarefas">
                      <h3 class="block-title">Tarefas</h3>
+                     <div class="form-group col-sm-4 col-lg-4">
+                        <label class="control-label">Teste</label>
+                        <input class="input-check" type="checkbox" name="destaque" id="destaque">
+                        <label for="destaque" class="input-check">
+                        <span class="on">ON</span>
+                        <span class="off">OFF</span>
+                        </label>
+                     </div>
                      <div class="list-tasks">
                         @if($project->tasks->count() == 0)
                         <span>Projeto sem tarefas cadastradas</span>
