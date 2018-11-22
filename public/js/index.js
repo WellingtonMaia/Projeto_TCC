@@ -61,24 +61,24 @@
             showPass = 0
         }
     })
-})(jQuery)
+})(jQuery);
 
 $( document ).ready(function() {    	
 
-	function getRandomInt(min, max) {
-	  min = Math.ceil(min);
-	  max = Math.floor(max);
-	  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-	}
+	// function getRandomInt(min, max) {
+	//   min = Math.ceil(min);
+	//   max = Math.floor(max);
+	//   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+	// }
 
-	var n = getRandomInt(1,4);
-	$(".aside::before").css("background","url('../img/sidebar-"+n+".jpg')");
+	// var n = getRandomInt(1,4);
+	// $(".aside::before").css("background","url('../img/sidebar-"+n+".jpg')");
 
 
-	$(".header .left .menu").click(function (){
-		$(this).toggleClass('active');
-		$(".aside").toggleClass('active');
-	});
+	// $(".header .left .menu").click(function (){
+	// 	$(this).toggleClass('active');
+	// 	$(".aside").toggleClass('active');
+	// });
 
     // if($(".task-completed").is(':checked')){
     //     $(".task-completed").parent().parent().addClass("completed");
@@ -126,7 +126,7 @@ $( document ).ready(function() {
     });
 
     $("#addTask").submit(function (){
-            var scope = $(this)
+            var scope = $(this);
             var data = scope.serialize();
 
             $.ajax({
@@ -155,7 +155,7 @@ $( document ).ready(function() {
             });
             return false;
         }); 
-    });
+    // });
 
     $("#addTime").submit(function(){
         var task_id = $("#time_task_id").val();
@@ -186,20 +186,15 @@ $( document ).ready(function() {
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
                         },2000);
-                    // location.reload();
                 }else{
                     console.log("errou");
                 }
             }
-
-
         });
         return false;
     });
 
     $("#addFile").submit(function(){
-        // event.preventDefault();
-
         var task_id = $("#task_id").val();
         var users_id = $("#users_id").val();
         var file_url = $("#file_url").val();
@@ -233,8 +228,6 @@ $( document ).ready(function() {
                     console.log("errou");
                 }
             }
-
-
         });
         return false;
     });
@@ -270,8 +263,6 @@ $( document ).ready(function() {
                     console.log("errou");
                 }
             }
-
-
         });
         return false;
     });
@@ -446,6 +437,7 @@ $( document ).ready(function() {
         });
     });
 
+
     $("#open-fancy").click(function (e){
         e.preventDefault();        
         $(".task-box").addClass("active");
@@ -466,9 +458,6 @@ $( document ).ready(function() {
         $(".btn-info.file").parent().parent().next().removeClass("active");
         $(".btn-info.note").parent().parent().next().removeClass("active");
     });
-
-
-
 
 
     var timer = new Timer();
@@ -574,40 +563,41 @@ $( document ).ready(function() {
 
     $("#project").change(function (){
 
-    var data = $(this).val();
+        var data = $(this).val();
 
-    $.ajax({
-        url: '/tasks/getUsers',
-        type: "GET",
-        data: {id : data},
-        dataType:'JSON',
-        success:function(response){
-            if(response.error == false){
-                $("#usersProject").html(response.html);
-            }else{
-                console.log("erro");
-            }           
-        }
-      });
+        $.ajax({
+            url: '/tasks/getUsers',
+            type: "GET",
+            data: {id : data},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){
+                    $("#usersProject").html(response.html);
+                }else{
+                    console.log("erro");
+                }
+            }
+        });
     });
 
-    const id = $('#id').val();
+    // const id = $('#id').val();
 
      // Initialize a Line chart in the container with the ID chart1
-      new Chartist.Line('#chart1', {
-        labels: [id, 2, 3, 4],
-        series: [[100, 120, 180, 200]]
-      });
+//       new Chartist.Line('#chart1', {
+//         labels: [id, 2, 3, 4],
+//         series: [[100, 120, 180, 200]]
+//       });
 
-      // Initialize a Line chart in the container with the ID chart2
-      new Chartist.Bar('#chart2', {
-        labels: [1, 2, 3, 4],
-        series: [[5, 2, 8, 3]]
-      });
+//       // Initialize a Line chart in the container with the ID chart2
+//       new Chartist.Bar('#chart2', {
+//         labels: [1, 2, 3, 4],
+//         series: [[5, 2, 8, 3]]
+//       });
 });
 
 
-$(document).ready(function (){
+
+// $(document).ready(function (){
 
 
     //  if(timer.isRunning() == true){
@@ -643,7 +633,7 @@ $(document).ready(function (){
     // }
 
 
-});
+// });
 
 
 

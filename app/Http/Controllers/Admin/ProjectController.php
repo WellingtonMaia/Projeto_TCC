@@ -89,8 +89,6 @@ class ProjectController extends Controller
                return Redirect::to('projects');
            }
         }
-
-
     }
 
     /**
@@ -158,13 +156,15 @@ class ProjectController extends Controller
 
             if($save){
 
-                foreach ($users as $user) {
-                    $project->users()->detach($user);
-                }
 
-                foreach ($users as $user) {
-                     $project->users()->attach($user);
-                }
+                $project->users()->sync($users);
+                // foreach ($users as $user) {
+                    
+                // }
+
+                // foreach ($users as $user) {
+                //      $project->users()->attach($user);
+                // }
                       // DB::table('projects_has_users')
                       //       ->where('project_id',$project_id)
                       //       ->update(

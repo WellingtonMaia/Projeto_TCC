@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 // <-- ajax -->
 
-        Route::post('tasks/addTask', 'TaskController@addTask')
+        Route::post('tasks/addTask', 'TaskController@addTask');
         Route::post('/tasks/updateStatus/', 'TaskController@updateStatus');
         Route::get('/tasks/getUsers/', 'TaskController@getUsers');
 

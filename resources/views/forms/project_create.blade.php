@@ -72,7 +72,7 @@
 									<select multiple name="users[]" class="form-control">
 										@foreach($users as $key => $user)												
 											@if($user->status == 'A'):
-												<option {{-- @if(isset($project) && $project->users[1]->id == $user->id) selected="selected" @endif  --}} value="{{ $user->id }}">{{ $user->name }}</option>
+												<option @if(isset($project) && $project->users()->where('user_id',$user->id)->exists()) selected="selected" @endif  value="{{ $user->id }}">{{ $user->name }}</option>
 											@endif
 										@endforeach
 									</select>
