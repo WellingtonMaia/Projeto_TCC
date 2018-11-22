@@ -175,6 +175,7 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
+                        $(".no-registers").remove();
                         $(".btn-info.time").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Tempo cadastrado com sucesso');
@@ -215,6 +216,7 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
+                        $(".no-registers").remove();
                         $(".btn-info.file").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Arquivo cadastrado com sucesso');
@@ -250,6 +252,7 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
+                        $(".no-registers").remove();
                         $(".btn-info.note").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Anotação cadastrada com sucesso');

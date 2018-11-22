@@ -76,8 +76,8 @@
                
                @if(count($task->times) < 1)
                   <div class="iten-task">
-                     <label>
-                        <span class="no-registers">Não existem tempos registrados nessa tarefa</span>
+                     <label class="no-registers">
+                        <span>Não existem tempos registrados nessa tarefa</span>
                      </label>
                   </div> 
                   <div class="time-registers"></div>
@@ -145,7 +145,7 @@
                </div>
 
                @if(count($task->files) < 1)
-                  <label>
+                  <label  class="no-registers">
                      <span>Não existem arquivos anexados</span>
                   </label>
                   <div class="file-registers">
@@ -208,7 +208,7 @@
                    </div>
                </div>
                @if(count($task->notes) < 1)
-                  <label>
+                  <label class="no-registers">
                      <span>Não exitem anotações registradas</span>
                   </label>
                   <div class="note-registers"></div>
