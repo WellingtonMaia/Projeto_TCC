@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Profile page</h4> </div>
+            <h4 class="page-title">Relatório de Projetos por data</h4> </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
                 <ol class="breadcrumb">
                     <li><a href="{{ route('home') }}">Dashboard</a></li>
-                    <li class="active"> Projetos</li>
+                    <li class="active"> Relatório Projeto por data</li>
                 </ol>
             </div>
         </div>
@@ -17,27 +17,37 @@
             <div class="card">
                 <div class="white-box">
                     <div class="block-title">
-                        <h2>Relatórios</h2>
+                        <h2>Relatórios</h2><span> - Projetos por data</span>
                     </div>
                 </div>
                 <div class="white-box">
-                    <div class="content-filtro">
-                        <div class="item-filtro">
-                            filtro
-                        </div>
-                        <div class="item-filtro">
-                            filtro
-                        </div>
-                        <div class="item-filtro">
-                            filtro
-                        </div>
+                    <div class="content-filtro form-group">
+                        <form id="date-for-project" method="POST" action="#">
+                            <div class="form-box">
+                                <div class="item-filtro">
+                                    <label>
+                                        <span>De:</span>
+                                        <input type="text" class="form-control datepicker" name="date_ini" placeholder="10/08/2018">
+                                    </label>
+                                </div>    
+
+                                <div class="item-filtro">
+                                    <label>
+                                        <span>Até:</span>
+                                        <input type="text" name="date_final" class="form-control datepicker" placeholder="11/09/2018">
+                                    </label>
+                                </div>
+                                <button class="btn btn-success">Gerar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="white-box">
-                    <div class="content-result">
-                        <div class="ct-chart ct-golden-section" id="chart1"></div>
-                        <div class="ct-chart ct-golden-section" id="chart2"></div>
-                        <script>
+                    <div class="content-result date-for-project">
+                        <div id="date-for-project-result"></div>
+                        {{-- <div class="ct-chart ct-golden-section" id="chart1"></div> --}}
+                        {{-- <div class="ct-chart ct-golden-section" id="chart2"></div> --}}
+              {{--           <script>
                         $( document ).ready(function() {
                         // Initialize a Line chart in the container with the ID chart1
                         new Chartist.Line('#chart1', {
@@ -50,7 +60,7 @@
                         series: [[5, 2, 8, 3]]
                         });
                         });
-                        </script>
+                        </script> --}}
                     </div>
                 </div>
             </div>

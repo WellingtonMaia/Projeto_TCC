@@ -46,8 +46,8 @@
 										<label for="status">Status</label>
 										<select class="form-control" name="status" id="status" required>
 											<option value="">Selecione um Status</option>
-											<option {{ ($project->status == 'A')?'selected':''   }}  value="A">Ativo</option>
-											<option {{ ($project->status == 'I')?'selected':''   }}  value="I">Inativo</option>
+											<option @if($project->status == 'A') selected @endif value="A">Ativo</option>
+											<option @if($project->status == 'I') selected @endif value="I">Inativo</option>
 										</select>
 									</div>
 								@endif
@@ -69,17 +69,17 @@
 								</div>
 								<div class="form-group">
 									<label for="name">Adicionar usuários no Projeto</label>
-									{{-- <select multiple name="users[]" class="form-control">
-										@foreach($users as $user)
+									<select multiple name="users[]" class="form-control">
+										@foreach($users as $key => $user)												
 											@if($user->status == 'A'):
-												<option value="{{ $user->id }}">{{ $user->name }}</option>
+												<option {{-- @if(isset($project) && $project->users[1]->id == $user->id) selected="selected" @endif  --}} value="{{ $user->id }}">{{ $user->name }}</option>
 											@endif
 										@endforeach
-									</select> --}}
+									</select>
 									{{-- {{ dd($project->users) }} --}}
 
-									@foreach($users as $key => $user)
-										{{-- {{ dd($project->users) }} --}}
+									{{-- @foreach($users as $key => $user)
+										{{ dd($project->users) }}
 										@if($user->status == 'A')
 										<div class="users-box">
 											<label class="user-project-edit">
@@ -88,7 +88,7 @@
 											</label>
 										</div>
 										@endif
-									@endforeach
+									@endforeach --}}
 
 								</div>
 								<div class="form-group">

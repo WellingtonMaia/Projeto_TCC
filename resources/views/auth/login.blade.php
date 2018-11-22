@@ -11,7 +11,7 @@
 						.st0{opacity:0.93;fill:#49A5F5;}
 						.st1{fill:#FFFFFF;}
 						</style>
-						<image style="display:none;overflow:visible;opacity:0.93;" width="462" height="361" xlink:href="67DCFA95.jpg"  transform="matrix(0.9999 0 0 0.9999 -25.9711 -5.9774)">
+						<image style="display:none;overflow:visible;opacity:0.93;" width="462" height="361"  transform="matrix(0.9999 0 0 0.9999 -25.9711 -5.9774)">
 						</image>
 						<circle class="st0" cx="201.5" cy="21" r="16"/>
 						<path class="st0" d="M145.3,57.3c0,0,13.5-16.3,61-15.8c38,0,46.5,13.8,46.5,13.8s-32.8,0-32.8,17.5s6.5,27.5,6.5,27.5

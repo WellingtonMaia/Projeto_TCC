@@ -151,6 +151,7 @@ $( document ).ready(function() {
                         $('.alert-hidden div').text('Anotação cadastrada com sucesso');
                         $('.alert-hidden').addClass('active');
                         $(".note-registers").append(response.html);
+                        $("#addNote textarea").val("");
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
                         },2000);
@@ -192,8 +193,9 @@ $( document ).ready(function() {
                         $('.alert-hidden div').text('Arquivo cadastrado com sucesso');
                         $('.alert-hidden').addClass('active');
                         $(".file-registers").append(response.html);
+                        $("#addFile input").val("");
                         setTimeout(function(){
-                            $('.alert-hidden').addClass('active');
+                            $('.alert-hidden').removeClass('active');
                         },2000);
                 }else{
                     console.log("errou");
@@ -230,6 +232,7 @@ $( document ).ready(function() {
                         $('.alert-hidden').addClass('active');
                         $(".time-registers").append(response.html);
                         $("#tempoRegistrado").text("00:00:00");
+                        $("#addTime input").val("");
                         localStorage.clear();
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
@@ -377,6 +380,7 @@ $( document ).ready(function() {
         e.preventDefault(); 
         $(this).parent().parent().next().addClass("active");
         $(".shadow").addClass("active");
+
     });
 
     $(".shadow").click(function (){
@@ -386,6 +390,9 @@ $( document ).ready(function() {
         $(".btn-info.file").parent().parent().next().removeClass("active");
         $(".btn-info.note").parent().parent().next().removeClass("active");
     });
+
+
+
 
 
     var timer = new Timer();
@@ -436,11 +443,17 @@ $( document ).ready(function() {
         if (time.getMinutes() == 0) {
             time_value = '00:01';
             // time_value.text("00:01");    
+        }else{
+            var split = time_value.split(":");   
+            var time_value = split[0]+":"+split[1]; 
         }
+        // str.split(" ");
+        
+        console.log(time_value);
 
-        console.log(dateUTC+"T"+time_value);
-        console.log(time);
-        console.log(time.getMinutes());
+        // console.log(dateUTC+"T"+time_value);
+        // console.log(time);
+        // console.log(time.getMinutes());
 
         $(".main-timer").removeClass("active");
 

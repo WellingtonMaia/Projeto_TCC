@@ -43,32 +43,57 @@ class UserController extends Controller
         return view('forms.user_create');
     }
 
-    public function store(){
+    public function store(Request $request){
         $user = new User();
-
-        $image = Input::file("image");
-        $extensao = $image->getClientOriginalExtension();
-
-        $user->name = Input::get("name");
-        $user->email = Input::get("email");
-        $user->password = bcrypt(Input::get("password"));
-        $user->role = 'Administrador';
-        $user->status = Input::get("status");
-        $user->permission = Input::get("permission");
-        $user->image = "";
-        $user->celular = Input::get("celular");
-        $user->payment_by_hours = Input::get("payment_by_hours");
-        $user->info = Input::get("info");
-        $user->save();
-           
-        if (Input::file("image")) {
-            Input::file('image')->move('/imagens-post/','user_'.$user->id.'.'.$extensao);            
-            $user->image = '/imagens-post/user_'.$user->id.'.'.$extensao;
-            $user->save();
+        // $image = Input::file("image");
+        // $extensao = $image->getClientOriginalExtension();   
+        if($request->image != null){
+            $nameFile = null;
+        }else{
+            $nameFile = $user->image;
         }
 
-        Session::flash('message', 'Cadastro registrado com sucesso!');
-        return Redirect::to('users');
+        // Verifica se informou o arquivo e se é válido
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Define um aleatório para o arquivo baseado no timestamps atual
+            $name = uniqid(date('HisYmd'));
+            // Recupera a extensão do arquivo
+            $extension = $request->image->extension();
+            // Define finalmente o nome
+            $nameFile = "{$name}.{$extension}";
+            // Faz o upload:
+            $upload = $request->image->storeAs('users', $nameFile);
+            // Se tiver funcionado o arquivo foi armazenado em storage/app/public/categories/nomedinamicoarquivo.extensao
+            // Verifica se NÃO deu certo o upload (Redireciona de volta)
+            if ( !$upload )
+                return redirect()
+                    ->back()
+                    ->with('error', 'Falha ao fazer upload')
+                    ->withInput();
+        }
+
+        try{
+
+           $user->name = Input::get("name");
+            $user->email = Input::get("email");
+            // $user->password = Input::get("password");
+            $user->image = $nameFile;
+            $user->role = Input::get("role");
+            $user->status = Input::get("status");
+            $user->permission = Input::get("permission");
+            $user->celular = Input::get("celular");
+            $user->payment_by_hours = Input::get("payment_by_hours");
+            $user->info = Input::get("info");
+
+            $user->save();
+           
+            Session::flash('message', 'Cadastro registrado com sucesso!');
+            return Redirect::to('users');
+
+
+        }catch (\Exception $exception){
+            return $exception;
+        }
 
     }
 
@@ -130,21 +155,21 @@ class UserController extends Controller
 
         try{
 
-        $user->name = Input::get("name");
-        $user->email = Input::get("email");
-        // $user->password = Input::get("password");
-        $user->image = $nameFile;
-        $user->role = Input::get("role");
-        $user->status = Input::get("status");
-        $user->permission = Input::get("permission");
-        $user->celular = Input::get("celular");
-        $user->payment_by_hours = Input::get("payment_by_hours");
-        $user->info = Input::get("info");
+            $user->name = Input::get("name");
+            $user->email = Input::get("email");
+            // $user->password = Input::get("password");
+            $user->image = $nameFile;
+            $user->role = Input::get("role");
+            $user->status = Input::get("status");
+            $user->permission = Input::get("permission");
+            $user->celular = Input::get("celular");
+            $user->payment_by_hours = Input::get("payment_by_hours");
+            $user->info = Input::get("info");
 
-        $user->save();
+            $user->save();
 
-        Session::flash('message', 'Cadastro editado com sucesso!');
-        return Redirect::to('users');
+            Session::flash('message', 'Cadastro editado com sucesso!');
+            return Redirect::to('users');
 
         }catch (\Exception $exception){
             return $exception;

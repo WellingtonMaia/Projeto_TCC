@@ -19,10 +19,11 @@
             <div class="white-box">
                <div class="block-title"><h2>{{ $task->name }}</h2></div>
                <div class="info-task">
-                  <span>Data estimada:{{ \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') }}</span>
+                  <span>Data estimada: {{ \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') }}</span>
                   <span>Inicio: {{ \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') }}</span>
                   <span>Vence: {{ \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }}</span>
-                  <span>Tempo Estimado: {{ $task->estimate_time }}</span>
+                  {{-- <span>Tempo Estimado: {{ $task->estimate_time }} horas </span> --}}
+                  <span>Tempo Estimado: {{ \Carbon\Carbon::parse($task->estimate_time)->format('H:i') }} horas </span>
                   <span>Valor Referente ao tempo gasto na tarefa: {{ $task->tasks_price }}</span>
                   <div class="descricao-tarefa">
                      {{ $task->description }}
@@ -48,7 +49,7 @@
                            <div class="box-tempo">
                               <label>
                                  Quem
-                                 <input type="text" name="author" disabled class="form-control" value="{{ Auth::user()->name}}"                                  style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
+                                 <input type="text" name="author" disabled class="form-control" value="{{ Auth::user()->name}}" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
                               </label>
                               <label>
                                  Data

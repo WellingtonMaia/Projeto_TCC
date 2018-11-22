@@ -159,14 +159,20 @@ class ProjectController extends Controller
             if($save){
 
                 foreach ($users as $user) {
-
-                      DB::table('projects_has_users')
-                            ->where('project_id',$project_id)
-                            ->update(
-                          ['user_id' => $user]
-                      );
-                    //$project->users()->attach($user);
+                    $project->users()->detach($user);
                 }
+
+                foreach ($users as $user) {
+                     $project->users()->attach($user);
+                }
+                      // DB::table('projects_has_users')
+                      //       ->where('project_id',$project_id)
+                      //       ->update(
+                      //     ['user_id' => $user]
+                      // );
+                    
+                     
+
 
                 Session::flash('message', 'Projeto editado com sucesso!');
                 return Redirect::to('projects');

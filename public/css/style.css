@@ -721,8 +721,8 @@ h3.block-title{
 }
 
 .white-box .iten-task.file .content-file .link{
-	width: 150px;
-	height: 100px;
+	width: 109px;
+	height: 92px;
 	display: block;
 }
 
@@ -1037,6 +1037,22 @@ h3.block-title{
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 10px;
+	
+}
+
+.white-box .file-registers{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.white-box .iten-task.time,
+.white-box .iten-task.file{
+	align-items: center;
+	padding:10px;
+	border-radius: 4px;
+	border:1px solid #2e2e2e;
+	margin:0 4px 10px 4px;
 }
 
 .white-box .iten-task.time{
@@ -1087,6 +1103,10 @@ h3.block-title{
 	margin-left: 10px;
 }
 
+.white-box .iten-task.file a{
+	margin-left: 0;	
+}
+
 .white-box .iten-task.header-task .task-file span{
 	margin-right: 40px;
 }
@@ -1095,27 +1115,35 @@ h3.block-title{
 .white-box .iten-task.header-task .task-time {
 	display: flex;
 	flex-wrap: wrap;
-	/*justify-content: flex-start;*/
 	width: 100%;
 	justify-content: space-between;
 }
 
 .white-box .iten-task.header-task .task-time span{
 	/*margin-right: 160px;*/
-	width: 190px;
+	/*width: 190px;*/
 	margin-right: 20px;
+	padding-left: 10px;
 }
 
 .white-box .iten-task.header-task .task-time span:last-child{
 	width: 41px;
-	margin: 0;
+	/*margin: 0;*/
 }
+
+.white-box .iten-task.header-task .task-time span:nth-child(2){
+	margin-right: 0;
+
+}
+
+
 /*
 .white-box .iten-task.header-task .task-time span:nth-child(1),
 .white-box .iten-task.time span:nth-child(1){
 {
 	width: 70px;
 }
+
 
 .white-box .iten-task.header-task .task-time span:nth-child(2),
 .white-box .iten-task.time span:nth-child(2){
@@ -1132,4 +1160,55 @@ h3.block-title{
 	width: 90px;
 }
 */
+
+
+/*relatorios*/
+.white-box .content-filtro{
+	margin: 0;
+}
+
+.white-box .content-filtro .form-box{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.white-box .content-filtro .form-box .item-filtro label{
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 16px;
+	margin: 0;
+	align-items: center;
+}
+
+.white-box .content-filtro .form-box .item-filtro label span{
+	margin-right: 10px;
+	color: #2e2e2e;
+}
+
+.white-box .content-filtro .form-box .item-filtro label input{
+	border-radius: 4px;
+	width: calc(100% - 50px);
+}
+
+.white-box .content-filtro button{
+	font-size: 16px;
+}
+
+.white-box .content-filtro .form-box .item-filtro{
+	margin-right: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

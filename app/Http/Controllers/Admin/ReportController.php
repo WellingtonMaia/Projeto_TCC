@@ -28,18 +28,35 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function index_date_for_project(){
+        return view('report.date_for_project');
+    }
+
+    public function index_time_users_for_project(){
+        return view('report.time_users_for_project');
+    }
+
+    public function index_project_for_users_times(){
+        return view('report.project_for_users_times');
+    }
+
+    public function index_finish_task_user_project(){
+        return view('report.finish_task_user_project');
+    }
 
     //-> projetos realizados durante um periodo
-    public function date_for_project(/*Request $request ou $id */){
+    public function date_for_project(Request $request){
 
-        //$date_ini = $request->date_ini;
+        $date_ini = Carbon::parse(str_replace('/', '-',$request->get('date_ini')))->format('Y-m-d');
+        $date_final = Carbon::parse(str_replace('/', '-',$request->get('date_final')))->format('Y-m-d');
         //$date_final = $request->date_final;
-        $date_ini = '2018-11-14';
-        $date_final = '2018-11-16';
+        // $date_ini = '2018-11-14';
+        // $date_final = '2018-11-16';
         $projects = Project::whereBetween('created_at', [$date_ini, $date_final])
         ->where('status','I')
         ->get();
-        dd($projects);
+        // dd($projects);
+
         return view('info.report',compact('project'));
     }
 
@@ -63,7 +80,9 @@ class ReportController extends Controller
 
         //$projects = Project::where('id', [$date_ini, $date_final])->get();
         dd($projects);
-        return view('info.report',compact('project'));
+        
+        // return response()->json(['error'=>false,'html'=>$times], 200);
+        // return view('info.report',compact('project'));
     }
 
 
