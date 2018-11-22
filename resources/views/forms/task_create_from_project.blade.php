@@ -2,7 +2,7 @@
 	<div class="list-content">
 		<div class="table-responsive">
 			<div class="panel-body">
-				<form class="form-horizontal" method="POST" action="{{ route('tasks_store') }}">
+				<form class="form-horizontal" method="POST" id="addTask" action="{{ route('tasks_store') }}">
 					
 					{{ csrf_field() }}
 					<input type="hidden" name="status" value="I">

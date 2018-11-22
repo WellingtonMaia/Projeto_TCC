@@ -71,28 +71,15 @@
                               <a class="link" href="{{ url('projects/tasks/show-info/'.$task->id) }}">
                                  <span class="task-users">
                                     @foreach($task->users as $user)
-                                    <span class="user" title="{{ $user->name }}">
-                                       {{-- {{ dd(explode(' ', $user->name)) }} --}}
-                                       @php
-                                          $name = explode( ' ', $user->name);
-                                       @endphp
-                                       {{-- @foreach( explode( ' ', $user->name) as $name )  --}}
-                                       {{-- {{ dd($name[0]) }} --}}
-                                       {{-- { explode( ' ', $user->name) } --}}
-                                       {{ $name[0] }}
-                                       {{-- @endforeach --}}
+                                    <span class="user" title="{{ $user->name }}">    
+                                       {{ Helper::getFirstName($user) }}                             
                                     </span>
                                     @endforeach
                                  </span>
                                  <h3 title="{{ $task->name }}">{{ $task->name }}</h3>
-                                 <div class="hidden">{{ $task->description }}</div>
-                                 {{-- <div class="dates">{{  \Carbon\Carbon::parse($task->estimate_date)->format(' l F Y') }}</div> --}}
-                                 <div class="dates begin">(Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format(' d - m - Y ') }} </div>
-                                 <div class="dates final"> Vence: {{  \Carbon\Carbon::parse($task->final_date)->format(' d - m - Y') }})</div>
-                                 {{-- {{ $task->begin_date }}
-                                 {{ $task->final_date }} --}}
-                                 {{-- {{ $task->status }} --}}
-                                 {{-- <a class="btn btn-info" href="{{ url('tasks/show/'.$task->id) }}"><i class="fa fa-edit"></i></a> --}}
+                                 <div class="hidden">{{ $task->description }}</div>                                 
+                                 <div class="dates begin">( Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y ') }} </div>
+                                 <div class="dates final"> Vence: {{  \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }} )</div>                               
                               </a>
                               <a class="btn btn-danger" href="{{ url('tasks/delete/'.$task->id) }}"><i class="fa fa-trash"></i></a>
                            </div>

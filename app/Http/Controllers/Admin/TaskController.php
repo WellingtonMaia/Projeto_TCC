@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -105,26 +106,7 @@ class TaskController extends Controller
         if(empty($users)){
             Session::flash('message', 'Selecionar usuários!');
             return Redirect::to('projects');
-            //
-
         }
-        // public function aulas(){
-        //     return $this->belongsToMany('Modules\Produto\Entities\Sgr\Aula', 'materia_aula', 'materia_id', 'aula_id');                
-        // }
-
-       // if($registro->materias()->count()){
-       //          foreach ($registro->materias as $materia){
-       //              $duplicado->materias()->attach($materia->id, ['ordem'=>$materia->pivot->ordem]);
-       //              foreach ($materia->aulas()->where('curso_id', $registro->id)->get() as $aula) {
-       //                  $materia->aulas()->attach($aula->id,
-       //                      ['nome_aula' => $aula->pivot->nome_aula,
-       //                          'gratuito' => $aula->pivot->gratuito,
-       //                          'curso_id' => $duplicado->id,
-       //                          'tempo' => $aula->pivot->tempo,
-       //                          'ordem'=>$aula->pivot->ordem]);
-       //              }
-       //          }
-       //      }
 
         $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
         $estimate_date = date('Y-m-d', strtotime($estimate_date));
@@ -153,7 +135,6 @@ class TaskController extends Controller
 
         Session::flash('message', 'Cadastro registrado com sucesso!');
         return Redirect::to('projects');
-        // return view('info.project_info')->with("project", Input::get('project'));
 
     }
 
@@ -167,6 +148,57 @@ class TaskController extends Controller
     public function showInfo($id){
        $task = task::find($id);
        return view('info.task_info')->with("task", $task);
+    }
+
+    public function addTask(Request $request){
+
+        $task = new Task();
+
+        $task->name             = $request->get('name');
+        $task->description      = $request->get('description');       
+        $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');     
+        $task->status           = $request->get('status');         
+        $task->estimate_time    = $request->get('estimate_time');    
+        $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
+        $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');      
+        $task->project_id       = $request->get('project_id');    
+
+        $task->save();
+
+        foreach ($request->get('users') as $user) {
+            $task->users()->attach($user);
+        }    
+
+        $html = '
+                <div class="iten-task">
+                   <div class="item" data-status="'.$task->status'.">
+                      <label>
+                         <input type="checkbox" name="completed" data-id=".'$task->id'." data-status="'.$task->status.'" class="task-completed" '.isset($task->status == "C") ? checked="checked" : " ".'>
+                         <span class="check-bottom"></span>
+                      </label>
+                      <a class="link" href="'. url('projects/tasks/show-info/'.$task->id) .'">
+                         <span class="task-users">
+                            '.foreach($task->users as $user): .'
+                            <span class="user" title="'.$user->name .'">    
+                               '. Helper::getFirstName($user) .'                             
+                            </span>
+                            '.endforeach;.'
+                         </span>
+                         <h3 title="'. $task->name .'">'.$task->name .'</h3>
+                         <div class="hidden">'.$task->description .'</div>                                 
+                         <div class="dates begin">( Inicio: '.Carbon\Carbon::parse($task->begin_date)->format('d/m/Y ') .'</div>
+                         <div class="dates final"> Vence: '.Carbon\Carbon::parse($task->final_date)->format('d/m/Y') .' )</div>                               
+                      </a>
+                      <a class="btn btn-danger" href="'.url('tasks/delete/'.$task->id) .'"><i class="fa fa-trash"></i></a>
+                   </div>
+                </div>
+        ';
+
+
+        return response()->json(['error'=>false,'html'=>$html], 200);
+
+
+
     }
 
     public function edit($id){
@@ -206,7 +238,24 @@ class TaskController extends Controller
 
 
 }
+        // exemplo relacionamento
+        // public function aulas(){
+        //     return $this->belongsToMany('Modules\Produto\Entities\Sgr\Aula', 'materia_aula', 'materia_id', 'aula_id');                
+        // }
 
+       // if($registro->materias()->count()){
+       //          foreach ($registro->materias as $materia){
+       //              $duplicado->materias()->attach($materia->id, ['ordem'=>$materia->pivot->ordem]);
+       //              foreach ($materia->aulas()->where('curso_id', $registro->id)->get() as $aula) {
+       //                  $materia->aulas()->attach($aula->id,
+       //                      ['nome_aula' => $aula->pivot->nome_aula,
+       //                          'gratuito' => $aula->pivot->gratuito,
+       //                          'curso_id' => $duplicado->id,
+       //                          'tempo' => $aula->pivot->tempo,
+       //                          'ordem'=>$aula->pivot->ordem]);
+       //              }
+       //          }
+       //      }
 
 
 

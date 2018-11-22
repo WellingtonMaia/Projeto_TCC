@@ -129,32 +129,78 @@ $( document ).ready(function() {
 
     // ajax
 
-    $("#addNote").submit(function(){
-        // event.preventDefault();
+    $("#addTask").submit(function (){
 
-        var task_id = $("#note_task_id").val();
-        var users_id = $("#note_users_id").val();
-        var description = $("#note_description").val();
+
+            var data = $(this).serialize();
+
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                },
+                url:'/tasks/addTask/',
+                type:"POST",
+                data:{data},
+                dataType:"JSON",
+                success:function(response){
+                    if(response.error == false){
+                            $(".btn-info.time").parent().parent().next().removeClass("active");
+                            $(".shadow").removeClass("active");
+                            $('.alert-hidden div').text('Tempo cadastrado com sucesso');
+                            $('.alert-hidden').addClass('active');
+                            $(".time-registers").append(response.html);
+                            $("#tempoRegistrado").text("00:00:00");
+                            $("#addTime input").val("");
+                            localStorage.clear();
+                            setTimeout(function(){
+                                $('.alert-hidden').removeClass('active');
+                            },2000);
+                        // location.reload();
+                    }else{
+                        console.log("errou");
+                    }
+                }
+
+
+            });
+            return false;
+        }); 
+    });
+
+
+
+
+
+    $("#addTime").submit(function(){
+        var task_id = $("#time_task_id").val();
+        var users_id = $("#time_users_id").val();
+        var date = $("#time_begin_date").val();
+        var time_start = $("#time_start").val();
+        var time_stop = $("#time_stop").val();        
+        var time_value = $("#time_value").val();
 
         $.ajax({
             headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
             },
-            url:'/tasks/addNote/',
+            url:'/tasks/addTime/',
             type:"POST",
-            data:{description: description, task_id:task_id, users_id:users_id},
+            data:{date: date, task_id:task_id, users_id:users_id,time_start:time_start,time_stop:time_stop,time_value:time_value},
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        $(".btn-info.note").parent().parent().next().removeClass("active");
+                        $(".btn-info.time").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
-                        $('.alert-hidden div').text('Anotação cadastrada com sucesso');
+                        $('.alert-hidden div').text('Tempo cadastrado com sucesso');
                         $('.alert-hidden').addClass('active');
-                        $(".note-registers").append(response.html);
-                        $("#addNote textarea").val("");
+                        $(".time-registers").append(response.html);
+                        $("#tempoRegistrado").text("00:00:00");
+                        $("#addTime input").val("");
+                        localStorage.clear();
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
                         },2000);
+                    // location.reload();
                 }else{
                     console.log("errou");
                 }
@@ -207,37 +253,34 @@ $( document ).ready(function() {
         return false;
     });
 
-    $("#addTime").submit(function(){
+
+
+    $("#addNote").submit(function(){
         // event.preventDefault();
-        var task_id = $("#time_task_id").val();
-        var users_id = $("#time_users_id").val();
-        var date = $("#time_begin_date").val();
-        var time_start = $("#time_start").val();
-        var time_stop = $("#time_stop").val();        
-        var time_value = $("#time_value").val();
+
+        var task_id = $("#note_task_id").val();
+        var users_id = $("#note_users_id").val();
+        var description = $("#note_description").val();
 
         $.ajax({
             headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
             },
-            url:'/tasks/addTime/',
+            url:'/tasks/addNote/',
             type:"POST",
-            data:{date: date, task_id:task_id, users_id:users_id,time_start:time_start,time_stop:time_stop,time_value:time_value},
+            data:{description: description, task_id:task_id, users_id:users_id},
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        $(".btn-info.time").parent().parent().next().removeClass("active");
+                        $(".btn-info.note").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
-                        $('.alert-hidden div').text('Tempo cadastrado com sucesso');
+                        $('.alert-hidden div').text('Anotação cadastrada com sucesso');
                         $('.alert-hidden').addClass('active');
-                        $(".time-registers").append(response.html);
-                        $("#tempoRegistrado").text("00:00:00");
-                        $("#addTime input").val("");
-                        localStorage.clear();
+                        $(".note-registers").append(response.html);
+                        $("#addNote textarea").val("");
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
                         },2000);
-                    // location.reload();
                 }else{
                     console.log("errou");
                 }
@@ -247,6 +290,7 @@ $( document ).ready(function() {
         });
         return false;
     });
+
 
 
     $(".time-registers").on('click','.removeTime', function(e){
@@ -375,6 +419,13 @@ $( document ).ready(function() {
         });
     });
 
+    $("#open-fancy").click(function (e){
+        e.preventDefault();
+        console.log("aaaa");
+        $(".task-box").addClass("active");
+         $(".shadow").addClass("active");
+
+    });
 
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 

@@ -18,4 +18,9 @@ class Helper
 		$user = User::find($id);
 		return $user;
 	}
+
+	public static function getFirstName($user){
+		$name = explode( ' ', $user->name);
+		return $name[0];
+	}
 }
