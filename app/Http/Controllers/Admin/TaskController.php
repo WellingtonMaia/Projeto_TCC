@@ -187,9 +187,6 @@ class TaskController extends Controller
         $task->estimate_time    = $request->get('estimate_time');    
         $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
         $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');      
-        
-
-        // dd($request);
 
         $task->save();
 

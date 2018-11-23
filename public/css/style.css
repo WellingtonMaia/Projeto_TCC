@@ -712,7 +712,7 @@ h3.block-title{
 
 .task .popup.file .conteudo{
 	width: 600px;
-	height: 250px;
+	height: 270px;
 }
 
 .white-box .iten-task.file .content-file img{
@@ -1187,9 +1187,15 @@ h3.block-title{
 }
 
 .white-box .content-filtro .form-box .item-filtro label input{
+
 	border-radius: 4px;
 	width: calc(100% - 50px);
 }
+
+.white-box .content-filtro .form-box .item-filtro label select{
+	width: calc(100% - 175px);
+}
+
 
 .white-box .content-filtro button{
 	font-size: 16px;
@@ -1199,6 +1205,9 @@ h3.block-title{
 	margin-right: 20px;
 }
 
+#project-users-time .item-filtro{
+	width: 45%;
+}
 
 .datepicker.dropdown-menu{
 	margin-top:59px;

@@ -38,7 +38,7 @@ class ReportController extends Controller
 
     public function index_project_for_users_times(){
         $projects = Project::all();
-        return view('report.project_for_users_times')->with('projects', $projects);
+        return view('report.project_for_users_time')->with('projects', $projects);
     }
 
     public function index_finish_task_user_project(){

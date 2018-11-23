@@ -141,7 +141,7 @@ $( document ).ready(function() {
                 },
                 url:'/tasks/addTask/',
                 type:"POST",
-                data:{data},
+                data:data,
                 dataType:"JSON",
                 success:function(response){
                     if(response.error == false){                            
