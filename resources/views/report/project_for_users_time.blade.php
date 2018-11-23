@@ -21,34 +21,46 @@
                     </div>
                 </div>
                 <div class="white-box">
-                    <div class="content-filtro">
-                        <div class="item-filtro">
-                            filtro
-                        </div>
-                        <div class="item-filtro">
-                            filtro
-                        </div>
-                        <div class="item-filtro">
-                            filtro
-                        </div>
+                  <div class="content-filtro form-group">
+                        <form id="project-users-time" method="POST" action="#">
+                            <div class="form-box">
+                                <div class="item-filtro">
+                                    <label>
+                                        <span>Selecione o projeto:</span>
+                                        <select class="form-control ">
+                                            @foreach($projects as $project)
+                                                <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </label>
+                                </div>    
+{{--                            <div class="item-filtro">
+                                    <label>
+                                        <span>Até:</span>
+                                        <input type="text" name="date_final" class="form-control datepicker" placeholder="11/09/2018">
+                                    </label>
+                                </div> --}}
+                                <button class="btn btn-success">Gerar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="white-box">
                     <div class="content-result">
-                        <div class="ct-chart ct-golden-section" id="chart1"></div>
-                        <div class="ct-chart ct-golden-section" id="chart2"></div>
+                        <div id="project-users-time"></div>
+                        {{-- <div class="ct-chart ct-golden-section" id="chart2"></div> --}}
                         <script>
                         $( document ).ready(function() {
-                        // Initialize a Line chart in the container with the ID chart1
-                        new Chartist.Line('#chart1', {
-                        labels: [1, 2, 3, 4],
-                        series: [[100, 120, 180, 200]]
-                        });
-                        // Initialize a Line chart in the container with the ID chart2
-                        new Chartist.Bar('#chart2', {
-                        labels: [1, 2, 3, 4],
-                        series: [[5, 2, 8, 3]]
-                        });
+                            // Initialize a Line chart in the container with the ID chart1
+                            new Chartist.Line('#chart1', {
+                            labels: [1, 2, 3, 4],
+                            series: [[100, 120, 180, 200]]
+                            });
+                            // Initialize a Line chart in the container with the ID chart2
+                            new Chartist.Bar('#chart2', {
+                            labels: [1, 2, 3, 4],
+                            series: [[5, 2, 8, 3]]
+                            });
                         });
                         </script>
                     </div>

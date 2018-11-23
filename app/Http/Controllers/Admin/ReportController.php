@@ -37,7 +37,8 @@ class ReportController extends Controller
     }
 
     public function index_project_for_users_times(){
-        return view('report.project_for_users_times');
+        $projects = Project::all();
+        return view('report.project_for_users_times')->with('projects', $projects);
     }
 
     public function index_finish_task_user_project(){
@@ -89,11 +90,11 @@ class ReportController extends Controller
     //->tempo gasto total de projetos por tempo
     //selecionar um projeto e listar todos os colaboradores relacionado
     //a ele e visualizar as horas trabalhadas
-    public function project_for_users_times(/*Request $request ou $id */){
+    public function project_for_users_times(Request $request){
 
-        //$project_id = $request->project_id;
+        $project_id = $request->project_id;
 
-        $project_id = 7;
+        // $project_id = 7;
         $task_id = Task::where('project_id', $project_id)->get();
 
         foreach($task_id as $t){

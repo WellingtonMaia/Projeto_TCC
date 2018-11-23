@@ -29,8 +29,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $project = Project::count();
-        $task = Task::count();
-        $task = Task::count();
+        $task = Task::count();        
         $user = User::count();
 
         // $data = $request->session()->all();               
