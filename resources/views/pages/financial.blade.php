@@ -33,8 +33,8 @@
                                <tr>
                                   <td>{{ $financial->id }}</td>
                                   <td>{{ $financial->project->name }}</td>
-                                  <td>{{ $financial->date_ini }}</td>
-                                  <td>{{ $financial->due_date }}</td>
+                                  <td>{{ \Carbon\Carbon::parse($financial->date_ini)->format('d/m/Y') }}</td>
+                                  <td>{{ \Carbon\Carbon::parse($financial->due_date)->format('d/m/Y') }}</td>
                                   <td class="money">{{ $financial->value }}</td>
                                   <td>
                                       <a class="btn btn-info" href=" {{ url('financials/show/'.$financial->id) }}"><i class="fa fa-edit"></i></a>

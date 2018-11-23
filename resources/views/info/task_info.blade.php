@@ -76,7 +76,7 @@
                
                @if(count($task->times) < 1)
                   <div class="iten-task">
-                     <label class="no-registers">
+                     <label class="no-registers-time">
                         <span>Não existem tempos registrados nessa tarefa</span>
                      </label>
                   </div> 
@@ -145,7 +145,7 @@
                </div>
 
                @if(count($task->files) < 1)
-                  <label  class="no-registers">
+                  <label class="no-registers-file">
                      <span>Não existem arquivos anexados</span>
                   </label>
                   <div class="file-registers">
@@ -160,7 +160,7 @@
                   <div class="file-registers">
                      @foreach ($task->files as $file)                  
                      <div class="iten-task file">                     
-                        <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
+                        <div class="img" title="{{ Helper::getObjectUser($file->users_id)->name }}">
                            <img src="{{ Helper::getImageUser($file->users_id) }}">
                         </div>
                         <div class="content-file">
@@ -208,7 +208,7 @@
                    </div>
                </div>
                @if(count($task->notes) < 1)
-                  <label class="no-registers">
+                  <label class="no-registers-note">
                      <span>Não exitem anotações registradas</span>
                   </label>
                   <div class="note-registers"></div>

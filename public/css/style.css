@@ -722,8 +722,8 @@ h3.block-title{
 }
 
 .white-box .iten-task.file .content-file .link{
-	width: 109px;
-	height: 92px;
+	width: 72px;
+	height: 80px;
 	display: block;
 }
 
@@ -1082,6 +1082,10 @@ h3.block-title{
 	width: 40px;
 	margin-right: 10px;
 	display: block;
+}
+
+.white-box .iten-task.file .img{
+	margin-right:-10px;
 }
 
 .white-box .iten-task .img img{

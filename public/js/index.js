@@ -181,14 +181,14 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        $(".no-registers").remove();
+                        $(".no-registers-time").remove();
                         $(".btn-info.time").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Tempo cadastrado com sucesso');
                         $('.alert-hidden').addClass('active');
                         $(".time-registers").append(response.html);
                         $("#tempoRegistrado").text("00:00:00");
-                        $("#addTime input").val("");
+                        $("#addTime input[type='text']").val("");
                         localStorage.clear();
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
@@ -222,13 +222,13 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        $(".no-registers").remove();
+                        $(".no-registers-file").remove();
                         $(".btn-info.file").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Arquivo cadastrado com sucesso');
                         $('.alert-hidden').addClass('active');
                         $(".file-registers").append(response.html);
-                        $("#addFile input").val("");
+                        $("#addFile input[type='text'], #addFile input[type='file']").val("");
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
                         },2000);
@@ -258,7 +258,7 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        $(".no-registers").remove();
+                        $(".no-registers-note").remove();
                         $(".btn-info.note").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Anotação cadastrada com sucesso');
@@ -568,7 +568,7 @@ $( document ).ready(function() {
 
     $(".celular").mask('(00) 00000-0000');
 
-    $(".money").mask('000.000.000.000.000,00', {reverse: true});
+    $(".money").mask('R$ 000.000.000.000.000,00', {reverse: true});
 
 
     jQuery('.datepicker').datepicker({ 
