@@ -52,8 +52,13 @@ class NoteController extends Controller
                            <img src="'.Helper::getImageUser($note->users_id).'">
                         </div>
                         <div class="note-desc">'.$note->description.'</div>
-                       <a class="btn btn-danger removeNote" href="" data-id="'.$note->id.'" ><i class="fa fa-trash"></i></a>
-                     </div>';
+                        <div class="block-a">
+                            <a class="btn btn-danger removeNote" href="" data-id="'.$note->id.'" ><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-info editNote" data-id="'.$note->id.'" href=""><i class="fa fa-edit"></i></a>
+                        </div>
+                           
+                        </div>
+                 </div>';
 
         return response()->json(['error'=>false,'html'=>$notes], 200);
 

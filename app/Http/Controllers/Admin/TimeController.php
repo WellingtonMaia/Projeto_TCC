@@ -61,7 +61,9 @@ class TimeController extends Controller
                <span class="timepicker">'.$time->time_start.'</span>                        
                <span class="timepicker">'.$time->time_stop.'</span>                        
                <span class="timepicker">'.$time->time_value.'</span>
-               <a class="btn btn-danger removeTime" href="" data-id="'.$time->id.'" ><i class="fa fa-trash"></i></a>
+               <div class="block-a">
+                    <a class="btn btn-danger removeTime" href="" data-id="'.$time->id.'" ><i class="fa fa-trash"></i></a>
+                </div>
          </div>';
 
         return response()->json(['error'=>false,'html'=>$times], 200);

@@ -88,7 +88,9 @@ class FileController extends Controller
                                 </div>
                             </a>
                         </div>
+                        <div class="block-a">
                         <a class="btn btn-danger removeFile " href="" data-id="'.$file->id.'"><i class="fa fa-trash"></i></a>                  
+                        </div>
                      </div>';
 
 
