@@ -50,8 +50,11 @@ Route::group(['middleware' => 'auth'], function () {
 // <-- ajax -->
 
         Route::post('/tasks/addTask', 'TaskController@addTask');
+        Route::post('/tasks/removeTask/', 'TaskController@removeTask');
         Route::post('/tasks/updateStatus/', 'TaskController@updateStatus');
         Route::get('/tasks/getUsers/', 'TaskController@getUsers');
+        
+
 
         Route::post('/tasks/addNote/', 'NoteController@store');
         Route::post('/tasks/addFile/', 'FileController@store');

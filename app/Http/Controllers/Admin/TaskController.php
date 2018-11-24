@@ -225,7 +225,7 @@ class TaskController extends Controller
         return response()->json(['error'=>false,'html'=>$html], 200);
     }
 
-    public function deleteTask(Request $request){
+    public function removeTask(Request $request){
         $task = Task::find($request->get('id'));
         $task->delete();
 

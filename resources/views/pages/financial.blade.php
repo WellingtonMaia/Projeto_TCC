@@ -37,7 +37,7 @@
                                   <td>{{ \Carbon\Carbon::parse($financial->due_date)->format('d/m/Y') }}</td>
                                   <td class="money">{{ $financial->value }}</td>
                                   <td>
-                                      <a class="btn btn-info" href=" {{ url('financials/show/'.$financial->id) }}"><i class="fa fa-edit"></i></a>
+                                      <a class="btn btn-info" href=""><i class="fa fa-eye"></i></a>
                                   </td>
                                 </tr>
                           @endforeach

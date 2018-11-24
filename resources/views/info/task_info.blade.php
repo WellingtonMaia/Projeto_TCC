@@ -105,7 +105,9 @@
                            <span class="timepicker">{{ $time->time_start }}</span>                        
                            <span class="timepicker">{{ $time->time_stop }}</span>                        
                            <span class="timepicker">{{ $time->time_value }}</span>
-                           <a class="btn btn-danger removeTime" href="" data-id="{{ $time->id }}" ><i class="fa fa-trash"></i></a>
+                           <div class="block-a">
+                              <a class="btn btn-danger removeTime" href="" data-id="{{ $time->id }}" ><i class="fa fa-trash"></i></a>
+                           </div>
                      </div>
                      @endforeach
                   </div>
@@ -153,8 +155,7 @@
                @else
                   <div class="iten-task header-task">  
                      <label class="task-file">
-                        <span>Usuario</span>
-                        <span>Arquivo</span>
+                        <span>Listagem de arquivos</span>
                      </label>
                   </div>
                   <div class="file-registers">
@@ -171,7 +172,9 @@
                               </div>
                            </a>
                         </div>
-                        <a class="btn btn-danger removeFile" href="" data-id="{{ $file->id }}"><i class="fa fa-trash"></i></a>                  
+                        <div class="block-a">
+                           <a class="btn btn-danger removeFile" href="" data-id="{{ $file->id }}"><i class="fa fa-trash"></i></a>                  
+                        </div>
                      </div>
                      @endforeach
                   </div>
@@ -226,7 +229,10 @@
                            <img src="{{ Helper::getImageUser($note->users_id) }}">
                         </div>
                         <div class="note-desc">{{ $note->description }}</div>
-                        <a class="btn btn-danger removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
+                        <div class="block-a">
+                           <a class="btn btn-danger removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
+                           <a class="btn btn-info editNote" data-id="{{ $note->id }}" href=""><i class="fa fa-edit"></i></a>
+                        </div>
                      </div>
                      @endforeach
                   </div>

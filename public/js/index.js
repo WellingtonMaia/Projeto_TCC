@@ -181,7 +181,7 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        $(".no-registers-time").remove();
+                        $(".no-registers-time").css('display','none');
                         $(".btn-info.time").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Tempo cadastrado com sucesso');
@@ -222,7 +222,7 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        $(".no-registers-file").remove();
+                        $(".no-registers-file").css('display','none');
                         $(".btn-info.file").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Arquivo cadastrado com sucesso');
@@ -258,7 +258,7 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        $(".no-registers-note").remove();
+                        $(".no-registers-note").css('display','none');
                         $(".btn-info.note").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
                         $('.alert-hidden div').text('Anotação cadastrada com sucesso');
@@ -283,6 +283,9 @@ $( document ).ready(function() {
 
         var item = $(this).parent().parent();
         var id = $(this).attr("data-id");
+
+        console.log(item);
+        console.log(id);
         
         swal({
             title:"Tem certeza que deseja remover essa tarefa ?",
@@ -323,7 +326,7 @@ $( document ).ready(function() {
     $(".time-registers").on('click','.removeTime', function(e){
         e.preventDefault();
 
-        var item = $(this).parent();
+        var item = $(this).parent().parent();
         var id = $(this).attr("data-id");
 
         swal({
@@ -348,6 +351,7 @@ $( document ).ready(function() {
                     success:function(response){
                         if(response.error == false){
                             item.remove();
+                            resetItemTask("time");
                             $('.alert-hidden').addClass('active');
                             $('.alert-hidden div').text('Tempo removido com sucesso');
                             setTimeout(function(){
@@ -365,7 +369,7 @@ $( document ).ready(function() {
     $(".note-registers").on('click','.removeNote', function(e){
         e.preventDefault();
 
-        var item = $(this).parent();
+        var item = $(this).parent().parent();
         var id = $(this).attr("data-id");
 
 
@@ -390,6 +394,7 @@ $( document ).ready(function() {
                     success:function(response){
                         if(response.error == false){
                             item.remove();
+                            resetItemTask("note");
                             $('.alert-hidden').addClass('active');
                             $('.alert-hidden div').text('Anotação removida com sucesso');
                             setTimeout(function(){
@@ -405,9 +410,21 @@ $( document ).ready(function() {
         });
     });
 
+    
+    $(".note-registers").on('click','.editNote', function(e){
+        e.preventDefault();
+
+        var item = $(this).parent();
+        var id = $(this).attr("data-id");
+
+
+    });
+
+
+
     $(".file-registers").on('click', '.removeFile', function (e){
         e.preventDefault();
-        var item = $(this).parent();
+        var item = $(this).parent().parent();
         var id = $(this).attr("data-id");
 
         swal({
@@ -432,6 +449,7 @@ $( document ).ready(function() {
                     success:function(response){
                         if(response.error == false){
                             item.remove();
+                            resetItemTask("file");
                             $('.alert-hidden').addClass('active');
                             $('.alert-hidden div').text('Arquivo removido com sucesso');
                             setTimeout(function(){
@@ -615,6 +633,12 @@ $( document ).ready(function() {
 //       });
 });
 
+
+function resetItemTask(current){
+    if($("."+current+"-registers").children().length == 0 ){
+        $(".no-registers-"+current).css('display','block');    
+    }
+}
 
 
 // $(document).ready(function (){

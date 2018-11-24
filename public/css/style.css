@@ -224,9 +224,9 @@ li{
 	visibility: hidden;
 	background: #2f323e;
 	box-shadow: 0px 1px 25px rgba(0,0,0,0.05);
-	left: -70px;
+	left: -15px;
 	right: 0px;
-	top: 70px;
+	top: 68px;
 	display: block;
 	margin: auto;
 }
@@ -455,12 +455,23 @@ h3.block-title{
 }
 
 .list-tasks .iten-task .task-users .user{
-	white-space: nowrap;
-	overflow: hidden;
+	/*white-space: nowrap;*/
+	/*overflow: hidden;*/
     /*text-overflow: ellipsis;*/
     max-width: 80px;
     margin-right: 5px;
 }
+
+.list-tasks .iten-task .task-users .user:after{
+	content: ",";
+	font-size: 14px;
+}
+
+.list-tasks .iten-task .task-users .user:last-child:after{
+	content: "";
+}
+
+
 
 .list-tasks .iten-task .item.completed,
 .list-tasks .iten-task .item[data-status="C"]{
@@ -1103,9 +1114,14 @@ h3.block-title{
 	border:1px solid #e5e5e5;
 }
 
-.white-box .iten-task a{
+.white-box .iten-task .block-a{
 	height: 35px;
 	margin-left: 10px;
+}
+
+.white-box .iten-task .block-a a{
+	display: block;
+	margin-bottom: 5px;
 }
 
 .white-box .iten-task.file a{
@@ -1217,6 +1233,12 @@ h3.block-title{
 	margin-top:59px;
 }
 
+
+.money:before{
+	content: "R$";
+	font-size: 14px;
+	margin-right: 5px;
+}
 
 
 
