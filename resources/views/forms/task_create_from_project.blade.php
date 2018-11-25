@@ -8,11 +8,11 @@
 					<input type="hidden" name="status" value="I">
 					<div class="form-group">
 						<label for="">Projeto</label>
-{{-- 						<select name="project_id" id="project_id" class="form-control" required>
+						<select name="project" id="project_id" class="form-control" required>
 							<option selected value="{{ $project->id }}">{{ $project->name }}</option>
-						</select> --}}
-						<input type="text" class="form-control" name="" disable value="{{ $project->name }}">
-						<input type="hidden" name="project" value="{{ $project->id }}">
+						</select>
+						{{-- <input type="text" class="form-control" name="" disable value="{{ $project->name }}"> --}}
+						{{-- <input type="hidden" name="project" value="{{ $project->id }}"> --}}
 					</div>
 					<div class="form-group">
 						<label for="name">Usuarios</label>

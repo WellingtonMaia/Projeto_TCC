@@ -180,6 +180,8 @@
         <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
         <!--Wave Effects -->
         <script src="{{ asset('js/waves.js') }}"></script>
+        <script src="{{ asset('js/moment.js') }}"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> --}}
 
         <script src="{{ asset('js/easytimer.min.js') }}"></script>
         {{-- <script src="{{ asset('js/waves.js') }}"></script> --}}
