@@ -36,25 +36,18 @@ class ProjectController extends Controller
      */
     public function index(Project $project)
     {   
-    
-        //INICIA AQUI PARA BUSCAR PROJETO PERTENCENTE AO USUSÁRIO LOGADO
-        $user = User::find(Auth::user()->id)->projects();
-
-        //$projects = $user->projects();
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            $projects = User::find(Auth::user()->id)->projects()->get();
+        }else{
+            $projects = Project::all();
+        }
         
-        dd($user);
-        
-        //TERMINA AQUI.............
-        //dd($projects);
-        
-        $projects = Project::all();
-        //$projects = ;
         return view('pages.project')->with('projects', $projects);
     }
 
     public function create(){
         if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            abort(500,"Sorry, You can do this action!");
+            abort(403,"Sorry, You can do this action!");
         }
 
         $users = User::all();
@@ -116,9 +109,9 @@ class ProjectController extends Controller
      */
     public function show($id){
         
-        if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            abort(403,"Sorry, You can do this action!");
-        }
+        // if (!Gate::allows('isAdmin', Auth::user()->permission)){
+        //     abort(403,"Sorry, You can do this action!");
+        // }
 
         $users = User::all();
         $project = Project::find($id);        
@@ -128,9 +121,9 @@ class ProjectController extends Controller
 
     public function showInfo($id){
 
-        if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            abort(403,"Sorry, You can do this action!");
-        }
+        // if (!Gate::allows('isAdmin', Auth::user()->permission)){
+        //     abort(403,"Sorry, You can do this action!");
+        // }
 
         $project = Project::find($id);                
         $users = User::all();
@@ -178,7 +171,7 @@ class ProjectController extends Controller
                 $financial->project_id = $project_id;
                 $financial->value = $project->project_price;
                 $financial->date_ini = $project->created_at;
-                $financial->due_date = $estimate_date;
+                $financial->due_date = $project->estimate_date;
                 $save = $financial->save();
 
             if($save){
