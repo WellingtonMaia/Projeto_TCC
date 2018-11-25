@@ -37,11 +37,16 @@ class ProjectController extends Controller
     public function index(Project $project)
     {   
     
-        $user = User::find(Auth::user()->id);
+        //INICIA AQUI PARA BUSCAR PROJETO PERTENCENTE AO USUSÁRIO LOGADO
+        $user = User::find(Auth::user()->id)->projects();
 
-        $projects = $user->projects();
-        //dd($project->users());
+        //$projects = $user->projects();
+        
+        dd($user);
+        
+        //TERMINA AQUI.............
         //dd($projects);
+        
         $projects = Project::all();
         //$projects = ;
         return view('pages.project')->with('projects', $projects);
