@@ -417,10 +417,7 @@ $( document ).ready(function() {
         var item = $(this).parent();
         var id = $(this).attr("data-id");
 
-
     });
-
-
 
     $(".file-registers").on('click', '.removeFile', function (e){
         e.preventDefault();
@@ -484,6 +481,17 @@ $( document ).ready(function() {
         $(".btn-info.time").parent().parent().next().removeClass("active");
         $(".btn-info.file").parent().parent().next().removeClass("active");
         $(".btn-info.note").parent().parent().next().removeClass("active");
+    });
+
+    $("#time_value").focus(function (){
+
+        if( $("#time_start").val() != "" && $("#time_stop").val() != ""){
+            
+            var final = getTimeInterval($("#time_start").val(),$("#time_stop").val());
+            
+            $("#time_value").val(final);
+
+        }
     });
 
 
@@ -633,6 +641,14 @@ $( document ).ready(function() {
 //       });
 });
 
+function getTimeInterval(startTime, endTime){
+    var start = moment(startTime, "HH:mm");
+    var end = moment(endTime, "HH:mm");
+    var minutes = end.diff(start, 'minutes');
+    var interval = moment().hour(0).minute(minutes);
+    // interval.subtract(lunchTime, 'minutes');
+    return interval.format("HH:mm");
+}
 
 function resetItemTask(current){
     if($("."+current+"-registers").children().length == 0 ){

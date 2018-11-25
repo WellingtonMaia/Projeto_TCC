@@ -41,7 +41,7 @@ class ProjectController extends Controller
         }else{
             $projects = Project::all();
         }
-        
+
         return view('pages.project')->with('projects', $projects);
     }
 
@@ -126,7 +126,8 @@ class ProjectController extends Controller
         // }
 
         $project = Project::find($id);                
-        $users = User::all();
+        // $users = User::all();
+        $users = Project::find($id)->users()->get();
         return view('info.project_info')->with("project", $project)
                                         ->with("users", $users);
     }
