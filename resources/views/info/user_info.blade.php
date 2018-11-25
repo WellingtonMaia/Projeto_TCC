@@ -46,34 +46,34 @@
                         <div class="form-group">
                             <label class="col-md-12">Nome Completo</label>
                             <div class="col-md-12">
-                                <input type="text" placeholder="Full name" value="{{ $user->name }}" class="form-control form-control-line"> </div>
+                                <input type="text" placeholder="Full name" value="{{ $user->name }}" class="form-control form-control-line" disabled> </div>
                             </div>
                             <div class="form-group">
                                 <label for="example-email" class="col-md-12">Email</label>
                                 <div class="col-md-12">
-                                    <input type="email" placeholder="johnathan@admin.com"  value="{{ $user->email}}" class="form-control form-control-line" name="example-email" id="example-email"> </div>
+                                    <input type="email" placeholder="johnathan@admin.com"  value="{{ $user->email}}" class="form-control form-control-line" name="example-email" id="example-email" disabled> </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Senha</label>
-                                    <div class="col-md-12">
-                                        <input type="password" value="{{ $user->password }}" class="form-control form-control-line"> </div>
-                                    </div>
+                                {{--<div class="form-group">
+                                <label class="col-md-12">Senha</label>
+                                        <div class="col-md-12">
+                                            <input type="password" value="{{ $user->password }}" class="form-control form-control-line" disabled> </div>
+                                        </div>--}}
                                     <div class="form-group">
                                         <label class="col-md-12">Recebe por hora</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="R$ 20,00" value="R$ {{ $user->payment_by_hours }}" class="form-control form-control-line"> 
+                                            <input type="text" placeholder="R$ 20,00" value="R$ {{ $user->payment_by_hours }}" class="form-control form-control-line" disabled> 
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Celular para contato</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="(18) 99645-4455" value="{{ $user->celular }}" class="form-control form-control-line"> 
+                                            <input type="text" placeholder="(18) 99645-4455" value="{{ $user->celular }}" class="form-control form-control-line" disabled> 
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Formação Academica </label>
                                         <div class="col-md-12">
-                                            <textarea rows="5" class="form-control form-control-line">{{ $user->info }}</textarea>
+                                            <textarea rows="5" class="form-control form-control-line" disabled>{{ $user->info }}</textarea>
                                         </div>
                                     </div>
                                         {{-- <div class="form-group">
@@ -85,6 +85,7 @@
                                                     <option>Usa</option>
                                                     <option>Canada</option>
                                                     <option>Thailand</option>
+                                                    <option>Brazil</option>
                                                 </select>
                                             </div>
                                         </div> --}}

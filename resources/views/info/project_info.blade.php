@@ -48,7 +48,9 @@
                         <span class="name">Nome: {{ $user->name }}</span>
                         <span class="status">Status : @if($user->status == "A") Ativo @else Inativo @endif</span>
                         <span class="role">Cargo : {{ $user->role }}</span>
-                        <span class="edit"> Editar meus dados: </span><a class="btn btn-info" href=" {{ url('users/show/'.$user->id) }}"><i class="fa fa-edit"></i></a>
+                        @can("isAdmin")
+                            <span class="edit"> Editar meus dados: </span><a class="btn btn-info" href=" {{ url('users/show/'.$user->id) }}"><i class="fa fa-edit"></i></a>
+                        @endcan
                         <br/>
                      </div>
                      @endforeach

@@ -34,17 +34,28 @@ class UserController extends Controller
      */
     public function index()
     {
+
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(403,"Sorry, You can do this action!");
+        }
+
         $users = user::all();
         return view('pages.user')->with('users', $users);
 
     }
 
     public function create(){
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(403,"Sorry, You can do this action!");
+        }
+
         return view('forms.user_create');
     }
 
     public function store(Request $request){
-        
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(403,"Sorry, You can do this action!");
+        }
        
         $user = new User();
         // $image = Input::file("image");
@@ -170,7 +181,7 @@ class UserController extends Controller
             $user->save();
 
             Session::flash('message', 'Cadastro editado com sucesso!');
-            return Redirect::to('users');
+            return Redirect::to('users/show-info/'.$user->id);
 
         }catch (\Exception $exception){
             return $exception;

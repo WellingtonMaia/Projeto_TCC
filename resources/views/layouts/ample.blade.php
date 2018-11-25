@@ -118,9 +118,11 @@
                             <li>
                                 <a href="{{route('projects')}}" class="waves-effect"><i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Projetos</a>
                             </li>
-                            <li>
-                                <a href="{{route('users')}}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Usuários</a>
-                            </li>
+                            @can("isAdmin")
+                                <li>
+                                    <a href="{{route('users')}}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Usuários</a>
+                                </li>
+                            @endcan    
                             {{-- <li>
                                 <a href="{{route('tasks')}}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Tarefas</a>
                             </li> --}}
