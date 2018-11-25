@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use App\User;
-
+use Gate;
 class UserController extends Controller
 {
     /**
