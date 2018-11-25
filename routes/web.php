@@ -13,8 +13,10 @@
 
 Auth::routes();
 
+Route::get('403', ['as' => '403', 'uses' => 'ErrorController@forbitten']);
 Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notfound']);
 Route::get('500', ['as' => '500', 'uses' => 'ErrorController@fatal']);
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['namespace' => 'Admin'], function () {

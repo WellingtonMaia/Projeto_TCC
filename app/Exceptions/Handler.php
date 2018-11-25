@@ -53,6 +53,10 @@ class Handler extends ExceptionHandler
         {
             switch($exception->getStatusCode())
             {
+                case 403:
+                    return redirect()->route('403');
+                break;
+                
                 case 404:
                     return redirect()->route('404');
                 break;

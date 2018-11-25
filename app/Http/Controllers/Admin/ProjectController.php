@@ -65,7 +65,7 @@ class ProjectController extends Controller
      */
     public function store(){
         if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            abort(404,"Sorry, You can do this action!");
+            abort(403,"Sorry, You can do this action!");
         }
 
         $users = Input::get('users');
