@@ -30,7 +30,7 @@ class Project extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'projects_has_users');
+        return $this->belongsToMany('App\User', 'projects_has_users', 'project_id', 'user_id');
     }
 
     public function financial(){

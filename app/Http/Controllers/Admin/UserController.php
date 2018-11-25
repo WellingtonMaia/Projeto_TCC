@@ -44,6 +44,8 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+        
+       
         $user = new User();
         // $image = Input::file("image");
         // $extensao = $image->getClientOriginalExtension();   
@@ -84,7 +86,7 @@ class UserController extends Controller
             $user->celular = Input::get("celular");
             $user->payment_by_hours = Input::get("payment_by_hours");
             $user->info = Input::get("info");
-
+            $user->password = bcrypt(Input::get("password"));
             $user->save();
            
             Session::flash('message', 'Cadastro registrado com sucesso!');

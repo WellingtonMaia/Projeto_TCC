@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+
 
 class User extends Authenticatable
 {
@@ -38,7 +40,7 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->belongsToMany('App\Models\Project', 'projects_has_users');
+        return $this->belongsToMany('App\Models\Project', 'projects_has_users', 'user_id', 'project_id' );
     }
 
 

@@ -48,7 +48,7 @@
             </div>
         </div>
         
-        <div class="row">
+        {{--<div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="white-box">
                     <h3 class="box-title">Products Yearly Sales</h3>
@@ -61,7 +61,7 @@
                     <div id="ct-visits" style="height: 405px;"></div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         {{--     <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">

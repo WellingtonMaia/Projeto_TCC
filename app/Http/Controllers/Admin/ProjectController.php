@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Project;
 use App\Models\Financial;
 use App\User;
+use Gate;
 
 class ProjectController extends Controller
 {
@@ -32,13 +33,27 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-    	$projects = Project::all();
+    public function index(Project $project)
+    {   
+    
+        $user = User::find(Auth::user()->id);
+
+        $projects = $user->projects();
+        //dd($project->users());
+        //dd($projects);
+
+        $projects = Project::all();
+        //$projects = ;
+        
+        
         return view('pages.project')->with('projects', $projects);
     }
 
     public function create(){
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(500,"Sorry, You can do this action!");
+        }
+
         $users = User::all();
     	return view('forms.project_create')->with('users', $users);
     }
@@ -49,6 +64,9 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(){
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(404,"Sorry, You can do this action!");
+        }
 
         $users = Input::get('users');
 
@@ -98,6 +116,11 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
+        
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(404,"Sorry, You can do this action!");
+        }
+
         $users = User::all();
         $project = Project::find($id);        
         return view('forms.project_create')->with("project", $project)
@@ -105,6 +128,10 @@ class ProjectController extends Controller
     } 
 
     public function showInfo($id){
+
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(404,"Sorry, You can do this action!");
+        }
 
         $project = Project::find($id);                
         $users = User::all();
@@ -120,6 +147,10 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
+
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(404,"Sorry, You can do this action!");
+        }
 
         $project = Project::find($id);
         $users = Input::get('users');
@@ -186,6 +217,9 @@ class ProjectController extends Controller
 
 
     public function delete($id){
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            abort(404,"Sorry, You can do this action!");
+        }
         $project = Project::find($id);
         $project->delete();
 
