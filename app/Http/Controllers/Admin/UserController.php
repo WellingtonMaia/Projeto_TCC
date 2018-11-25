@@ -76,17 +76,16 @@ class UserController extends Controller
 
         try{
 
-           $user->name = Input::get("name");
-            $user->email = Input::get("email");
-            // $user->password = Input::get("password");
-            $user->image = $nameFile;
-            $user->role = Input::get("role");
-            $user->status = Input::get("status");
-            $user->permission = Input::get("permission");
-            $user->celular = Input::get("celular");
+            $user->name             = Input::get("name");
+            $user->email            = Input::get("email");
+            $user->image            = $nameFile;
+            $user->role             = Input::get("role");
+            $user->status           = Input::get("status");
+            $user->permission       = Input::get("permission");
+            $user->celular          = Input::get("celular");
             $user->payment_by_hours = Input::get("payment_by_hours");
-            $user->info = Input::get("info");
-            $user->password = bcrypt(Input::get("password"));
+            $user->info             = Input::get("info");
+            $user->password         = bcrypt(Input::get("password"));
             $user->save();
            
             Session::flash('message', 'Cadastro registrado com sucesso!');
@@ -157,16 +156,16 @@ class UserController extends Controller
 
         try{
 
-            $user->name = Input::get("name");
-            $user->email = Input::get("email");
+            $user->name             = Input::get("name");
+            $user->email            = Input::get("email");
             // $user->password = Input::get("password");
-            $user->image = $nameFile;
-            $user->role = Input::get("role");
-            $user->status = Input::get("status");
-            $user->permission = Input::get("permission");
-            $user->celular = Input::get("celular");
+            $user->image            = $nameFile;
+            $user->role             = Input::get("role");
+            $user->status           = Input::get("status");
+            $user->permission       = Input::get("permission");
+            $user->celular          = Input::get("celular");
             $user->payment_by_hours = Input::get("payment_by_hours");
-            $user->info = Input::get("info");
+            $user->info             = Input::get("info");
 
             $user->save();
 

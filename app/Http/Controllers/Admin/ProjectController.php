@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 use App\Models\Project;
 use App\Models\Financial;
 use App\User;
@@ -41,11 +42,8 @@ class ProjectController extends Controller
         $projects = $user->projects();
         //dd($project->users());
         //dd($projects);
-
         $projects = Project::all();
         //$projects = ;
-        
-        
         return view('pages.project')->with('projects', $projects);
     }
 
@@ -68,20 +66,16 @@ class ProjectController extends Controller
             abort(403,"Sorry, You can do this action!");
         }
 
-        $users = Input::get('users');
+        $users                  = Input::get('users');
 
-        $project = new Project();
-
-        $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
-        $estimate_date = date('Y-m-d', strtotime($estimate_date));
-
-        $project->name = Input::get('name');
-        $project->estimate_date = $estimate_date;
+        $project                = new Project();
+        $project->name          = Input::get('name');
+        $project->estimate_date = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
         $project->estimate_time = Input::get('estimate_time');
-        $project->status = Input::get('status');
+        $project->status        = Input::get('status');
         $project->project_price = Input::get('project_price');
-        $project->project_type = Input::get('project_type');
-        $project->client_name = Input::get('client_name');
+        $project->project_type  = Input::get('project_type');
+        $project->client_name   = Input::get('client_name');
 
         $project->save();
 
@@ -118,7 +112,7 @@ class ProjectController extends Controller
     public function show($id){
         
         if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            abort(404,"Sorry, You can do this action!");
+            abort(403,"Sorry, You can do this action!");
         }
 
         $users = User::all();
@@ -130,7 +124,7 @@ class ProjectController extends Controller
     public function showInfo($id){
 
         if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            abort(404,"Sorry, You can do this action!");
+            abort(403,"Sorry, You can do this action!");
         }
 
         $project = Project::find($id);                
@@ -149,26 +143,23 @@ class ProjectController extends Controller
     public function edit($id){
 
         if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            abort(404,"Sorry, You can do this action!");
+            abort(403,"Sorry, You can do this action!");
         }
 
         $project = Project::find($id);
-        $users = Input::get('users');
+        $users   = Input::get('users');
 
         if(empty($users)){
             Session::flash('message', 'Selecionar usuários!');
             return Redirect::to('projects');
         }
 
-        $estimate_date = Input::get('estimate_date'); $estimate_date = str_replace('/', '-', $estimate_date);  
-        $estimate_date = date('Y-m-d', strtotime($estimate_date));
-
-        $project->name = Input::get('name');
-        $project->estimate_date = $estimate_date;
+        $project->name          = Input::get('name');
+        $project->estimate_date = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
         $project->estimate_time = Input::get('estimate_time');
-        $project->status = Input::get('status');
+        $project->status        = Input::get('status');
         $project->project_price = Input::get('project_price');
-        $project->project_type = Input::get('project_type');
+        $project->project_type  = Input::get('project_type');
         $save = $project->save();
 
         $project_id = $project->id;
@@ -187,24 +178,8 @@ class ProjectController extends Controller
 
             if($save){
 
-
                 $project->users()->sync($users);
-                // foreach ($users as $user) {
-                    
-                // }
-
-                // foreach ($users as $user) {
-                //      $project->users()->attach($user);
-                // }
-                      // DB::table('projects_has_users')
-                      //       ->where('project_id',$project_id)
-                      //       ->update(
-                      //     ['user_id' => $user]
-                      // );
-                    
-                     
-
-
+            
                 Session::flash('message', 'Projeto editado com sucesso!');
                 return Redirect::to('projects');
             }else{
@@ -218,7 +193,7 @@ class ProjectController extends Controller
 
     public function delete($id){
         if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            abort(404,"Sorry, You can do this action!");
+            abort(403,"Sorry, You can do this action!");
         }
         $project = Project::find($id);
         $project->delete();
