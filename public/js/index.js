@@ -411,13 +411,13 @@ $( document ).ready(function() {
     });
 
     
-    $(".note-registers").on('click','.editNote', function(e){
-        e.preventDefault();
+    // $(".note-registers").on('click','.editNote', function(e){
+    //     e.preventDefault();
 
-        var item = $(this).parent();
-        var id = $(this).attr("data-id");
+    //     var item = $(this).parent();
+    //     var id = $(this).attr("data-id");
 
-    });
+    // });
 
     $(".file-registers").on('click', '.removeFile', function (e){
         e.preventDefault();
@@ -460,6 +460,59 @@ $( document ).ready(function() {
             }
         });
     });
+
+
+
+    // edit
+
+    $(".time-registers").on('click','.editTime', function(e){
+        e.preventDefault();
+        $(".btn-info.time").click();
+
+        var item = $(this).parent().parent();
+        var id = $(this).attr("data-id");
+
+        $.ajax({
+            url: '/tasks/editTime',
+            type: "GET",
+            data: {id : id},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){    
+                    $("#time_begin_date").val(response.time.date);
+                    $("#time_start").val(response.time.time_start);
+                    $("#time_stop").val(response.time.time_stop);
+                    $("#time_value").val(response.time.time_value);
+                }else{
+                    console.log("erro");
+                }
+            }
+        });
+    });
+
+    $(".note-registers").on('click','.editNote', function (e){
+        e.preventDefault();
+        $(".btn-info.note").click();
+
+        var id = $(this).attr("data-id");
+
+        $.ajax({
+            url: '/tasks/editNote',
+            type: "GET",
+            data: {id : id},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){
+                    $("#note_description").val(response.note.description);                
+                }else{
+                    console.log("erro");
+                }
+            }
+        });
+    });
+
+
+
 
 
     $("#open-fancy").click(function (e){

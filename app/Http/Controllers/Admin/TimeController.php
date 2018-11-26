@@ -87,9 +87,10 @@ class TimeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $time = Time::find($request->get('id'));
+        return response()->json(['error'=>false,'time'=>$time],200);
     }
 
     /**
