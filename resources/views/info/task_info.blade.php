@@ -44,6 +44,7 @@
                      <div class="conteudo">
                         <div class="header-conteudo">Adicionando Tempo</div>
                         <form action="{{ url('task/addTime/') }}" id="addTime" method="POST">                           
+                           <input type="hidden" name="time_id" id="time_id" value="">
                            <input type="hidden" name="users_id" id="time_users_id" value="{{ Auth::user()->id }}">
                            <input type="hidden" name="task_id" id="time_task_id" value="{{ $task->id }}">
                            <div class="box-tempo">
@@ -99,14 +100,17 @@
                               <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
                                  <img src="{{ Helper::getImageUser($time->users_id) }}">
                               </div>
-                              <label>{{ Helper::getObjectUser($time->users_id)->name }}</label>
+                              <label>{{ Helper::getFirstNameWithObject($time->users_id) }}</label>
                            </div>
-                           <span>{{ \Carbon\Carbon::parse($time->date)->format('d/m/Y') }}</span>
-                           <span class="timepicker">{{ $time->time_start }}</span>                        
-                           <span class="timepicker">{{ $time->time_stop }}</span>                        
-                           <span class="timepicker">{{ $time->time_value }}</span>
+                           <span class="date-time">{{ \Carbon\Carbon::parse($time->date)->format('d/m/Y') }}</span>
+                           <span class="timepicker start">{{ $time->time_start }}</span>                        
+                           <span class="timepicker stop">{{ $time->time_stop }}</span>                        
+                           <span class="timepicker value">{{ $time->time_value }}</span>
                            <div class="block-a">
-                              <a class="btn btn-danger removeTime" href="" data-id="{{ $time->id }}" ><i class="fa fa-trash"></i></a>
+                              @if($time->users_id == Auth::user()->id)
+                                 <a class="btn btn-info editTime" href="" data-id="{{ $time->id }}"><i class="fa fa-edit"></i></a>
+                                 <a class="btn btn-danger removeTime" href="" data-id="{{ $time->id }}" ><i class="fa fa-trash"></i></a>
+                              @endif
                            </div>
                      </div>
                      @endforeach
@@ -195,6 +199,7 @@
                   <div class="conteudo">
                      <div class="header-conteudo">Adicionando anotação</div>
                       <form action="{{ url('task/addNote') }}" id="addNote" method="post">
+                           <input type="hidden" name="note_id" id="note_id" value="">
                            <input type="hidden" name="users_id" id="note_users_id" value="{{ Auth::user()->id }}">
                            <input type="hidden" name="task_id" id="note_task_id" value="{{ $task->id }}">
                            <div class="box-note">
@@ -225,13 +230,15 @@
                   <div class="note-registers">
                      @foreach ($task->notes as $note)                  
                      <div class="iten-task">
-                        <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
+                        <div class="img" title="{{ Helper::getObjectUser($note->users_id)->name }}">
                            <img src="{{ Helper::getImageUser($note->users_id) }}">
                         </div>
                         <div class="note-desc">{{ $note->description }}</div>
                         <div class="block-a">
-                           <a class="btn btn-danger removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
-                           <a class="btn btn-info editNote" data-id="{{ $note->id }}" href=""><i class="fa fa-edit"></i></a>
+                           @if($note->users_id == Auth::user()->id)
+                              <a class="btn btn-info editNote" data-id="{{ $note->id }}" href=""><i class="fa fa-edit"></i></a> 
+                              <a class="btn btn-danger removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
+                           @endif
                         </div>
                      </div>
                      @endforeach

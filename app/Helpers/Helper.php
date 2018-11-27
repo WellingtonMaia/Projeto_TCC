@@ -23,4 +23,10 @@ class Helper
 		$name = explode( ' ', $user->name);
 		return $name[0];
 	}
+
+	public static function getFirstNameWithObject($id){
+		$user = User::find($id);
+		$name = explode(' ', $user->name);
+		return $name[0];
+	}
 }

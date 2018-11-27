@@ -1114,14 +1114,37 @@ h3.block-title{
 	border:1px solid #e5e5e5;
 }
 
-.white-box .iten-task .block-a{
+.white-box .iten-task.time .block-a{
 	height: 35px;
+	margin-left: 10px;
+	width: 80px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.white-box .iten-task.time .block-a a{
+	display: block;
+	width: 38px;
+	padding: 6px 0;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+.white-box .iten-task .block-a{
+	width: 36px;
 	margin-left: 10px;
 }
 
 .white-box .iten-task .block-a a{
-	display: block;
+	width: 36px;
 	margin-bottom: 5px;
+}
+
+
+.white-box .iten-task .block-a a i{
+	font-size: 14px;
 }
 
 .white-box .iten-task.file a{

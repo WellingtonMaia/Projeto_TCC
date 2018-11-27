@@ -125,15 +125,11 @@ $( document ).ready(function() {
         });
     });
 
-    $("#addTask").submit(function (){
+    $(".conteudo").on("submit", "#addTask", function (){
+    // $("#addTask").submit(function (){
             var scope = $(this);
             var data = scope.serialize();
             // var project_id = $("#project_id").val();
-
-            // console.log(project_id);
-            console.log(data);
-            // console.log(data.users);
-            // console.log(unserialize( $data));
             $.ajax({
 
                 headers:{
@@ -162,8 +158,8 @@ $( document ).ready(function() {
             return false;
         }); 
     // });
-
-    $("#addTime").submit(function(){
+    $(".conteudo").on("submit", "#addTime", function (){
+    // $("#addTime").submit(function(){
         var task_id = $("#time_task_id").val();
         var users_id = $("#time_users_id").val();
         var date = $("#time_begin_date").val();
@@ -201,10 +197,9 @@ $( document ).ready(function() {
         return false;
     });
 
-    $("#addFile").submit(function(){
-        var task_id = $("#task_id").val();
-        var users_id = $("#users_id").val();
-        var file_url = $("#file_url").val();
+
+    $(".conteudo").on("submit", "#addFile", function (){
+    // $("#addFile").submit(function(){
 
         var form = document.getElementById("addFile");
         var formData = new FormData(form);   
@@ -218,7 +213,6 @@ $( document ).ready(function() {
             processData:false,
             contentType: false,
             data:formData,
-            // data:{file_url: file_url, task_id:task_id, users_id:users_id},
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
@@ -241,8 +235,8 @@ $( document ).ready(function() {
     });
 
 
-
-    $("#addNote").submit(function(){       
+    $(".conteudo").on("submit", "#addNote", function (){
+    // $("#addNote").submit(function(){       
 
         var task_id = $("#note_task_id").val();
         var users_id = $("#note_users_id").val();
@@ -275,6 +269,105 @@ $( document ).ready(function() {
         });
         return false;
     });
+
+
+    $(".conteudo").on("submit", "#editTime", function (){
+    // $("#addTime").submit(function(){
+
+        var time_id = $("#time_id").val();
+        var task_id = $("#time_task_id").val();
+        var users_id = $("#time_users_id").val();
+        var date = $("#time_begin_date").val();
+        var time_start = $("#time_start").val();
+        var time_stop = $("#time_stop").val();        
+        var time_value = $("#time_value").val();
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+            },
+            url:'/tasks/updateTime/',
+            type:"POST",
+            data:{date: date, task_id:task_id, users_id:users_id,time_start:time_start,time_stop:time_stop,time_value:time_value,time_id:time_id},
+            dataType:"JSON",
+            success:function(response){
+                if(response.error == false){
+
+                        $(".btn-info.time").parent().parent().next().removeClass("active");
+                        $(".shadow").removeClass("active");
+
+                        $('.alert-hidden div').text('Tempo cadastrado com sucesso');
+                        $('.alert-hidden').addClass('active');
+
+                        $(".time-registers").append(response.html);
+
+                        // $("#tempoRegistrado").text("00:00:00");
+                        $("#editTime").attr('id', "addTime");
+                        $("#addTime input[type='text']").val("");
+
+                        var element = $('a[data-id="'+time_id+'"]').parent().parent();
+
+                        var newDate = moment(response.time.date).format('DD/MM/YYYY');
+
+                        element.find(".date-time").text(newDate);
+                        element.find(".start").text(response.time.time_start);  
+                        element.find(".stop").text(response.time.time_stop);
+                        element.find(".value").text(response.time.time_value);
+
+                        // localStorage.clear();
+                        setTimeout(function(){
+                            $('.alert-hidden').removeClass('active');
+                        },2000);
+                }else{
+                    console.log("errou");
+                }
+            }
+        });
+        return false;
+    });
+
+    $(".conteudo").on("submit", "#editNote", function (){
+
+    // $("#editNote").submit(function(){       
+
+        var note_id = $("#note_id").val();
+        var task_id = $("#note_task_id").val();
+        var users_id = $("#note_users_id").val();
+        var description = $("#note_description").val();
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+            },
+            url:'/tasks/updateNote/',
+            type:"POST",
+            data:{description: description, task_id:task_id, users_id:users_id, note_id:note_id},
+            dataType:"JSON",
+            success:function(response){
+                if(response.error == false){
+                        
+                        $(".btn-info.note").parent().parent().next().removeClass("active");
+                        $(".shadow").removeClass("active");
+
+                        $('.alert-hidden div').text('Anotação editada com sucesso');
+                        $('.alert-hidden').addClass('active');
+                        
+                        $("#editNote textarea").val("");
+                        $("#editNote").attr('id', "addNote");
+
+                        $('a[data-id="'+note_id+'"]').parent().parent().find(".note-desc").text(response.note.description);
+
+                        setTimeout(function(){
+                            $('.alert-hidden').removeClass('active');
+                        },2000);
+                }else{
+                    console.log("errou");
+                }
+            }
+        });
+        return false;
+    });
+
 
 
     // delete ajax
@@ -372,7 +465,6 @@ $( document ).ready(function() {
         var item = $(this).parent().parent();
         var id = $(this).attr("data-id");
 
-
         swal({
             title:"Tem certeza que deseja remover essa anotação ?",
             showConfirmButton: true,
@@ -468,9 +560,11 @@ $( document ).ready(function() {
     $(".time-registers").on('click','.editTime', function(e){
         e.preventDefault();
         $(".btn-info.time").click();
+        $("#addTime").attr('id','editTime');
 
         var item = $(this).parent().parent();
         var id = $(this).attr("data-id");
+        $("#time_id").val(id);
 
         $.ajax({
             url: '/tasks/editTime',
@@ -479,7 +573,11 @@ $( document ).ready(function() {
             dataType:'JSON',
             success:function(response){
                 if(response.error == false){    
-                    $("#time_begin_date").val(response.time.date);
+                    var newDate = moment(response.time.date).format('DD/MM/YYYY');
+                    // var timeStart = moment(, 'HH:mm');
+                    // var timeEnd = moment(r,'HH:mm');
+                    // var timeValue = moment(, 'HH:mm');
+                    $("#time_begin_date").val(newDate);
                     $("#time_start").val(response.time.time_start);
                     $("#time_stop").val(response.time.time_stop);
                     $("#time_value").val(response.time.time_value);
@@ -493,8 +591,10 @@ $( document ).ready(function() {
     $(".note-registers").on('click','.editNote', function (e){
         e.preventDefault();
         $(".btn-info.note").click();
-
+        $("#addNote").attr('id', "editNote");
+        
         var id = $(this).attr("data-id");
+        $("#note_id").val(id);
 
         $.ajax({
             url: '/tasks/editNote',

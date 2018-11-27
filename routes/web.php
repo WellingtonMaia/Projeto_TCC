@@ -50,20 +50,27 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 // <-- ajax -->
-        //getting users
+         //getting users
         Route::get('/tasks/getUsers/', 'TaskController@getUsers');
 
         // actions in task
         Route::post('/tasks/addTask', 'TaskController@addTask');
         Route::post('/tasks/removeTask/', 'TaskController@removeTask');
         Route::post('/tasks/updateStatus/', 'TaskController@updateStatus');        
+
         // edit
-        Route::get('/tasks/editNote/', 'TaskController@edit');
-        Route::get('/tasks/editTime/', 'TaskController@edit');
+        Route::get('/tasks/editNote/', 'NoteController@edit');
+        Route::get('/tasks/editTime/', 'TimeController@edit');
+
         // add 
         Route::post('/tasks/addNote/', 'NoteController@store');
         Route::post('/tasks/addFile/', 'FileController@store');
         Route::post('/tasks/addTime/', 'TimeController@store');
+
+        //update
+        Route::post('/tasks/updateNote/', 'NoteController@update');
+        Route::post('/tasks/updateTime/', 'TimeController@update');
+
         // delete
         Route::post('/tasks/removeTime/', 'TimeController@destroy');
         Route::post('/tasks/removeNote/', 'NoteController@destroy');

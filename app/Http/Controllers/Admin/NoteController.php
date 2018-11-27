@@ -47,18 +47,7 @@ class NoteController extends Controller
 
         $note->save();
 
-        $notes = '<div class="iten-task">
-                        <div class="img" title="'.Helper::getObjectUser($note->users_id)->name.'">
-                           <img src="'.Helper::getImageUser($note->users_id).'">
-                        </div>
-                        <div class="note-desc">'.$note->description.'</div>
-                        <div class="block-a">
-                            <a class="btn btn-danger removeNote" href="" data-id="'.$note->id.'" ><i class="fa fa-trash"></i></a>
-                            <a class="btn btn-info editNote" data-id="'.$note->id.'" href=""><i class="fa fa-edit"></i></a>
-                        </div>
-                           
-                        </div>
-                 </div>';
+        $notes = view('includes.note-item',['note'=>$note])->render();
 
         return response()->json(['error'=>false,'html'=>$notes], 200);
 
@@ -94,9 +83,17 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $note = Note::find($request->get('note_id'));
+
+        $note->description = $request->get('description');
+        $note->task_id     = $request->get('task_id');
+        $note->users_id    = $request->get('users_id');
+
+        $note->save();   
+
+        return response()->json(['error'=>false,'note'=>$note]);
     }
 
     /**
