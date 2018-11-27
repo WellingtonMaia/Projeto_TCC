@@ -126,9 +126,11 @@
                             {{-- <li>
                                 <a href="{{route('tasks')}}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Tarefas</a>
                             </li> --}}
-                            <li>
-                                <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-money fa-fw" aria-hidden="true"></i>Financeiro</a>
-                            </li>
+                            @can("isAdmin")
+                                <li>
+                                    <a href="{{route('financials')}}" class="waves-effect"><i class="fa fa-money fa-fw" aria-hidden="true"></i>Financeiro</a>
+                                </li>
+                            @endcan 
                             <li class="has-sub">
                                 <a href="{{ route('report')}}" class="waves-effect"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Relatórios</a>
                                 <ul class="sub">

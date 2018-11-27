@@ -47,7 +47,7 @@ class ReportController extends Controller
 
     //-> projetos realizados durante um periodo
     public function date_for_project(Request $request){
-
+        dd($request->all());
         $date_ini = Carbon::parse(str_replace('/', '-',$request->get('date_ini')))->format('Y-m-d');
         $date_final = Carbon::parse(str_replace('/', '-',$request->get('date_final')))->format('Y-m-d');
         //$date_final = $request->date_final;

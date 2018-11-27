@@ -22,7 +22,7 @@
                 </div>
                 <div class="white-box">
                     <div class="content-filtro form-group">
-                        <form id="date-for-project" method="POST" action="#">
+                        <form {{-- id="date-for-project" --}}  method="POST" action="{{ route('date_for_project') }}">
                             <div class="form-box">
                                 <div class="item-filtro">
                                     <label>
@@ -37,7 +37,7 @@
                                         <input type="text" name="date_final" class="form-control datepicker" placeholder="11/09/2018">
                                     </label>
                                 </div>
-                                <button class="btn btn-success">Gerar</button>
+                                <input type="submit" class="btn btn-success" value="Gerar">
                             </div>
                         </form>
                     </div>

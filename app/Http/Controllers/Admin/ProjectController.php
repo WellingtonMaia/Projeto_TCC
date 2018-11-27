@@ -78,7 +78,8 @@ class ProjectController extends Controller
         $project->save();
 
         $project_id = $project->id;
-
+        $estimate_date = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
+        
         if(!empty($project_id)){
             $financials = new Financial();
            $save = DB::table('financials')->insert([
