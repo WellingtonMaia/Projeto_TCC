@@ -17,8 +17,13 @@
       <div class="col-md-12">
          <div class="card content-task">
             <div class="white-box">
-               <div class="block-title"><h2>{{ $task->name }}</h2></div>
+               <div class="block-title">
+                   <h2>{{ $task->name }}</h2>
+
+               </div>
                <div class="info-task">
+                  <span>Status da tarefa : @if($task->status == 'C')Concluida @else Iniciada/Em Desenvolvimento @endif</span>
+
                   <span>Data estimada: {{ \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') }}</span>
                   <span>Inicio: {{ \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') }}</span>
                   <span>Vence: {{ \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }}</span>
@@ -50,7 +55,11 @@
                            <div class="box-tempo">
                               <label>
                                  Quem
-                                 <input type="text" name="author" disabled class="form-control" value="{{ Auth::user()->name}}" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
+                                 {{-- <input type="text" name="author" disabled class="form-control" value="{{ Auth::user()->name}}" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;"> --}}
+                                 <select class="form-control" name="author" disabled="disabled" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">>
+                                    <option>{{ Auth::user()->name}}</option>
+                                 </select>
+
                               </label>
                               <label>
                                  Data

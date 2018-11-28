@@ -91,7 +91,9 @@
                                  <div class="dates begin">( Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y ') }} </div>
                                  <div class="dates final"> Vence: {{  \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }} )</div>                               
                               </a>
+                              <a class="btn btn-info editTask" data-id="{{ $task->id }}" href=""><i class="fa fa-edit"></i></a></a>
                               <a class="btn btn-danger removeTask" data-id="{{ $task->id }}" href=""><i class="fa fa-trash"></i></a>
+
                            </div>
                         </div>
                         @endforeach

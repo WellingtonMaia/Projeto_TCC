@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/tasks/addTask', 'TaskController@addTask');
         Route::post('/tasks/removeTask/', 'TaskController@removeTask');
         Route::post('/tasks/updateStatus/', 'TaskController@updateStatus');        
+        Route::get('/tasks/editTask/', 'TaskController@editTask');
 
         // edit
         Route::get('/tasks/editNote/', 'NoteController@edit');

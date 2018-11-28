@@ -34,6 +34,26 @@ li{
 	list-style: none;
 }
 
+/*input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    cursor:pointer;
+    display:block;
+    width:8px;
+    color: #333;
+    text-align:center;
+    position:relative;
+}
+
+*/
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    /*background: url(../images/arrow-down.svg) calc(100% - 15px) center no-repeat, #fff;
+    background-size: 5px;*/
+}
+
 .top-left-part {
   background: #fff;
 }
@@ -414,7 +434,7 @@ h3.block-title{
 }
 
 .list-tasks .iten-task .item a.btn-danger{
-	margin: 0 10px;
+	margin: 0 10px 0 10px;
 	padding: 0;
 	width: 27px;
 	border: none;
@@ -433,6 +453,33 @@ h3.block-title{
 .list-tasks .iten-task .item a.btn-danger:hover i{
 	color:#980924;
 }
+
+.list-tasks .iten-task .item a.btn-info{
+	margin: 0;
+	padding: 0;
+	width: 27px;
+	border: none;
+	height: 41px;
+	background: transparent;
+	transition: ease-out .2s;
+}
+
+.list-tasks .iten-task .item a.btn-info i{
+	width: 27px;
+	color: #41b3f9;
+	transition: ease-out .2s;
+	line-height: 24px;
+	font-size:27px;
+}
+
+
+.list-tasks .iten-task .item a.btn-info:hover i{
+	color:#02629e;
+}
+
+
+
+
 
 
 .list-tasks .iten-task .task-users{
@@ -801,6 +848,11 @@ h3.block-title{
 	border-radius: 4px;
 	padding: 0;
 	padding-left: 10px;
+}
+
+
+.task .popup .conteudo .box-tempo label select{
+
 }
 
 

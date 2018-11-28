@@ -203,6 +203,16 @@ class TaskController extends Controller
 
     public function editTask(Request $request){
 
+        $task = Task::where('id', $request->get('id'))->first();
+        // $project = Project::byTask($task)->get();
+        $users = $task->users()->get();
+
+        return response()->json(['error'=>false,'task'=>$task,'users'=>$users],200);
+    }
+
+
+    public function updateTask(Request $request){
+
         $task = Task::find($request->get('task_id'));
 
         $task->name             = $request->get('name');
@@ -220,9 +230,9 @@ class TaskController extends Controller
             $task->users()->attach($user);
         }    
 
-        $html = view('includes.task-item',['task'=>$task])->render();
+        // $html = view('includes.task-item',['task'=>$task])->render();
         
-        return response()->json(['error'=>false,'html'=>$html], 200);
+        return response()->json(['error'=>false,'html'=>$task], 200);
     }
 
     public function removeTask(Request $request){

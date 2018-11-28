@@ -3,7 +3,7 @@
       <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
          <img src="{{ Helper::getImageUser($time->users_id) }}">
       </div>
-      <label>{{ Helper::getFirstNameWithObject($time->users_id)->name }}</label>
+      <label>{{ Helper::getFirstNameWithObject($time->users_id) }}</label>
    </div>
    <span class="date-time">{{ \Carbon\Carbon::parse($time->date)->format('d/m/Y') }}</span>
    <span class="timepicker start">{{ $time->time_start }}</span>                        

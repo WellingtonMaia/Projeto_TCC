@@ -125,7 +125,9 @@ $( document ).ready(function() {
         });
     });
 
-    $(".conteudo").on("submit", "#addTask", function (){
+
+
+    $(".task-content").on("submit", "#addTask", function (){
     // $("#addTask").submit(function (){
             var scope = $(this);
             var data = scope.serialize();
@@ -416,6 +418,60 @@ $( document ).ready(function() {
         });
     });
 
+    $(".list-tasks").on('click', '.editTask', function (e){
+        e.preventDefault();
+        $("#open-fancy").click();
+        var item = $(this).parent().parent();
+        var id = $(this).attr("data-id");
+
+        $("#task_id").val(id);
+
+
+        $.ajax({
+            url: '/tasks/editTask',
+            type: "GET",
+            data: {id : id},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){  
+                    // console.log(response.users[0].id);  
+                    // console.log(response.users[1].id);
+                    console.log(response.users.length);
+
+
+                    // var i = 0;
+                    // $("#usersProject option").each( function (e){
+                    //     if(this.value == response.users[i].id){
+                    //         this.attr('selected','selected');
+                    //     }
+                        // // }
+                        // console.log($(this).attr('value'));
+                        // if($(this).attr('value') == ){
+                        //      $(this).attr('selected','selected');
+                        //      console.log(response.users[i].id);
+                        //     }
+                            
+                        // }
+                        // console.log(i);
+                        // i++;
+                    // });
+
+                    $("#name_task").val(response.task.name);
+                    $("#description").val(response.task.description);
+                    $("#estimate_date").val(moment(response.task.estimate_date).format('DD/MM/YYYY'));
+                    $("#estimate_time").val(removeSeconds(response.task.estimate_time));
+                    $("#begin_date").val(moment(response.task.begin_date).format('DD/MM/YYYY'));
+                    $("#final_date").val(moment(response.task.final_date).format('DD/MM/YYYY'));
+                    
+                }else{
+                    console.log("erro");
+                }
+            }
+        });
+
+
+    });
+
     $(".time-registers").on('click','.removeTime', function(e){
         e.preventDefault();
 
@@ -574,13 +630,14 @@ $( document ).ready(function() {
             success:function(response){
                 if(response.error == false){    
                     var newDate = moment(response.time.date).format('DD/MM/YYYY');
-                    // var timeStart = moment(, 'HH:mm');
-                    // var timeEnd = moment(r,'HH:mm');
-                    // var timeValue = moment(, 'HH:mm');
+                    var timeStart = removeSeconds(response.time.time_start);
+                    var timeEnd = removeSeconds(response.time.time_stop);
+                    var timeValue = removeSeconds(response.time.time_value);
+
                     $("#time_begin_date").val(newDate);
-                    $("#time_start").val(response.time.time_start);
-                    $("#time_stop").val(response.time.time_stop);
-                    $("#time_value").val(response.time.time_value);
+                    $("#time_start").val(timeStart);
+                    $("#time_stop").val(timeEnd);
+                    $("#time_value").val(timeValue);
                 }else{
                     console.log("erro");
                 }
@@ -697,8 +754,7 @@ $( document ).ready(function() {
             time_value = '00:01';
             // time_value.text("00:01");    
         }else{
-            var split = time_value.split(":");   
-            var time_value = split[0]+":"+split[1]; 
+            var time_value = removeSeconds(time_value);
         }
         // str.split(" ");
         
@@ -711,9 +767,9 @@ $( document ).ready(function() {
         $(".main-timer").removeClass("active");
 
         $("#time_begin_date").val(currentDate);
-        $("#time_start").val(time_start);
-        $("#time_stop").val(time_stop);        
-        $("#time_value").val(time_value);
+        $("#time_start").val(removeSeconds(time_start));
+        $("#time_stop").val(removeSeconds(time_stop));        
+        $("#time_value").val(removeSeconds(time_value));
 
         $(".btn-info.time").click();
 
@@ -801,6 +857,16 @@ function getTimeInterval(startTime, endTime){
     var interval = moment().hour(0).minute(minutes);
     // interval.subtract(lunchTime, 'minutes');
     return interval.format("HH:mm");
+}
+
+function removeSeconds(param){
+
+    var time = param.split(":");
+    // var newTime = time[0]+":"time[1];
+    var newTime = moment().hour(time[0]).minute(time[1]);
+
+    return newTime.format("HH:mm");
+
 }
 
 function resetItemTask(current){
