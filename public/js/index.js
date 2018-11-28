@@ -439,11 +439,25 @@ $( document ).ready(function() {
                     console.log(response.users.length);
 
 
-                    // var i = 0;
-                    // $("#usersProject option").each( function (e){
-                    //     if(this.value == response.users[i].id){
-                    //         this.attr('selected','selected');
-                    //     }
+                    $("#usersProject option").each( function (e){
+                        if($(this).attr('value' == response.users[e].id){
+                            // this.attr('selected','selected');
+                            // $(this).parent().selectedIndex = e;
+                        }
+                    });
+
+                        // só faz essa alteração se n vai ter BO no safari
+                        // $(this).parent().selectedIndex = e;
+                        // n lugar de this.attr('selected','selected');
+                        // var i = 0;
+                        // $("#usersProject option").each( function (e){
+                        //     if(this.value == response.users[i].id){
+                        //         this.attr('selected','selected');
+
+                        // if($(this).attr('value') == response.users[i].id){
+                        //       this.attr('selected','selected');
+                        //   }
+                        // }
                         // // }
                         // console.log($(this).attr('value'));
                         // if($(this).attr('value') == ){
