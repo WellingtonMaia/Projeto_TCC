@@ -126,6 +126,41 @@ $( document ).ready(function() {
     });
 
 
+    $(".status-tarefa").on("change", "#statusInterna", function (){
+
+        item = $(this);
+
+        status = item.attr("data-status");
+        id = item.attr("data-id");
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/tasks/updateStatus',
+            type: "POST",
+            data: {id: id, status: status},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){
+                    console.log(response.status);
+                    item.attr("data-status",response.status);
+                       
+                    if(response.status == 'C'){
+                        $('.desc-status').text("Status da tarefa : Concluida");
+                    }else{
+                        $('.desc-status').text("Status da tarefa : Iniciada/Em Desenvolvimento");
+                    }
+
+
+                }else{
+                    console.log("erro");
+                }
+            }
+
+        });
+    });
+
 
     $(".task-content").on("submit", "#addTask", function (){
     // $("#addTask").submit(function (){
@@ -160,6 +195,63 @@ $( document ).ready(function() {
             return false;
         }); 
     // });
+
+
+    $(".task-content").on("submit", "#editTask", function (){
+        var scope = $(this);
+        var data = scope.serialize();
+
+        $.ajax({
+
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                },
+                url:'/tasks/updateTask/',
+                type:"POST",
+                data:data,
+                dataType:"JSON",
+                success:function(response){
+                    if(response.error == false){
+
+                            $(".task-box , .shadow").removeClass("active");
+                            $('.alert-hidden div').text('Tarefa editada com sucesso');
+                            $('.alert-hidden').addClass('active');
+
+                            scope.find('input').val("");
+                            scope.find('textarea').val("");                          
+
+                            console.log(response.users);
+                            console.log(response.task.id);
+
+                            var element = $('a[data-id="'+response.task.id+'"]').parent().parent();
+
+                            element.find(".dates.begin").text("(Inicio: "+moment(response.task.begin_date).format('DD/MM/YYYY'));
+                            element.find(".dates.final").text("Vence: "+moment(response.task.final_date).format('DD/MM/YYYY')+")");
+                            element.find(".title-task").text(response.task.name);
+                            element.find("hidden").text(response.task.description);
+
+
+                            // element.find("#name_task").val(response.task.name);
+                            // element.find("#description").val(response.task.description);
+                            // element.find("#estimate_date").val(moment(response.task.estimate_date).format('DD/MM/YYYY'));
+                            // element.find("#estimate_time").val(removeSeconds(response.task.estimate_time));
+                            // $("#begin_date").val(moment(response.task.begin_date).format('DD/MM/YYYY'));
+                            // $("#final_date").val(moment(response.task.final_date).format('DD/MM/YYYY'));
+                            // element.
+
+                            setTimeout(function(){
+                                $('.alert-hidden').removeClass('active');
+                            },2000);                        
+                    }else{
+                        console.log("errou");
+                    }
+                }
+            });
+            return false;
+        }); 
+    // });
+
+
     $(".conteudo").on("submit", "#addTime", function (){
     // $("#addTime").submit(function(){
         var task_id = $("#time_task_id").val();
@@ -372,6 +464,9 @@ $( document ).ready(function() {
 
 
 
+
+
+
     // delete ajax
     $(".list-tasks").on('click', '.removeTask', function (e){
         e.preventDefault();
@@ -425,7 +520,7 @@ $( document ).ready(function() {
         var id = $(this).attr("data-id");
 
         $("#task_id").val(id);
-
+        $("#addTask").attr('id', 'editTask');
 
         $.ajax({
             url: '/tasks/editTask',
@@ -436,15 +531,15 @@ $( document ).ready(function() {
                 if(response.error == false){  
                     // console.log(response.users[0].id);  
                     // console.log(response.users[1].id);
-                    console.log(response.users.length);
+                    console.log(response.users);
 
 
-                    $("#usersProject option").each( function (e){
-                        if($(this).attr('value' == response.users[e].id){
-                            // this.attr('selected','selected');
-                            // $(this).parent().selectedIndex = e;
-                        }
-                    });
+                    // $("#usersProject option").each( function (i, e){
+                    //     if($(this).attr('value' == response.users[e].id)){
+                    //         this.attr('selected','selected');
+                    //         // $(this).parent().selectedIndex = e;
+                    //     }
+                    // });
 
                         // só faz essa alteração se n vai ter BO no safari
                         // $(this).parent().selectedIndex = e;

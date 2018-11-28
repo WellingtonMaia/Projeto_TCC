@@ -6,6 +6,7 @@
 					
 					{{ csrf_field() }}
 					<input type="hidden" name="status" value="I">
+					<input type="hidden" name="task_id" id="task_id">
 					<div class="form-group">
 						<label for="">Projeto</label>
 						<select name="project" id="project_id" class="form-control" required>

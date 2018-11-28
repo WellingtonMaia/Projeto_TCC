@@ -86,7 +86,7 @@
                                     </span>
                                     @endforeach
                                  </span>
-                                 <h3 title="{{ $task->name }}">{{ $task->name }}</h3>
+                                 <h3 class="title-task" title="{{ $task->name }}">{{ $task->name }}</h3>
                                  <div class="hidden">{{ $task->description }}</div>                                 
                                  <div class="dates begin">( Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y ') }} </div>
                                  <div class="dates final"> Vence: {{  \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }} )</div>                               

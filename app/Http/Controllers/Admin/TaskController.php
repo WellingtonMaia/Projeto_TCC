@@ -217,22 +217,19 @@ class TaskController extends Controller
 
         $task->name             = $request->get('name');
         $task->description      = $request->get('description');       
-        $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');     
-        $task->status           = $request->get('status');         
+        $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');  
         $task->estimate_time    = $request->get('estimate_time');    
         $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
-        $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');      
-        $task->project_id       = $request->get('project_id');    
-
+        $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');        
         $task->save();
 
-        foreach ($request->get('users') as $user) {
-            $task->users()->attach($user);
-        }    
+        $users = $request->get('users');
+
+        $task->users()->sync($users);
 
         // $html = view('includes.task-item',['task'=>$task])->render();
         
-        return response()->json(['error'=>false,'html'=>$task], 200);
+        return response()->json(['error'=>false,'task'=>$task,'users'=>$users], 200);
     }
 
     public function removeTask(Request $request){
