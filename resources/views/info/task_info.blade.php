@@ -9,7 +9,7 @@
             {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
             <ol class="breadcrumb">
                <li><a href="{{ route('home') }}">Dashboard</a></li>
-               <li><a href="">Projeto</a></li>
+               <li><a href="{{ url('projects/show-info/'.$task->project_id) }}">Projeto</a></li>
                <li class="active"> {{ $task->name }}</li>
             </ol>
          </div>
@@ -26,7 +26,7 @@
                      <span class="desc-status">Status da tarefa : @if($task->status == 'C')Concluida @else Iniciada/Em Desenvolvimento @endif</span>
                      <div class="switch_box box_4">
                         <div class="input_wrapper">
-                           <input type="checkbox" class="switch_4" id="statusInterna" data-id="{{ $task->id }}" data-status="{{ $task->status }}">
+                           <input type="checkbox" class="switch_4"  @if($task->status == 'C')checked="checked"@endif id="statusInterna" data-id="{{ $task->id }}" data-status="{{ $task->status }}">
                            <svg class="is_checked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426.67 426.67">
                           <path d="M153.504 366.84c-8.657 0-17.323-3.303-23.927-9.912L9.914 237.265c-13.218-13.218-13.218-34.645 0-47.863 13.218-13.218 34.645-13.218 47.863 0l95.727 95.727 215.39-215.387c13.218-13.214 34.65-13.218 47.86 0 13.22 13.218 13.22 34.65 0 47.863L177.435 356.928c-6.61 6.605-15.27 9.91-23.932 9.91z"/>
                         </svg>
@@ -41,7 +41,7 @@
                   <span>Inicio: {{ \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') }}</span>
                   <span>Vence: {{ \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }}</span>
                   {{-- <span>Tempo Estimado: {{ $task->estimate_time }} horas </span> --}}
-                  <span>Tempo Estimado: {{ \Carbon\Carbon::parse($task->estimate_time)->format('H:i') }} horas </span>
+                  <span>Tempo Estimado: <i class="timepicker">{{ $task->estimate_time }}</i> horas </span>
                   <span>Valor Referente ao tempo gasto na tarefa: {{ $task->tasks_price }}</span>
                   <div class="descricao-tarefa">
                      {{ $task->description }}

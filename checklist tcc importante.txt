@@ -37,7 +37,7 @@ Lista Pendente
 
 		Mostrar quais usuarios estão dentro da tarefa na edição ajax e Alterar os usuarios depois do update
 		
-		Adicionar a função ajax dentro da tarefa para alterar status de concluida/em desenvolvimento
+		OK - Adicionar a função ajax dentro da tarefa para alterar status de concluida/em desenvolvimento
 
 		Fazer popup das informações do financeiro
 

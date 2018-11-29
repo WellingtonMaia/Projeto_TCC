@@ -787,6 +787,12 @@ $( document ).ready(function() {
         $(".shadow").addClass("active");
     });
 
+    $(".openFinancial").click(function (e){
+        e.preventDefault();
+        $(".financial-box").addClass("active");
+        $(".shadow").addClass("active");
+    });
+
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 
         $(this).parent().parent().next().addClass("active");
@@ -797,6 +803,7 @@ $( document ).ready(function() {
     $(".shadow").click(function (){
         $(this).removeClass("active");
         $(".task-box").removeClass("active");
+        $(".financial-box").removeClass("active");
         $(".btn-info.time").parent().parent().next().removeClass("active");
         $(".btn-info.file").parent().parent().next().removeClass("active");
         $(".btn-info.note").parent().parent().next().removeClass("active");

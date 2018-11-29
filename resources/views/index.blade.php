@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-sm-6 col-xs-12">
                 <div class="white-box analytics-info">
                     <h3 class="box-title">Projetos</h3>
                     <ul class="list-inline two-part">
@@ -24,7 +24,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-sm-6 col-xs-12">
                 <div class="white-box analytics-info">
                     <h3 class="box-title">Tarefas</h3>
                     <ul class="list-inline two-part">
@@ -35,7 +35,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-sm-6 col-xs-12">
                 <div class="white-box analytics-info">
                     <h3 class="box-title">Usuarios</h3>
                     <ul class="list-inline two-part">
@@ -43,6 +43,17 @@
                             <div id="sparklinedash3"></div>
                         </li>
                         <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">{{ $nuser }}</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title">Tempo Registrado</h3>
+                    <ul class="list-inline two-part">
+                        <li>
+                            <div id="sparklinedash4"></div>
+                        </li>
+                        <li class="text-right"><i class="ti-arrow-up text-danger"></i> <span class="text-danger">36:30</span></li>
                     </ul>
                 </div>
             </div>
