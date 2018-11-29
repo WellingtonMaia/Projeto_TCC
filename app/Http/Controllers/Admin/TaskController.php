@@ -227,9 +227,13 @@ class TaskController extends Controller
 
         $task->users()->sync($users);
 
-        // $html = view('includes.task-item',['task'=>$task])->render();
+        $us = User::select(['id','name'])->whereIn('id',$users)->get()->toArray();
+
+        foreach ($us as $key => $user) {
+            $us[$key]['name'] = Helper::getFirstNameString($user['name']);
+        }
         
-        return response()->json(['error'=>false,'task'=>$task,'users'=>$users], 200);
+        return response()->json(['error'=>false,'task'=>$task,'users'=>$us], 200);
     }
 
     public function removeTask(Request $request){

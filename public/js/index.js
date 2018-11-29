@@ -225,6 +225,19 @@ $( document ).ready(function() {
 
                             var element = $('a[data-id="'+response.task.id+'"]').parent().parent();
 
+
+                            element.find('.task-users').html("");
+
+                            $.each(response.users, function (k, v){
+                                element.find('.task-users').append('<span class="user" title="'+v.name+'">'+v.name+'</span>');                             
+                                // console.log(k);
+                                // console.log(v);
+                            });
+                            //     response.users.each( function(e){
+                            //     console.log(e);
+
+                            // }); 
+
                             element.find(".dates.begin").text("(Inicio: "+moment(response.task.begin_date).format('DD/MM/YYYY'));
                             element.find(".dates.final").text("Vence: "+moment(response.task.final_date).format('DD/MM/YYYY')+")");
                             element.find(".title-task").text(response.task.name);
@@ -238,6 +251,9 @@ $( document ).ready(function() {
                             // $("#begin_date").val(moment(response.task.begin_date).format('DD/MM/YYYY'));
                             // $("#final_date").val(moment(response.task.final_date).format('DD/MM/YYYY'));
                             // element.
+                            $("#usersProject option:selected").prop("selected",false);
+                            // $("#edit-rec option:selected").removeAttr("selected");
+
 
                             setTimeout(function(){
                                 $('.alert-hidden').removeClass('active');
@@ -533,37 +549,22 @@ $( document ).ready(function() {
                     // console.log(response.users[1].id);
                     console.log(response.users);
 
+            $.each(response.users, function (k, v){
 
-                    // $("#usersProject option").each( function (i, e){
-                    //     if($(this).attr('value' == response.users[e].id)){
-                    //         this.attr('selected','selected');
-                    //         // $(this).parent().selectedIndex = e;
-                    //     }
-                    // });
+                // console.log(v);
+                $("#usersProject option").each(function (i, e){
+                    console.log($(this));
 
-                        // só faz essa alteração se n vai ter BO no safari
-                        // $(this).parent().selectedIndex = e;
-                        // n lugar de this.attr('selected','selected');
-                        // var i = 0;
-                        // $("#usersProject option").each( function (e){
-                        //     if(this.value == response.users[i].id){
-                        //         this.attr('selected','selected');
+                     if($(this).attr('value') == v.id){
+                        $(this).prop('selected',true); 
+                     }
+                });
+            });
 
-                        // if($(this).attr('value') == response.users[i].id){
-                        //       this.attr('selected','selected');
-                        //   }
-                        // }
-                        // // }
-                        // console.log($(this).attr('value'));
-                        // if($(this).attr('value') == ){
-                        //      $(this).attr('selected','selected');
-                        //      console.log(response.users[i].id);
-                        //     }
-                            
-                        // }
-                        // console.log(i);
-                        // i++;
-                    // });
+            // element.find('.task-users').append('<span class="user" title="'+v.name+'">'+v.name+'</span>');                             
+                // console.log(k);
+                // console.log(v);
+                
 
                     $("#name_task").val(response.task.name);
                     $("#description").val(response.task.description);
@@ -785,6 +786,7 @@ $( document ).ready(function() {
         e.preventDefault();        
         $(".task-box").addClass("active");
         $(".shadow").addClass("active");
+
     });
 
     $(".openFinancial").click(function (e){
@@ -802,6 +804,7 @@ $( document ).ready(function() {
 
     $(".shadow").click(function (){
         $(this).removeClass("active");
+        $("#usersProject option:selected").prop("selected",false);
         $(".task-box").removeClass("active");
         $(".financial-box").removeClass("active");
         $(".btn-info.time").parent().parent().next().removeClass("active");
