@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Project;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -46,17 +47,37 @@ class ReportController extends Controller
     }
 
     //-> projetos realizados durante um periodo
-    public function date_for_project(Request $request){
-        dd($request->all());
-        $date_ini = Carbon::parse(str_replace('/', '-',$request->get('date_ini')))->format('Y-m-d');
-        $date_final = Carbon::parse(str_replace('/', '-',$request->get('date_final')))->format('Y-m-d');
+    public function date_for_project(/*Request $request*/){
+        //dd($request->all());
+        
         //$date_final = $request->date_final;
-        // $date_ini = '2018-11-14';
-        // $date_final = '2018-11-16';
-        $projects = Project::whereBetween('created_at', [$date_ini, $date_final])
-                            ->where('status','I')
-                            ->get();
-        // dd($projects);
+         $date_ini = '2018-11-01';
+         $date_final = '2019-12-30';
+        
+        $period = 12;
+        /*
+        //$date_ini = Carbon::parse(str_replace('/', '-',$request->get('date_ini')))->format('Y-m-d');
+        //$date_final = Carbon::parse(str_replace('/', '-',$request->get('date_final')))->format('Y-m-d')
+        //            ->copy()->subMonths($period);*/
+        
+        //teste
+        $date_ini = Carbon::parse(str_replace('/', '-',$date_ini))->format('Y-m-d');
+        $date_final = Carbon::parse(str_replace('/', '-',$date_final))->format('Y-m-d');            
+        
+        
+            $projects = Project::selectRaw("id, name, client_name, estimate_date, project_price, status, project_type, created_at")
+            ->whereBetween("created_at", [$date_ini, $date_final])
+            ->where('status','=','A')
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y%m') "))
+            ->orderBy("created_at")->get();
+        
+
+        
+        //$projects = Project::whereBetween('created_at', [$date_ini, $date_final])
+        //                    ->where('status','A')
+        //                    ->get();
+        
+         dd($projects);
 
         // return view('info.report',compact('project'));
     }
@@ -66,21 +87,26 @@ class ReportController extends Controller
     public function time_users_for_project(/*Request $request ou $id */){
 
         //$user_id = $request->user_id;
-        $user_id = 1;
+        $user_id = 8;
         $project_id = DB::table('projects_has_users')
             ->select('project_id')
             ->where('user_id', $user_id)
             ->get();
-
-        foreach($project_id as $p_id){
-            $projects = DB::table('projects')
-                ->select('name', 'client_name','estimate_time')
-                ->where('id', $p_id->project_id)
-                ->get();
+        
+        if (!empty($project_id)) {
+            foreach($project_id as $p_id){
+                $projects = DB::table('projects')
+                    ->select('name', 'client_name','estimate_time')
+                    ->where('id', $p_id->project_id)
+                    ->get();
+            } 
+            
+            dd($projects);
         }
 
+        
+
         //$projects = Project::where('id', [$date_ini, $date_final])->get();
-        dd($projects);
         
         // return response()->json(['error'=>false,'html'=>$times], 200);
         // return view('info.report',compact('project'));
@@ -90,26 +116,31 @@ class ReportController extends Controller
     //->tempo gasto total de projetos por tempo
     //selecionar um projeto e listar todos os colaboradores relacionado
     //a ele e visualizar as horas trabalhadas
-    public function project_for_users_times(Request $request){
+    public function project_for_users_times(/*Request $request*/){
 
-        $project_id = $request->project_id;
+        //$project_id = $request->project_id;
 
-        // $project_id = 7;
+        $project_id = 12;
         $task_id = Task::where('project_id', $project_id)->get();
-
-        foreach($task_id as $t){
-            $times[] = Time::where('task_id',$t->id)->get();
+        
+        if(!empty($task_id)){
+            
+            foreach($task_id as $t){
+                $times[] = Time::where('task_id',$t->id)->get();
+            }
+            
+            dd($times);
         }
-        dd($times);
-
+        
     }
 
     //->conclusao de tarefa por pessoa em um projeto
     public function finish_task_user_project(/*Request $request ou $id */){
         //$project_id = $request->project_id;
-        $project_id = 5;
-        $tasks = Task::where('project_id', 5)->where('status','I')->get();
-        //$financial->project->name
+        
+        $project_id = 12;
+        $tasks = Task::where('project_id', $project_id)->where('status','C')->get();
+        
         dd($tasks);
     }
 

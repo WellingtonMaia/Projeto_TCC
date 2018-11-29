@@ -84,6 +84,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/report/post/finish-task-user-project','ReportController@finish_task_user_project');
 
 
+        //Rota de Teste Report
+        Route::get('/date-for-project-test','ReportController@finish_task_user_project')->name("date_for_project_test");
 
 // <-- users -->
         Route::get('/users', 'UserController@index')->name('users');

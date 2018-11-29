@@ -134,7 +134,7 @@
                             <li class="has-sub">
                                 <a href="{{ route('report')}}" class="waves-effect"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Relatórios</a>
                                 <ul class="sub">
-                                    <li><a href="{{ route('report_date_for_project') }}"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Projetos por periodo</a></li>
+                                    <li><a href="{{ route('date_for_project_test') }}"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Projetos por periodo</a></li>
                                     <li><a href="{{ route('report_time_users_for_project') }}"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Tempo gasto por pessoa</a></li>
                                     <li><a href="{{ route('report_project_for_users_times') }}"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Tempo total gasto</a></li>
                                     <li><a href="{{ route('report_finish_task_user_project') }}"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Conclusão de tarefa por pessoa</a></li>
