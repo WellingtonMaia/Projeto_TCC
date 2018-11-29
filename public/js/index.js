@@ -125,15 +125,48 @@ $( document ).ready(function() {
         });
     });
 
-    $("#addTask").submit(function (){
+
+    $(".status-tarefa").on("change", "#statusInterna", function (){
+
+        item = $(this);
+
+        status = item.attr("data-status");
+        id = item.attr("data-id");
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/tasks/updateStatus',
+            type: "POST",
+            data: {id: id, status: status},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){
+                    console.log(response.status);
+                    item.attr("data-status",response.status);
+                       
+                    if(response.status == 'C'){
+                        $('.desc-status').text("Status da tarefa : Concluida");
+                    }else{
+                        $('.desc-status').text("Status da tarefa : Iniciada/Em Desenvolvimento");
+                    }
+
+
+                }else{
+                    console.log("erro");
+                }
+            }
+
+        });
+    });
+
+
+    $(".task-content").on("submit", "#addTask", function (){
+    // $("#addTask").submit(function (){
             var scope = $(this);
             var data = scope.serialize();
             // var project_id = $("#project_id").val();
-
-            // console.log(project_id);
-            console.log(data);
-            // console.log(data.users);
-            // console.log(unserialize( $data));
             $.ajax({
 
                 headers:{
@@ -163,7 +196,64 @@ $( document ).ready(function() {
         }); 
     // });
 
-    $("#addTime").submit(function(){
+
+    $(".task-content").on("submit", "#editTask", function (){
+        var scope = $(this);
+        var data = scope.serialize();
+
+        $.ajax({
+
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                },
+                url:'/tasks/updateTask/',
+                type:"POST",
+                data:data,
+                dataType:"JSON",
+                success:function(response){
+                    if(response.error == false){
+
+                            $(".task-box , .shadow").removeClass("active");
+                            $('.alert-hidden div').text('Tarefa editada com sucesso');
+                            $('.alert-hidden').addClass('active');
+
+                            scope.find('input').val("");
+                            scope.find('textarea').val("");                          
+
+                            console.log(response.users);
+                            console.log(response.task.id);
+
+                            var element = $('a[data-id="'+response.task.id+'"]').parent().parent();
+
+                            element.find(".dates.begin").text("(Inicio: "+moment(response.task.begin_date).format('DD/MM/YYYY'));
+                            element.find(".dates.final").text("Vence: "+moment(response.task.final_date).format('DD/MM/YYYY')+")");
+                            element.find(".title-task").text(response.task.name);
+                            element.find("hidden").text(response.task.description);
+
+
+                            // element.find("#name_task").val(response.task.name);
+                            // element.find("#description").val(response.task.description);
+                            // element.find("#estimate_date").val(moment(response.task.estimate_date).format('DD/MM/YYYY'));
+                            // element.find("#estimate_time").val(removeSeconds(response.task.estimate_time));
+                            // $("#begin_date").val(moment(response.task.begin_date).format('DD/MM/YYYY'));
+                            // $("#final_date").val(moment(response.task.final_date).format('DD/MM/YYYY'));
+                            // element.
+
+                            setTimeout(function(){
+                                $('.alert-hidden').removeClass('active');
+                            },2000);                        
+                    }else{
+                        console.log("errou");
+                    }
+                }
+            });
+            return false;
+        }); 
+    // });
+
+
+    $(".conteudo").on("submit", "#addTime", function (){
+    // $("#addTime").submit(function(){
         var task_id = $("#time_task_id").val();
         var users_id = $("#time_users_id").val();
         var date = $("#time_begin_date").val();
@@ -201,10 +291,9 @@ $( document ).ready(function() {
         return false;
     });
 
-    $("#addFile").submit(function(){
-        var task_id = $("#task_id").val();
-        var users_id = $("#users_id").val();
-        var file_url = $("#file_url").val();
+
+    $(".conteudo").on("submit", "#addFile", function (){
+    // $("#addFile").submit(function(){
 
         var form = document.getElementById("addFile");
         var formData = new FormData(form);   
@@ -218,7 +307,6 @@ $( document ).ready(function() {
             processData:false,
             contentType: false,
             data:formData,
-            // data:{file_url: file_url, task_id:task_id, users_id:users_id},
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
@@ -241,8 +329,8 @@ $( document ).ready(function() {
     });
 
 
-
-    $("#addNote").submit(function(){       
+    $(".conteudo").on("submit", "#addNote", function (){
+    // $("#addNote").submit(function(){       
 
         var task_id = $("#note_task_id").val();
         var users_id = $("#note_users_id").val();
@@ -275,6 +363,108 @@ $( document ).ready(function() {
         });
         return false;
     });
+
+
+    $(".conteudo").on("submit", "#editTime", function (){
+    // $("#addTime").submit(function(){
+
+        var time_id = $("#time_id").val();
+        var task_id = $("#time_task_id").val();
+        var users_id = $("#time_users_id").val();
+        var date = $("#time_begin_date").val();
+        var time_start = $("#time_start").val();
+        var time_stop = $("#time_stop").val();        
+        var time_value = $("#time_value").val();
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+            },
+            url:'/tasks/updateTime/',
+            type:"POST",
+            data:{date: date, task_id:task_id, users_id:users_id,time_start:time_start,time_stop:time_stop,time_value:time_value,time_id:time_id},
+            dataType:"JSON",
+            success:function(response){
+                if(response.error == false){
+
+                        $(".btn-info.time").parent().parent().next().removeClass("active");
+                        $(".shadow").removeClass("active");
+
+                        $('.alert-hidden div').text('Tempo cadastrado com sucesso');
+                        $('.alert-hidden').addClass('active');
+
+                        $(".time-registers").append(response.html);
+
+                        // $("#tempoRegistrado").text("00:00:00");
+                        $("#editTime").attr('id', "addTime");
+                        $("#addTime input[type='text']").val("");
+
+                        var element = $('a[data-id="'+time_id+'"]').parent().parent();
+
+                        var newDate = moment(response.time.date).format('DD/MM/YYYY');
+
+                        element.find(".date-time").text(newDate);
+                        element.find(".start").text(response.time.time_start);  
+                        element.find(".stop").text(response.time.time_stop);
+                        element.find(".value").text(response.time.time_value);
+
+                        // localStorage.clear();
+                        setTimeout(function(){
+                            $('.alert-hidden').removeClass('active');
+                        },2000);
+                }else{
+                    console.log("errou");
+                }
+            }
+        });
+        return false;
+    });
+
+    $(".conteudo").on("submit", "#editNote", function (){
+
+    // $("#editNote").submit(function(){       
+
+        var note_id = $("#note_id").val();
+        var task_id = $("#note_task_id").val();
+        var users_id = $("#note_users_id").val();
+        var description = $("#note_description").val();
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+            },
+            url:'/tasks/updateNote/',
+            type:"POST",
+            data:{description: description, task_id:task_id, users_id:users_id, note_id:note_id},
+            dataType:"JSON",
+            success:function(response){
+                if(response.error == false){
+                        
+                        $(".btn-info.note").parent().parent().next().removeClass("active");
+                        $(".shadow").removeClass("active");
+
+                        $('.alert-hidden div').text('Anotação editada com sucesso');
+                        $('.alert-hidden').addClass('active');
+                        
+                        $("#editNote textarea").val("");
+                        $("#editNote").attr('id', "addNote");
+
+                        $('a[data-id="'+note_id+'"]').parent().parent().find(".note-desc").text(response.note.description);
+
+                        setTimeout(function(){
+                            $('.alert-hidden').removeClass('active');
+                        },2000);
+                }else{
+                    console.log("errou");
+                }
+            }
+        });
+        return false;
+    });
+
+
+
+
 
 
     // delete ajax
@@ -321,6 +511,74 @@ $( document ).ready(function() {
                 });
             }
         });
+    });
+
+    $(".list-tasks").on('click', '.editTask', function (e){
+        e.preventDefault();
+        $("#open-fancy").click();
+        var item = $(this).parent().parent();
+        var id = $(this).attr("data-id");
+
+        $("#task_id").val(id);
+        $("#addTask").attr('id', 'editTask');
+
+        $.ajax({
+            url: '/tasks/editTask',
+            type: "GET",
+            data: {id : id},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){  
+                    // console.log(response.users[0].id);  
+                    // console.log(response.users[1].id);
+                    console.log(response.users);
+
+
+                    // $("#usersProject option").each( function (i, e){
+                    //     if($(this).attr('value' == response.users[e].id)){
+                    //         this.attr('selected','selected');
+                    //         // $(this).parent().selectedIndex = e;
+                    //     }
+                    // });
+
+                        // só faz essa alteração se n vai ter BO no safari
+                        // $(this).parent().selectedIndex = e;
+                        // n lugar de this.attr('selected','selected');
+                        // var i = 0;
+                        // $("#usersProject option").each( function (e){
+                        //     if(this.value == response.users[i].id){
+                        //         this.attr('selected','selected');
+
+                        // if($(this).attr('value') == response.users[i].id){
+                        //       this.attr('selected','selected');
+                        //   }
+                        // }
+                        // // }
+                        // console.log($(this).attr('value'));
+                        // if($(this).attr('value') == ){
+                        //      $(this).attr('selected','selected');
+                        //      console.log(response.users[i].id);
+                        //     }
+                            
+                        // }
+                        // console.log(i);
+                        // i++;
+                    // });
+
+                    $("#name_task").val(response.task.name);
+                    $("#description").val(response.task.description);
+                    $("#estimate_date").val(moment(response.task.estimate_date).format('DD/MM/YYYY'));
+                    $("#estimate_time").val(removeSeconds(response.task.estimate_time));
+                    $("#begin_date").val(moment(response.task.begin_date).format('DD/MM/YYYY'));
+                    $("#final_date").val(moment(response.task.final_date).format('DD/MM/YYYY'));
+                    
+                }else{
+                    console.log("erro");
+                }
+            }
+        });
+
+
     });
 
     $(".time-registers").on('click','.removeTime', function(e){
@@ -371,7 +629,6 @@ $( document ).ready(function() {
 
         var item = $(this).parent().parent();
         var id = $(this).attr("data-id");
-
 
         swal({
             title:"Tem certeza que deseja remover essa anotação ?",
@@ -468,9 +725,11 @@ $( document ).ready(function() {
     $(".time-registers").on('click','.editTime', function(e){
         e.preventDefault();
         $(".btn-info.time").click();
+        $("#addTime").attr('id','editTime');
 
         var item = $(this).parent().parent();
         var id = $(this).attr("data-id");
+        $("#time_id").val(id);
 
         $.ajax({
             url: '/tasks/editTime',
@@ -479,10 +738,15 @@ $( document ).ready(function() {
             dataType:'JSON',
             success:function(response){
                 if(response.error == false){    
-                    $("#time_begin_date").val(response.time.date);
-                    $("#time_start").val(response.time.time_start);
-                    $("#time_stop").val(response.time.time_stop);
-                    $("#time_value").val(response.time.time_value);
+                    var newDate = moment(response.time.date).format('DD/MM/YYYY');
+                    var timeStart = removeSeconds(response.time.time_start);
+                    var timeEnd = removeSeconds(response.time.time_stop);
+                    var timeValue = removeSeconds(response.time.time_value);
+
+                    $("#time_begin_date").val(newDate);
+                    $("#time_start").val(timeStart);
+                    $("#time_stop").val(timeEnd);
+                    $("#time_value").val(timeValue);
                 }else{
                     console.log("erro");
                 }
@@ -493,8 +757,10 @@ $( document ).ready(function() {
     $(".note-registers").on('click','.editNote', function (e){
         e.preventDefault();
         $(".btn-info.note").click();
-
+        $("#addNote").attr('id', "editNote");
+        
         var id = $(this).attr("data-id");
+        $("#note_id").val(id);
 
         $.ajax({
             url: '/tasks/editNote',
@@ -521,6 +787,12 @@ $( document ).ready(function() {
         $(".shadow").addClass("active");
     });
 
+    $(".openFinancial").click(function (e){
+        e.preventDefault();
+        $(".financial-box").addClass("active");
+        $(".shadow").addClass("active");
+    });
+
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 
         $(this).parent().parent().next().addClass("active");
@@ -531,6 +803,7 @@ $( document ).ready(function() {
     $(".shadow").click(function (){
         $(this).removeClass("active");
         $(".task-box").removeClass("active");
+        $(".financial-box").removeClass("active");
         $(".btn-info.time").parent().parent().next().removeClass("active");
         $(".btn-info.file").parent().parent().next().removeClass("active");
         $(".btn-info.note").parent().parent().next().removeClass("active");
@@ -597,8 +870,7 @@ $( document ).ready(function() {
             time_value = '00:01';
             // time_value.text("00:01");    
         }else{
-            var split = time_value.split(":");   
-            var time_value = split[0]+":"+split[1]; 
+            var time_value = removeSeconds(time_value);
         }
         // str.split(" ");
         
@@ -611,9 +883,9 @@ $( document ).ready(function() {
         $(".main-timer").removeClass("active");
 
         $("#time_begin_date").val(currentDate);
-        $("#time_start").val(time_start);
-        $("#time_stop").val(time_stop);        
-        $("#time_value").val(time_value);
+        $("#time_start").val(removeSeconds(time_start));
+        $("#time_stop").val(removeSeconds(time_stop));        
+        $("#time_value").val(removeSeconds(time_value));
 
         $(".btn-info.time").click();
 
@@ -701,6 +973,16 @@ function getTimeInterval(startTime, endTime){
     var interval = moment().hour(0).minute(minutes);
     // interval.subtract(lunchTime, 'minutes');
     return interval.format("HH:mm");
+}
+
+function removeSeconds(param){
+
+    var time = param.split(":");
+    // var newTime = time[0]+":"time[1];
+    var newTime = moment().hour(time[0]).minute(time[1]);
+
+    return newTime.format("HH:mm");
+
 }
 
 function resetItemTask(current){

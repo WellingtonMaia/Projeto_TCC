@@ -6,6 +6,7 @@
 					
 					{{ csrf_field() }}
 					<input type="hidden" name="status" value="I">
+					<input type="hidden" name="task_id" id="task_id">
 					<div class="form-group">
 						<label for="">Projeto</label>
 						<select name="project" id="project_id" class="form-control" required>
@@ -16,7 +17,7 @@
 					</div>
 					<div class="form-group">
 						<label for="name">Usuarios</label>
-						<select multiple name="users[]" id="usersProject" class="form-control">
+						<select multiple name="users[]" required id="usersProject" class="form-control">
 							@foreach($users as $user)
 								<option value="{{ $user->id }}">{{ $user->name }}</option>
 							@endforeach
@@ -24,32 +25,32 @@
 					</div>
 					<div class="form-group">
 						<label for="name">Nome</label>
-						<input type="text" name="name" class="form-control" autocomplete="off" placeholder="Digite aqui o nome da sua tarefa" value="{{ old('name') }}" required autofocus>
+						<input type="text" name="name" id="name_task" class="form-control" autocomplete="off" placeholder="Digite aqui o nome da sua tarefa" value="{{ old('name') }}" required autofocus>
 					</div>
 					<div class="form-group">
 						<label for="description">Descricao</label>
-						<textarea  placeholder="Descreva o que precisa ser feito" cols="10" rows="5" name="description" class="form-control"> {{ old('description') }}</textarea>
+						<textarea  placeholder="Descreva o que precisa ser feito" cols="10" id="description" rows="5" name="description" class="form-control"> {{ old('description') }}</textarea>
 					</div>
 					
 					<div class="form-content-50">
 						<div class="form-group">
 							<label for="estimate_date">Data Estimada</label>
-							<input type="text" name="estimate_date" class="form-control datepicker" autocomplete="off" placeholder="Selecione a data estimada para finalização da tarefa" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date') }}" required>
+							<input type="text" name="estimate_date" class="form-control datepicker" id="estimate_date" autocomplete="off" placeholder="Selecione a data estimada para finalização da tarefa" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date') }}" required>
 						</div>
 						
 						<div class="form-group">
 							<label for="estimate_time">Tempo Estimado</label>
-							<input type="text" name="estimate_time" class="form-control timepicker" autocomplete="off" placeholder="Digite o tempo estimado que será necessário para finalização da tarefa" value="{{ old('estimate_time') }}" required>
+							<input type="text" name="estimate_time" id="estimate_time" class="form-control timepicker" autocomplete="off" placeholder="Digite o tempo estimado que será necessário para finalização da tarefa" value="{{ old('estimate_time') }}" required>
 						</div>
 					</div>
 					<div class="form-content-50">
 						<div class="form-group">
 							<label for="begin_date">Data Inicio</label>
-							<input type="text" name="begin_date" autocomplete="off" class="form-control datepicker" data-date-format="dd/mm/yyyy" placeholder="Digite a data de Inicio da tarefa" value="{{ old('begin_date') }}" required>
+							<input type="text" name="begin_date" autocomplete="off" id="begin_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" placeholder="Digite a data de Inicio da tarefa" value="{{ old('begin_date') }}" required>
 						</div>
 						<div class="form-group">
 							<label for="final_date">Data Final</label>
-							<input type="text" name="final_date" class="form-control datepicker" autocomplete="off" data-date-format="dd/mm/yyyy" placeholder="Digite a data Final de entrega da tarefa" value="{{ old('final_date')}}" required>
+							<input type="text" name="final_date" id="final_date" class="form-control datepicker" autocomplete="off" data-date-format="dd/mm/yyyy" placeholder="Digite a data Final de entrega da tarefa" value="{{ old('final_date')}}" required>
 						</div>
 					</div>
 					

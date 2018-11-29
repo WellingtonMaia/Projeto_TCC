@@ -30,7 +30,7 @@
                         <span class="date-created"><i class="fa fa-calendar"></i> Data de Criação : {{  \Carbon\Carbon::parse($project->created_at)->format(' d F Y') }}</span>
                         <span class="date-estimated"><i class="fa fa-calendar"></i> Data Estimada para entrega do Projeto : {{  \Carbon\Carbon::parse($project->estimate_date)->format(' d F Y') }}</span>
                         <span class="time"><i class="fa fa-clock-o"></i> Tempo Estimado de Conclusão do Projeto : {{ $project->estimate_time }}</span>
-                        <span class="price money"><i class="fa fa-money"></i> Preço do Projeto : R$ {{ $project->project_price }}</span>
+                        <span class="price "><i class="fa fa-money"></i> Preço do Projeto : <i class="money">{{ $project->project_price }}</i></span>
                         {{-- <span class="addto"> <a href="">Adicionar Projeto no Financeiro</a></span> --}}
                         
                      </div>
@@ -86,12 +86,14 @@
                                     </span>
                                     @endforeach
                                  </span>
-                                 <h3 title="{{ $task->name }}">{{ $task->name }}</h3>
+                                 <h3 class="title-task" title="{{ $task->name }}">{{ $task->name }}</h3>
                                  <div class="hidden">{{ $task->description }}</div>                                 
                                  <div class="dates begin">( Inicio: {{  \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y ') }} </div>
                                  <div class="dates final"> Vence: {{  \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }} )</div>                               
                               </a>
+                              <a class="btn btn-info editTask" data-id="{{ $task->id }}" href=""><i class="fa fa-edit"></i></a></a>
                               <a class="btn btn-danger removeTask" data-id="{{ $task->id }}" href=""><i class="fa fa-trash"></i></a>
+
                            </div>
                         </div>
                         @endforeach

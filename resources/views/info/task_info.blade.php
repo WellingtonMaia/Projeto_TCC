@@ -9,7 +9,7 @@
             {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
             <ol class="breadcrumb">
                <li><a href="{{ route('home') }}">Dashboard</a></li>
-               <li><a href="">Projeto</a></li>
+               <li><a href="{{ url('projects/show-info/'.$task->project_id) }}">Projeto</a></li>
                <li class="active"> {{ $task->name }}</li>
             </ol>
          </div>
@@ -17,13 +17,31 @@
       <div class="col-md-12">
          <div class="card content-task">
             <div class="white-box">
-               <div class="block-title"><h2>{{ $task->name }}</h2></div>
+               <div class="block-title">
+                   <h2>{{ $task->name }}</h2>
+
+               </div>
                <div class="info-task">
+                  <div class="status-tarefa">
+                     <span class="desc-status">Status da tarefa : @if($task->status == 'C')Concluida @else Iniciada/Em Desenvolvimento @endif</span>
+                     <div class="switch_box box_4">
+                        <div class="input_wrapper">
+                           <input type="checkbox" class="switch_4"  @if($task->status == 'C')checked="checked"@endif id="statusInterna" data-id="{{ $task->id }}" data-status="{{ $task->status }}">
+                           <svg class="is_checked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426.67 426.67">
+                          <path d="M153.504 366.84c-8.657 0-17.323-3.303-23.927-9.912L9.914 237.265c-13.218-13.218-13.218-34.645 0-47.863 13.218-13.218 34.645-13.218 47.863 0l95.727 95.727 215.39-215.387c13.218-13.214 34.65-13.218 47.86 0 13.22 13.218 13.22 34.65 0 47.863L177.435 356.928c-6.61 6.605-15.27 9.91-23.932 9.91z"/>
+                        </svg>
+                           <svg class="is_unchecked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.982 212.982">
+                          <path d="M131.804 106.49l75.936-75.935c6.99-6.99 6.99-18.323 0-25.312-6.99-6.99-18.322-6.99-25.312 0L106.49 81.18 30.555 5.242c-6.99-6.99-18.322-6.99-25.312 0-6.99 6.99-6.99 18.323 0 25.312L81.18 106.49 5.24 182.427c-6.99 6.99-6.99 18.323 0 25.312 6.99 6.99 18.322 6.99 25.312 0L106.49 131.8l75.938 75.937c6.99 6.99 18.322 6.99 25.312 0 6.99-6.99 6.99-18.323 0-25.313l-75.936-75.936z" fill-rule="evenodd" clip-rule="evenodd"/>
+                        </svg>
+                          </div>
+                     </div>
+                  </div>
+
                   <span>Data estimada: {{ \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') }}</span>
                   <span>Inicio: {{ \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') }}</span>
                   <span>Vence: {{ \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }}</span>
                   {{-- <span>Tempo Estimado: {{ $task->estimate_time }} horas </span> --}}
-                  <span>Tempo Estimado: {{ \Carbon\Carbon::parse($task->estimate_time)->format('H:i') }} horas </span>
+                  <span>Tempo Estimado: <i class="timepicker">{{ $task->estimate_time }}</i> horas </span>
                   <span>Valor Referente ao tempo gasto na tarefa: {{ $task->tasks_price }}</span>
                   <div class="descricao-tarefa">
                      {{ $task->description }}
@@ -44,12 +62,17 @@
                      <div class="conteudo">
                         <div class="header-conteudo">Adicionando Tempo</div>
                         <form action="{{ url('task/addTime/') }}" id="addTime" method="POST">                           
+                           <input type="hidden" name="time_id" id="time_id" value="">
                            <input type="hidden" name="users_id" id="time_users_id" value="{{ Auth::user()->id }}">
                            <input type="hidden" name="task_id" id="time_task_id" value="{{ $task->id }}">
                            <div class="box-tempo">
                               <label>
                                  Quem
-                                 <input type="text" name="author" disabled class="form-control" value="{{ Auth::user()->name}}" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">
+                                 {{-- <input type="text" name="author" disabled class="form-control" value="{{ Auth::user()->name}}" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;"> --}}
+                                 <select class="form-control" name="author" disabled="disabled" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">>
+                                    <option>{{ Auth::user()->name}}</option>
+                                 </select>
+
                               </label>
                               <label>
                                  Data
@@ -99,14 +122,17 @@
                               <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
                                  <img src="{{ Helper::getImageUser($time->users_id) }}">
                               </div>
-                              <label>{{ Helper::getObjectUser($time->users_id)->name }}</label>
+                              <label>{{ Helper::getFirstNameWithObject($time->users_id) }}</label>
                            </div>
-                           <span>{{ \Carbon\Carbon::parse($time->date)->format('d/m/Y') }}</span>
-                           <span class="timepicker">{{ $time->time_start }}</span>                        
-                           <span class="timepicker">{{ $time->time_stop }}</span>                        
-                           <span class="timepicker">{{ $time->time_value }}</span>
+                           <span class="date-time">{{ \Carbon\Carbon::parse($time->date)->format('d/m/Y') }}</span>
+                           <span class="timepicker start">{{ $time->time_start }}</span>                        
+                           <span class="timepicker stop">{{ $time->time_stop }}</span>                        
+                           <span class="timepicker value">{{ $time->time_value }}</span>
                            <div class="block-a">
-                              <a class="btn btn-danger removeTime" href="" data-id="{{ $time->id }}" ><i class="fa fa-trash"></i></a>
+                              @if($time->users_id == Auth::user()->id)
+                                 <a class="btn btn-info editTime" href="" data-id="{{ $time->id }}"><i class="fa fa-edit"></i></a>
+                                 <a class="btn btn-danger removeTime" href="" data-id="{{ $time->id }}" ><i class="fa fa-trash"></i></a>
+                              @endif
                            </div>
                      </div>
                      @endforeach
@@ -195,6 +221,7 @@
                   <div class="conteudo">
                      <div class="header-conteudo">Adicionando anotação</div>
                       <form action="{{ url('task/addNote') }}" id="addNote" method="post">
+                           <input type="hidden" name="note_id" id="note_id" value="">
                            <input type="hidden" name="users_id" id="note_users_id" value="{{ Auth::user()->id }}">
                            <input type="hidden" name="task_id" id="note_task_id" value="{{ $task->id }}">
                            <div class="box-note">
@@ -225,13 +252,15 @@
                   <div class="note-registers">
                      @foreach ($task->notes as $note)                  
                      <div class="iten-task">
-                        <div class="img" title="{{ Helper::getObjectUser($time->users_id)->name }}">
+                        <div class="img" title="{{ Helper::getObjectUser($note->users_id)->name }}">
                            <img src="{{ Helper::getImageUser($note->users_id) }}">
                         </div>
                         <div class="note-desc">{{ $note->description }}</div>
                         <div class="block-a">
-                           <a class="btn btn-danger removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
-                           <a class="btn btn-info editNote" data-id="{{ $note->id }}" href=""><i class="fa fa-edit"></i></a>
+                           @if($note->users_id == Auth::user()->id)
+                              <a class="btn btn-info editNote" data-id="{{ $note->id }}" href=""><i class="fa fa-edit"></i></a> 
+                              <a class="btn btn-danger removeNote" href="" data-id="{{ $note->id }}" ><i class="fa fa-trash"></i></a>
+                           @endif
                         </div>
                      </div>
                      @endforeach

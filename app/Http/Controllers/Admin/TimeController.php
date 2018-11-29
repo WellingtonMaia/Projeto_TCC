@@ -50,21 +50,7 @@ class TimeController extends Controller
 
     	$time->save();
 
-        $times =  '<div class="iten-task time">
-               <div class="usr">
-                  <div class="img" title="'.Helper::getObjectUser($time->users_id)->name.'">
-                     <img src="'.Helper::getImageUser($time->users_id).'">
-                  </div>
-                  <label>'.Helper::getObjectUser($time->users_id)->name.'</label>
-               </div>
-               <span>'.Carbon::parse($time->date)->format('d/m/Y').'</span>
-               <span class="timepicker">'.$time->time_start.'</span>                        
-               <span class="timepicker">'.$time->time_stop.'</span>                        
-               <span class="timepicker">'.$time->time_value.'</span>
-               <div class="block-a">
-                    <a class="btn btn-danger removeTime" href="" data-id="'.$time->id.'" ><i class="fa fa-trash"></i></a>
-                </div>
-         </div>';
+        $times = view('includes.time-item',['time'=>$time])->render();
 
         return response()->json(['error'=>false,'html'=>$times], 200);
     }
@@ -100,9 +86,20 @@ class TimeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $time = Time::find($request->get('time_id'));
+
+        $time->time_value = $request->get('time_value');
+        $time->date       = Carbon::parse(str_replace('/', '-',$request->get('date')))->format('Y-m-d');
+        $time->time_start = $request->get('time_start');
+        $time->time_stop  = $request->get('time_stop');
+        $time->task_id    = $request->get('task_id');
+        $time->users_id   = $request->get('users_id');
+
+        $time->save();
+
+        return response()->json(['error'=>false,'time'=>$time],200);
     }
 
     /**

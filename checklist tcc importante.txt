@@ -1,35 +1,66 @@
 
-
-
 checklist
 
 feito --- Criar seeders para usuarios
 
-Criar seeders para projetos com o foreign key dos usuarios
+Nao necessário --- Criar seeders para projetos com o foreign key dos usuarios
 
-Criar seeders para tarefas com o foreign key do projeto e dos usuarios
+Nao necessário --- Criar seeders para tarefas com o foreign key do projeto e dos usuarios
 
-Procurar layout para finalizar frontend === Qual dos 3....
+feito --- Procurar layout para finalizar frontend === Qual dos 3....
 
-Trocar layout para o novo
+feito --- Trocar layout para o novo
 
-Desenhar todas as telas do tcc no caderno mesmo,
+feito --- Desenhar todas as telas do tcc no caderno mesmo,
 
-Alterar a forma que faz as 'roles'
+feito --- Alterar a forma que faz as 'roles'
 
-Arrumar edicao e dados do usuario
+feito --- Arrumar edicao e dados do usuario
 
-Verificar processo de cadastro de projeto -> financeiro -> tarefa
+feito --- Verificar processo de cadastro de projeto -> financeiro -> tarefa
 
-Criar processo de cadastro de tempo no js
+feito --- Criar processo de cadastro de tempo no js
 
 Pensar nas informacoes que serao mostradas no dashboard
 
-Verificar a possibilidade de utilizar o vue
+Nao necessário --- Verificar a possibilidade de utilizar o vue
 
-Criar funcionalidade de busca e tela de resultados
+Não necessárioCriar funcionalidade de busca e tela de resultados
 
-Criar pagina 404 bem feita
+feito --- Criar pagina 404 bem feita
+
+
+
+Lista Pendente 
+
+	HOJE QUARTA FEIRA FAZER
+
+		Mostrar quais usuarios estão dentro da tarefa na edição ajax e Alterar os usuarios depois do update
+		
+		OK - Adicionar a função ajax dentro da tarefa para alterar status de concluida/em desenvolvimento
+
+		Fazer popup das informações do financeiro
+
+	AMANHA QUINTA FEIRA FAZER
+
+		Fazer ajax das informações do financeiro e as contas necessárias
+
+		Finalizar ultimos 2 templates de relatórios
+
+	SEXTA FEIRA FAZER
+
+		Fazer ajax da geração dos gráficos dos 4 relatórios
+
+		Realizar Cadastros Reais e Coerentes
+
+	-- Após finalizado, não é essencial 
+
+		Verificar a possibilidade de poder troca de pagina e atualizar e o tempo continuar rodando
+
+		Adicionar um ou mais graficos no dashboard 
+
+
+
 
 
 
