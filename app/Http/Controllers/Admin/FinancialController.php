@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Financial;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 
 class FinancialController extends Controller
@@ -146,17 +147,8 @@ class FinancialController extends Controller
             $users[$key]['name'] = Helper::getFirstNameString($user['name']);
         }
 
-
-
-        dd($financial);
-
-
+        // dd($financial);
         return response()->json(['error'=>false,'financial'=>$financial,'users'=>$users], 200);
-
-
-
-
-
 
 
     }

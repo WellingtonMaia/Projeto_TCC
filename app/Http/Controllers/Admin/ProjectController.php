@@ -154,15 +154,23 @@ class ProjectController extends Controller
             return Redirect::to('projects');
         }
 
+
+        $price = floatval (Input::get('project_price'));
+
+        dd($price);
+
         $project->name          = Input::get('name');
         $project->estimate_date = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
         $project->estimate_time = Input::get('estimate_time');
         $project->status        = Input::get('status');
-        $project->project_price = Input::get('project_price');
+        $project->project_price = number_format($price, 2, '.', '');
         $project->project_type  = Input::get('project_type');
         $save = $project->save();
 
         $project_id = $project->id;
+
+        // dd(Input::get('project_price'));
+
         if(!empty($project_id)){
 
             $financial = Financial::where('project_id', '=', $project_id )->get()->first();
