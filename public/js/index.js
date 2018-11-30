@@ -803,14 +803,14 @@ $( document ).ready(function() {
                     //          }
                     //     });
                     // });
-                    
+
                     moment.locale('pt-BR');
 
                     var date1 = moment(response.date_ini);
                     var date2 = moment(response.due_date);
                     var diff = date2.diff(date1);
 
-                    var lucro = response.value;
+                    var lucroParse = response.value;
 
                     var all = 0;
 
@@ -825,7 +825,9 @@ $( document ).ready(function() {
                         console.log(all);
                     });
 
-                    $(".lucro.money").text(all);
+                    var lucroComplete = all - lucroParse;
+
+                    $(".lucro.money").text(lucroComplete);
 
 
 
