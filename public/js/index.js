@@ -803,13 +803,29 @@ $( document ).ready(function() {
                     //          }
                     //     });
                     // });
+                    
+                    moment.locale('pt-BR');
+
+                    var date1 = moment(response.date_ini);
+                    var date2 = moment(response.due_date);
+                    var diff = date2.diff(date1);
+
+                    var lucro = response.value;
+
+                    var all = 0;
+
+                    $(".expirate-date").text(diff);
 
                     $.each(response.users, function (key, value){
 
                         var pay = 160 * value.payment_by_hours;
                         element.find('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Salário : <i class="money alert alert-info">'+pay+'</i></span>');                                      
-                        
+                            
+                        all + pay;
+                        console.log(all);
                     });
+
+                    $(".lucro.money").text(all);
 
 
 
