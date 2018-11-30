@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
-use App\Models\Task;
-use App\Models\Time;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Task;
+use App\Models\Time;
+use App\User;
 
 class ReportController extends Controller
 {
@@ -34,7 +34,8 @@ class ReportController extends Controller
     }
 
     public function index_time_users_for_project(){
-        return view('report.time_users_for_project');
+        $users  = User::all();
+        return view('report.time_users_for_project')->with('users',$users);
     }
 
     public function index_project_for_users_times(){
@@ -43,7 +44,8 @@ class ReportController extends Controller
     }
 
     public function index_finish_task_user_project(){
-        return view('report.finish_task_user_project');
+        $projects = Project::all();
+        return view('report.finish_task_user_project')->with('projects', $projects);
     }
 
     //-> projetos realizados durante um periodo

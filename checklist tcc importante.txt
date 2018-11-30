@@ -43,9 +43,9 @@ Lista Pendente
 
 	AMANHA QUINTA FEIRA FAZER
 
-		40% - Fazer ajax das informações do financeiro e as contas necessárias
+		OK - Fazer ajax das informações do financeiro e as contas necessárias
 
-		Finalizar ultimos 2 templates de relatórios
+		OK - Finalizar ultimos 2 templates de relatórios
 
 	SEXTA FEIRA FAZER
 

@@ -17,20 +17,33 @@
             <div class="card">
                 <div class="white-box">
                     <div class="block-title">
-                        <h2>Relatórios</h2>
+                        <h2>Relatório</h2>
+                        <span>Conclusão de tarefa por pessoa em um projeto</span>
                     </div>
                 </div>
                 <div class="white-box">
-                    <div class="content-filtro">
-                        <div class="item-filtro">
-                            filtro
-                        </div>
-                        <div class="item-filtro">
-                            filtro
-                        </div>
-                        <div class="item-filtro">
-                            filtro
-                        </div>
+                  <div class="content-filtro form-group">
+                        <form id="finish-task-user-project" method="POST" action="#">
+                            <div class="form-box">
+                                <div class="item-filtro">
+                                    <label>
+                                        <span>Selecione o projeto:</span>
+                                        <select class="form-control ">
+                                            @foreach($projects as $project)
+                                                <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </label>
+                                </div>    
+{{--                            <div class="item-filtro">
+                                    <label>
+                                        <span>Até:</span>
+                                        <input type="text" name="date_final" class="form-control datepicker" placeholder="11/09/2018">
+                                    </label>
+                                </div> --}}
+                                <button class="btn btn-success">Gerar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="white-box">

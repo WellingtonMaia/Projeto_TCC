@@ -18,19 +18,32 @@
                 <div class="white-box">
                     <div class="block-title">
                         <h2>Relatórios</h2>
+                        <span>Tempo gasto em cada projeto por colaborador</span>
                     </div>
                 </div>
                 <div class="white-box">
                     <div class="content-filtro">
-                        <div class="item-filtro">
-                            filtro
-                        </div>
-                        <div class="item-filtro">
-                            filtro
-                        </div>
-                        <div class="item-filtro">
-                            filtro
-                        </div>
+                        <form id="time-users-project" method="POST" action="#">
+                            <div class="form-box">
+                                <div class="item-filtro">
+                                    <label>
+                                        <span>Selecione o colaborador:</span>
+                                        <select class="form-control ">
+                                            @foreach($users as $user)
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </label>
+                                </div>    
+{{--                            <div class="item-filtro">
+                                    <label>
+                                        <span>Até:</span>
+                                        <input type="text" name="date_final" class="form-control datepicker" placeholder="11/09/2018">
+                                    </label>
+                                </div> --}}
+                                <button class="btn btn-success">Gerar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="white-box">

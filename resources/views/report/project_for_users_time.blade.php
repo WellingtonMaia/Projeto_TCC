@@ -17,7 +17,8 @@
             <div class="card">
                 <div class="white-box">
                     <div class="block-title">
-                        <h2>Relatórios</h2>
+                        <h2>Relatório</h2>
+                        <span>Tempo gasto total em um projeto</span>
                     </div>
                 </div>
                 <div class="white-box">
