@@ -131,4 +131,35 @@ class FinancialController extends Controller
     {
         //
     }
+
+
+
+    public function getInfo(Request $request){
+
+        $financial = Financial::find($request->get('id'));
+
+        $project = Project::find($financial->project_id);
+
+        $users = $project->users()->get()->toArray();
+
+        foreach ($users as $key => $user) {
+            $users[$key]['name'] = Helper::getFirstNameString($user['name']);
+        }
+
+
+
+        dd($financial);
+
+
+        return response()->json(['error'=>false,'financial'=>$financial,'users'=>$users], 200);
+
+
+
+
+
+
+
+    }
+
+
 }

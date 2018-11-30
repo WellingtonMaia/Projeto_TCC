@@ -49,7 +49,7 @@
           <div class="financial-box">
               <div class="financial-content">
                   <div class="line">
-                      <span class="f-price"><i class="fa fa-money fa-fw text-success" aria-hidden="true"></i> Preço do Projeto: <i class="money alert alert-success">600.000,00</i></span>
+                      <span class="f-price"><i class="fa fa-money fa-fw text-success" aria-hidden="true"></i> Preço do Projeto: <i class="value-price money alert alert-success">600.000,00</i></span>
 
                   </div>
                   <div class="users-project line">

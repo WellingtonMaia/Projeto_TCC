@@ -77,6 +77,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/tasks/removeTime/', 'TimeController@destroy');
         Route::post('/tasks/removeNote/', 'NoteController@destroy');
         Route::post('/tasks/removeFile/', 'FileController@destroy');
+
+        //get financials
+        Route::get('/financials/getInfo', 'FinancialController@getInfo');
+
         //reports
         Route::post('/report/post/date-for-project','ReportController@date_for_project')->name("date_for_project");
         Route::post('/report/post/time-users-for-project','ReportController@time_users_for_project');

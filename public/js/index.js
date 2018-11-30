@@ -220,41 +220,24 @@ $( document ).ready(function() {
                             scope.find('input').val("");
                             scope.find('textarea').val("");                          
 
-                            console.log(response.users);
-                            console.log(response.task.id);
+                            // console.log(response.users);
+                            // console.log(response.task.id);
 
                             var element = $('a[data-id="'+response.task.id+'"]').parent().parent();
-
 
                             element.find('.task-users').html("");
 
                             $.each(response.users, function (k, v){
-                                element.find('.task-users').append('<span class="user" title="'+v.name+'">'+v.name+'</span>');                             
-                                // console.log(k);
-                                // console.log(v);
+                                element.find('.task-users').append('<span class="user" title="'+v.name+'">'+v.name+'</span>');                                      
                             });
-                            //     response.users.each( function(e){
-                            //     console.log(e);
-
-                            // }); 
 
                             element.find(".dates.begin").text("(Inicio: "+moment(response.task.begin_date).format('DD/MM/YYYY'));
                             element.find(".dates.final").text("Vence: "+moment(response.task.final_date).format('DD/MM/YYYY')+")");
                             element.find(".title-task").text(response.task.name);
                             element.find("hidden").text(response.task.description);
 
-
-                            // element.find("#name_task").val(response.task.name);
-                            // element.find("#description").val(response.task.description);
-                            // element.find("#estimate_date").val(moment(response.task.estimate_date).format('DD/MM/YYYY'));
-                            // element.find("#estimate_time").val(removeSeconds(response.task.estimate_time));
-                            // $("#begin_date").val(moment(response.task.begin_date).format('DD/MM/YYYY'));
-                            // $("#final_date").val(moment(response.task.final_date).format('DD/MM/YYYY'));
-                            // element.
                             $("#usersProject option:selected").prop("selected",false);
-                            // $("#edit-rec option:selected").removeAttr("selected");
-
-
+    
                             setTimeout(function(){
                                 $('.alert-hidden').removeClass('active');
                             },2000);                        
@@ -793,6 +776,51 @@ $( document ).ready(function() {
         e.preventDefault();
         $(".financial-box").addClass("active");
         $(".shadow").addClass("active");
+
+        var id = $(this).attr('data-id');
+
+        $.ajax({
+            url: '/financials/getInfo',
+            type: "GET",
+            data: {id : id},
+            dataType:'JSON',
+            success:function(response){
+                if(response.error == false){
+                    
+                    console.log(response);
+                    $(".value-price").text(response.value);
+                    $(".due-date-value").text(moment(response.time.date).format('DD/MM/YYYY'));
+
+                    $(".users-project.line").html(" ");
+
+
+                    //  $.each(response.users, function (key, value){
+                    //     $(".users-project.line .item").each(function (i, e){
+                    //         console.log($(this));
+
+                    //          if($(this).attr('value') == v.id){
+                    //             $(this).prop('selected',true); 
+                    //          }
+                    //     });
+                    // });
+
+                    $.each(response.users, function (key, value){
+
+                        var pay = 160 * value.payment_by_hours;
+                        element.find('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Salário : <i class="money alert alert-info">'+pay+'</i></span>');                                      
+                        
+                    });
+
+
+
+                }else{
+                    console.log("erro");
+                }
+            }
+        });
+
+
+
     });
 
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
