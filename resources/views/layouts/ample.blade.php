@@ -15,6 +15,7 @@
         <link href="{{ asset('js/sweetalert.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}"  rel="stylesheet" >
 
+
         {{-- <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet"> --}}
         {{-- <link href="{{ asset('css/animate.css') }}"  rel="stylesheet" > --}}
         {{-- <link href="{{ asset('css/spinners.css') }}"  rel="stylesheet" > --}}
@@ -25,7 +26,7 @@
             }} " rel="stylesheet"> --}}
 
         <script src="{{ asset('css/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ asset('css/plugins/bower_components/chartist-js/dist/chartist.min.js') }}"></script>
+        {{-- <script src="{{ asset('css/plugins/bower_components/chartist-js/dist/chartist.min.js') }}"></script> --}}
         <title>Easy Tools</title>
 
             
@@ -183,6 +184,7 @@
         <!--Wave Effects -->
         <script src="{{ asset('js/waves.js') }}"></script>
         <script src="{{ asset('js/moment.js') }}"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> --}}
 
         <script src="{{ asset('js/easytimer.min.js') }}"></script>
@@ -192,7 +194,7 @@
         <script src="{{ asset('css/plugins/bower_components/waypoints/lib/jquery.waypoints.js') }}"></script>
         <script src="{{ asset('css/plugins/bower_components/counterup/jquery.counterup.min.js') }}"></script>
         <!-- chartist chart -->
-        <script src="{{ asset('css/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
+        {{-- <script src="{{ asset('css/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script> --}}
         <!-- Sparkline chart JavaScript -->
         <script src="{{ asset('css/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
         <!-- Custom Theme JavaScript -->

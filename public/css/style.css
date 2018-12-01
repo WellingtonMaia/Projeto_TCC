@@ -1339,6 +1339,14 @@ h3.block-title{
 	width: 45%;
 }
 
+#time-users-project .item-filtro{
+	width: 55%;	
+}
+
+.white-box .content-filtro #time-users-project .form-box .item-filtro label select{
+	width:calc(100% - 213px);
+}
+
 .datepicker.dropdown-menu{
 	margin-top:59px;
 }

@@ -28,7 +28,7 @@
                                 <div class="item-filtro">
                                     <label>
                                         <span>Selecione o projeto:</span>
-                                        <select class="form-control ">
+                                        <select class="form-control " id="project_id">
                                             @foreach($projects as $project)
                                                 <option value="{{ $project->id }}">{{ $project->name }}</option>
                                             @endforeach
@@ -48,21 +48,72 @@
                 </div>
                 <div class="white-box">
                     <div class="content-result">
-                        <div class="ct-chart ct-golden-section" id="chart1"></div>
-                        <div class="ct-chart ct-golden-section" id="chart2"></div>
+                        <canvas id="myChart"></canvas>
+                        
                         <script>
                         $( document ).ready(function() {
-                        // Initialize a Line chart in the container with the ID chart1
-                        new Chartist.Line('#chart1', {
-                        labels: [1, 2, 3, 4],
-                        series: [[100, 120, 180, 200]]
-                        });
-                        // Initialize a Line chart in the container with the ID chart2
-                        new Chartist.Bar('#chart2', {
-                        labels: [1, 2, 3, 4],
-                        series: [[5, 2, 8, 3]]
-                        });
-                        });
+                            $("#finish-task-user-project").submit(function(e){
+                                    e.preventDefault();
+
+                                    var id = $("#project_id").val();
+
+
+                                    $.ajax({
+                                        headers:{
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                                        },
+                                        url: '/report/post/finish-task-user-project',
+                                        type: "POST",
+                                        data: {id : id},
+                                        dataType:'JSON',
+                                        success:function(response){
+                                            if(response.error == false){
+                                                
+                                                console.log(response);
+
+                                                let myChart = document.getElementById('myChart').getContext('2d');
+
+                                                // var myChart = $("#myChart");
+
+                                                let massPopChart = new Chart(myChart, {
+                                                        type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
+                                                        data:{
+                                                            labels:['Matheus', 'Welligton', 'Daiane', 'Marcos', 'Carlos'],
+                                                            datasets:[{
+                                                                label:'Time',
+                                                                backgroundColor:'#45da7d',
+                                                                data:[
+                                                                    '30:00:00',
+                                                                    '15:20:00',
+                                                                    '14:20:32',
+                                                                    '15:50:00',
+                                                                    '12:20:00',
+
+                                                                ]
+                                                            }]
+                                                        },
+                                                         options: {
+                                                            scales: {
+                                                                yAxes: [{
+                                                                    ticks:{
+                                                                        beginAtZero:true
+                                                                    },
+                                                                    // type: 'time',
+                                                                    // distribution: 'series'
+                                                                }]
+                                                            }
+                                                        }
+
+                                                    });
+
+                                            }else{
+                                                console.log("erro");
+                                            }
+                                        }
+                                    });
+                                });
+                            });
+                        // });
                         </script>
                     </div>
                 </div>

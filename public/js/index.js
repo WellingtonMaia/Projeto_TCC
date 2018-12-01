@@ -890,6 +890,20 @@ $( document ).ready(function() {
 
     });
 
+
+
+    // relatorios
+
+
+
+
+
+
+
+
+
+
+
     $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 
         $(this).parent().parent().next().addClass("active");

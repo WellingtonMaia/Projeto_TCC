@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\Time;
 use App\User;
+use App\Helpers\Helper;
 
 class ReportController extends Controller
 {
@@ -118,21 +119,63 @@ class ReportController extends Controller
     //->tempo gasto total de projetos por tempo
     //selecionar um projeto e listar todos os colaboradores relacionado
     //a ele e visualizar as horas trabalhadas
-    public function project_for_users_times(/*Request $request*/){
+    public function project_for_users_times(Request $request){
 
-        //$project_id = $request->project_id;
+        $project_id = $request->get('id');
+        // $project_id = 8;
+        $tasks = Task::where('project_id', $project_id)->get();
 
-        $project_id = 12;
-        $task_id = Task::where('project_id', $project_id)->get();
-        
-        if(!empty($task_id)){
-            
-            foreach($task_id as $t){
-                $times[] = Time::where('task_id',$t->id)->get();
-            }
-            
-            dd($times);
+        $project = Project::find($project_id);
+
+        $users = $project->users()->get();
+
+        $us = User::select(['id','name'])->whereIn('id',$users)->get()->toArray();
+
+        // dd($us);
+
+        foreach ($us as $key => $user) {
+            $us[$key]['name'] = Helper::getFirstNameString($user['name']);
         }
+        
+        // dd($tasks);
+        // $users = $task->users()->get();
+
+        // $us = User::select(['id','name'])->whereIn('id',$users)->get()->toArray();
+
+        // foreach ($us as $key => $user) {
+        //     $us[$key]['name'] = Helper::getFirstNameString($user['name']);
+        // }
+
+        // $timeValue = "00:00:00";
+
+        // foreach ($times as $time) {
+            
+        //     $timeValue = gmdate('H:i:s', strtotime( $timeValue ) + strtotime( $time['time_value'] ) );
+        //     // $timeValue = $timeValue + $time['time_value'];
+        // }
+        if(!empty($tasks)){
+
+            // $task = $tasks->users()->get();
+            
+            // dd($task);
+
+            foreach($tasks as $t){
+                
+                // $users = $t->users()->get();
+                // dd($task);
+
+
+                $times[] = Time::where('task_id',$t->id)->groupBy('users_id')->get()->toArray();
+                            // 
+                            
+                            
+            }
+            return response()->json(['error'=>false,'times'=>$times,'users'=>$us], 200);
+            
+            // dd($times);
+        }
+
+
         
     }
 

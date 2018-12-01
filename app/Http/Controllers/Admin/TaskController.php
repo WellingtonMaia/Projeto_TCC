@@ -204,7 +204,7 @@ class TaskController extends Controller
     public function editTask(Request $request){
 
         $task = Task::where('id', $request->get('id'))->first();
-        // $project = Project::byTask($task)->get();
+
         $users = $task->users()->get();
 
         return response()->json(['error'=>false,'task'=>$task,'users'=>$users],200);

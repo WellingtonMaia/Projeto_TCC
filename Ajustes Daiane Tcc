@@ -21,6 +21,8 @@ Gerais
 
 Tarefa
 
+	Se acaso o Usuario nao está vinculado a tarefa ele precisa receber a mensagem de 403
+
 	Remover mensagem de 0 tarefas quando cadastrar a primeira no ajax
 
 	Remover uma das datas da tarefa
