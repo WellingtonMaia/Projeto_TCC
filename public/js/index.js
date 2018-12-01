@@ -773,6 +773,8 @@ $( document ).ready(function() {
     });
 
     $(".openFinancial").click(function (e){
+        $(".preloader").css("display","block");
+        $(".preloader").addClass("financial");
         e.preventDefault();
         $(".financial-box").addClass("active");
         $(".shadow").addClass("active");
@@ -788,6 +790,7 @@ $( document ).ready(function() {
                 if(response.error == false){
                     
                     console.log(response);
+
                     $(".value-price").text(number_format(response.financial.value, 2, ',', '.'));
                     $(".due-date-value").text(moment(response.financial.due_date).format('DD/MM/YYYY'));
 
@@ -804,46 +807,78 @@ $( document ).ready(function() {
                     //     });
                     // });
 
-                    moment.locale('pt-BR');
-
-                    var date1 = moment();
-                    var date2 = moment(response.financial.due_date);
                     
+
+                    var date1 = moment().format("YYYYMMDD");
+
+                    var date2 = moment(response.financial.due_date).format("YYYYMMDD");
+                        
+                    var newDate = moment(response.financial.due_date).format("YYYYMMDD");
 
 
                     console.log(date1,date2, (date1 - date2));
 
+                    // var m = require('moment');
+                    // moment.locale('pt-BR');
+                    // m.locale('pt');
+                    var days = moment(newDate).startOf('day').fromNow();
 
-
-
-
-                    var diff = date2.diff(date1, 'days');
-
-                    console.log(diff);
+                    // var days = date1 - date2;
+                    // var days = date2.diff(date1, 'days');
+                    // var months = date2.diff(date1, 'months');
+                    console.log(days);
+                    // console.log(months);
 
                     var lucroParse = response.financial.value;
 
                     var all = 0;
 
-                    $(".expirate-date").text(moment(diff));
+                    $(".expirate-date").text(days);
 
                     $.each(response.users, function (key, value){
 
+                        
+                        console.log(response.times);    
                         var pay = 160 * value.payment_by_hours;
                         
+
+                        $.each(response.times, function (k, v){
+                            // console.log(v.time);
+                            var payment = getOnlyHours(v.time) * value.payment_by_hours;
+
+                            // $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Salário : <i class="money alert alert-info">'+number_format(pay,2, ",", ".")+'</i> Tempo:<i>'+v.time+'</i> </span>');                                      
+
+                            console.log(payment);
+                        });
+                        // all = all + pay;
                         // pay = pay;
-                        console.log(value.payment_by_hours);
-                        console.log(pay);
-                        $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Salário : <i class="money alert alert-info">'+number_format(pay,2, ",", ".")+'</i></span>');                                      
+                        // console.log(value.payment_by_hours);
+                        // console.log(pay);
+                        $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Salário : <i class="money alert alert-info">'+number_format(pay,2, ",", ".")+'</i> Tempo:<i></i> </span>');                                      
                             
-                        all = all + pay;
+                        
                     });
 
                     var lucroComplete = lucroParse - all;
 
-                    $(".lucro.money").text(number_format(lucroComplete, 2, ',', '.'));
+                    if(lucroComplete < 0){
+                        $(".line.alert").addClass("alert-danger");
+                        $(".line.alert").removeClass("alert-info");
+                        $(".lucro-string").html("O projeto está dando prejuizo de <i class='lucro money'>"+number_format(lucroComplete, 2, ',', '.')+"</i>");
+                    }else{
+                        $(".line.alert").removeClass("alert-danger");
+                        $(".line.alert").addClass("alert-info");
+                        $(".lucro-string").html("O lucro atual está sendo de <i class='lucro money'>"+number_format(lucroComplete, 2, ',', '.')+"</i>");
+                    }
 
 
+                    // $(".lucro.money").text(number_format(lucroComplete, 2, ',', '.'));
+
+                    
+                    setTimeout(function(){
+                        $('.preloader').fadeOut();
+                        $('.preloader').removeClass('financial');
+                    },1000);
 
                 }else{
                     console.log("erro");
@@ -980,9 +1015,21 @@ $( document ).ready(function() {
     });  
 
 
-    $(".celular").mask('(00) 00000-0000');
+    // $(" #project-price").keyup( function (e){
+    //     var newValue = $(this).val();
 
-    $(".money").mask('000.000.000.000.000,00', {reverse: true});
+    //     $(this).val(number_format(newValue, 2, '.', ''));
+    // });
+
+    // var newValue = $("#project_price").val();
+
+    // $("#project_price").val($(number_format(newValue, 2, '.', ''));
+
+
+
+    $(".money").mask('000.000.000.000.000.00', {reverse: true});
+
+    $(".money-create").mask('000000000.00', {reverse: true});
 
 
     jQuery('.datepicker').datepicker({ 
@@ -1045,8 +1092,16 @@ function removeSeconds(param){
     var newTime = moment().hour(time[0]).minute(time[1]);
 
     return newTime.format("HH:mm");
-
 }
+
+function getOnlyHours(param){
+   var time = param.split(":");
+
+   var newTime = moment().hour(time[0]);
+
+   return newTime.format("HH");
+}
+
 
 function resetItemTask(current){
     if($("."+current+"-registers").children().length == 0 ){

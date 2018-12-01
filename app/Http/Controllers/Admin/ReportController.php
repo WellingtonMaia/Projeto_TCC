@@ -53,7 +53,7 @@ class ReportController extends Controller
         //dd($request->all());
         
         //$date_final = $request->date_final;
-         $date_ini = '2018-11-01';
+         $date_ini = '2018-01-01';
          $date_final = '2019-12-30';
         
         $period = 12;

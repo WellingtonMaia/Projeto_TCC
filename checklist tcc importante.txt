@@ -53,6 +53,20 @@ Lista Pendente
 
 		Realizar Cadastros Reais e Coerentes
 
+	FINAL DE SEMANA
+
+		Ajustes Lista Daiane 
+
+		Verificar campos de dinheiro(mask)
+
+		
+
+
+
+
+
+
+
 	-- Após finalizado, não é essencial 
 
 		Verificar a possibilidade de poder troca de pagina e atualizar e o tempo continuar rodando

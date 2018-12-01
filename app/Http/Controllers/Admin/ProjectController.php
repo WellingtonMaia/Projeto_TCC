@@ -155,9 +155,11 @@ class ProjectController extends Controller
         }
 
 
+        // $price = Input::get('project_price');
+        
         $price = floatval (Input::get('project_price'));
-
-        dd($price);
+        
+        // dd($price);
 
         $project->name          = Input::get('name');
         $project->estimate_date = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');

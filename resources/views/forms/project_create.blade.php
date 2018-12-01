@@ -55,7 +55,7 @@
 								<div class="form-group">
 
 									<label for="project_price">Preco do Projeto</label>
-									<input type="text" name="project_price" class="form-control money" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>
+									<input type="text" name="project_price" id="project-price" class="form-control money-create" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>
 
 								</div>
 								

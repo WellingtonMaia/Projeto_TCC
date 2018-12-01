@@ -53,7 +53,7 @@
                         <li>
                             <div id="sparklinedash4"></div>
                         </li>
-                        <li class="text-right"><i class="ti-arrow-up text-danger"></i> <span class="text-danger">36:30</span></li>
+                        <li class="text-right"><i class="ti-arrow-up text-danger"></i> <span class="text-danger">{{ $ntime }}</span></li>
                     </ul>
                 </div>
             </div>

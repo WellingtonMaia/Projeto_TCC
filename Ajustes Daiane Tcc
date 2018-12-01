@@ -1,0 +1,69 @@
+Ajustes Daiane Tcc
+
+
+
+Fazer uma breve apresentacao com slide
+
+	falando o objetivo principal , e o que o sistema vai fazer 
+
+	"o sistema vai gerenciar o tempo e os custos do projeto"
+
+
+Gerais
+
+	Colocar o logo no fundo do body
+
+	Adicionar Grafico no DashBoard
+
+	Mudar Icones dos Relatorios no menu
+
+
+
+Tarefa
+
+	Remover mensagem de 0 tarefas quando cadastrar a primeira no ajax
+
+	Remover uma das datas da tarefa
+
+	Colocar disable quando usar o contador tempo/tarefa
+
+	Arrumar topo de listagem de registro de tempo
+
+	Arrumar o 'adicionar tarefa' depois de ter apertado em edit sem salvar
+
+	Adicionar data no arquivo e remover botao de delete do arquivo
+
+	Adicionar data no note
+
+	Tempo restante na tarefa no tempo estimado 	
+
+	Mostrar horas restantes e possiveis horas que sobraram
+
+
+Financeiro
+
+	Alterar o 'salario do colaborador ' para horas trabalhadas e somar todas as horas de cada e fazer * o valor por hora
+
+User
+
+	Setar imagem default quando cadastrar no register default
+
+
+Projetos 
+
+	Adicionar campo de custos adicionais e somar com a mao de obra no financeiro
+
+	Colocar Icone quando tiver 0 registros nos projetos
+
+
+Relatorios
+
+	No Relatorio tempo gasto total por projeto -> Adicionar custo do projeto
+
+	Melhorar css das Templates estaticas dos Relatorios
+
+
+
+
+
+

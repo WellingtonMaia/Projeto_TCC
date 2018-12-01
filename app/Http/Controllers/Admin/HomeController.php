@@ -33,11 +33,23 @@ class HomeController extends Controller
         $project = Project::count();
         $task = Task::count();        
         $user = User::count();
-        // $times = Time::where( 'users_id ',Auth::user()->id);
+        // $times = Time::where( 'user_id ',Auth::user()->id)->get();
 
-        // foreach ($times as $time) {
-        //     dd($time);
-        // }
+        // $times = Time::select()->whereIn('user_id',Auth::user()->id)->get();
+        $times = Time::select()->where('users_id',Auth::user()->id)->get()->toArray();
+
+        // dd($times);
+
+        $timeValue = "00:00:00";
+
+        foreach ($times as $time) {
+            
+            $timeValue = gmdate('H:i:s', strtotime( $timeValue ) + strtotime( $time['time_value'] ) );
+            // $timeValue = $timeValue + $time['time_value'];
+        }
+
+        // dd($timeValue);
+        // $TOTAL_HORAS_MANHA = gmdate('H:i:s', strtotime( 12:00:00 ) - strtotime( 09:00:00] ) );
         
         // die;
         // dd($time);
@@ -47,7 +59,7 @@ class HomeController extends Controller
         return view('index')
                ->with("nproject", $project)
                ->with("ntask",$task)
-               ->with("nuser",$user);
-               
+               ->with("nuser",$user)
+               ->with("ntime",$timeValue);
     }
 }

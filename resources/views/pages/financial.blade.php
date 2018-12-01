@@ -60,8 +60,8 @@
                       <span class="due-date"><i class="fa fa-calendar text-danger"></i> Data de Vencimento: <i class="text-danger due-date-value">{{ \Carbon\Carbon::parse($financial->due_date)->format('d/m/Y') }}</i> </span>
                       <span class="expirate-string alert alert-danger">O Projeto está a <i class="expirate-date">2 meses</i> de ficar atrasado</span>
                   </div>
-                  <div class="line alert alert-info">
-                      <span> O lucro atual está sendo de <i class="lucro money">400.000,00</i></span>
+                  <div class="line alert">
+                      <span class="lucro-string"> O lucro atual está sendo de <i class="lucro money">400.000,00</i></span>
                   </div>
               </div>
           </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Financial;
 use App\Models\Project;
+use App\Models\Time;
+use App\User;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
@@ -143,12 +145,25 @@ class FinancialController extends Controller
 
         $users = $project->users()->get()->toArray();
 
+        
+
         foreach ($users as $key => $user) {
+            $timeUser[$key]['time'] = "00:00:00";
+
             $users[$key]['name'] = Helper::getFirstNameString($user['name']);
+
+            $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
+
+            // dd($times);
+
+            foreach($times as $time){
+                $timeUser[$key]['time'] = gmdate('H:i:s', strtotime( $timeUser[$key]['time'] ) + strtotime( $time['time_value'] ) );
+            }
+
         }
 
         // dd($financial);
-        return response()->json(['error'=>false,'financial'=>$financial,'users'=>$users], 200);
+        return response()->json(['error'=>false,'financial'=>$financial,'users'=>$users,'times'=>$timeUser], 200);
 
 
     }
