@@ -18,15 +18,15 @@ class Project extends Model
     	return $this->hasMany('App\Models\Task');
     }
     
-    public function payAccounts()
-    {
-    	return $this->hasMany('App\Models\PayAccount');
-    }
+    // public function payAccounts()
+    // {
+    // 	return $this->hasMany('App\Models\PayAccount');
+    // }
     
-    public function receiveAccounts()
-    {
-    	return $this->hasMany('App\Models\ReceiveAccount');
-    }
+    // public function receiveAccounts()
+    // {
+    // 	return $this->hasMany('App\Models\ReceiveAccount');
+    // }
 
     public function users()
     {

@@ -199,7 +199,9 @@
                            </a>
                         </div>
                         <div class="block-a">
-                           <a class="btn btn-danger removeFile" href="" data-id="{{ $file->id }}"><i class="fa fa-trash"></i></a>                  
+                           @if($time->users_id == Auth::user()->id)
+                              <a class="btn btn-danger removeFile" href="" data-id="{{ $file->id }}"><i class="fa fa-trash"></i></a> 
+                           @endif                   
                         </div>
                      </div>
                      @endforeach
