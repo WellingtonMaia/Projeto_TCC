@@ -134,14 +134,15 @@
                             </div>
                             @endforeach
                         </div> --}}
+                        @if( \Session::has("message") )
+                        <div class="alert alert-success">
+                            <span> {{ \Session::get("message") }}</span>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
-            @if( \Session::has("message") )
-            <div class="alert alert-success">
-                <span> {{ \Session::get("message") }}</span>
-            </div>
-            @endif
+            
             {{-- <div class="list-tasks">
                 tarefas do projeto
                 

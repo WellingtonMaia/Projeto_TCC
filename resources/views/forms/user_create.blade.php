@@ -43,7 +43,14 @@
 								@endif
 								<div class="form-group">
 									<label for="role">Cargo</label>
-									<input type="text" placeholder="Digite o nome da sua profissão" name="role" class="form-control" value="{{ old('role')? old('role') : isset($user) ? $user->role : "" }}" required>
+									<select class="form-control" name="role" required>
+										<option value="">Selecione sua profissão</option>
+										<option @if( old('role') == 'Gerente de Projetos') selected @endif @if(isset($user) && $user->role == 'Gerente de Projetos') selected @endif value="Gerente de Projetos">Gerente de Projetos</option>
+										<option @if( old('role') == 'Programador') selected @endif @if(isset($user) && $user->role == 'Programador') selected @endif  value="Programador">Programador</option>
+										<option  @if( old('role') == 'Líder de Desenvolvimento') selected @endif @if(isset($user) && $user->role == 'Líder de Desenvolvimento') selected @endif value="Líder de Desenvolvimento">Líder de Desenvolvimento</option>
+										<option @if( old('role') == 'Administrador') selected @endif @if(isset($user) && $user->role == 'Administrador') selected @endif value="Administrador">Administrador</option>
+									</select>
+									{{-- <input type="text" placeholder="Digite o nome da sua profissão" name="role" class="form-control" value="{{ old('role')? old('role') : isset($user) ? $user->role : "" }}" required> --}}
 								</div>
 								<div class="form-group">
 									<label for="role">Imagem de Perfil</label>
