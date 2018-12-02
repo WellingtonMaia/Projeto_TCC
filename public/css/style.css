@@ -1159,7 +1159,14 @@ h3.block-title{
 }
 
 .white-box .iten-task.file{
-	width: 13%;
+	justify-content: center;
+	text-align: center;
+}
+
+
+
+.white-box .iten-task.file{
+	width: 14%;
 }
 
 
@@ -1246,6 +1253,9 @@ h3.block-title{
 
 .white-box .iten-task .block-a{
 	width: 36px;
+	height: 36px;
+	background: #eee;
+	border-radius: 4px;
 	margin-left: 10px;
 }
 
@@ -1280,6 +1290,7 @@ h3.block-title{
 	/*width: 190px;*/
 	margin-right: 20px;
 	padding-left: 10px;
+	position: relative;
 }
 
 .white-box .iten-task.header-task .task-time span:last-child{
@@ -1289,8 +1300,25 @@ h3.block-title{
 
 .white-box .iten-task.header-task .task-time span:nth-child(2){
 	margin-right: 0;
-
+	left: -6px;
 }
+
+.white-box .iten-task.header-task .task-time span:nth-child(3){
+	left: 19px;
+}
+
+.white-box .iten-task.header-task .task-time span:nth-child(4){
+	left: -13px;
+}
+
+.white-box .iten-task.header-task .task-time span:nth-child(5){
+	left: -36px;
+}
+
+.white-box .iten-task.header-task .task-time span:nth-child(6){
+	left: -9px;
+}
+
 
 
 /*
@@ -1600,10 +1628,20 @@ h3.block-title{
 .financial-box .users-project .money{ 
 	margin-bottom: 0;
 	display: block;
-	margin:0 5px;
+	margin:0 13px 0 5px;
 	width: 170px;
 
 }
+
+
+.financial-box .alert.time{
+	margin-bottom: 0;
+	text-align: center;
+	width: 90px;
+	margin:0 5px;
+}
+
+
 /*
 .financial-box .users-project i{
 
@@ -1621,8 +1659,67 @@ h3.block-title{
 	width: 100%;
 }
 
+.icon-zero-projects {
+	display: block;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
 
-background: url(../img/2.png) no-repeat left, #2f7616;
+
+.icon-zero-projects svg{
+	width: 300px;
+	height: 300px;
+	display: block;
+	margin: auto;
+}
+
+.icon-zero-projects svg{
+	transition: ease-out .2s;
+}
+
+
+.msg-no-project{
+	text-align: center;
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 10px;
+
+}
+
+/*.icon-zero-projects svg {
+    animation-duration: 15.5s;
+	animation-iteration-count: infinite;
+	transform-origin: 50% 50%;
+	display: inline-block;
+	animation-name: spin;
+}
+*/
+/*@keyframes spin {
+	50% { transform: rotate(45deg); }
+	100% { transform: rotate(0deg); }
+}
+*/
+/*
+gear{
+    animation-name: ckw;
+    animation-duration: 15.5s;
+}*/
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+/*background: url(../img/2.png) no-repeat left, #2f7616;*/
 
 
 

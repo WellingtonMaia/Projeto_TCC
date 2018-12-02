@@ -54,43 +54,37 @@
 
                         <script type="text/javascript">
                         $(document).ready(function (){
-                            let myChartjs = document.getElementById('myChart').getContext('2d');
+                            // let myChartjs = document.getElementById('myChart').getContext('2d');
 
-                            let massPopChart = new Chart(myChartjs, {
-                                    type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
-                                    data:{
-                                        labels:['Matheus', 'Welligton', 'Daiane', 'Marcos', 'Carlos'],
-                                        datasets:[{
-                                            label:'Horas Trabalhadas',
-                                            backgroundColor:'#45da7d',
-                                            data:[
-                                                '30',
-                                                '15',
-                                                '14',
-                                                '15',
-                                                '12',
+                            // let massPopChart = new Chart(myChartjs, {
+                            //         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
+                            //         data:{
+                            //             labels:['Matheus', 'Welligton', 'Daiane', 'Marcos', 'Carlos'],
+                            //             datasets:[{
+                            //                 label:'Horas Trabalhadas',
+                            //                 backgroundColor:'#45da7d',
+                            //                 data:[
+                            //                     '30',
+                            //                     '15',
+                            //                     '14',
+                            //                     '15',
+                            //                     '12',
 
-                                            ]
-                                        }]
-                                    },
-                                     options: {
-                                        scales: {
-                                            yAxes:[{
-                                                ticks:{
-                                                  beginAtZero:true
-                                                }
+                            //                 ]
+                            //             }]
+                            //         },
+                            //          options: {
+                            //             scales: {
+                            //                 yAxes:[{
+                            //                     ticks:{
+                            //                       beginAtZero:true
+                            //                     }
                                               
-                                            }],
-                                            // xAxes: [{
-                                            //     type: 'time',
-                                            //     time: {
-                                            //             unit: 'hour'
-                                            //         }
-                                            // }]
-                                        }
-                                    }
+                            //                 }],
+                            //             }
+                            //         }
 
-                                });
+                            //     });
                             
                            
 
@@ -116,22 +110,25 @@
                                                 let myChart = document.getElementById('myChart').getContext('2d');
 
                                                 // var myChart = $("#myChart");
+                                                var usersArray = [];
+                                                var timesArray = [];
+                                                $.each(response.users, function (k, v){
+                                                    usersArray.push(v.name);
+                                                });
+
+                                                $.each(response.times, function(k, v){
+                                                    timesArray.push(getOnlyHours(v.time));
+                                                });
+
 
                                                 let massPopChart = new Chart(myChart, {
                                                         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
                                                         data:{
-                                                            labels:['Matheus', 'Welligton', 'Daiane', 'Marcos', 'Carlos'],
+                                                            labels:usersArray,
                                                             datasets:[{
-                                                                label:'Time',
+                                                                label:'Horas Trabalhadas',
                                                                 backgroundColor:'#45da7d',
-                                                                data:[
-                                                                    '30:00:00',
-                                                                    '15:20:00',
-                                                                    '14:20:32',
-                                                                    '15:50:00',
-                                                                    '12:20:00',
-
-                                                                ]
+                                                                data:timesArray,
                                                             }]
                                                         },
                                                          options: {
@@ -142,12 +139,12 @@
                                                                     }
                                                                     
                                                                 }],
-                                                                xAxes: [{
-                                                                    type: 'time',
-                                                                    time: {
-                                                                            unit: 'hour'
-                                                                        }
-                                                                }]
+                                                                // xAxes: [{
+                                                                //     type: 'time',
+                                                                //     time: {
+                                                                //             unit: 'hour'
+                                                                //         }
+                                                                // }]
                                                             }
                                                         }
 
@@ -160,6 +157,14 @@
                                     });
                                 });
                             });
+    
+                            function getOnlyHours(param){
+                               var time = param.split(":");
+
+                               var newTime = moment().hour(time[0]);
+
+                               return newTime.format("HH");
+                            }
 
 
                         </script>

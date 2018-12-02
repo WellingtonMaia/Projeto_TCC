@@ -69,7 +69,7 @@
                               <label>
                                  Quem
                                  {{-- <input type="text" name="author" disabled class="form-control" value="{{ Auth::user()->name}}" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;"> --}}
-                                 <select class="form-control" name="author" disabled="disabled" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'); background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">>
+                                 <select class="form-control" name="author" disabled="disabled" style="background: url(' {{ url("storage/users/".Auth::user()->image) }}'), #eee; background-repeat: no-repeat; background-size: 20px; background-position: 100% 50%;">>
                                     <option>{{ Auth::user()->name}}</option>
                                  </select>
 
@@ -204,12 +204,7 @@
                            @endif                   
                         </div>
                         <div class="created-at">
-                           @if(!$file->updated_at):
-                              {{-- {{ $time->created_at }} --}}
-                              {{ \Carbon\Carbon::parse($file->created_at)->format('d/m/Y H:i:s') }}
-                           @else
-                              {{ \Carbon\Carbon::parse($file->updated_at)->format('d/m/Y H:i:s') }}
-                           @endif
+                              Criado em : {{ \Carbon\Carbon::parse($file->created_at)->format('d/m/Y H:i:s') }}
                         </div>
                      </div>
                      @endforeach
@@ -273,7 +268,7 @@
                            @endif
                         </div>
                         <div class="created-at">
-                           @if(!$note->updated_at):
+                           @if($note->updated_at == $note->created_at)
                               Criado em: {{ \Carbon\Carbon::parse($note->created_at)->format('d/m/Y H:i:s') }}
                            @else
                               Atualizado em: {{ \Carbon\Carbon::parse($note->updated_at)->format('d/m/Y H:i:s') }}

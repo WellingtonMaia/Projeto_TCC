@@ -179,6 +179,7 @@ $( document ).ready(function() {
                 success:function(response){
                     if(response.error == false){                            
                             $(".task-box , .shadow").removeClass("active");
+                            $(".no-task-in-project").remove();
                             $('.alert-hidden div').text('Tarefa cadastrada com sucesso');
                             $('.alert-hidden').addClass('active');
                             $(".list-tasks").append(response.html);                            
@@ -450,6 +451,8 @@ $( document ).ready(function() {
 
                         $('a[data-id="'+note_id+'"]').parent().parent().find(".note-desc").text(response.note.description);
 
+                        $('a[data-id="'+note_id+'"]').parent().parent().find(".created-at").text("Atualizado em: "+moment(response.note.updated_at).format('DD/MM/YYYY HH:mm:ss'));
+
                         setTimeout(function(){
                             $('.alert-hidden').removeClass('active');
                         },2000);
@@ -708,6 +711,7 @@ $( document ).ready(function() {
 
     $(".time-registers").on('click','.editTime', function(e){
         e.preventDefault();
+        $("#addTime input").prop("disabled",false);
         $(".btn-info.time").click();
         $("#addTime").attr('id','editTime');
 
@@ -800,6 +804,7 @@ $( document ).ready(function() {
                     $(".value-price").text(number_format(response.financial.value, 2, ',', '.'));
                     $(".due-date-value").text(moment(response.financial.due_date).format('DD/MM/YYYY'));
 
+                    $(".addicional-cost").text(number_format(response.financial.additional_costs, 2, ',', '.'));
                     $(".users-project.line").html(" ");
 
 
@@ -815,31 +820,44 @@ $( document ).ready(function() {
 
                     
 
-                    var date1 = moment().format("YYYYMMDD");
+                    var date1 = moment().format("YYYY,MM,DD");
 
-                    var date2 = moment(response.financial.due_date).format("YYYYMMDD");
+                    var date2 = moment(response.financial.due_date).format("YYYY,MM,DD");
                         
                     var newDate = moment(response.financial.due_date).format("YYYYMMDD");
 
 
-                    console.log(date1,date2, (date1 - date2));
+                    // console.log(date1,date2, (date1 - date2));
 
                     // var m = require('moment');
                     // moment.locale('pt-BR');
                     // m.locale('pt');
-                    var days = moment(newDate).startOf('day').fromNow();
+                    // var days = moment(newDate).startOf('day').fromNow();
 
                     // var days = date1 - date2;
                     // var days = date2.diff(date1, 'days');
                     // var months = date2.diff(date1, 'months');
-                    console.log(days);
+                    // console.log(days);
                     // console.log(months);
 
-                    var lucroParse = response.financial.value;
+                    var lucroParse = response.financial.value - response.financial.additional_costs;
 
                     var all = 0;
 
-                    $(".expirate-date").text(days);
+
+                    var statusDate = response.dias.split(" ");
+
+                    var newDateString = statusDate[1]+" "+statusDate[2];
+
+                    if(statusDate[0] == '+'){
+                        $(".expirate-string").text('O Projeto está a '+newDateString+' de ficar atrasado');
+                    }else{
+                        $(".expirate-string").text('O Projeto já passou do prazo a '+newDateString);
+                    }
+
+                    // console.log(response.financial.dias);
+
+                    $(".expirate-date").text(response.dias);
 
                     $.each(response.users, function (key, value){
 
@@ -851,7 +869,7 @@ $( document ).ready(function() {
                             if (k == key) {
                                 var payment = getOnlyHours(v.time) * value.payment_by_hours;
 
-                                $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Pagamento refente a horas : <i class="money alert alert-info">'+number_format(payment,2, ",", ".")+'</i> Tempo:<i>'+v.time+'</i> </span>');                                      
+                                $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Pagamento refente a horas : <i class="money alert alert-info">'+number_format(payment,2, ",", ".")+'</i> Tempo:<i class="alert alert-info time">'+removeSeconds(v.time)+'</i> </span>');                                      
                                 all = all + payment;
                             }
                             
@@ -908,10 +926,16 @@ $( document ).ready(function() {
 
 
 
+    $(".btn-info.time").click(function (e){
+        e.preventDefault(); 
+        $("#addTime input").prop("disabled",false);
+        $(this).parent().parent().next().addClass("active");
+        $(".shadow").addClass("active");
+
+    });
 
 
-
-    $(".btn-info.time, .btn-info.file, .btn-info.note").click(function (e){
+    $(".btn-info.file, .btn-info.note").click(function (e){
         e.preventDefault(); 
         $(this).parent().parent().next().addClass("active");
         $(".shadow").addClass("active");
@@ -971,9 +995,15 @@ $( document ).ready(function() {
         timer.stop();
 
         var date = new Date();
+
+        var month = date.getUTCMonth()+1;
+
+
         var currentTime = date.getHours()+":"+date.getMinutes();
-        var currentDate = date.getUTCDate()+'/'+date.getUTCMonth()+'/'+date.getUTCFullYear();
+        var currentDate = date.getUTCDate()+'/'+month+'/'+date.getUTCFullYear();
         var dateUTC     = date.getUTCFullYear()+'-'+date.getUTCMonth()+'-'+date.getUTCDate();
+        
+        dateUTC = moment(dateUTC).format("YYYY-MM-DD");
 
         localStorage.setItem('stoped-time',currentTime);
         localStorage.setItem('time',timer.getTimeValues().toString());
@@ -985,15 +1015,20 @@ $( document ).ready(function() {
 
         var time = new Date(dateUTC+"T"+time_value);
 
+        // var string = time.getMinutes();
+
+        // console.log(time);
+
         if (time.getMinutes() == 0) {
             time_value = '00:01';
+            // console.log("chegou");
             // time_value.text("00:01");    
         }else{
             var time_value = removeSeconds(time_value);
         }
         // str.split(" ");
         
-        console.log(time_value);
+        // console.log(time_value); 
 
         // console.log(dateUTC+"T"+time_value);
         // console.log(time);
@@ -1006,7 +1041,9 @@ $( document ).ready(function() {
         $("#time_stop").val(removeSeconds(time_stop));        
         $("#time_value").val(removeSeconds(time_value));
 
+        
         $(".btn-info.time").click();
+        $("#addTime input").prop("disabled",true);
 
     }); 
 

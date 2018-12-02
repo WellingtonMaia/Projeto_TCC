@@ -64,16 +64,17 @@ class ProjectController extends Controller
             abort(403,"Sorry, You can do this action!");
         }
 
-        $users                  = Input::get('users');
+        $users                     = Input::get('users');
 
-        $project                = new Project();
-        $project->name          = Input::get('name');
-        $project->estimate_date = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
-        $project->estimate_time = Input::get('estimate_time');
-        $project->status        = Input::get('status');
-        $project->project_price = Input::get('project_price');
-        $project->project_type  = Input::get('project_type');
-        $project->client_name   = Input::get('client_name');
+        $project                   = new Project();
+        $project->name             = Input::get('name');
+        $project->estimate_date    = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
+        $project->estimate_time    = Input::get('estimate_time');
+        $project->status           = 'A';
+        $project->project_price    = Input::get('project_price');
+        $project->project_type     = Input::get('project_type');
+        $project->client_name      = Input::get('client_name');
+        $project->additional_costs = Input::get('additional_costs');
 
         $project->save();
 
@@ -83,10 +84,11 @@ class ProjectController extends Controller
         if(!empty($project_id)){
             $financials = new Financial();
            $save = DB::table('financials')->insert([
-                'project_id' => $project_id,
-                'value' => $project->project_price,
-                'date_ini' => $project->created_at,
-                'due_date' => $estimate_date,
+                'project_id'=> $project_id,
+                'value'     => $project->project_price,
+                'date_ini'  => $project->created_at,
+                'due_date'  => $estimate_date,
+                'additional_costs' => $project->additional_costs,
             ]);
 
            if($save){
@@ -158,15 +160,18 @@ class ProjectController extends Controller
         // $price = Input::get('project_price');
         
         $price = floatval (Input::get('project_price'));
+
+        $additional_costs = floatval (Input::get('additional_costs'));
         
         // dd($price);
 
-        $project->name          = Input::get('name');
-        $project->estimate_date = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
-        $project->estimate_time = Input::get('estimate_time');
-        $project->status        = Input::get('status');
-        $project->project_price = number_format($price, 2, '.', '');
-        $project->project_type  = Input::get('project_type');
+        $project->name             = Input::get('name');
+        $project->estimate_date    = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
+        $project->estimate_time    = Input::get('estimate_time');
+        $project->status           = Input::get('status');
+        $project->project_price    = number_format($price, 2, '.', '');
+        $project->project_type     = Input::get('project_type');
+        $project->additional_costs = number_format($additional_costs, 2, '.', '');
         $save = $project->save();
 
         $project_id = $project->id;
@@ -180,10 +185,11 @@ class ProjectController extends Controller
 
             //dd([$project_id,$project->project_price, $id,$project->created_at, $estimate_date]);
 
-                $financial->project_id = $project_id;
-                $financial->value = $project->project_price;
-                $financial->date_ini = $project->created_at;
-                $financial->due_date = $project->estimate_date;
+                $financial->project_id       = $project_id;
+                $financial->value            = $project->project_price;
+                $financial->date_ini         = $project->created_at;
+                $financial->due_date         = $project->estimate_date;
+                $financial->additional_costs = $project->additional_costs;
                 $save = $financial->save();
 
             if($save){

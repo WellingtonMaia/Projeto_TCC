@@ -58,12 +58,11 @@
 
                                     var id = $("#colaborador").val();
 
-
                                     $.ajax({
                                         headers:{
                                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
                                         },
-                                        url: '/report/post/time-users-project',
+                                        url: '/report/post/time-users-for-project',
                                         type: "POST",
                                         data: {id : id},
                                         dataType:'JSON',
@@ -74,23 +73,30 @@
 
                                                 let myChart = document.getElementById('myChart').getContext('2d');
 
+
+                                                var projectArray = [];
+                                                var timeArray    = [];
+
+                                                $.each(response.projects, function(k, v){
+                                                    projectArray.push(v.name);
+                                                });
+
+                                                $.each(response.times, function (k,v){
+                                                    timeArray.push(v);
+                                                });
+
+
+                                                var stringUser = response.user+' Horas Trabalhadas nos Projetos';
                                                 // var myChart = $("#myChart");
 
                                                 let massPopChart = new Chart(myChart, {
                                                         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
                                                         data:{
-                                                            labels:['Matheus', 'Welligton', 'Daiane', 'Marcos', 'Carlos'],
+                                                            labels:projectArray,
                                                             datasets:[{
-                                                                label:'Time',
+                                                                label:stringUser,
                                                                 backgroundColor:'#45da7d',
-                                                                data:[
-                                                                    '30:00:00',
-                                                                    '15:20:00',
-                                                                    '14:20:32',
-                                                                    '15:50:00',
-                                                                    '12:20:00',
-
-                                                                ]
+                                                                data:timeArray,
                                                             }]
                                                         },
                                                          options: {
@@ -115,6 +121,14 @@
                                 });
                             });
                         // });
+
+                            function getOnlyHours(param){
+                               var time = param.split(":");
+
+                               var newTime = moment().hour(time[0]);
+
+                               return newTime.format("HH");
+                            }
                         </script>
                     </div>
                 </div>

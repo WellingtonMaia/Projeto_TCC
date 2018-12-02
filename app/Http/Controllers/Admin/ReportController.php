@@ -87,27 +87,53 @@ class ReportController extends Controller
 
     //->tempo gasto em cada projeto por pessoa
     //selecionar projeto ou pessoa;
-    public function time_users_for_project(/*Request $request ou $id */){
+    public function time_users_for_project(Request $request){
 
-        //$user_id = $request->user_id;
-        $user_id = 8;
-        $project_id = DB::table('projects_has_users')
-            ->select('project_id')
-            ->where('user_id', $user_id)
-            ->get();
-        
-        if (!empty($project_id)) {
-            foreach($project_id as $p_id){
-                $projects = DB::table('projects')
-                    ->select('name', 'client_name','estimate_time')
-                    ->where('id', $p_id->project_id)
-                    ->get();
-            } 
+        $user_id = $request->get('id');
+
+        $user = User::find($user_id);
+
+        $userName = Helper::getFirstNameString($user->name);
+
+        $projects = DB::table('projects_has_users')->select('project_id')->where('user_id', $user_id)->get();
+
+        $projectsArray = $user->projects()->get();
+
+        // dd($projects);
+        // $projectsArray = [];
+
+        // foreach ($projects as $key => $item) {
             
-            dd($projects);
-        }
+
+            // dd($item->project_id);
+            // $projectsArray = Project::select(['id','name'])->where('id',$item->project_id)->get()->toArray();
+
+
+            // foreach ($projectsArray as $key => $proj) {
+                
+
+
+
+            // }
+
+        // }
+
+
+        $timeUser = ['20','10','50','5','7'];
 
         
+        // if (!empty($project_id)) {
+        //     foreach($project_id as $p_id){
+        //         $projects = DB::table('projects')
+        //             ->select('name', 'client_name','estimate_time')
+        //             ->where('id', $p_id->project_id)
+        //             ->get();
+        //     } 
+            
+            // dd($projects);
+        
+
+        return response()->json(['error'=>false,'times'=>$timeUser,'projects'=>$projectsArray,'user'=>$userName], 200);
 
         //$projects = Project::where('id', [$date_ini, $date_final])->get();
         
@@ -122,71 +148,57 @@ class ReportController extends Controller
     public function project_for_users_times(Request $request){
 
         $project_id = $request->get('id');
-        // $project_id = 8;
+
         $tasks = Task::where('project_id', $project_id)->get();
 
         $project = Project::find($project_id);
 
         $users = $project->users()->get();
 
-        $us = User::select(['id','name'])->whereIn('id',$users)->get();
+        foreach ($users as $key => $user) {
+            $timeUser[$key]['time'] = "00:00:00";
 
-        dd($us);
+            $users[$key]['name'] = Helper::getFirstNameString($user['name']);
 
-        foreach ($us as $key => $user) {
-            $us[$key]['name'] = Helper::getFirstNameString($user['name']);
-        }
-        
-        // dd($tasks);
-        // $users = $task->users()->get();
+            $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
 
-        // $us = User::select(['id','name'])->whereIn('id',$users)->get()->toArray();
-
-        // foreach ($us as $key => $user) {
-        //     $us[$key]['name'] = Helper::getFirstNameString($user['name']);
-        // }
-
-        // $timeValue = "00:00:00";
-
-        // foreach ($times as $time) {
-            
-        //     $timeValue = gmdate('H:i:s', strtotime( $timeValue ) + strtotime( $time['time_value'] ) );
-        //     // $timeValue = $timeValue + $time['time_value'];
-        // }
-        if(!empty($tasks)){
-
-            // $task = $tasks->users()->get();
-            
-            // dd($task);
-
-            foreach($tasks as $t){
-                
-                // $users = $t->users()->get();
-                // dd($task);
-
-
-                $times[] = Time::where('task_id',$t->id)->groupBy('users_id')->get()->toArray();
-                            // 
-                            
-                            
+            foreach($times as $time){
+                $timeUser[$key]['time'] = gmdate('H:i:s', strtotime( $timeUser[$key]['time'] ) + strtotime( $time['time_value'] ) );
             }
-            return response()->json(['error'=>false,'times'=>$times,'users'=>$us], 200);
-            
-            // dd($times);
         }
 
-
-        
+  
+        return response()->json(['error'=>false,'times'=>$timeUser,'users'=>$users], 200);
+   
     }
 
     //->conclusao de tarefa por pessoa em um projeto
-    public function finish_task_user_project(/*Request $request ou $id */){
-        //$project_id = $request->project_id;
+    public function finish_task_user_project(Request $request){
+        $project_id = $request->get('id');
         
-        $project_id = 12;
         $tasks = Task::where('project_id', $project_id)->where('status','C')->get();
+
+        // dd(count($tasks));
+
+        $users = $tasks->users();
+
+        // $project = Project::find($project_id);
+
+        // $users = $project->users()->get();
+
+        foreach ($users as $key => $user) {
+
+            $users[$key]['name'] = Helper::getFirstNameString($user['name']);
+
+            // $cTasks = Task::select()->where('user_id',$users[$key]['id'])->where('status','C')->get()->toArray();
+
+        }            
+
+        dd($cTasks);
         
-        dd($tasks);
+        return response()->json(['error'=>false,'task'=>$taskUser,'users'=>$users], 200);
+
+        
     }
 
 

@@ -21,15 +21,15 @@ Gerais
 
 Tarefa
 
-	OK - Se acaso o Usuario nao está vinculado a tarefa ele precisa receber a mensagem de 403
+	TESTAR NOVAMENTE - Se acaso o Usuario nao está vinculado a tarefa ele precisa receber a mensagem de 403
 
-	Remover mensagem de 0 tarefas quando cadastrar a primeira no ajax
+	OK - Remover mensagem de 0 tarefas quando cadastrar a primeira no ajax
 
 	OK - Remover uma das datas da tarefa
 
-	PENDENTE - Colocar disable quando usar o contador tempo/tarefa
+	OK - Colocar disable quando usar o contador tempo/tarefa
 
-	PENDENTE - Arrumar topo de listagem de registro de tempo
+	OK - Arrumar topo de listagem de registro de tempo
 
 	OK - Arrumar o 'adicionar tarefa' depois de ter apertado em edit sem salvar
 
@@ -46,7 +46,7 @@ Financeiro
 
 	OK - Alterar o 'salario do colaborador ' para horas trabalhadas e somar todas as horas de cada e fazer * o valor por hora
 
-	Arrumar mensagem de tempo restante da validade
+	OK - Arrumar mensagem de tempo restante da validade
 
 User
 
@@ -55,9 +55,9 @@ User
 
 Projetos 
 
-	PENDENTE - Adicionar campo de custos adicionais e somar com a mao de obra no financeiro
+	OK - Adicionar campo de custos adicionais e somar com a mao de obra no financeiro
 
-	PENDENTE - Colocar Icone quando tiver 0 registros nos projetos
+	OK - Colocar Icone quando tiver 0 registros nos projetos
 
 
 Relatorios

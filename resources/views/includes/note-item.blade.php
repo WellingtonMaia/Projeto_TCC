@@ -10,7 +10,7 @@
 	   @endif
 	</div>
 	<div class="created-at">
-       @if($note->updated_at == $note->created_at):
+       @if($note->updated_at == $note->created_at)	 	
           Criado em: {{ \Carbon\Carbon::parse($note->created_at)->format('d/m/Y H:i:s') }}
        @else
           Atualizado em: {{ \Carbon\Carbon::parse($note->updated_at)->format('d/m/Y H:i:s') }}

@@ -73,22 +73,26 @@
 
                                                 let myChart = document.getElementById('myChart').getContext('2d');
 
+                                                var usersArray = [];
+
+
+                                                $.each(response.users, function (k, v){
+                                                    usersArray.push(v.name);
+                                                });
                                                 // var myChart = $("#myChart");
 
                                                 let massPopChart = new Chart(myChart, {
                                                         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
                                                         data:{
-                                                            labels:['Matheus', 'Welligton', 'Daiane', 'Marcos', 'Carlos'],
+                                                            labels:usersArray,
                                                             datasets:[{
-                                                                label:'Time',
+                                                                label:'Tarefas Concluidas',
                                                                 backgroundColor:'#45da7d',
                                                                 data:[
-                                                                    '30:00:00',
-                                                                    '15:20:00',
-                                                                    '14:20:32',
-                                                                    '15:50:00',
-                                                                    '12:20:00',
-
+                                                                    '30',
+                                                                    '15',
+                                                                    '14',
+                                                                    '15',   
                                                                 ]
                                                             }]
                                                         },

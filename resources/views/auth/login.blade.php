@@ -47,43 +47,43 @@
 						</g>
 					</svg>
 				</span>
-				<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+				<div class="wrap-input100 validate-input m-b-16" >
 					@if ($errors->has('email'))
 					<span class="help-block">
 						<strong>{{ $errors->first('email') }}</strong>
 					</span>
 					@endif
-					<input class="input100" type="text" name="email" placeholder="E-mail">
+					<input class="input100" type="text" name="email" placeholder="E-mail" data-validate="Por favor digite seu email">
 					<span class="focus-input100"></span>
 				</div>
-				<div class="wrap-input100 validate-input" data-validate = "Please enter password">
+				<div class="wrap-input100 validate-input" >
 					@if ($errors->has('password'))
 					<span class="help-block">
 						<strong>{{ $errors->first('password') }}</strong>
 					</span>
 					@endif
-					<input class="input100" type="password" name="password" placeholder="Password">
+					<input class="input100" type="password" name="password" placeholder="Password" data-validate ="Por favor digite sua senha">
 					<span class="focus-input100"></span>
 				</div>
 				<div class="text-right p-t-13 p-b-23">
 					<span class="txt1">
-						Forgot
+						Esqueceu
 					</span>
 					<a href="{{ route('password.request') }}" class="txt2">
-						Username / Password?
+						E-mail / Senha?
 					</a>
 				</div>
 				<div class="container-login100-form-btn">
 					<button class="login100-form-btn">
-					Sign in
+					Logar
 					</button>
 				</div>
 				<div class="flex-col-c p-t-170 p-b-40">
 					<span class="txt1 p-b-9">
-						Don’t have an account?
+						Não possui uma conta ainda ??
 					</span>
 					<a href="{{ route('register') }}" class="txt3">
-						Sign up now
+						Se inscreva agora
 					</a>
 				</div>
 			</form>

@@ -155,13 +155,11 @@ class TaskController extends Controller
                 $taskAccess = true;
             }
         }
-
-
-        if (!Gate::allows('isAdmin', Auth::user()->permission)){
-            if($taskAccess == false){
-                abort(403,"Sorry, You can do this action!");
-            }
+    
+        if(!Gate::allows('isAdmin', Auth::user()->permission) && $taskAccess == false){
+            abort(403,"Sorry, You can do this action!");
         }
+    
 
        // $projects = User::find(Auth::user()->id)->projects()->get();
 

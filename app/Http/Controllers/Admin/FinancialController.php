@@ -6,6 +6,7 @@ use App\Models\Financial;
 use App\Models\Project;
 use App\Models\Time;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
@@ -143,9 +144,13 @@ class FinancialController extends Controller
 
         $project = Project::find($financial->project_id);
 
-        $users = $project->users()->get()->toArray();
+        $users = $project->users()->get();
 
-        
+        $date_ini = date_create(Carbon::now()->format('Y-m-d'));    
+        $due_date = date_create(Carbon::parse($financial->due_date)->format('Y-m-d'));    
+
+        $diff = date_diff($date_ini,$due_date);
+        $stringDate = $diff->format("%R %a dias");
 
         foreach ($users as $key => $user) {
             $timeUser[$key]['time'] = "00:00:00";
@@ -163,7 +168,7 @@ class FinancialController extends Controller
         }
 
         // dd($financial);
-        return response()->json(['error'=>false,'financial'=>$financial,'users'=>$users,'times'=>$timeUser], 200);
+        return response()->json(['error'=>false,'financial'=>$financial,'users'=>$users,'times'=>$timeUser,'dias'=>$stringDate], 200);
 
 
     }

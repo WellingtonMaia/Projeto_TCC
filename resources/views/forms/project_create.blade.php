@@ -18,26 +18,26 @@
 				<div class="list-content">
 					<div class="table-responsive">
 						<div class="panel-body">
-							<form class="form-horizontal"  method="POST" @if(isset($project)) action="{{ url('/projects/edit/'.$project->id) }}" @else action="{{ route('projects_store') }}" @endif >
+							<form class="form-horizontal" method="POST" @if(isset($project)) action="{{ url('/projects/edit/'.$project->id) }}" @else action="{{ route('projects_store') }}" @endif >
 								@if(isset($project))<input name="_method" type="hidden" value="PUT">@endif
 								{{ csrf_field() }}
 								<div class="form-group">
 									<label for="name">Nome</label>
-									<input type="text" name="name" class="form-control" value="{{ old('name')? old('name') : isset($project) ? $project->name : "" }}" required autofocus>
+									<input type="text" name="name" placeholder="Digite aqui o nome do projeto" class="form-control" value="{{ old('name')? old('name') : isset($project) ? $project->name : "" }}" required autofocus>
 								</div>
 								<div class="form-group">
 									<label for="client_name">Nome do Cliente</label>
-									<input type="text" name="client_name" class="form-control" value="{{ old('client_name')? old('client_name') : isset($project) ? $project->client_name : "" }}" required autofocus>
+									<input type="text" name="client_name" placeholder="Digite aqui o nome do seu cliente" class="form-control" value="{{ old('client_name')? old('client_name') : isset($project) ? $project->client_name : "" }}" required autofocus>
 								</div>
 								<div class="form-content-50">
 									<div class="form-group">
 										<label for="estimate_date ">Data Estimada de Entrega</label>
-										<input type="text" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($project) ? Carbon\Carbon::parse($project->estimate_date)->format('d/m/Y') : "" }}" required>
+										<input type="text" placeholder="Digite a data de entrega do projeto" name="estimate_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date')? old('estimate_date') : isset($project) ? Carbon\Carbon::parse($project->estimate_date)->format('d/m/Y') : "" }}" required>
 									</div>
 									
 									<div class="form-group">
 										<label for="estimate_time ">Tempo Estimado de entrega</label>
-										<input type="text" name="estimate_time" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>
+										<input type="text" name="estimate_time" placeholder="Digite aqui o tempo que deve ser gasto em todo o projeto" class="form-control timepicker" value="{{ old('estimate_time')? old('estimate_time') : isset($project) ? $project->estimate_time : "" }}" required>
 									</div>
 								</div>
 
@@ -54,8 +54,16 @@
 								
 								<div class="form-group">
 
-									<label for="project_price">Preco do Projeto</label>
-									<input type="text" name="project_price" id="project-price" class="form-control money-create" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>
+									<label for="project_price">Preço do Projeto</label>
+									<input type="text" name="project_price" id="project-price" placeholder="Digite aqui o valor que o projeto foi vendido" class="form-control money-create" value="{{ old('project_price')? old('project_price') : isset($project) ? $project->project_price : "" }}" required>
+
+								</div>
+								
+								
+								<div class="form-group">
+
+									<label for="additional_costs">Custos Adicionais do Projeto</label>
+									<input type="text" name="additional_costs" id="additional-costs" class="form-control money-create" placeholder="Digite aqui possiveis custos adicionais que viram no projeto" value="{{ old('additional_costs')? old('additional_costs') : isset($project) ? $project->additional_costs : "" }}">
 
 								</div>
 								
