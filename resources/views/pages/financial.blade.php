@@ -53,8 +53,8 @@
 
                   </div>
                   <div class="users-project line">
-                      <span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">Matheus</span> - Salário : <i class="money alert alert-info"> 3.000,00</i></span>
-                      <span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">Wellington</span> - Salário : <i class="money alert alert-info"> 2.000,00</i></span>
+                      <span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">Matheus</span> - Pagamento refente a horas : <i class="money alert alert-info"> 3.000,00</i></span>
+                      <span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">Wellington</span> - Pagamento refente a horas : <i class="money alert alert-info"> 2.000,00</i></span>
                   </div>
                   <div class="line">
                       <span class="due-date"><i class="fa fa-calendar text-danger"></i> Data de Vencimento: <i class="text-danger due-date-value">{{ \Carbon\Carbon::parse($financial->due_date)->format('d/m/Y') }}</i> </span>

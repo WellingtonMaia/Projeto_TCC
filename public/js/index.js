@@ -551,7 +551,7 @@ $( document ).ready(function() {
 
                     $("#name_task").val(response.task.name);
                     $("#description").val(response.task.description);
-                    $("#estimate_date").val(moment(response.task.estimate_date).format('DD/MM/YYYY'));
+                    // $("#estimate_date").val(moment(response.task.estimate_date).format('DD/MM/YYYY'));
                     $("#estimate_time").val(removeSeconds(response.task.estimate_time));
                     $("#begin_date").val(moment(response.task.begin_date).format('DD/MM/YYYY'));
                     $("#final_date").val(moment(response.task.final_date).format('DD/MM/YYYY'));
@@ -762,11 +762,17 @@ $( document ).ready(function() {
     });
 
 
+    $(".buttonOpenFancy").click(function(e){
+        e.preventDefault();
 
+    });
 
 
     $("#open-fancy").click(function (e){
         e.preventDefault();        
+        $('form#editTask').attr('id','addTask');
+        $("#addTask input").val(" ");
+        $("#addTask textarea").val(" ");
         $(".task-box").addClass("active");
         $(".shadow").addClass("active");
 
@@ -837,24 +843,25 @@ $( document ).ready(function() {
 
                     $.each(response.users, function (key, value){
 
-                        
+                        console.log(key);
                         console.log(response.times);    
-                        var pay = 160 * value.payment_by_hours;
-                        
-
+                        // var pay = 160 * value.payment_by_hours;
                         $.each(response.times, function (k, v){
                             // console.log(v.time);
-                            var payment = getOnlyHours(v.time) * value.payment_by_hours;
+                            if (k == key) {
+                                var payment = getOnlyHours(v.time) * value.payment_by_hours;
 
-                            // $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Salário : <i class="money alert alert-info">'+number_format(pay,2, ",", ".")+'</i> Tempo:<i>'+v.time+'</i> </span>');                                      
-
+                                $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Pagamento refente a horas : <i class="money alert alert-info">'+number_format(payment,2, ",", ".")+'</i> Tempo:<i>'+v.time+'</i> </span>');                                      
+                                all = all + payment;
+                            }
+                            
                             console.log(payment);
                         });
                         // all = all + pay;
                         // pay = pay;
                         // console.log(value.payment_by_hours);
                         // console.log(pay);
-                        $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Salário : <i class="money alert alert-info">'+number_format(pay,2, ",", ".")+'</i> Tempo:<i></i> </span>');                                      
+                        // $('.users-project.line').append('<span class="item"><i class="fa fa-user fa-fw text-info" aria-hidden="true"></i> <span class="name">'+value.name+'</span> - Salário : <i class="money alert alert-info">'+number_format(pay,2, ",", ".")+'</i> Tempo:<i></i> </span>');                                      
                             
                         
                     });
@@ -1039,7 +1046,7 @@ $( document ).ready(function() {
 
     // $("#project_price").val($(number_format(newValue, 2, '.', ''));
 
-
+    $(".celular").mask('(00)00000-0000');
 
     $(".money").mask('000.000.000.000.000.00', {reverse: true});
 

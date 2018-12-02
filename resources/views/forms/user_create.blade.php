@@ -49,6 +49,8 @@
 										<option @if( old('role') == 'Programador') selected @endif @if(isset($user) && $user->role == 'Programador') selected @endif  value="Programador">Programador</option>
 										<option  @if( old('role') == 'Líder de Desenvolvimento') selected @endif @if(isset($user) && $user->role == 'Líder de Desenvolvimento') selected @endif value="Líder de Desenvolvimento">Líder de Desenvolvimento</option>
 										<option @if( old('role') == 'Administrador') selected @endif @if(isset($user) && $user->role == 'Administrador') selected @endif value="Administrador">Administrador</option>
+										<option @if( old('role') == 'Suporte') selected @endif @if(isset($user) && $user->role == 'Suporte') selected @endif value="Suporte">Suporte</option>
+										<option @if( old('role') == 'Analista') selected @endif @if(isset($user) && $user->role == 'Analista') selected @endif value="Analista">Analista</option>
 									</select>
 									{{-- <input type="text" placeholder="Digite o nome da sua profissão" name="role" class="form-control" value="{{ old('role')? old('role') : isset($user) ? $user->role : "" }}" required> --}}
 								</div>
@@ -76,7 +78,7 @@
 								</div>
 								<div class="form-group">
 									<label for="payment_by_hours">Valor Recebido por Hora</label>
-									<input type="text" name="payment_by_hours" id="payment_by_hours" class="form-control" value="{{ old('payment_by_hours')? old('payment_by_hours') : isset($user) ? $user->payment_by_hours : "" }}" placeholder="30.00">
+									<input type="text" name="payment_by_hours" id="payment_by_hours" class="form-control money" value="{{ old('payment_by_hours')? old('payment_by_hours') : isset($user) ? $user->payment_by_hours : "" }}" placeholder="30.00">
 								</div>
 								<div class="form-group">
 									<label for="celular">Numero de Celular</label>

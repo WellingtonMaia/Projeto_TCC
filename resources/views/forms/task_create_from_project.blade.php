@@ -33,10 +33,10 @@
 					</div>
 					
 					<div class="form-content-50">
-						<div class="form-group">
+						{{-- <div class="form-group">
 							<label for="estimate_date">Data Estimada</label>
 							<input type="text" name="estimate_date" class="form-control datepicker" id="estimate_date" autocomplete="off" placeholder="Selecione a data estimada para finalização da tarefa" data-date-format="dd/mm/yyyy" value="{{ old('estimate_date') }}" required>
-						</div>
+						</div> --}}
 						
 						<div class="form-group">
 							<label for="estimate_time">Tempo Estimado</label>
@@ -49,8 +49,8 @@
 							<input type="text" name="begin_date" autocomplete="off" id="begin_date" class="form-control datepicker" data-date-format="dd/mm/yyyy" placeholder="Digite a data de Inicio da tarefa" value="{{ old('begin_date') }}" required>
 						</div>
 						<div class="form-group">
-							<label for="final_date">Data Final</label>
-							<input type="text" name="final_date" id="final_date" class="form-control datepicker" autocomplete="off" data-date-format="dd/mm/yyyy" placeholder="Digite a data Final de entrega da tarefa" value="{{ old('final_date')}}" required>
+							<label for="final_date">Data Final Estimada</label>
+							<input type="text" name="final_date" id="final_date" class="form-control datepicker" autocomplete="off" data-date-format="dd/mm/yyyy" placeholder="Digite a data Final que deve ser entregue a tarefa" value="{{ old('final_date')}}" required>
 						</div>
 					</div>
 					

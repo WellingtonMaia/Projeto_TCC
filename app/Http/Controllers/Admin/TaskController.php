@@ -19,6 +19,7 @@ use App\Models\Project;
 use App\Models\Note;
 use App\Models\Time;
 use App\User;
+use Gate;
 
 class TaskController extends Controller
 {
@@ -112,7 +113,7 @@ class TaskController extends Controller
 
         $task->name           = Input::get('name');
         $task->description    = Input::get('description');
-        $task->estimate_date  = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');     
+        // $task->estimate_date  = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');     
         $task->status         = Input::get('status');
         $task->estimate_time  = Input::get('estimate_time');
         $task->begin_date     = Carbon::parse(str_replace('/', '-',Input::get('begin_date')))->format('Y-m-d');     
@@ -139,7 +140,31 @@ class TaskController extends Controller
     }
 
     public function showInfo($id){
-       $task = task::find($id);
+        $task = task::find($id);
+
+        $users = $task->users()->get();
+
+        $user = User::select(['id'])->whereIn('id',$users)->get()->toArray();
+
+
+        foreach ($user as $s) {
+
+            if($s['id'] != Auth::user()->id){
+                $taskAccess = false;
+            }else{
+                $taskAccess = true;
+            }
+        }
+
+
+        if (!Gate::allows('isAdmin', Auth::user()->permission)){
+            if($taskAccess == false){
+                abort(403,"Sorry, You can do this action!");
+            }
+        }
+
+       // $projects = User::find(Auth::user()->id)->projects()->get();
+
        return view('info.task_info')->with("task", $task);
     }
 
@@ -148,7 +173,7 @@ class TaskController extends Controller
 
         $task->name           = Input::get('name');
         $task->description    = Input::get('description');
-        $task->estimate_date  = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');     
+        // $task->estimate_date  = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');     
         $task->status         = Input::get('status');
         $task->estimate_time  = Input::get('estimate_time');
         $task->begin_date     = Carbon::parse(str_replace('/', '-',Input::get('begin_date')))->format('Y-m-d');     
@@ -182,7 +207,7 @@ class TaskController extends Controller
         $task->project_id       = $request->get('project');   
         $task->name             = $request->get('name');
         $task->description      = $request->get('description');       
-        $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');     
+        // $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');     
         $task->status           = $request->get('status');         
         $task->estimate_time    = $request->get('estimate_time');    
         $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
@@ -217,7 +242,7 @@ class TaskController extends Controller
 
         $task->name             = $request->get('name');
         $task->description      = $request->get('description');       
-        $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');  
+        // $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');  
         $task->estimate_time    = $request->get('estimate_time');    
         $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
         $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');        

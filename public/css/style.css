@@ -78,6 +78,10 @@ select{
     background-size: 5px;*/
 }
 
+.sub.collapse{
+	padding-left: 20px;
+}
+
 .top-left-part {
   background: #fff;
 }
@@ -1153,6 +1157,27 @@ h3.block-title{
 	border:1px solid #2e2e2e;
 	margin:0 4px 10px 4px;
 }
+
+.white-box .iten-task.file{
+	width: 13%;
+}
+
+
+.white-box .iten-task.file .created-at{
+	display: block;
+	margin: 6px auto;
+}
+
+
+.white-box .iten-task.note .created-at{
+	display: block;
+	margin-top: 6px;
+	margin-left: 60px;
+	width: 100%;
+
+}
+
+
 
 .white-box .iten-task.time{
 	justify-content: space-between;

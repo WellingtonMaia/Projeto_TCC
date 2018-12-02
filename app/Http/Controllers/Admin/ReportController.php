@@ -129,9 +129,9 @@ class ReportController extends Controller
 
         $users = $project->users()->get();
 
-        $us = User::select(['id','name'])->whereIn('id',$users)->get()->toArray();
+        $us = User::select(['id','name'])->whereIn('id',$users)->get();
 
-        // dd($us);
+        dd($us);
 
         foreach ($us as $key => $user) {
             $us[$key]['name'] = Helper::getFirstNameString($user['name']);

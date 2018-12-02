@@ -16,10 +16,16 @@
         <div class="row">
             <div class="col-md-4 col-xs-12">
                 <div class="white-box">
-                    <div class="user-bg"> <img width="50%" alt="user" src="{{ url("storage/users/{$user->image}") }}">
+                    <div class="user-bg"> <img width="50%" alt="user" src="@if(Auth::user()->image != null){{ url("storage/users/{$user->image}") }}@else{{ url('storage/users/151913201811155bed8e7191329.png') }} @endif">
                         <div class="overlay-box">
                             <div class="user-content">
-                                <a href="javascript:void(0)"><img src="{{ url("storage/users/{$user->image}") }}" class="thumb-lg img-circle" alt="img"></a>
+                                <a href="javascript:void(0)">
+                                    @if(Auth::user()->image != null)
+                                        <img src="{{ url("storage/users/{$user->image}") }}" class="thumb-lg img-circle" alt="img">  
+                                    @else
+                                        <img src="{{ url('storage/users/151913201811155bed8e7191329.png') }}" class="thumb-lg img-circle" alt="img">
+                                    @endif    
+                                </a>
                                 <h4 class="text-white">{{ $user->name }}</h4>
                             <h5 class="text-white">{{ $user->email }}</h5> </div>
                         </div>

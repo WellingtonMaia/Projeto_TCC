@@ -29,7 +29,7 @@
                         <h3 class="block-title">Informações</h3>
                         <span class="date-created"><i class="fa fa-calendar"></i> Data de Criação : {{  \Carbon\Carbon::parse($project->created_at)->format(' d F Y') }}</span>
                         <span class="date-estimated"><i class="fa fa-calendar"></i> Data Estimada para entrega do Projeto : {{  \Carbon\Carbon::parse($project->estimate_date)->format(' d F Y') }}</span>
-                        <span class="time"><i class="fa fa-clock-o"></i> Tempo Estimado de Conclusão do Projeto : {{ $project->estimate_time }}</span>
+                        <span class="time"><i class="fa fa-clock-o"></i> Tempo Estimado de Conclusão do Projeto : <i class="timepicker">{{ $project->estimate_time }}</i> horas </span>
                         <span class="price "><i class="fa fa-money"></i> Preço do Projeto : <i class="money">{{ $project->project_price }}</i></span>
                         {{-- <span class="addto"> <a href="">Adicionar Projeto no Financeiro</a></span> --}}
                         

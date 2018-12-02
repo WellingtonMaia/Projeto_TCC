@@ -11,58 +11,60 @@ Fazer uma breve apresentacao com slide
 
 Gerais
 
-	Colocar o logo no fundo do body
+	OK - Colocar o logo no fundo do body
 
-	Adicionar Grafico no DashBoard
+	PENDENTE - Adicionar Grafico no DashBoard
 
-	Mudar Icones dos Relatorios no menu
+	OK - Mudar Icones dos Relatorios no menu
 
 
 
 Tarefa
 
-	Se acaso o Usuario nao está vinculado a tarefa ele precisa receber a mensagem de 403
+	OK - Se acaso o Usuario nao está vinculado a tarefa ele precisa receber a mensagem de 403
 
 	Remover mensagem de 0 tarefas quando cadastrar a primeira no ajax
 
-	Remover uma das datas da tarefa
+	OK - Remover uma das datas da tarefa
 
-	Colocar disable quando usar o contador tempo/tarefa
+	PENDENTE - Colocar disable quando usar o contador tempo/tarefa
 
-	Arrumar topo de listagem de registro de tempo
+	PENDENTE - Arrumar topo de listagem de registro de tempo
 
-	Arrumar o 'adicionar tarefa' depois de ter apertado em edit sem salvar
+	OK - Arrumar o 'adicionar tarefa' depois de ter apertado em edit sem salvar
 
-	Adicionar data no arquivo e remover botao de delete do arquivo
+	OK - Adicionar data no arquivo e remover botao de delete do arquivo
 
-	Adicionar data no note
+	OK - Adicionar data no note
 
-	Tempo restante na tarefa no tempo estimado 	
+	PENDENTE - Tempo restante na tarefa no tempo estimado 	
 
-	Mostrar horas restantes e possiveis horas que sobraram
+	PENDENTE - Mostrar horas restantes e possiveis horas que sobraram
 
 
 Financeiro
 
-	Alterar o 'salario do colaborador ' para horas trabalhadas e somar todas as horas de cada e fazer * o valor por hora
+	OK - Alterar o 'salario do colaborador ' para horas trabalhadas e somar todas as horas de cada e fazer * o valor por hora
+
+	Arrumar mensagem de tempo restante da validade
 
 User
 
-	Setar imagem default quando cadastrar no register default
+	OK - Setar imagem default quando cadastrar no register default
 
 
 Projetos 
 
-	Adicionar campo de custos adicionais e somar com a mao de obra no financeiro
+	PENDENTE - Adicionar campo de custos adicionais e somar com a mao de obra no financeiro
 
-	Colocar Icone quando tiver 0 registros nos projetos
+	PENDENTE - Colocar Icone quando tiver 0 registros nos projetos
 
 
 Relatorios
 
-	No Relatorio tempo gasto total por projeto -> Adicionar custo do projeto
+	PENDENTE - No Relatorio tempo gasto total por projeto -> Adicionar custo do projeto
 
-	Melhorar css das Templates estaticas dos Relatorios
+	PENDENTE - Melhorar css das Templates estaticas dos Relatorios
 
 
 
