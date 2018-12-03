@@ -62,6 +62,7 @@
                         <canvas id="myChart" class="hid"></canvas>
 
                         <script type="text/javascript">
+                            var massPopChart = '';
                         $(document).ready(function (){                          
 
                                 $("#project-users-time").submit(function(e){
@@ -102,8 +103,12 @@
 
                                                 console.log(timesArray);
 
+                                                if(massPopChart instanceof Chart){
+                                                    massPopChart.destroy();
+                                                    console.log("destroy");
+                                                }
 
-                                                let massPopChart = new Chart(myChart, {
+                                                massPopChart = new Chart(myChart, {
                                                         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
                                                         data:{
                                                             labels:usersArray,

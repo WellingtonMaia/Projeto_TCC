@@ -101,6 +101,9 @@
 
                                                 var stringUser = response.user+' Horas Trabalhadas nos Projetos';
                                                 // var myChart = $("#myChart");
+                                                if(myChart instanceof Chart){
+                                                    myChart.destroy();
+                                                }
 
                                                 let massPopChart = new Chart(myChart, {
                                                         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea

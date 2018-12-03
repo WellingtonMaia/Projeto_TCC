@@ -27,14 +27,14 @@
                                 <div class="item-filtro">
                                     <label>
                                         <span>De:</span>
-                                        <input type="text" class="form-control datepicker" id="date_ini" name="date_ini" placeholder="10/08/2018">
+                                        <input type="text" autocomplete="off" class="form-control datepicker" id="date_ini" name="date_ini" placeholder="10/08/2018">
                                     </label>
                                 </div>    
 
                                 <div class="item-filtro">
                                     <label>
                                         <span>Até:</span>
-                                        <input type="text" name="date_final" id="date_final"  class="form-control datepicker" placeholder="11/09/2018">
+                                        <input type="text" autocomplete="off" name="date_final" id="date_final"  class="form-control datepicker" placeholder="11/09/2018">
                                     </label>
                                 </div>
                                 <input type="submit" class="btn btn-success" value="Gerar">
@@ -82,19 +82,32 @@
 
                                                 let myChart = document.getElementById('myChart').getContext('2d');
 
-                                                
+                                                // if(massPopChart instanceof Chart){
+                                                //     massPopChart.destroy();
+                                                // }
+
+                                                var arrayData  = [];
+                                                var arrayCount = []
+
+                                                $.each(response.projects , function (k, v){
+                                                    arrayData.push(v.created_at);
+                                                });
 
                                                 
+                                                $.each(response.projects , function (k, v){
+                                                    arrayCount.push(v.total);
+                                                });
+
                                                 // var myChart = $("#myChart");
 
                                                 let massPopChart = new Chart(myChart, {
                                                         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
                                                         data:{
-                                                            labels:[],
+                                                            labels:arrayData,
                                                             datasets:[{
                                                                 label:'Projetos Por Data',
                                                                 backgroundColor:'#45da7d',
-                                                                data:[],
+                                                                data:arrayCount,
                                                             }]
                                                         },
                                                          options: {

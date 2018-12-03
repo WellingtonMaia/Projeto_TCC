@@ -85,6 +85,8 @@
 
                                                 let myChart = document.getElementById('myChart').getContext('2d');
 
+                                                
+
                                                 var usersArray = [];
                                                 var taskArray = [];
 
@@ -96,7 +98,9 @@
                                                     taskArray.push(v);
                                                 });
 
-
+                                                if(myChart instanceof Chart){
+                                                    myChart.destroy();
+                                                }
                                                 // var myChart = $("#myChart");
 
                                                 let massPopChart = new Chart(myChart, {

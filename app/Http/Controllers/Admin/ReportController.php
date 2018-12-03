@@ -52,44 +52,40 @@ class ReportController extends Controller
     //-> projetos realizados durante um periodo
     public function date_for_project(Request $request){
         //dd($request->all());
-        
-
-        $date_ini = $request->get("date_ini");
-        $date_final = $request->get("date_final");
         //$date_final = $request->date_final;
         // $date_ini = '2018-01-01';
         // $date_final = '2019-12-30';
+
+        // dd()
         
-        $period = 12;
+        // $period = 12;
         /*
         //$date_ini = Carbon::parse(str_replace('/', '-',$request->get('date_ini')))->format('Y-m-d');
         //$date_final = Carbon::parse(str_replace('/', '-',$request->get('date_final')))->format('Y-m-d')
         //            ->copy()->subMonths($period);*/
         
         //teste
-
-
-        $date_ini = Carbon::parse(str_replace('/', '-',$date_ini))->format('Y-m-d');
-        $date_final = Carbon::parse(str_replace('/', '-',$date_final))->format('Y-m-d');            
+        $date_ini = Carbon::parse(str_replace('/', '-',$request->get("date_ini")))->format('Y-m-d');
+        $date_final = Carbon::parse(str_replace('/', '-',$request->get("date_final")))->format('Y-m-d');       
         
         
-            $projects = Project::selectRaw("id, name, client_name, estimate_date, project_price, status, project_type, created_at")
-            ->whereBetween("created_at", [$date_ini, $date_final])
-            ->where('status','=','A')
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y%m') "))
-            ->orderBy("created_at")->get();
-        
+        $projects = DB::select("
+            SELECT COUNT(projects.id) as total, created_at 
+                FROM projects 
+                    WHERE projects.status = 'A' AND 
+                    (created_at BETWEEN '{$date_ini}' AND '{$date_final}')
+                    GROUP BY DATE_FORMAT(created_at,'%Y%m%d')
+        ");
 
-        
-        //$projects = Project::whereBetween('created_at', [$date_ini, $date_final])
-        //                    ->where('status','A')
-        //                    ->get();
-        
-         // dd($projects);
+        foreach ($projects as &$project){
+            $project->created_at =  Carbon::parse($project->created_at)->format('d/m/Y');
+        }
 
-         return response()->json(['error'=>false,'times'=>$timeUser,'projects'=>$projects,'date_ini'=>$date_ini,'date_final'=>$date_final], 200);
+         return response()->json(['error'=>false,
+                                  'projects'=>$projects,
+                                  'date_ini'=>$date_ini,
+                                  'date_final'=>$date_final], 200);
 
-        // return view('info.report',compact('project'));
     }
 
     //->tempo gasto em cada projeto por pessoa
