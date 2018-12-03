@@ -742,6 +742,24 @@ $( document ).ready(function() {
         });
     });
 
+
+    // var timeItens = $(".time-registers").children();
+
+    // var countTime = 0;
+
+    // console.log(timeItens);
+
+    // $.each(timeItens, function (k,v){
+
+    //      k.span
+        
+
+    // });
+
+
+
+
+
     $(".note-registers").on('click','.editNote', function (e){
         e.preventDefault();
         $(".btn-info.note").click();

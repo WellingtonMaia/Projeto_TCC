@@ -75,14 +75,14 @@
 
 
                                                 var projectArray = [];
-                                                var timeArray    = [];
+                                                var timesArray    = [];
 
                                                 $.each(response.projects, function(k, v){
                                                     projectArray.push(v.name);
                                                 });
 
                                                 $.each(response.times, function (k,v){
-                                                    timeArray.push(v);
+                                                     timesArray.push(getOnlyHours(v.time));
                                                 });
 
 
@@ -96,7 +96,7 @@
                                                             datasets:[{
                                                                 label:stringUser,
                                                                 backgroundColor:'#45da7d',
-                                                                data:timeArray,
+                                                                data:timesArray,
                                                             }]
                                                         },
                                                          options: {
