@@ -62,7 +62,7 @@
                         <canvas id="myChart" class="hid"></canvas>
 
                         <script type="text/javascript">
-                            var massPopChart = '';
+                            // var massPopChart = '';
                         $(document).ready(function (){                          
 
                                 $("#project-users-time").submit(function(e){
@@ -88,7 +88,7 @@
                                                 
                                                 console.log(response);
 
-                                                let myChart = document.getElementById('myChart').getContext('2d');
+                                                var myChart = document.getElementById('myChart').getContext('2d');
 
                                                 // var myChart = $("#myChart");
                                                 var usersArray = [];
@@ -108,7 +108,7 @@
                                                     console.log("destroy");
                                                 }
 
-                                                massPopChart = new Chart(myChart, {
+                                               var massPopChart = new Chart(myChart, {
                                                         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
                                                         data:{
                                                             labels:usersArray,

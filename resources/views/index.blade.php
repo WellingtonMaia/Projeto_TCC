@@ -18,7 +18,10 @@
                     <h3 class="box-title">Projetos</h3>
                     <ul class="list-inline two-part">
                         <li>
-                            <div id="sparklinedash"></div>
+                            <div class="icon-dash project">
+                                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('img/sprite.svg'.'#dash-projects') }}"></use></svg>
+                            </div>
+
                         </li>
                         <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">{{ $nproject }}</span></li>
                     </ul>
@@ -29,7 +32,9 @@
                     <h3 class="box-title">Tarefas</h3>
                     <ul class="list-inline two-part">
                         <li>
-                            <div id="sparklinedash2"></div>
+                            <div class="icon-dash task">
+                                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('img/sprite.svg'.'#dash-tasks') }}"></use></svg>
+                            </div>
                         </li>
                         <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">{{ $ntask }}</span></li>
                     </ul>
@@ -40,7 +45,9 @@
                     <h3 class="box-title">Usuarios</h3>
                     <ul class="list-inline two-part">
                         <li>
-                            <div id="sparklinedash3"></div>
+                            <div class="icon-dash user">
+                                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('img/sprite.svg'.'#dash-users') }}"></use></svg>
+                            </div>
                         </li>
                         <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">{{ $nuser }}</span></li>
                     </ul>
@@ -51,7 +58,9 @@
                     <h3 class="box-title">Tempo Registrado</h3>
                     <ul class="list-inline two-part">
                         <li>
-                            <div id="sparklinedash4"></div>
+                            <div class="icon-dash time">
+                                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('img/sprite.svg'.'#dash-times') }}"></use></svg>
+                            </div>
                         </li>
                         <li class="text-right"><i class="ti-arrow-up text-danger"></i> <span class="text-danger">{{ $ntime }}</span></li>
                     </ul>
@@ -252,6 +261,6 @@
             </div>
         </div> --}}
     </div>
-<footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+<footer class="footer text-center"> 2018 &copy; Easytools</footer>
 </div>
 @endsection

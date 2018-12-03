@@ -130,8 +130,12 @@ $( document ).ready(function() {
 
         item = $(this);
 
-        status = item.attr("data-status");
-        id = item.attr("data-id");
+        // $("#statusInterna").attr("data-id")
+
+        console.log(item);
+
+        var status = item.attr("data-status");
+        var id = item.attr("data-id");
 
         $.ajax({
             headers: {
@@ -803,7 +807,7 @@ $( document ).ready(function() {
     $("#open-fancy").click(function (e){
         e.preventDefault();        
         $('form#editTask').attr('id','addTask');
-        $("#addTask input").val(" ");
+        $("#addTask input[type=text]").val(" ");
         $("#addTask textarea").val(" ");
         $(".task-box").addClass("active");
         $(".shadow").addClass("active");

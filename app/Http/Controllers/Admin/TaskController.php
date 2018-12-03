@@ -64,10 +64,9 @@ class TaskController extends Controller
 
         $task = Task::find($request->get('id'));
 
-
-
         if($request->get('status') == "I"){
             $task->status = 'C';    
+            // dd($task);
         }
 
         if($request->get('status') == "C"){
@@ -75,6 +74,8 @@ class TaskController extends Controller
         }
 
         $task->save();
+
+        // dd($task->status);
 
         return response()->json(['error'=>false,'status'=>$task->status], 200);
         

@@ -78,9 +78,13 @@ select{
     background-size: 5px;*/
 }
 
-.sub.collapse{
+#side-menu ul{
 	padding-left: 20px;
 }
+
+/*.sub.collapse{
+	padding-left: 20px;
+}*/
 
 .top-left-part {
   background: #fff;
@@ -1166,7 +1170,7 @@ h3.block-title{
 
 
 .white-box .iten-task.file{
-	width: 14%;
+	width: 17%;
 }
 
 
@@ -1214,9 +1218,9 @@ h3.block-title{
 	display: block;
 }
 
-.white-box .iten-task.file .img{
+/*.white-box .iten-task.file .img{
 	margin-right:-10px;
-}
+}*/
 
 .white-box .iten-task .img img{
 	width: 100%;
@@ -1723,8 +1727,8 @@ gear{
 }
 
 .no-results-report svg{
-	width: 400px;
-	height: 400px;
+	width: 300px;
+	height: 300px;
 	fill:#45da7d;
 	display: block;
 	margin: auto;
@@ -1747,10 +1751,36 @@ gear{
 }
 
 /*background: url(../img/2.png) no-repeat left, #2f7616;*/
+.icon-dash{
+	display: block;
+	/*width: 30px;*/
+	/*height: 30px;*/
+}
+
+.icon-dash svg{
+	display: block;
+	width: 55px;
+	height: 55px;
+}
+
+.icon-dash.project svg{
+	fill:#45da7d;
+}
 
 
+.icon-dash.task svg{
+	fill: #707cd2;
+}
 
 
+.icon-dash.user svg{
+	fill:#41b3f9;
+}
+
+
+.icon-dash.time svg{
+	fill:#f33155;
+}
 
 
 
