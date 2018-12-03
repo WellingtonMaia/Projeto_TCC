@@ -8,7 +8,7 @@ class Time extends Model
 {
     public function tasks()
     {
-    	return $this->belongsTo('App\Models\Task');
+    	return $this->belongsTo('App\Models\Task','task_id');
     }
 
     public function users()

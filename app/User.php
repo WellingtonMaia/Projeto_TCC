@@ -53,9 +53,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\File');
     }
 
-    public function time()
+    public function times()
     {
-        return $this->hasMany('App\Models\Time');
+        return $this->hasMany('App\Models\Time', 'users_id');
     }
 
 

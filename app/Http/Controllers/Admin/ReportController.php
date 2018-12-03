@@ -20,7 +20,7 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {       
         return view('info.report');
     }
 
@@ -95,78 +95,36 @@ class ReportController extends Controller
 
         $userName = Helper::getFirstNameString($user->name);
 
-        $projects = DB::table('projects_has_users')->select('project_id')->where('user_id', $user_id)->get();
-        // $timeUser[]['time'] = "00:00:00"; 
+        $projectsArray = $user->projects;
 
-        $tasks = [];
-
-        foreach ($projects as $project) {
-
-            // dd($project);
-            $tasks[] = Task::select()->where('project_id',$project->project_id)->get();
-
-            
-            // dd($task);
-
-        }
-
-        foreach ($tasks as $key => $task) {
-            $timeUser[$key]['time'] = "00:00:00";
-
-            // dd($task[$key]['id']);
-
-            $times = Time::select()->where('users_id',$user_id)->where('task_id',$task[$key]['id'])->get()->toArray();
-
-            // dd($times);
-            foreach($times as $time){
-                $timeUser[$key]['time'] = gmdate('H:i:s', strtotime( $timeUser[$key]['time'] ) + strtotime( $time['time_value'] ) );
-            }
-        }
-
-
-        dd($timeUser);
-
-        // $projectsArray = $user->projects()->get();
-
-        // foreach ($projectsArray as $key => $item) {
+        foreach ($projectsArray as $key => $item) {
               
           
-        //     foreach ($item->tasks()->get() as $k => $task) {
-        //         $timeUser[$item->id]['time'] = "00:00:00";
+            // foreach ($item->tasks as $k => $task) {
+                $timeUser[$item->id]['time'] = "00:00:00";
 
-        //         $times = Time::select()->where('users_id',$user_id)->where('task_id',$task['id'])->get()->toArray();
+                $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->whereHas('tasks', function($q) use ($item){
+                    $q->where('project_id', $item->id);
+                })->first();
 
-        //         // dd($times);
-        //         foreach($times as $time){
-        //             $timeUser[$item->id]['time'] = gmdate('H:i:s', strtotime( $timeUser[$item->id]['time'] ) + strtotime( $time['time_value'] ) );
-        //         }
+                // $times = Time::select()->where('users_id',$user_id)->where('task_id',$task['id'])->get()->toArray();
 
-        //     }          
-        // }
+                if($times->sumTimeValue == NULL){
+                    $times->sumTimeValue = '00:00:00';
+                }
+
+                $timeUser[$key]['time'] = $times->sumTimeValue;
+
+
+                // dd($times);
+                // foreach($times as $time){
+                //     $timeUser[$item->id]['time'] = gmdate('H:i:s', strtotime( $timeUser[$item->id]['time'] ) + strtotime( $time['time_value'] ) );
+                // }
+
+            // }          
+        }
     
         return response()->json(['error'=>false,'times'=>$timeUser,'projects'=>$projectsArray,'user'=>$userName], 200);
-
-        // dd($item->project_id);
-        // $projectsArray = Project::select(['id','name'])->where('id',$item->project_id)->get()->toArray();
-
-
-        // foreach ($projectsArray as $key => $proj) {
-                
-        // }
-        // dd($timeUser);
-
-        // $timeUser = ['20','10','50','5','7'];
-
-        
-        // if (!empty($project_id)) {
-        //     foreach($project_id as $p_id){
-        //         $projects = DB::table('projects')
-        //             ->select('name', 'client_name','estimate_time')
-        //             ->where('id', $p_id->project_id)
-        //             ->get();
-        //     } 
-            
-            // dd($projects);
         
     }
 
@@ -194,16 +152,54 @@ class ReportController extends Controller
         $users = $project->users()->get();
 
         foreach ($users as $key => $user) {
-            $timeUser[$key]['time'] = "00:00:00";
+            $timeUser[$key]['time'] = "00:00:00";   
 
             $users[$key]['name'] = Helper::getFirstNameString($user['name']);
 
-            $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
+            // $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
 
-            foreach($times as $time){
-                $timeUser[$key]['time'] = gmdate('H:i:s', strtotime( $timeUser[$key]['time'] ) + strtotime( $time['time_value'] ) );
+            // if($user->id == 8){
+            $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->whereHas('tasks', function($q) use ($project_id){
+                    $q->where('project_id', $project_id);
+                })->first();
+            // }
+
+            // $times = $user->times()->whereHas('tasks', function($q) use ($project_id){
+            //     $q->where('project_id', $project_id);
+            // })->sum('time_value');
+
+            if($times->sumTimeValue == NULL){
+                $times->sumTimeValue = '00:00:00';
             }
+
+            $timeUser[$key]['time'] = $times->sumTimeValue;
+
+            // $times = $user->times()->whereHas('tasks', function($q) use ($project_id){
+            //     $q->where('project_id', $project_id);
+            // })->get();
+            #$times = $user->times;
+
+            // dd($times);
+            // $f = ':';
+
+            // $user->sum_time_value = sprintf("%02d%s%02d%s%02d", floor($times/3600), $f, ($times/60)%60, $f, $times%60);
+            // $user->sum_time_value = $times; 
+
+            // $timeUser[$key]['time'] = date('H:i:s',$times); 
+
+
+
+            // $time = gmdate('H:i:s', strtotime( $times));
+
+
+            // dd($time);
+
+            // foreach($times as $time){
+            //     $timeUser[$key]['time'] = gmdate('H:i:s', strtotime( $timeUser[$key]['time'] ) + strtotime( $time['time_value'] ) );
+            // }
         }
+
+        // dd($users);
 
   
         return response()->json(['error'=>false,'times'=>$timeUser,'users'=>$users], 200);
@@ -241,23 +237,15 @@ class ReportController extends Controller
 
         // }
 
+        foreach ($users as $key => $value) {
 
-        dd($users);
-      
-        // $project = Project::find($project_id);
+            $users[$key]['name'] = $value->name;
 
-        // $users = $project->users()->get();
+            $taskUser[$key] = $value->tasks()->where('project_id', $project_id)->where('status', 'C')->count();
 
-        // foreach ($users as $key => $user) {
-
-
-        //     // $cTasks = Task::select()->where('user_id',$users[$key]['id'])->where('status','C')->get()->toArray();
-
-        // }            
-
-        // dd($cTasks);
+        }
         
-        return response()->json(['error'=>false,'task'=>$taskUser,'users'=>$users], 200);
+        return response()->json(['error'=>false,'tasks'=>$taskUser,'users'=>$users], 200);
 
         
     }

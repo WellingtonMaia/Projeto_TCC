@@ -74,11 +74,17 @@
                                                 let myChart = document.getElementById('myChart').getContext('2d');
 
                                                 var usersArray = [];
-
+                                                var taskArray = [];
 
                                                 $.each(response.users, function (k, v){
                                                     usersArray.push(v.name);
                                                 });
+
+                                                $.each(response.tasks, function (k, v){
+                                                    taskArray.push(v);
+                                                });
+
+
                                                 // var myChart = $("#myChart");
 
                                                 let massPopChart = new Chart(myChart, {
@@ -88,12 +94,7 @@
                                                             datasets:[{
                                                                 label:'Tarefas Concluidas',
                                                                 backgroundColor:'#45da7d',
-                                                                data:[
-                                                                    '30',
-                                                                    '15',
-                                                                    '14',
-                                                                    '15',   
-                                                                ]
+                                                                data:taskArray,
                                                             }]
                                                         },
                                                          options: {

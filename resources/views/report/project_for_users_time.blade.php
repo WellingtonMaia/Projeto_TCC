@@ -120,6 +120,8 @@
                                                     timesArray.push(getOnlyHours(v.time));
                                                 });
 
+                                                console.log(timesArray);
+
 
                                                 let massPopChart = new Chart(myChart, {
                                                         type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
@@ -159,6 +161,12 @@
                             });
     
                             function getOnlyHours(param){
+
+                                if(param == null){
+                                    param = "00:00:00";
+                                    console.log(param);
+                                }
+                                console.log(param);
                                var time = param.split(":");
 
                                var newTime = moment().hour(time[0]);
