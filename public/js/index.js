@@ -261,6 +261,10 @@ $( document ).ready(function() {
         var time_stop = $("#time_stop").val();        
         var time_value = $("#time_value").val();
 
+
+        var timeUsed = $(".timeUsed").text();
+        var timeLeft = $(".timeLeft").text();
+
         $.ajax({
             headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
@@ -271,6 +275,12 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
+                        var newTimeLeft = subtractTime(time_value, timeLeft);
+                        $(".timeLeft").text(newTimeLeft);
+                        
+                        var newTimeUsed = add(time_value, timeUsed);
+                        $(".timeUsed").text(newTimeUsed);
+                        
                         $(".no-registers-time").css('display','none');
                         $(".btn-info.time").parent().parent().next().removeClass("active");
                         $(".shadow").removeClass("active");
@@ -1153,6 +1163,7 @@ $( document ).ready(function() {
 });
 
 function getTimeInterval(startTime, endTime){
+
     var start = moment(startTime, "HH:mm");
     var end = moment(endTime, "HH:mm");
     var minutes = end.diff(start, 'minutes');
@@ -1161,18 +1172,37 @@ function getTimeInterval(startTime, endTime){
     return interval.format("HH:mm");
 }
 
+function subtractTime(time1, time2){
+
+    var time = moment.duration(time1);
+    var date = moment(time2);
+    var result = date.subtract(time);
+
+    return result.format("HH:mm");
+}
+
+
+function addTime(time1, time2){
+
+    var time = moment.(duration(time1));
+    var date = moment(time2);
+    var result = date.add(time);
+
+    return result.format("HH:mm");
+
+}
+
 function removeSeconds(param){
 
-    var time = param.split(":");
-    // var newTime = time[0]+":"time[1];
+    var time = param.split(":");    
     var newTime = moment().hour(time[0]).minute(time[1]);
 
     return newTime.format("HH:mm");
 }
 
 function getOnlyHours(param){
-   var time = param.split(":");
 
+   var time = param.split(":");
    var newTime = moment().hour(time[0]);
 
    return newTime.format("HH");
@@ -1180,9 +1210,11 @@ function getOnlyHours(param){
 
 
 function resetItemTask(current){
+
     if($("."+current+"-registers").children().length == 0 ){
         $(".no-registers-"+current).css('display','block');    
     }
+
 }
 
 
