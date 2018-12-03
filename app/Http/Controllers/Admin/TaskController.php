@@ -142,28 +142,45 @@ class TaskController extends Controller
     public function showInfo($id){
         $task = task::find($id);
 
-        $users = $task->users()->get();
+        $users = $task->users;
 
-        $user = User::select(['id'])->whereIn('id',$users)->get()->toArray();
+        // $user = User::select(['id'])->whereIn('id',$users)->get()->toArray();
 
 
-        foreach ($user as $s) {
+        // foreach ($user as $s) {
 
-            if($s['id'] != Auth::user()->id){
-                $taskAccess = false;
-            }else{
-                $taskAccess = true;
-            }
-        }
+        //     if($s['id'] != Auth::user()->id){
+        //         $taskAccess = false;
+        //     }else{
+        //         $taskAccess = true;
+        //     }
+        // }
     
-        if(!Gate::allows('isAdmin', Auth::user()->permission) && $taskAccess == false){
-            abort(403,"Sorry, You can do this action!");
+        // if(!Gate::allows('isAdmin', Auth::user()->permission) && $taskAccess == false){
+        //     abort(403,"Sorry, You can do this action!");
+        // }
+
+        foreach ($users as $key => $user) {
+
+            $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->where('task_id',$task->id)->first();
+
+            // $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->whereHas('tasks', function($q) use ($user){
+            //     $q->where('users_id', $user->id);
+            // })->first();
+
         }
-    
+
+        $timesUsed = $times->sumTimeValue;
+
+        $timesLeft = gmdate('H:i:s', strtotime( $task->estimate_time ) - strtotime( $timesUsed ) );
+
+       // dd($timesUsed);
 
        // $projects = User::find(Auth::user()->id)->projects()->get();
 
-       return view('info.task_info')->with("task", $task);
+       return view('info.task_info')->with("task", $task)
+                                    ->with("timesUsed", $timesUsed)
+                                    ->with("timesLeft", $timesLeft);
     }
 
     public function edit($id){

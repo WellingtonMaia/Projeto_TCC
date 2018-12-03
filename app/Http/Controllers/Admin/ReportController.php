@@ -50,12 +50,15 @@ class ReportController extends Controller
     }
 
     //-> projetos realizados durante um periodo
-    public function date_for_project(/*Request $request*/){
+    public function date_for_project(Request $request){
         //dd($request->all());
         
+
+        $date_ini = $request->get("date_ini");
+        $date_final = $request->get("date_final");
         //$date_final = $request->date_final;
-        $date_ini = '2018-01-01';
-        $date_final = '2019-12-30';
+        // $date_ini = '2018-01-01';
+        // $date_final = '2019-12-30';
         
         $period = 12;
         /*
@@ -64,6 +67,8 @@ class ReportController extends Controller
         //            ->copy()->subMonths($period);*/
         
         //teste
+
+
         $date_ini = Carbon::parse(str_replace('/', '-',$date_ini))->format('Y-m-d');
         $date_final = Carbon::parse(str_replace('/', '-',$date_final))->format('Y-m-d');            
         
@@ -80,7 +85,9 @@ class ReportController extends Controller
         //                    ->where('status','A')
         //                    ->get();
         
-         dd($projects);
+         // dd($projects);
+
+         return response()->json(['error'=>false,'times'=>$timeUser,'projects'=>$projects,'date_ini'=>$date_ini,'date_final'=>$date_final], 200);
 
         // return view('info.report',compact('project'));
     }
@@ -99,29 +106,18 @@ class ReportController extends Controller
 
         foreach ($projectsArray as $key => $item) {
               
-          
-            // foreach ($item->tasks as $k => $task) {
-                $timeUser[$item->id]['time'] = "00:00:00";
+            // $timeUser[$item->id]['time'] = "00:00:00";
 
-                $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->whereHas('tasks', function($q) use ($item){
-                    $q->where('project_id', $item->id);
-                })->first();
+            $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->whereHas('tasks', function($q) use ($item){
+                $q->where('project_id', $item->id);
+            })->first();
 
-                // $times = Time::select()->where('users_id',$user_id)->where('task_id',$task['id'])->get()->toArray();
+            if($times->sumTimeValue == NULL){
+                $times->sumTimeValue = '00:00:00';
+            }
 
-                if($times->sumTimeValue == NULL){
-                    $times->sumTimeValue = '00:00:00';
-                }
-
-                $timeUser[$key]['time'] = $times->sumTimeValue;
-
-
-                // dd($times);
-                // foreach($times as $time){
-                //     $timeUser[$item->id]['time'] = gmdate('H:i:s', strtotime( $timeUser[$item->id]['time'] ) + strtotime( $time['time_value'] ) );
-                // }
-
-            // }          
+            $timeUser[$key]['time'] = $times->sumTimeValue;
+      
         }
     
         return response()->json(['error'=>false,'times'=>$timeUser,'projects'=>$projectsArray,'user'=>$userName], 200);

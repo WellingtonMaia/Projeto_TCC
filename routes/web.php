@@ -89,7 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         //Rota de Teste Report
-        Route::get('/date-for-project-test','ReportController@project_for_users_times')->name("date_for_project_test");
+        // Route::get('/date-for-project-test','ReportController@project_for_users_times')->name("date_for_project_test");
 
 // <-- users -->
         Route::get('/users', 'UserController@index')->name('users');

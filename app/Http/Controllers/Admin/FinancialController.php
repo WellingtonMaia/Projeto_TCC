@@ -144,7 +144,7 @@ class FinancialController extends Controller
 
         $project = Project::find($financial->project_id);
 
-        $users = $project->users()->get();
+        $project_id = $financial->project_id;
 
         $date_ini = date_create(Carbon::now()->format('Y-m-d'));    
         $due_date = date_create(Carbon::parse($financial->due_date)->format('Y-m-d'));    
@@ -152,18 +152,37 @@ class FinancialController extends Controller
         $diff = date_diff($date_ini,$due_date);
         $stringDate = $diff->format("%R %a dias");
 
+        $users = $project->users()->get();
+
         foreach ($users as $key => $user) {
-            $timeUser[$key]['time'] = "00:00:00";
+            $timeUser[$key]['time'] = "00:00:00";   
 
             $users[$key]['name'] = Helper::getFirstNameString($user['name']);
 
-            $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
+            // $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
+
+            // if($user->id == 8){
+            $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->whereHas('tasks', function($q) use ($project_id){
+                    $q->where('project_id', $project_id);
+                })->first();
+            // }
+
+            // $times = $user->times()->whereHas('tasks', function($q) use ($project_id){
+            //     $q->where('project_id', $project_id);
+            // })->sum('time_value');
+
+            if($times->sumTimeValue == NULL){
+                $times->sumTimeValue = '00:00:00';
+            }
+
+            $timeUser[$key]['time'] = $times->sumTimeValue;
+            // $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
 
             // dd($times);
 
-            foreach($times as $time){
-                $timeUser[$key]['time'] = gmdate('H:i:s', strtotime( $timeUser[$key]['time'] ) + strtotime( $time['time_value'] ) );
-            }
+            // foreach($times as $time){
+            //     $timeUser[$key]['time'] = gmdate('H:i:s', strtotime( $timeUser[$key]['time'] ) + strtotime( $time['time_value'] ) );
+            // }
 
         }
 

@@ -1717,7 +1717,34 @@ gear{
 
 
 
+.no-results-report{
+	width: 100%;
 
+}
+
+.no-results-report svg{
+	width: 400px;
+	height: 400px;
+	fill:#45da7d;
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+
+.no-results-report span{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	display: block;
+	margin-top: 30px;
+}
+
+
+.hid{
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+}
 
 /*background: url(../img/2.png) no-repeat left, #2f7616;*/
 

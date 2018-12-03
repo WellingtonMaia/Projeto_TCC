@@ -40,9 +40,10 @@
                   {{-- <span>Data estimada: {{ \Carbon\Carbon::parse($task->estimate_date)->format('d/m/Y') }}</span> --}}
                   <span>Inicio: {{ \Carbon\Carbon::parse($task->begin_date)->format('d/m/Y') }}</span>
                   <span>Vence: {{ \Carbon\Carbon::parse($task->final_date)->format('d/m/Y') }}</span>
-                  {{-- <span>Tempo Estimado: {{ $task->estimate_time }} horas </span> --}}
+                  
                   <span>Tempo Estimado: <i class="timepicker">{{ $task->estimate_time }}</i> horas </span>
-                  {{-- <span>Valor Referente ao tempo gasto na tarefa: {{ $task->tasks_price }}</span> --}}
+                  <span>Tempo Restante: <i class="timepicker">{{ $timesLeft }}</i> horas</span>
+                  <span>Tempo Utilizado: @if($timesUsed == null )<i class="timepicker">00:00</i> horas @else <i class="timepicker">{{ $timesUsed }}</i> horas </span>@endif
                   <div class="descricao-tarefa">
                      {{ $task->description }}
                   </div>
