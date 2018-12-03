@@ -35,10 +35,14 @@ class HomeController extends Controller
         $user = User::count();
         // $times = Time::where( 'user_id ',Auth::user()->id)->get();
 
+        $userLogged = User::find(Auth::user()->id);
+
+        // dd($userLogged);
+
         // $times = Time::select()->whereIn('user_id',Auth::user()->id)->get();
         // $times = Time::select()->where('users_id',Auth::user()->id)->get()->toArray();
 
-        $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->where('users_id',$user->id)->first();
+        $times = $userLogged->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->where('users_id',$userLogged->id)->first();
 
 
         $timeValue = $times->sumTimeValue;
