@@ -99,7 +99,7 @@
                                                 });
 
 
-                                                var stringUser = response.user+' Horas Trabalhadas nos Projetos';
+                                                var stringUser = response.user+'- Horas Trabalhadas no Projeto';
                                                 // var myChart = $("#myChart");
                                                 if(myChart instanceof Chart){
                                                     myChart.destroy();

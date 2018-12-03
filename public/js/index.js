@@ -275,11 +275,11 @@ $( document ).ready(function() {
             dataType:"JSON",
             success:function(response){
                 if(response.error == false){
-                        var newTimeLeft = subtractTime(time_value, timeLeft);
-                        $(".timeLeft").text(newTimeLeft);
+                        // var newTimeLeft = subtractTime(time_value, timeLeft);
+                        // $(".timeLeft").text(newTimeLeft);
                         
-                        var newTimeUsed = add(time_value, timeUsed);
-                        $(".timeUsed").text(newTimeUsed);
+                        // var newTimeUsed = add(time_value, timeUsed);
+                        // $(".timeUsed").text(newTimeUsed);
                         
                         $(".no-registers-time").css('display','none');
                         $(".btn-info.time").parent().parent().next().removeClass("active");
@@ -1184,7 +1184,7 @@ function subtractTime(time1, time2){
 
 function addTime(time1, time2){
 
-    var time = moment.(duration(time1));
+    var time = moment.duration(time1);
     var date = moment(time2);
     var result = date.add(time);
 
