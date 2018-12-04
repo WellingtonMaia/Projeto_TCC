@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/WellingtonMaia/projeto_tcc/blob/master/public/img/easytools.png"></p>
+<p align="center" style="width:150px; margin:auto; display:block; text-align:center;"><img src="https://github.com/WellingtonMaia/projeto_tcc/blob/master/public/img/easytools.png"></p>
 
 ## About EasyTools
 
