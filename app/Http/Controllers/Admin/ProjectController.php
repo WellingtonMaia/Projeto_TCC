@@ -111,10 +111,6 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        
-        // if (!Gate::allows('isAdmin', Auth::user()->permission)){
-        //     abort(403,"Sorry, You can do this action!");
-        // }
 
         $users = User::all();
         $project = Project::find($id);        
@@ -124,12 +120,8 @@ class ProjectController extends Controller
 
     public function showInfo($id){
 
-        // if (!Gate::allows('isAdmin', Auth::user()->permission)){
-        //     abort(403,"Sorry, You can do this action!");
-        // }
-
         $project = Project::find($id);                
-        // $users = User::all();
+        
         $users = Project::find($id)->users()->get();
         return view('info.project_info')->with("project", $project)
                                         ->with("users", $users);
@@ -155,15 +147,10 @@ class ProjectController extends Controller
             Session::flash('message', 'Selecionar usuários!');
             return Redirect::to('projects');
         }
-
-
-        // $price = Input::get('project_price');
         
         $price = floatval (Input::get('project_price'));
 
         $additional_costs = floatval (Input::get('additional_costs'));
-        
-        // dd($price);
 
         $project->name             = Input::get('name');
         $project->estimate_date    = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');
@@ -176,14 +163,11 @@ class ProjectController extends Controller
 
         $project_id = $project->id;
 
-        // dd(Input::get('project_price'));
 
         if(!empty($project_id)){
 
             $financial = Financial::where('project_id', '=', $project_id )->get()->first();
             $id = $financial->id;
-
-            //dd([$project_id,$project->project_price, $id,$project->created_at, $estimate_date]);
 
                 $financial->project_id       = $project_id;
                 $financial->value            = $project->project_price;
@@ -203,9 +187,7 @@ class ProjectController extends Controller
                 return Redirect::to('projects');
             }
         }
-
     }
-
 
     public function delete($id){
         if (!Gate::allows('isAdmin', Auth::user()->permission)){

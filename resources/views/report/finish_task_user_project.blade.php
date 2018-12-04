@@ -6,7 +6,6 @@
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
             <h4 class="page-title">Tempo gasto por colaborador</h4> </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                {{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
                 <ol class="breadcrumb">
                     <li><a href="{{ route('home') }}">Dashboard</a></li>
                     <li class="active"> Projetos</li>
@@ -35,12 +34,6 @@
                                         </select>
                                     </label>
                                 </div>    
-{{--                            <div class="item-filtro">
-                                    <label>
-                                        <span>Até:</span>
-                                        <input type="text" name="date_final" class="form-control datepicker" placeholder="11/09/2018">
-                                    </label>
-                                </div> --}}
                                 <button class="btn btn-success">Gerar</button>
                             </div>
                         </form>

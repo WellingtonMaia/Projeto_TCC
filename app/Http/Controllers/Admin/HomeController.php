@@ -33,25 +33,12 @@ class HomeController extends Controller
         $project = Project::count();
         $task = Task::count();        
         $user = User::count();
-        // $times = Time::where( 'user_id ',Auth::user()->id)->get();
 
         $userLogged = User::find(Auth::user()->id);
 
-        // dd($userLogged);
-
-        // $times = Time::select()->whereIn('user_id',Auth::user()->id)->get();
-        // $times = Time::select()->where('users_id',Auth::user()->id)->get()->toArray();
-
         $times = $userLogged->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->where('users_id',$userLogged->id)->first();
 
-
         $timeValue = $times->sumTimeValue;
-        // dd($times);
-        // dd($timeValue);
-        // $TOTAL_HORAS_MANHA = gmdate('H:i:s', strtotime( 12:00:00 ) - strtotime( 09:00:00] ) );        
-        // die;
-        // dd($time);
-        // $data = $request->session()->all();              
 
         return view('index')
                ->with("nproject", $project)

@@ -50,7 +50,6 @@ class TaskController extends Controller
                                         ->with('users', $users);
     }
 
-
     public function createFromProject($id){
 
         $project = Project::find($id);
@@ -66,7 +65,6 @@ class TaskController extends Controller
 
         if($request->get('status') == "I"){
             $task->status = 'C';    
-            // dd($task);
         }
 
         if($request->get('status') == "C"){
@@ -74,8 +72,6 @@ class TaskController extends Controller
         }
 
         $task->save();
-
-        // dd($task->status);
 
         return response()->json(['error'=>false,'status'=>$task->status], 200);
         
@@ -145,51 +141,29 @@ class TaskController extends Controller
 
         $users = $task->users;
 
-        // $user = User::select(['id'])->whereIn('id',$users)->get()->toArray();
-
-
-        // foreach ($user as $s) {
-
-        //     if($s['id'] != Auth::user()->id){
-        //         $taskAccess = false;
-        //     }else{
-        //         $taskAccess = true;
-        //     }
-        // }
-    
-        // if(!Gate::allows('isAdmin', Auth::user()->permission) && $taskAccess == false){
-        //     abort(403,"Sorry, You can do this action!");
-        // }
-
         foreach ($users as $key => $user) {
 
             $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->where('task_id',$task->id)->first();
-
-            // $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->whereHas('tasks', function($q) use ($user){
-            //     $q->where('users_id', $user->id);
-            // })->first();
-
         }
 
         $timesUsed = $times->sumTimeValue;
 
+        if($timesUsed == null){
+            $timesUsed = '00:00:00';
+        }
+
         $timesLeft = gmdate('H:i:s', strtotime( $task->estimate_time ) - strtotime( $timesUsed ) );
 
-       // dd($timesUsed);
-
-       // $projects = User::find(Auth::user()->id)->projects()->get();
-
-       return view('info.task_info')->with("task", $task)
-                                    ->with("timesUsed", $timesUsed)
-                                    ->with("timesLeft", $timesLeft);
+        return view('info.task_info')->with("task", $task)
+                                     ->with("timesUsed", $timesUsed)
+                                     ->with("timesLeft", $timesLeft);
     }
 
     public function edit($id){
         $task = task::find($id);
 
         $task->name           = Input::get('name');
-        $task->description    = Input::get('description');
-        // $task->estimate_date  = Carbon::parse(str_replace('/', '-',Input::get('estimate_date')))->format('Y-m-d');     
+        $task->description    = Input::get('description');   
         $task->status         = Input::get('status');
         $task->estimate_time  = Input::get('estimate_time');
         $task->begin_date     = Carbon::parse(str_replace('/', '-',Input::get('begin_date')))->format('Y-m-d');     
@@ -222,8 +196,7 @@ class TaskController extends Controller
 
         $task->project_id       = $request->get('project');   
         $task->name             = $request->get('name');
-        $task->description      = $request->get('description');       
-        // $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');     
+        $task->description      = $request->get('description');          
         $task->status           = $request->get('status');         
         $task->estimate_time    = $request->get('estimate_time');    
         $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
@@ -258,7 +231,6 @@ class TaskController extends Controller
 
         $task->name             = $request->get('name');
         $task->description      = $request->get('description');       
-        // $task->estimate_date    = Carbon::parse(str_replace('/', '-',$request->get('estimate_date')))->format('Y-m-d');  
         $task->estimate_time    = $request->get('estimate_time');    
         $task->begin_date       = Carbon::parse(str_replace('/', '-',$request->get('begin_date')))->format('Y-m-d');      
         $task->final_date       = Carbon::parse(str_replace('/', '-',$request->get('final_date')))->format('Y-m-d');        
@@ -285,24 +257,3 @@ class TaskController extends Controller
     }
 
 }
-        // exemplo relacionamento
-        // public function aulas(){
-        //     return $this->belongsToMany('Modules\Produto\Entities\Sgr\Aula', 'materia_aula', 'materia_id', 'aula_id');                
-        // }
-
-       // if($registro->materias()->count()){
-       //          foreach ($registro->materias as $materia){
-       //              $duplicado->materias()->attach($materia->id, ['ordem'=>$materia->pivot->ordem]);
-       //              foreach ($materia->aulas()->where('curso_id', $registro->id)->get() as $aula) {
-       //                  $materia->aulas()->attach($aula->id,
-       //                      ['nome_aula' => $aula->pivot->nome_aula,
-       //                          'gratuito' => $aula->pivot->gratuito,
-       //                          'curso_id' => $duplicado->id,
-       //                          'tempo' => $aula->pivot->tempo,
-       //                          'ordem'=>$aula->pivot->ordem]);
-       //              }
-       //          }
-       //      }
-
-
-

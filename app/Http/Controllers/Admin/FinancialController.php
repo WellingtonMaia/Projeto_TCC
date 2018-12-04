@@ -26,10 +26,7 @@ class FinancialController extends Controller
      */
     public function index()
     {
-        //
-
         $financials = Financial::all();
-        //$projects = Project::all();
 
         return view('pages.financial')
             ->with('financials', $financials);
@@ -44,38 +41,6 @@ class FinancialController extends Controller
     {
         //
         return view('forms.financial_create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-
-        //var_dump($request->all());
-       /* $financial = new Financial();
-        $financial->fill($request->all());
-        $validate = validator($request->all(),$financial->rules(), $financial->messages());
-
-        dd($validate);exit();
-
-        if($validate->fails())
-        {
-            return redirect('/financials/create')
-                ->withErrors($validate)
-                ->withInput();
-        }else{
-             $save = $financial->save();
-
-            if ($save == true){
-                return redirect('/financials')->with('status','Conta Cadastrada com Sucesso!');
-            }
-        }
-        */
     }
 
     /**
@@ -113,30 +78,6 @@ class FinancialController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-
 
     public function getInfo(Request $request){
 
@@ -159,35 +100,23 @@ class FinancialController extends Controller
 
             $users[$key]['name'] = Helper::getFirstNameString($user['name']);
 
-            // $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
-
-            // if($user->id == 8){
             $times = $user->times()->selectRaw('SEC_TO_TIME(SUM(TIME_TO_SEC(time_value))) as sumTimeValue')->whereHas('tasks', function($q) use ($project_id){
                     $q->where('project_id', $project_id);
                 })->first();
-            // }
-
-            // $times = $user->times()->whereHas('tasks', function($q) use ($project_id){
-            //     $q->where('project_id', $project_id);
-            // })->sum('time_value');
 
             if($times->sumTimeValue == NULL){
                 $times->sumTimeValue = '00:00:00';
             }
 
             $timeUser[$key]['time'] = $times->sumTimeValue;
-            // $times = Time::select()->where('users_id',$users[$key]['id'])->get()->toArray();
-
-            // dd($times);
-
-            // foreach($times as $time){
-            //     $timeUser[$key]['time'] = gmdate('H:i:s', strtotime( $timeUser[$key]['time'] ) + strtotime( $time['time_value'] ) );
-            // }
 
         }
 
-        // dd($financial);
-        return response()->json(['error'=>false,'financial'=>$financial,'users'=>$users,'times'=>$timeUser,'dias'=>$stringDate], 200);
+        return response()->json(['error'=>false,
+                                 'financial'=>$financial,
+                                 'users'=>$users,
+                                 'times'=>$timeUser,
+                                 'dias'=>$stringDate], 200);
 
 
     }

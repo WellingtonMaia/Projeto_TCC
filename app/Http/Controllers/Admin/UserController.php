@@ -124,16 +124,6 @@ class UserController extends Controller
         $id = $request->input('id_user');
         $user = user::find($id);
 
-        /*if(Input::file("image") == ''){
-            $user->image = "";    
-        }else{
-            $image = Input::file("image");
-            $extensao = $image->getClientOriginalExtension();
-
-            Input::file('image')->move('/imagens-post/','user_'.$user->id.'.'.$extensao);            
-            $user->image = '/imagens-post/user_'.$user->id.'.'.$extensao;
-        }*/
-
         if($request->image != null){
             $nameFile = null;
         }else{

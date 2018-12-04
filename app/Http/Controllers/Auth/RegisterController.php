@@ -67,22 +67,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'status' => 'A',
-            'permission' => 'C',
+            'permission' => 'A',
             'image' => '151913201811155bed8e7191329.png'
         ]);
 
     }
-
-    // public function gerarSession(Modelo $registro){
-
-    //     \Session::forget('modelo');
-
-    //     \Session::put('usuarioLogado', true);
-    //     \Session::put('modelo.id', $user->id);
-    //     \Session::put('modelo.nome', $user->nome);
-    //     \Session::put('modelo.email', $user->email);
-    //     \Session::save();
-
-    //     $user->save();
-    // }
 }

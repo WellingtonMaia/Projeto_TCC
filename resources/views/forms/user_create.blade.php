@@ -6,7 +6,6 @@
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
 			<h4 class="page-title">@if(isset($user))Editar usuário @else Novo usuário @endif</h4></div>
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-				{{-- <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade to Pro</a> --}}
 				<ol class="breadcrumb">
 					<li><a href="{{ route('home') }}">Dashboard</a></li>
 					<li class="active"> Criar Usuario</li>
@@ -52,7 +51,6 @@
 										<option @if( old('role') == 'Suporte') selected @endif @if(isset($user) && $user->role == 'Suporte') selected @endif value="Suporte">Suporte</option>
 										<option @if( old('role') == 'Analista') selected @endif @if(isset($user) && $user->role == 'Analista') selected @endif value="Analista">Analista</option>
 									</select>
-									{{-- <input type="text" placeholder="Digite o nome da sua profissão" name="role" class="form-control" value="{{ old('role')? old('role') : isset($user) ? $user->role : "" }}" required> --}}
 								</div>
 								<div class="form-group">
 									<label for="role">Imagem de Perfil</label>
