@@ -1,0 +1,24 @@
+Documentação easytools
+
+
+Após baixar o projeto, deve-se criar o arquivo .env 
+
+e setar as variaveis do banco, utilizando env.example
+
+após configurar corretamente deve-se rodar o comando:
+
+	php artisan key:generate
+
+Importar o banco easytools.sql 
+
+dados de acesso do usuário admin:
+
+admin@easytools.com.br
+102030
+
+e para startar o servidor, basta utilizar o comando 
+
+	php artisan serve
+
+a url /register, cria um usuario admin no sistema, mas não é recomendado utilizar a mesma , para os demais cadastros dos colaboradores.
+
