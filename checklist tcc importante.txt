@@ -49,15 +49,15 @@ Lista Pendente
 
 	SEXTA FEIRA FAZER
 
-		Fazer ajax da geração dos gráficos dos 4 relatórios
+		OK - Fazer ajax da geração dos gráficos dos 4 relatórios
 
-		Realizar Cadastros Reais e Coerentes
+		OK - Realizar Cadastros Reais e Coerentes
 
 	FINAL DE SEMANA
 
-		Ajustes Lista Daiane 
+		OK - Ajustes Lista Daiane 
 
-		Verificar campos de dinheiro(mask)
+		OK - Verificar campos de dinheiro(mask)
 
 		
 

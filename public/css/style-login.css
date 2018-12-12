@@ -372,3 +372,11 @@ iframe {
     padding-right: 15px;
   }
 }
+
+.container-login100 .help-block{
+	color: #d24f4f;
+    position: absolute;
+    z-index: 20;
+    top: 237px;
+    left: 30px;
+}

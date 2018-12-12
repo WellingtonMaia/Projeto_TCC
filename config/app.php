@@ -69,6 +69,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Time Locale Configuration
+    |--------------------------------------------------------------------------
+    |
+    | The application time locale determines the default locale that will be
+    | used by creating dates. You are free to set this value to any of the
+    | locales which will be supported by the php default locale LC_TIME.
+    |
+    */
+
+    'time-locale' => env('APP_TIME_LOCALE', 'pt_BR'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
     |

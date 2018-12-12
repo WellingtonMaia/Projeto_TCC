@@ -13,15 +13,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/style-login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/slick.min.css') }}" rel="stylesheet" >
-    <link href="{{ asset('css/index.css') }}"  rel="stylesheet" >
     <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
 </head>
     <body>
         @yield('content')
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/jquery.min.js') }}"></script> 
-        <script src="{{ asset('js/index.js') }}"></script>      
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

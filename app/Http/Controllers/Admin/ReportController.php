@@ -23,33 +23,43 @@ class ReportController extends Controller
     {       
         return view('info.report');
     }
-
+    
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+    * Display the view date for project report
+    */
     public function index_date_for_project(){
         return view('report.date_for_project');
     }
 
+    /**
+    * Display the view time users for project report
+    */
     public function index_time_users_for_project(){
         $users  = User::all();
         return view('report.time_users_for_project')->with('users',$users);
     }
 
+    /**
+    * Display the view project for users time report
+    */
     public function index_project_for_users_times(){
         $projects = Project::all();
         return view('report.project_for_users_time')->with('projects', $projects);
     }
 
+    /**
+    * Display the view finish task for user project report
+    */
     public function index_finish_task_user_project(){
         $projects = Project::all();
         return view('report.finish_task_user_project')->with('projects', $projects);
     }
 
-    //-> projetos realizados durante um periodo
+    /**
+    * Projects created based on a 2 date period
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function date_for_project(Request $request){
 
         $date_ini = Carbon::parse(str_replace('/', '-',$request->get("date_ini")))->format('Y-m-d');
@@ -74,8 +84,11 @@ class ReportController extends Controller
 
     }
 
-    //->tempo gasto em cada projeto por pessoa
-    //selecionar projeto ou pessoa;
+    /**
+    * Time spend in each project by people 
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function time_users_for_project(Request $request){
 
         $user_id = $request->get('id');
@@ -107,9 +120,11 @@ class ReportController extends Controller
         
     }
    
-    //->tempo gasto total de projetos por tempo
-    //selecionar um projeto e listar todos os colaboradores relacionado
-    //a ele e visualizar as horas trabalhadas
+    /**
+    * Time spend by all the colaborators in a project
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function project_for_users_times(Request $request){
 
         $project_id = $request->get('id');
@@ -141,7 +156,11 @@ class ReportController extends Controller
    
     }
 
-    //->conclusao de tarefa por pessoa em um projeto
+    /**
+    * Task conclusion by people in one project
+    *
+    * @return \Illuminate\Http\Response
+    */ 
     public function finish_task_user_project(Request $request){
         $project_id = $request->get('id');
         
