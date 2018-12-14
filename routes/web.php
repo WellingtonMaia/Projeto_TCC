@@ -46,9 +46,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/tasks/delete/{id}', 'TaskController@delete');
         Route::get('/tasks/addTime/{id}', 'TimeController@store');
 
-
-
-
 // <-- ajax -->
          //getting users
         Route::get('/tasks/getUsers/', 'TaskController@getUsers');
@@ -87,23 +84,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/report/post/project-for-users-times','ReportController@project_for_users_times');
         Route::post('/report/post/finish-task-user-project','ReportController@finish_task_user_project');
 
-
-        //Rota de Teste Report
-        // Route::get('/date-for-project-test','ReportController@project_for_users_times')->name("date_for_project_test");
-
 // <-- users -->
         Route::get('/users', 'UserController@index')->name('users');
         Route::get('/users/create', 'UserController@create')->name('users_create');
         Route::post('/users/store', 'UserController@store')->name('users_store');
         Route::get('/users/show/{id}', 'UserController@show');
         Route::get('/users/show-info/{id}', 'UserController@showInfo');
-//        Route::put('/users/edit/{id}', 'UserController@edit');
+
         Route::post('/users/edit', 'UserController@edit')->name('users_edit');
         Route::get('/users/delete/{id}', 'UserController@delete');
 
         Route::get('/user/image/{id}', 'UserController@getImage');
-
-
 
 // <-- financials -->
         Route::get('/financials', 'FinancialController@index')->name('financials');
