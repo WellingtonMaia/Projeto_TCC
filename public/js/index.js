@@ -1212,7 +1212,6 @@ function getOnlyHours(param){
    return newTime.format("HH");
 }
 
-
 function resetItemTask(current){
 
     if($("."+current+"-registers").children().length == 0 ){

@@ -88,7 +88,7 @@
 
 
                                                 var projectArray = [];
-                                                var timesArray    = [];
+                                                var timesArray   = [];
 
                                                 $.each(response.projects, function(k, v){
                                                     projectArray.push(v.name);
@@ -99,7 +99,7 @@
                                                 });
 
 
-                                                var stringUser = response.user+'- Horas Trabalhadas no Projeto';
+                                                var stringUser = response.user+' - Horas Trabalhadas no Projeto';
                                                 // var myChart = $("#myChart");
                                                 if(myChart instanceof Chart){
                                                     myChart.destroy();

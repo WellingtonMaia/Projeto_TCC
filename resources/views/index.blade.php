@@ -67,6 +67,102 @@
             </div>
         </div>        
     </div>
+    <div class="container-fluid">
+
+        {{-- {{ dd($projectsArray) }} --}}
+
+        <input type="hidden" name="" id="auth-id" value="{{ Auth::user()->id }}">
+        
+        <div class="white-box">            
+            <canvas id="myChart"></canvas>
+        </div>
+    
+
+        <script type="text/javascript">
+
+
+            $( document ).ready(function() {
+             var id = $("#auth-id").val();
+
+             $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')   
+                },
+                url: '/report/post/time-users-for-project',
+                type: "POST",
+                data: {id : id},
+                dataType:'JSON',
+                success:function(response){
+                    if(response.error == false){
+
+                        // $(".no-results-report").remove();
+                        // $("#myChart").removeClass('hid');
+                        
+                        console.log(response);
+
+                        let myChart = document.getElementById('myChart').getContext('2d');
+
+
+                        var userName = "{{ $userG }}"
+
+                        var projectArray = [];
+                        var timesArray   = [];
+
+                        $.each(response.projects, function(k, v){
+                            projectArray.push(v.name);
+                        });
+
+                        $.each(response.times, function (k,v){
+                             timesArray.push(getOnlyHours(v.time));
+                        });
+
+
+                        var stringUser = userName+' - Horas Trabalhadas no Projeto';
+                        // var myChart = $("#myChart");
+                        if(myChart instanceof Chart){
+                            myChart.destroy();
+                        }
+
+                        let massPopChart = new Chart(myChart, {
+                                type:'bar', // bar, horizontalBar, pie, line , doughnut, radar, polarArea
+                                data:{
+                                    labels:projectArray,
+                                    datasets:[{
+                                        label:stringUser,
+                                        backgroundColor:'#41b3f9',
+                                        data:timesArray,
+                                    }]
+                                },
+                                 options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks:{
+                                                beginAtZero:true
+                                            },
+                                            // type: 'time',
+                                            // distribution: 'series'
+                                        }]
+                                    }
+                                }
+
+                            });
+
+                    }else{
+                        console.log("erro");
+                    }
+                }
+            });
+        });
+      function getOnlyHours(param){
+           var time = param.split(":");
+
+           var newTime = moment().hour(time[0]);
+
+           return newTime.format("HH");
+        }
+        </script>
+
+    </div>
 <footer class="footer text-center"> 2018 &copy; Easytools</footer>
 </div>
 @endsection

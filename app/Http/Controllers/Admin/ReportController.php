@@ -85,7 +85,7 @@ class ReportController extends Controller
     }
 
     /**
-    * Time spend in each project by people 
+    * Time spend in each project by person 
     *
     * @return \Illuminate\Http\Response
     */
