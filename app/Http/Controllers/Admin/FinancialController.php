@@ -26,10 +26,11 @@ class FinancialController extends Controller
      */
     public function index()
     {
+
+
         $financials = Financial::all();
 
-        return view('pages.financial')
-            ->with('financials', $financials);
+        return view('pages.financial')->with('financials', $financials);
     }
 
     /**

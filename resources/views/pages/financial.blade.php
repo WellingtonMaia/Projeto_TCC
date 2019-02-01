@@ -31,7 +31,7 @@
                             @foreach($financials as $financial)
                                <tr>
                                   <td>{{ $financial->id }}</td>
-                                  <td>{{ $financial->project->name }}</td>
+                                  <td>{{ $financial->project['name'] }}</td>
                                   <td>{{ \Carbon\Carbon::parse($financial->date_ini)->format('d/m/Y') }}</td>
                                   <td>{{ \Carbon\Carbon::parse($financial->due_date)->format('d/m/Y') }}</td>
                                   <td class="money">{{ $financial->value }}</td>
